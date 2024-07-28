@@ -1,0 +1,27 @@
+modLoader="lowcodefml"
+loaderVersion="[4,)"
+license="LGPL-3.0-only"
+issueTrackerURL="https://github.com/KessokuTeaTime/KessokuLib/issues"
+[[mods]]
+modId="kessokulib"
+version="${version}"
+displayName="Kessoku Lib"
+displayURL="https://github.com/KessokuTeaTime/KessokuLib"
+logoFile="icon.png"
+authors="Kessoku Tea Time"
+description='''
+todo
+'''
+[[dependencies.kessokulib]]
+modId="neoforge"
+type="required"
+versionRange="[21.0.0-beta,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.kessokulib]]
+modId="minecraft"
+type="required"
+versionRange="[1.21,)"
+ordering="NONE"
+side="BOTH"
