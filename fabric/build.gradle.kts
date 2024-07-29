@@ -1,5 +1,5 @@
+import java.nio.file.Path
+
 dependencies {
-    (rootProject.extra["getFabricModules"] as () -> List<Project>)().forEach {
-        include(it)
-    }
+    include(files(fileTree(Path.of(rootDir.absolutePath, "artifacts", "fabric")) { include("**/*") }))
 }
