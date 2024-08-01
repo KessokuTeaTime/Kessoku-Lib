@@ -23,6 +23,9 @@ allprojects {
 
 subprojects {
     apply plugin: 'base'
+    configurations {
+        common.extendsFrom api
+    }
     processResources {
         inputs.property "version", project.version
 

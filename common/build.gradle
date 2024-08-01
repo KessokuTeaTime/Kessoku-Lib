@@ -4,6 +4,7 @@ plugins {
 
 allprojects {
     apply plugin: 'dev.architectury.loom'
+    apply plugin: 'base'
     base {
         archivesName.set(rootProject.name + project.name == "common" ? "" : project.name)
     }
@@ -16,16 +17,5 @@ allprojects {
                     rootProject.libs.yarn.patch
                 }
         )
-    }
-}
-
-subprojects {
-    apply plugin: 'base'
-    processResources {
-        inputs.property "version", project.version
-
-        filesMatching("fabric.mod.json") {
-            expand "version": project.version
-        }
     }
 }

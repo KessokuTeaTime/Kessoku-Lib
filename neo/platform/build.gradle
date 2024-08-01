@@ -1,4 +1,2 @@
 dependencies {
-    api project(path: ":common:platform", configuration: 'namedElements')
-    include project(path: ":common:platform", configuration: 'namedElements')
 }
