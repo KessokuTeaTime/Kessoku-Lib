@@ -10,6 +10,6 @@ pluginManagement {
 
 rootProject.name = 'kessoku-lib'
 
-include ':common', ':common:base', ':common:platform'
+include ':common', ':common:base', ':common:platform', ':common:eventbase'
 include ':fabric', ':fabric:platform'
 include ':neo', ":neo:platform"
