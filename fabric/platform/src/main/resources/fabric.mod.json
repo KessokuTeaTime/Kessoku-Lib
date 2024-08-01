@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "kessoku-platform",
+  "version": "${version}",
+  "name": "Kessoku Platform",
+  "description": "TODO",
+  "authors": [
+    "Kessoku Tea Time"
+  ],
+  "contact": {
+    "homepage": "https://github.com/KessokuTeaTime/KessokuLib",
+    "sources": "https://github.com/KessokuTeaTime/KessokuLib",
+    "issues": "https://github.com/KessokuTeaTime/KessokuLib/issues"
+  },
+  "license": "LGPL-3.0-only",
+  "icon": "assets/kessokulib/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "band.kessokuteatime.kessokulib.event.base.fabric.ExampleModFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

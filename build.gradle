@@ -2,7 +2,7 @@ plugins {
     alias libs.plugins.loom apply false
 }
 
-allprojects {
+subprojects {
     group = "band.kessokuteatime.kessokulib"
     apply plugin: 'idea'
     apply plugin: 'java-library'
@@ -12,6 +12,9 @@ allprojects {
             downloadSources = true
         }
     }
+    repositories {
+        mavenCentral()
+    }
     tasks.withType(JavaCompile).configureEach {
         it.options.release = 21
     }
@@ -20,20 +23,8 @@ allprojects {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-}
-
-subprojects {
     dependencies {
         implementation 'com.google.auto.service:auto-service-annotations:1.1.1'
         annotationProcessor 'com.google.auto.service:auto-service:1.1.1'
-    }
-}
-
-def moduleDependencies(project, List<String> depNames) {
-    def deps = depNames.iterator().collect { project.dependencies.project(path: ":$it", configuration: 'namedElements') }
-    project.dependencies {
-        deps.each {
-            api it
-        }
     }
 }
