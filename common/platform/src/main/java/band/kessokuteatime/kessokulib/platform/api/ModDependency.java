@@ -73,7 +73,7 @@ public interface ModDependency {
          */
         @Nullable
         public String getKey() {
-            return Loader.isFabric() ? fabricKey : neoKey;
+            return ModLoader.getInstance().isFabric() ? fabricKey : neoKey;
         }
     }
 }

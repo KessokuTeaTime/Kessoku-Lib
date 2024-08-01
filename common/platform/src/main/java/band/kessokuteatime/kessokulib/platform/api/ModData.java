@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public interface ModInfo {
+public interface ModData {
     /**
      * Returns the mod's ID.
      */
