@@ -8,7 +8,7 @@ import net.minecraft.class_7157;
 
 public interface CommandRegister {
 
-    Event<CommandRegister> EVENT = Event.of();
+    Event<CommandRegister> EVENT = Event.of(commandRegisters -> (dispatcher, registryAccess, environment) -> commandRegisters.forEach(commandRegister -> commandRegister.register(dispatcher, registryAccess, environment)));
 
     /**
      * Called when the server is registering commands.

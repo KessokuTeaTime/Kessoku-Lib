@@ -2,19 +2,30 @@ package band.kessokuteatime.kessokulib.event;
 
 import band.kessokuteatime.kessokulib.event.api.Event;
 import band.kessokuteatime.kessokulib.event.api.EventPhase;
-import com.google.common.collect.ImmutableList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class EventImpl<T> implements Event<T> {
 
-    private Map<EventPhase, List<T>> listeners;
+    private Map<EventPhase, List<T>> listeners = new HashMap<>();
+    private Function<List<T>, T> invokerFunc;
 
-    public EventImpl() {
+    public EventImpl(Function<List<T>, T> invokerFunc) {
+        this.invokerFunc = invokerFunc;
         for (EventPhase phase : EventPhase.values()) {
             listeners.put(phase, List.of());
         }
+    }
+
+    @Override
+    public T invoker() {
+        var listenerFinal = new ArrayList<T>();
+        listeners.values().forEach(listenerFinal::addAll);
+        return invokerFunc.apply(listenerFinal);
     }
 
     @Override
@@ -35,9 +46,5 @@ public class EventImpl<T> implements Event<T> {
     @Override
     public void clearListeners(EventPhase phase) {
         listeners.get(phase).clear();
-    }
-
-    public ImmutableList<T> get(EventPhase phase) {
-        return ImmutableList.copyOf(listeners.get(phase));
     }
 }

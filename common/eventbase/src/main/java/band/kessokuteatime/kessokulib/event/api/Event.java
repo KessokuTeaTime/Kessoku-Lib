@@ -1,8 +1,15 @@
 package band.kessokuteatime.kessokulib.event.api;
 
 import band.kessokuteatime.kessokulib.event.EventImpl;
+import com.google.common.collect.ImmutableList;
+
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public interface Event<T> {
+
+    T invoker();
 
     void register(T listener, EventPhase phase);
 
@@ -30,8 +37,8 @@ public interface Event<T> {
         }
     };
 
-    static <T> Event<T> of() {
-        return new EventImpl<>();
+    static <T> Event<T> of(Function<List<T>, T> invokerFunc) {
+        return new EventImpl<>(invokerFunc);
     }
 
 }

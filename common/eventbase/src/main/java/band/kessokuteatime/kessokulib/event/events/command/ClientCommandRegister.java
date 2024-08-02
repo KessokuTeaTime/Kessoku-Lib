@@ -4,7 +4,7 @@ import band.kessokuteatime.kessokulib.event.api.Event;
 
 public interface ClientCommandRegister {
 
-    Event<ClientCommandRegister> EVENT = Event.of();
+    Event<ClientCommandRegister> EVENT = Event.of(clientCommandRegisters -> null);
 
     /**
      * Called when registering client commands.
