@@ -9,9 +9,7 @@
     </a></sub>
   </summary>
   <blockquote>
-    Package repository hosting is graciously provided by <a href="https://cloudsmith.com">Cloudsmith</a>.
-    Cloudsmith is the only fully hosted, cloud-native, universal package management solution, that
-enables your organization to create, store and share packages in any format, to any place, with total
-confidence.
+    Our package repository hosting is graciously provided by <a href="https://cloudsmith.com">Cloudsmith</a>.
+    Cloudsmith is the only fully hosted, cloud-native, universal package management solution, that enables organizations to create, store and share packages in any format, to any place, with total confidence.
   </blockquote>
 </details>
