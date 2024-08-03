@@ -22,6 +22,11 @@ public class ModDataImpl implements ModData {
         this.modInfo = modContainer.getModInfo();
     }
 
+    public ModDataImpl(IModInfo info) {
+        this.modContainer = ModList.get().getModContainerById(info.getModId()).orElseThrow();
+        this.modInfo = info;
+    }
+
     @Override
     public String getModId() {
         return modInfo.getModId();
@@ -34,7 +39,7 @@ public class ModDataImpl implements ModData {
 
     @Override
     public Collection<? extends ModDependencyInfo> getDependencies() {
-        return modInfo.getDependencies().stream().map(ModDependencyInfoImpl::new).collect(Collectors.toSet());
+        return modInfo.getDependencies().stream().map(ModDependencyInfoImpl::new).toList();
     }
 
     @Override

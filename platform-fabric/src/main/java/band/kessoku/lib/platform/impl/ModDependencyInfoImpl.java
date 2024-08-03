@@ -6,7 +6,7 @@ import net.fabricmc.loader.api.metadata.ModDependency;
 public class ModDependencyInfoImpl implements ModDependencyInfo {
     private final ModDependency value;
     public ModDependencyInfoImpl(ModDependency dependency) {
-        value = dependency;
+        this.value = dependency;
     }
     @Override
     public DependencyKind getKind() {
