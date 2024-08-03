@@ -1,12 +1,11 @@
 plugins {
-    alias libs.plugins.unimined apply false
+    alias libs.plugins.loom apply false
 }
 
 subprojects {
     group = "band.kessokuteatime.kessokulib"
     apply plugin: 'idea'
     apply plugin: 'java-library'
-    apply plugin: 'xyz.wagyourtail.unimined'
     idea {
         module {
             downloadJavadoc = true
@@ -24,19 +23,8 @@ subprojects {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    configurations {
-        includeCompile {
-            exclude group: 'com.google.auto.service', module: 'auto-service-annotations'
-        }
-        modImplementation.extendsFrom includeCompile
-    }
     dependencies {
         implementation 'com.google.auto.service:auto-service-annotations:1.1.1'
         annotationProcessor 'com.google.auto.service:auto-service:1.1.1'
-    }
-    jar {
-        from {
-            configurations.includeCompile.collect { it.isDirectory() ? it : zipTree(it) }
-        }
     }
 }

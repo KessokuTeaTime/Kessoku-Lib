@@ -1,0 +1,36 @@
+plugins {
+    id 'base'
+}
+
+allprojects {
+    apply plugin: 'dev.architectury.loom'
+    base {
+        archivesName.set(rootProject.name + project.name == "fabric" ? "" : project.name)
+    }
+    version = rootProject.libs.versions.mod.get() + "+fabric." + rootProject.libs.versions.minecraft.get()
+    dependencies {
+        minecraft(rootProject.libs.minecraft)
+        mappings(
+                loom.layered {
+                    variantOf(rootProject.libs.yarn) { classifier("v2") }
+                    rootProject.libs.yarn.patch
+                }
+        )
+        modImplementation rootProject.libs.fabric.loader
+        modImplementation rootProject.libs.fabric.api
+    }
+}
+
+subprojects {
+    apply plugin: 'base'
+    configurations {
+        common.extendsFrom api
+    }
+    processResources {
+        inputs.property "version", project.version
+
+        filesMatching("fabric.mod.json") {
+            expand "version": project.version
+        }
+    }
+}

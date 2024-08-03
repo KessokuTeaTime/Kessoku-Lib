@@ -1,0 +1,21 @@
+plugins {
+    id 'base'
+}
+
+allprojects {
+    apply plugin: 'dev.architectury.loom'
+    apply plugin: 'base'
+    base {
+        archivesName.set(rootProject.name + project.name == "common" ? "" : project.name)
+    }
+    version = rootProject.libs.versions.mod.get() + "+common." + rootProject.libs.versions.minecraft.get()
+    dependencies {
+        minecraft(rootProject.libs.minecraft)
+        mappings(
+                loom.layered {
+                    variantOf(rootProject.libs.yarn) { classifier("v2") }
+                    rootProject.libs.yarn.patch
+                }
+        )
+    }
+}
