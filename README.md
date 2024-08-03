@@ -1,3 +1,5 @@
+### <p align=right>[`→` CurseForge](https://www.curseforge.com/minecraft/mc-mods/kessoku-lib)&ensp;[`→` Modrinth](https://modrinth.com/mod/kessoku-lib)</p>
+
 # Kessoku Lib
 
 ###### The next generation cross-platform modular Minecraft modding API.
