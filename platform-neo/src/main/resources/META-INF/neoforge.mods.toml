@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "LGPL-3.0-only"
+issueTrackerURL = "https://github.com/KessokuTeaTime/KessokuLib/issues"
+
+[[mods]]
+modId = "kessoku_platform"
+version = "${version}"
+displayName = "Kessoku Platform"
+description = '''
+The next generation cross-platform modular Minecraft modding API.
+'''
+logoFile = "icon.png"
+authors = "Kessoku Tea Time"
+displayURL = "https://modrinth.com/mod/kessoku-lib"
+
+[[dependencies.kessoku-event-base]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kessoku-event-base]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"

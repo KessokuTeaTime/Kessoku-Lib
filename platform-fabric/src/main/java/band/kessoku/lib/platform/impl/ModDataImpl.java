@@ -86,4 +86,12 @@ public class ModDataImpl implements ModData {
     public Optional<Path> findPath(String... path) {
         return modContainer.findPath(String.join("/", path));
     }
+
+    public ModContainer getModContainer() {
+        return modContainer;
+    }
+
+    public ModMetadata getModMetadata() {
+        return modMetadata;
+    }
 }

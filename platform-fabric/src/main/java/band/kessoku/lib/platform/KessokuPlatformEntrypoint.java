@@ -1,4 +1,9 @@
 package band.kessoku.lib.platform;
 
-public class KessokuPlatformEntrypoint {
+import net.fabricmc.api.ModInitializer;
+
+public class KessokuPlatformEntrypoint implements ModInitializer {
+    @Override
+    public void onInitialize() {
+    }
 }

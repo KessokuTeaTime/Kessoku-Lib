@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku-platform",
+  "id": "kessoku_platform",
   "version": "${version}",
   "name": "Kessoku Platform",
   "description": "Provide some basic API.",
@@ -8,7 +8,7 @@
     "Kessoku Tea Time"
   ],
   "contact": {
-    "homepage": "https://github.com/KessokuTeaTime/KessokuLib",
+    "homepage": "https://modrinth.com/mod/kessoku-lib",
     "sources": "https://github.com/KessokuTeaTime/KessokuLib",
     "issues": "https://github.com/KessokuTeaTime/KessokuLib/issues"
   },

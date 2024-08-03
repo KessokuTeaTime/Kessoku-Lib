@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku-event-base",
+  "id": "kessoku_event_base",
   "version": "${version}",
   "name": "Kessoku Event Base",
   "description": "Provide basic API for event system.",
@@ -8,7 +8,7 @@
     "Kessoku Tea Time"
   ],
   "contact": {
-    "homepage": "https://github.com/KessokuTeaTime/KessokuLib",
+    "homepage": "https://modrinth.com/mod/kessoku-lib",
     "sources": "https://github.com/KessokuTeaTime/KessokuLib",
     "issues": "https://github.com/KessokuTeaTime/KessokuLib/issues"
   },

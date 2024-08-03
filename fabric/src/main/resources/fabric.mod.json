@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku-lib",
+  "id": "kessoku_lib",
   "version": "${version}",
   "name": "Kessoku Lib",
   "description": "The next generation cross-platform modular Minecraft modding API.",
@@ -8,7 +8,7 @@
     "Kessoku Tea Time"
   ],
   "contact": {
-    "homepage": "https://github.com/KessokuTeaTime/KessokuLib",
+    "homepage": "https://modrinth.com/mod/kessoku-lib",
     "sources": "https://github.com/KessokuTeaTime/KessokuLib",
     "issues": "https://github.com/KessokuTeaTime/KessokuLib/issues"
   },

@@ -90,4 +90,12 @@ public class ModDataImpl implements ModData {
     public Optional<Path> findPath(String... path) {
         return Optional.of(modInfo.getOwningFile().getFile().findResource(path)).filter(Files::exists);
     }
+
+    public ModContainer getModContainer() {
+        return modContainer;
+    }
+
+    public IModInfo getModInfo() {
+        return modInfo;
+    }
 }

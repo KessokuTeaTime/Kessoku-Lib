@@ -1,6 +1,6 @@
 package band.kessoku.lib.platform.api;
 
-import band.kessoku.lib.platform.services.KessokuPlatformServices;
+import band.kessoku.lib.platform.impl.KessokuPlatformServices;
 
 public interface ModLoader {
     static ModLoader getInstance() {
