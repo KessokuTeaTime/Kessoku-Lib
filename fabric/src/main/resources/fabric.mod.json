@@ -13,7 +13,7 @@
     "issues": "https://github.com/KessokuTeaTime/KessokuLib/issues"
   },
   "license": "LGPL-3.0-only",
-  "icon": "assets/kessokulib/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "depends": {
     "fabricloader": ">=0.16.0",
