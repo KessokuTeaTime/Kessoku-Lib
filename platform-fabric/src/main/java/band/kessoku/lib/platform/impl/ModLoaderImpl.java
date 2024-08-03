@@ -7,6 +7,7 @@ import com.google.auto.service.AutoService;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -32,5 +33,25 @@ public class ModLoaderImpl implements ModLoader {
     @Override
     public Env getEnv() {
         return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT ? Env.CLIENT : Env.SERVER;
+    }
+
+    @Override
+    public Path getGameFolder() {
+        return FabricLoader.getInstance().getGameDir();
+    }
+
+    @Override
+    public Path getConfigFolder() {
+        return FabricLoader.getInstance().getConfigDir();
+    }
+
+    @Override
+    public Path getModsFolder() {
+        return getGameFolder().resolve("mods");
+    }
+
+    @Override
+    public boolean isModLoaded(String id) {
+        return FabricLoader.getInstance().isModLoaded(id);
     }
 }
