@@ -3,6 +3,7 @@ package band.kessoku.lib.platform.api;
 import band.kessoku.lib.platform.impl.KessokuPlatformServices;
 
 import java.nio.file.Path;
+import java.util.Collection;
 
 public interface ModLoader {
     static ModLoader getInstance() {
@@ -17,4 +18,6 @@ public interface ModLoader {
     Path getConfigFolder();
     Path getModsFolder();
     boolean isModLoaded(String id);
+    Collection<String> getModIds();
+    Collection<? extends ModData> getMods();
 }

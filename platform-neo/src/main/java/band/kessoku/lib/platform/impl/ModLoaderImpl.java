@@ -8,8 +8,11 @@ import net.minecraft.MinecraftVersion;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforgespi.language.IModInfo;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -55,5 +58,15 @@ public class ModLoaderImpl implements ModLoader {
     @Override
     public boolean isModLoaded(String id) {
         return ModList.get().isLoaded(id);
+    }
+
+    @Override
+    public Collection<String> getModIds() {
+        return ModList.get().getMods().stream().map(IModInfo::getModId).toList();
+    }
+
+    @Override
+    public Collection<? extends ModData> getMods() {
+        return ModList.get().getMods().stream().map(ModDataImpl::new).toList();
     }
 }

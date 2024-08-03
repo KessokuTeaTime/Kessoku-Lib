@@ -6,7 +6,7 @@ import net.neoforged.neoforgespi.language.IModInfo;
 public class ModDependencyInfoImpl implements ModDependencyInfo {
     private final IModInfo.ModVersion value;
     public ModDependencyInfoImpl(IModInfo.ModVersion modVersion) {
-        value = modVersion;
+        this.value = modVersion;
     }
     @Override
     public DependencyKind getKind() {

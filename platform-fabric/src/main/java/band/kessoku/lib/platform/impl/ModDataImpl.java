@@ -21,6 +21,10 @@ public class ModDataImpl implements ModData {
         this.modContainer = FabricLoader.getInstance().getModContainer(modid).orElseThrow();
         this.modMetadata = modContainer.getMetadata();
     }
+    public ModDataImpl(ModContainer container) {
+        this.modContainer = container;
+        this.modMetadata = modContainer.getMetadata();
+    }
 
     @Override
     public String getModId() {
@@ -34,7 +38,7 @@ public class ModDataImpl implements ModData {
 
     @Override
     public Collection<? extends ModDependencyInfo> getDependencies() {
-        return modMetadata.getDependencies().stream().map(ModDependencyInfoImpl::new).collect(Collectors.toSet());
+        return modMetadata.getDependencies().stream().map(ModDependencyInfoImpl::new).toList();
     }
 
     @Override

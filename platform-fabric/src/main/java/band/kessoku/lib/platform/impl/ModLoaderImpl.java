@@ -6,8 +6,12 @@ import band.kessoku.lib.platform.api.ModLoader;
 import com.google.auto.service.AutoService;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import net.fabricmc.loader.api.metadata.ModMetadata;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -53,5 +57,15 @@ public class ModLoaderImpl implements ModLoader {
     @Override
     public boolean isModLoaded(String id) {
         return FabricLoader.getInstance().isModLoaded(id);
+    }
+
+    @Override
+    public Collection<String> getModIds() {
+        return FabricLoader.getInstance().getAllMods().stream().map(ModContainer::getMetadata).map(ModMetadata::getId).toList();
+    }
+
+    @Override
+    public Collection<? extends ModData> getMods() {
+        return FabricLoader.getInstance().getAllMods().stream().map(ModDataImpl::new).toList();
     }
 }
