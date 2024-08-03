@@ -15,11 +15,6 @@
   "license": "LGPL-3.0-only",
   "icon": "assets/kessokulib/icon.png",
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "band.kessokuteatime.kessokulib.event.base.fabric.ExampleModFabric"
-    ]
-  },
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "1.21",

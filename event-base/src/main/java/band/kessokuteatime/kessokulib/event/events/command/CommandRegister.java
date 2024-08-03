@@ -2,9 +2,9 @@ package band.kessokuteatime.kessokulib.event.events.command;
 
 import band.kessokuteatime.kessokulib.event.api.Event;
 import com.mojang.brigadier.CommandDispatcher;
-import net.minecraft.class_2168;
-import net.minecraft.class_2170;
-import net.minecraft.class_7157;
+import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
 
 public interface CommandRegister {
 
@@ -17,6 +17,6 @@ public interface CommandRegister {
      * @param registryAccess object exposing access to the game's registries
      * @param environment environment the registrations should be done for, used for commands that are dedicated or integrated server only
      */
-    void register(CommandDispatcher<class_2168> dispatcher, class_7157 registryAccess, class_2170.class_5364 environment);
+    void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment);
 
 }

@@ -2,14 +2,14 @@ pluginManagement {
     repositories {
         maven { url "https://maven.fabricmc.net/" }
         maven { url "https://maven.architectury.dev/" }
-        maven { url "https://maven.minecraftforge.net/" }
-        maven { url "https://maven.neoforged.net/" }
+        maven { url "https://files.minecraftforge.net/maven/" }
         gradlePluginPortal()
     }
 }
 
-rootProject.name = 'kessoku-lib'
+rootProject.name = 'KessokuLib'
 
-include ':common', ':common:base', ':common:platform', ':common:eventbase'
-include ':fabric', ':fabric:platform'
-include ':neo', ":neo:platform"
+include("base", "event-base")
+include("fabric", "neo")
+include("platform-common", "platform-fabric", "platform-neo")
+

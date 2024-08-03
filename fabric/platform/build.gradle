@@ -1,3 +1,0 @@
-dependencies {
-    common project(path: ":common:platform", configuration: 'namedElements')
-}

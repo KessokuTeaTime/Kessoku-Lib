@@ -1,3 +1,0 @@
-dependencies {
-    api project(path: ":common:base", configuration: 'namedElements')
-}

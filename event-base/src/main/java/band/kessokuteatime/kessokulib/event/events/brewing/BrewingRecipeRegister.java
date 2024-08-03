@@ -1,7 +1,7 @@
 package band.kessokuteatime.kessokulib.event.events.brewing;
 
 import band.kessokuteatime.kessokulib.event.api.Event;
-import net.minecraft.class_1845;
+import net.minecraft.recipe.BrewingRecipeRegistry;
 
 public interface BrewingRecipeRegister {
 
@@ -14,5 +14,5 @@ public interface BrewingRecipeRegister {
     /**
      * @param builder brewing recipes builder.
      */
-    void build(class_1845.class_9665 builder);
+    void build(BrewingRecipeRegistry.Builder builder);
 }
