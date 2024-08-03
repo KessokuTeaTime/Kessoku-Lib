@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku-lib",
+  "id": "kessoku-platform",
   "version": "${version}",
-  "name": "Kessoku Lib",
+  "name": "Kessoku Platform",
   "description": "The next generation cross-platform modular Minecraft modding API.",
   "authors": [
     "Kessoku Tea Time"

@@ -7,9 +7,9 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'KessokuLib'
+rootProject.name = 'kessoku-lib'
 
-include("base", "event-base")
 include("fabric", "neo")
+include("base-common", "base-fabric", "base-neo")
+include("event-base-common", "event-base-fabric", "event-base-neo")
 include("platform-common", "platform-fabric", "platform-neo")
-

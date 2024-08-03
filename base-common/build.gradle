@@ -1,8 +1,8 @@
-group = "band.kessoku.lib.platform"
+group = "band.kessoku.lib.base"
 version = libs.versions.mod.get() + "+common." + libs.versions.minecraft.get()
 
 base {
-    archivesName = rootProject.name + "-platform"
+    archivesName = rootProject.name + "-base"
 }
 
 architectury {
@@ -11,5 +11,4 @@ architectury {
 
 dependencies {
     modImplementation libs.fabric.loader
-    implementation(project(":base-common"))
 }

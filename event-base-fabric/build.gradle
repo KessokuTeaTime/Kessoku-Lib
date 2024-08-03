@@ -2,16 +2,16 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-base {
-    archivesName = rootProject.name + "-platform"
-}
+group = "band.kessoku.lib.event"
+version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
 
-group = "band.kessoku.lib.platform"
-version = libs.versions.mod.get() + "+neoforge." + libs.versions.minecraft.get()
+base {
+    archivesName = rootProject.name + "-eventbase"
+}
 
 architectury {
     platformSetupLoomIde()
-    neoForge()
+    fabric()
 }
 
 configurations {
@@ -21,7 +21,7 @@ configurations {
     }
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentNeoForge.extendsFrom common
+    developmentFabric.extendsFrom common
     shadowBundle {
         canBeResolved = true
         canBeConsumed = false
@@ -29,15 +29,16 @@ configurations {
 }
 
 dependencies {
-    neoForge libs.neo
-    common(project(path: ':platform-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':platform-common', configuration: 'transformProductionNeoForge')
+    modImplementation libs.fabric.loader
+    modImplementation libs.fabric.api
+    common(project(path: ':event-base-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':event-base-common', configuration: 'transformProductionFabric')
 }
 
 processResources {
     inputs.property 'version', project.version
 
-    filesMatching('META-INF/neoforge.mods.toml') {
+    filesMatching('fabric.mod.json') {
         expand version: project.version
     }
 }

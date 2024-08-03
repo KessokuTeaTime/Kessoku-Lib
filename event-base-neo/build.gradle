@@ -2,16 +2,20 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-base {
-    archivesName = rootProject.name + "-platform"
-}
-
-group = "band.kessoku.lib.platform"
+group = "band.kessoku.lib.event"
 version = libs.versions.mod.get() + "+neoforge." + libs.versions.minecraft.get()
+
+base {
+    archivesName = rootProject.name + "-eventbase"
+}
 
 architectury {
     platformSetupLoomIde()
     neoForge()
+}
+
+repositories {
+    maven { url "https://maven.neoforged.net/releases/" }
 }
 
 configurations {
@@ -30,8 +34,8 @@ configurations {
 
 dependencies {
     neoForge libs.neo
-    common(project(path: ':platform-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':platform-common', configuration: 'transformProductionNeoForge')
+    common(project(path: ':event-base-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':event-base-common', configuration: 'transformProductionNeoForge')
 }
 
 processResources {
