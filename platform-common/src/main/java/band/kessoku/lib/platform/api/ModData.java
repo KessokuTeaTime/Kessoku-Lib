@@ -17,7 +17,7 @@ public interface ModData {
     /**
      * Returns all of the mod's dependencies.
      */
-    Collection<ModDependency> getDependencies();
+    Collection<? extends ModDependencyInfo> getDependencies();
 
     /**
      * Get the name of the mod.

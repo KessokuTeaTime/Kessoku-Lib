@@ -1,7 +1,7 @@
 package band.kessoku.lib.platform.impl;
 
 import band.kessoku.lib.platform.api.ModData;
-import band.kessoku.lib.platform.api.ModDependency;
+import band.kessoku.lib.platform.api.ModDependencyInfo;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.metadata.ModMetadata;
@@ -33,8 +33,8 @@ public class ModDataImpl implements ModData {
     }
 
     @Override
-    public Collection<ModDependency> getDependencies() {
-        return List.of();
+    public Collection<? extends ModDependencyInfo> getDependencies() {
+        return modMetadata.getDependencies().stream().map(ModDependencyInfoImpl::new).collect(Collectors.toSet());
     }
 
     @Override

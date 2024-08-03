@@ -2,17 +2,17 @@ package band.kessoku.lib.platform.api;
 
 import org.jetbrains.annotations.Nullable;
 
-public interface ModDependency {
+public interface ModDependencyInfo {
     /**
      * Get the kind of dependency.
      */
-    Kind getKind();
+    DependencyKind getKind();
     /**
      * Returns the ID of the mod to check.
      */
     String getModId();
 
-    enum Kind {
+    enum DependencyKind {
         /**
          * It prevents the mod from loading if this dependency is missing.
          */
@@ -47,7 +47,7 @@ public interface ModDependency {
         private final boolean positive;
         private final boolean soft;
 
-        Kind(@Nullable String fabricKey, @Nullable String neoKey, boolean positive, boolean soft) {
+        DependencyKind(@Nullable String fabricKey, @Nullable String neoKey, boolean positive, boolean soft) {
             this.fabricKey = fabricKey;
             this.neoKey = neoKey;
             this.positive = positive;
