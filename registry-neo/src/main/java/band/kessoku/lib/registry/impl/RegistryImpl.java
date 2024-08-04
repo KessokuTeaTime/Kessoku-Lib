@@ -1,15 +1,17 @@
 package band.kessoku.lib.registry.impl;
 
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+
 import band.kessoku.lib.registry.KessokuRegistry;
 import band.kessoku.lib.registry.api.Registry;
 import com.google.auto.service.AutoService;
+
 import net.minecraft.util.Identifier;
+
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.RegisterEvent;
-
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @AutoService(Registry.class)
 @EventBusSubscriber(modid = KessokuRegistry.MOD_ID)

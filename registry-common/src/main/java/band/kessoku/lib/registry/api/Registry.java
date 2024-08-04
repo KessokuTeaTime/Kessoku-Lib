@@ -1,6 +1,7 @@
 package band.kessoku.lib.registry.api;
 
 import band.kessoku.lib.registry.impl.KessokuRegistryServices;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;

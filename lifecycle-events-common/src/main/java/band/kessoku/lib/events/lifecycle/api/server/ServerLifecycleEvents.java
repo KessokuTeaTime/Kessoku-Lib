@@ -1,6 +1,7 @@
 package band.kessoku.lib.events.lifecycle.api.server;
 
 import band.kessoku.lib.event.api.Event;
+
 import net.minecraft.resource.LifecycledResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;

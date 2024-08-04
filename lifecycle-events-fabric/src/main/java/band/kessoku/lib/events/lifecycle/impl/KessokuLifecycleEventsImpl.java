@@ -1,6 +1,7 @@
 package band.kessoku.lib.events.lifecycle.impl;
 
 import band.kessoku.lib.events.lifecycle.api.LifecycleEvents;
+
 import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;

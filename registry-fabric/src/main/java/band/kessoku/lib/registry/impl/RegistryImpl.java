@@ -2,6 +2,7 @@ package band.kessoku.lib.registry.impl;
 
 import band.kessoku.lib.registry.api.Registry;
 import com.google.auto.service.AutoService;
+
 import net.minecraft.util.Identifier;
 
 @AutoService(Registry.class)

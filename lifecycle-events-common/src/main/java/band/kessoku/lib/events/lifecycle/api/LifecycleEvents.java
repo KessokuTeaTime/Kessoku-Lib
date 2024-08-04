@@ -1,6 +1,7 @@
 package band.kessoku.lib.events.lifecycle.api;
 
 import band.kessoku.lib.event.api.Event;
+
 import net.minecraft.registry.DynamicRegistryManager;
 
 public final class LifecycleEvents {

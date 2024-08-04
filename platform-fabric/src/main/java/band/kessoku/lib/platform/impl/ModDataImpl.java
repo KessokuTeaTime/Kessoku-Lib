@@ -1,17 +1,18 @@
 package band.kessoku.lib.platform.impl;
 
-import band.kessoku.lib.platform.api.ModData;
-import band.kessoku.lib.platform.api.ModDependencyInfo;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import net.fabricmc.loader.api.metadata.ModMetadata;
-import net.fabricmc.loader.api.metadata.Person;
-
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import band.kessoku.lib.platform.api.ModData;
+import band.kessoku.lib.platform.api.ModDependencyInfo;
+
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import net.fabricmc.loader.api.metadata.ModMetadata;
+import net.fabricmc.loader.api.metadata.Person;
 
 public class ModDataImpl implements ModData {
     private final ModContainer modContainer;

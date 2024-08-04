@@ -1,9 +1,9 @@
 package band.kessoku.lib.event.api;
 
-import band.kessoku.lib.event.EventImpl;
-
 import java.util.List;
 import java.util.function.Function;
+
+import band.kessoku.lib.event.EventImpl;
 
 public interface Event<T> {
 

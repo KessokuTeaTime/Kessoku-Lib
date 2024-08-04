@@ -5,7 +5,7 @@ yarn = "1.21+build.9"
 yarn-mappings-patch-neoforge = "1.21+build.4"
 
 # Loaders
-neo = "21.0.148"
+neo = "21.0.151"
 fabric-loader = "0.16.0"
 
 # Mods
@@ -25,3 +25,4 @@ fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.r
 loom = { id = "dev.architectury.loom", version = "1.7-SNAPSHOT" }
 architectury = { id = "architectury-plugin", version = "3.4-SNAPSHOT" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
