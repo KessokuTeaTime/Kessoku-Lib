@@ -4,7 +4,7 @@ import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.platform.api.ModLoader;
 
 public class KessokuPlatformServices {
-    private static final ModLoader modLoader = ModUtils.load(ModLoader.class);
+    private static final ModLoader modLoader = ModUtils.loadService(ModLoader.class);
 
     public static ModLoader getModLoader() {
         return modLoader;

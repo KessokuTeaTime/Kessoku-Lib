@@ -14,3 +14,5 @@ include("base-common", "base-fabric", "base-neo") // Base
 include("event-base-common", "event-base-fabric", "event-base-neo") // Event Base
 include("platform-common", "platform-fabric", "platform-neo") // Platform
 include("registry-common", "registry-fabric", "registry-neo") // Registry
+include("lifecycle-events-common", "lifecycle-events-fabric", "lifecycle-events-neo") // Lifecycle Events
+include("command-common", "command-fabric", "command-neo") // Command API
