@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.events.lifecycle.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "WorldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1,
+    "maxShiftBy": 3
+  }
+}

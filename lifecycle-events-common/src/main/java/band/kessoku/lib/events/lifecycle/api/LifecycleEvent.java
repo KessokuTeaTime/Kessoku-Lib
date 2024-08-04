@@ -4,7 +4,7 @@ import band.kessoku.lib.event.api.Event;
 
 import net.minecraft.registry.DynamicRegistryManager;
 
-public final class LifecycleEvents {
+public class LifecycleEvent {
 
     /**
      * Called when tags are loaded or updated.

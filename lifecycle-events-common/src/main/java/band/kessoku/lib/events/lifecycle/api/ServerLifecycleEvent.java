@@ -1,4 +1,4 @@
-package band.kessoku.lib.events.lifecycle.api.server;
+package band.kessoku.lib.events.lifecycle.api;
 
 import band.kessoku.lib.event.api.Event;
 
@@ -6,7 +6,7 @@ import net.minecraft.resource.LifecycledResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class ServerLifecycleEvents {
+public class ServerLifecycleEvent {
 
     /**
      * Called when a Minecraft server is starting.

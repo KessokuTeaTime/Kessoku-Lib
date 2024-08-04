@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "LGPL-3.0-only"
+issueTrackerURL = "https://github.com/KessokuTeaTime/KessokuLib/issues"
+
+[[mods]]
+modId = "kessoku_lifecycle_events"
+version = "${version}"
+displayName = "Kessoku Lifecycle Events"
+description = '''
+Events for the game's lifecycle.
+'''
+logoFile = "icon.png"
+authors = "Kessoku Tea Time"
+displayURL = "https://modrinth.com/mod/kessoku-lib"
+
+[[mixins]]
+config = "kessoku-lifecycle-events.mixins.json"
+
+[[mixins]]
+config = "kessoku-lifecycle-events.neo.mixins.json"
+
+[[dependencies.kessoku-event-base]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kessoku-event-base]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"
