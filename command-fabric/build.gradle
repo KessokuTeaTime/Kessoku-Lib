@@ -1,0 +1,56 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+group = "band.kessoku.lib.command"
+version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
+
+base {
+    archivesName = rootProject.name + "-command_api"
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    modImplementation libs.fabric.loader
+    modImplementation libs.fabric.api
+
+    implementation(project(":event-base-common"))
+
+    common(project(path: ':command-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':command-common', configuration: 'transformProductionFabric')
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+}
