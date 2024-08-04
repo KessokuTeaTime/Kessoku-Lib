@@ -13,4 +13,5 @@ include("fabric", "neo") // Bundle modules
 include("base-common", "base-fabric", "base-neo") // Base
 include("event-base-common", "event-base-fabric", "event-base-neo") // Event Base
 include("platform-common", "platform-fabric", "platform-neo") // Platform
+include("lifecycle-events-common", "lifecycle-events-fabric", "lifecycle-events-neo") // Lifecycle Events
 include("command-api-common", "command-api-fabric", "command-api-neo") // Command API
