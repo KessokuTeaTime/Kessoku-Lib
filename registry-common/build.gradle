@@ -1,0 +1,15 @@
+group = "band.kessoku.lib.registry"
+version = libs.versions.mod.get() + "+common." + libs.versions.minecraft.get()
+
+base {
+    archivesName = rootProject.name + "-registry"
+}
+
+architectury {
+    common(["fabric", "neoforge"])
+}
+
+dependencies {
+    modImplementation libs.fabric.loader
+    implementation project(":base-common")
+}

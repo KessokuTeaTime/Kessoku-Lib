@@ -15,6 +15,7 @@ dependencies {
     include(project(":base-neo"))
     include(project(":event-base-neo"))
     include(project(":platform-neo"))
+    include(project(":registry-neo"))
 }
 processResources {
     inputs.property 'version', project.version

@@ -2,11 +2,11 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-group = "band.kessoku.lib.event"
+group = "band.kessoku.lib.registry"
 version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
 
 base {
-    archivesName = rootProject.name + "-eventbase"
+    archivesName = rootProject.name + "-registry"
 }
 
 architectury {
@@ -31,8 +31,8 @@ configurations {
 dependencies {
     modImplementation libs.fabric.loader
     modImplementation libs.fabric.api
-    common(project(path: ':event-base-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':event-base-common', configuration: 'transformProductionFabric')
+    common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':registry-common', configuration: 'transformProductionFabric')
 }
 
 processResources {

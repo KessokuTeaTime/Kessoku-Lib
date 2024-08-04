@@ -13,3 +13,4 @@ include("fabric", "neo") // Bundle modules
 include("base-common", "base-fabric", "base-neo") // Base
 include("event-base-common", "event-base-fabric", "event-base-neo") // Event Base
 include("platform-common", "platform-fabric", "platform-neo") // Platform
+include("registry-common", "registry-fabric", "registry-neo") // Registry

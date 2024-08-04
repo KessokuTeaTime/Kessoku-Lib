@@ -14,6 +14,7 @@ dependencies {
     include(project(":base-fabric"))
     include(project(":event-base-fabric"))
     include(project(":platform-fabric"))
+    include(project(":registry-fabric"))
 }
 
 processResources {
