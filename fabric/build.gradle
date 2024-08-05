@@ -3,9 +3,10 @@ apply from: rootProject.file("gradle/scripts/kessokulib-fabric.gradle")
 group = "band.kessoku.lib"
 base.archivesName = rootProject.name
 
+var modules = [":base-fabric", ":event-base-fabric", ":lifecycle-events-fabric", ":platform-fabric", ":registry-fabric"]
+
 dependencies {
-    include(project(":base-fabric"))
-    include(project(":event-base-fabric"))
-    include(project(":platform-fabric"))
-    include(project(":registry-fabric"))
+    modules.each {
+        moduleInclude(project(it))
+    }
 }

@@ -4,5 +4,5 @@ group = "band.kessoku.lib.platform"
 base.archivesName = rootProject.name + "-platform"
 
 dependencies {
-    implementation(project(":base-common"))
+    moduleImplementation(project(":base-common"))
 }

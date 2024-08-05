@@ -5,5 +5,5 @@ base.archivesName = rootProject.name + "-platform"
 
 dependencies {
     common(project(path: ':platform-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':platform-common', configuration: 'transformProductionNeoForge')
+    shadowBundle(project(path: ':platform-common', configuration: 'transformProductionNeoForge'))
 }

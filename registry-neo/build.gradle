@@ -4,8 +4,8 @@ group = "band.kessoku.lib.registry"
 base.archivesName = rootProject.name + "-registry"
 
 dependencies {
-    implementation(project(":event-base-neo"))
+    moduleImplementation(project(":event-base-neo"))
 
     common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':registry-common', configuration: 'transformProductionNeoForge')
+    shadowBundle(project(path: ':registry-common', configuration: 'transformProductionNeoForge'))
 }

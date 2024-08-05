@@ -3,9 +3,10 @@ apply from: rootProject.file("gradle/scripts/kessokulib-neo.gradle")
 group = "band.kessoku.lib"
 base.archivesName = rootProject.name
 
+var modules = [":base-neo", ":event-base-neo", ":lifecycle-events-neo", ":platform-neo", ":registry-neo"]
+
 dependencies {
-    include(project(":base-neo"))
-    include(project(":event-base-neo"))
-    include(project(":platform-neo"))
-    include(project(":registry-neo"))
+    modules.each {
+        moduleInclude(project(it))
+    }
 }

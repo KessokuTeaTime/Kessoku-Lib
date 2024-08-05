@@ -10,8 +10,8 @@ loom {
 }
 
 dependencies {
-    implementation(project(":event-base-common"))
-    implementation(project(":event-base-neo"))
+    moduleImplementation(project(":event-base-common"))
+    moduleImplementation(project(":event-base-neo"))
 
     common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionNeoForge')
