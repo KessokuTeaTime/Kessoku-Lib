@@ -3,7 +3,7 @@ package band.kessoku.lib.event.api;
 import java.util.List;
 import java.util.function.Function;
 
-import band.kessoku.lib.event.EventImpl;
+import band.kessoku.lib.event.impl.EventImpl;
 
 public interface Event<T> {
 
@@ -19,24 +19,23 @@ public interface Event<T> {
 
     default void register(T listener) {
         register(listener, EventPhase.DEFAULT);
-    };
+    }
 
     default void unregister(T listener) {
         unregister(listener, EventPhase.DEFAULT);
-    };
+    }
 
     default boolean isRegistered(T listener) {
         return isRegistered(listener, EventPhase.DEFAULT);
-    };
+    }
 
     default void clearAllListeners() {
         for (EventPhase phase : EventPhase.values()) {
             clearListeners(phase);
         }
-    };
+    }
 
     static <T> Event<T> of(Function<List<T>, T> invokerFunc) {
         return new EventImpl<>(invokerFunc);
     }
-
 }

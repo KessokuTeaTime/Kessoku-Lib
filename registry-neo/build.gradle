@@ -34,6 +34,9 @@ configurations {
 
 dependencies {
     neoForge libs.neo
+
+    implementation(project(":event-base-neo"))
+
     common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':registry-common', configuration: 'transformProductionNeoForge')
 }

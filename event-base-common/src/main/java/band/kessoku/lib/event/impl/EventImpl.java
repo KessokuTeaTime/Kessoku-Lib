@@ -1,4 +1,4 @@
-package band.kessoku.lib.event;
+package band.kessoku.lib.event.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
