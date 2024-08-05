@@ -1,16 +1,9 @@
+apply from: rootProject.file("gradle/scripts/kessokulib-common.gradle")
+
 group = "band.kessoku.lib.events.lifecycle"
-version = libs.versions.mod.get() + "+common." + libs.versions.minecraft.get()
-
-base {
-    archivesName = rootProject.name + "-lifecycle-events"
-}
-
-architectury {
-    common(["fabric", "neoforge"])
-}
+base.archivesName = rootProject.name + "-lifecycle-events"
 
 dependencies {
-    modImplementation libs.fabric.loader
     implementation(project(":base-common"))
     implementation(project(":event-base-common"))
 }

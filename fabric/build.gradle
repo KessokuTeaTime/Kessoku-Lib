@@ -1,28 +1,11 @@
+apply from: rootProject.file("gradle/scripts/kessokulib-fabric.gradle")
+
 group = "band.kessoku.lib"
-version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
-
-base {
-    archivesName = rootProject.name
-}
-
-architectury {
-    platformSetupLoomIde()
-    fabric()
-}
+base.archivesName = rootProject.name
 
 dependencies {
-    modImplementation libs.fabric.loader
-
     include(project(":base-fabric"))
     include(project(":event-base-fabric"))
     include(project(":platform-fabric"))
     include(project(":registry-fabric"))
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('fabric.mod.json') {
-        expand version: project.version
-    }
 }

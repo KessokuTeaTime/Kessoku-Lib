@@ -1,52 +1,9 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
-
-base {
-    archivesName = rootProject.name + "-platform"
-}
+apply from: rootProject.file("gradle/scripts/kessokulib-neo.gradle")
 
 group = "band.kessoku.lib.platform"
-version = libs.versions.mod.get() + "+neoforge." + libs.versions.minecraft.get()
-
-architectury {
-    platformSetupLoomIde()
-    neoForge()
-}
-
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentNeoForge.extendsFrom common
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-}
+base.archivesName = rootProject.name + "-platform"
 
 dependencies {
-    neoForge libs.neo
     common(project(path: ':platform-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':platform-common', configuration: 'transformProductionNeoForge')
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('META-INF/neoforge.mods.toml') {
-        expand version: project.version
-    }
-}
-
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
-}
-
-remapJar {
-    inputFile.set shadowJar.archiveFile
 }

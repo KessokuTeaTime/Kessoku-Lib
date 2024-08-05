@@ -1,26 +1,11 @@
+apply from: rootProject.file("gradle/scripts/kessokulib-neo.gradle")
+
 group = "band.kessoku.lib"
-version = libs.versions.mod.get() + "+neoforge." + libs.versions.minecraft.get()
-
-base {
-    archivesName = rootProject.name
-}
-
-architectury {
-    platformSetupLoomIde()
-    neoForge()
-}
+base.archivesName = rootProject.name
 
 dependencies {
-    neoForge libs.neo
     include(project(":base-neo"))
     include(project(":event-base-neo"))
     include(project(":platform-neo"))
     include(project(":registry-neo"))
-}
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('META-INF/neoforge.mods.toml') {
-        expand version: project.version
-    }
 }

@@ -1,56 +1,11 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
+apply from: rootProject.file("gradle/scripts/kessokulib-fabric.gradle")
 
 group = "band.kessoku.lib.events.lifecycle"
-version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
-
-base {
-    archivesName = rootProject.name + "-lifecycle-events"
-}
-
-architectury {
-    platformSetupLoomIde()
-    fabric()
-}
-
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-}
+base.archivesName = rootProject.name + "-lifecycle-events"
 
 dependencies {
-    modImplementation libs.fabric.loader
-    modImplementation libs.fabric.api
-
     implementation(project(":event-base-common"))
 
     common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionFabric')
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('fabric.mod.json') {
-        expand version: project.version
-    }
-}
-
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
-}
-
-remapJar {
-    input.set shadowJar.archiveFile
 }
