@@ -3,16 +3,19 @@ package band.kessoku.lib.events.lifecycle.impl;
 import band.kessoku.lib.event.util.NeoEventUtils;
 import band.kessoku.lib.events.lifecycle.api.*;
 
+import band.kessoku.lib.events.lifecycle.api.client.ClientChunkEvent;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
+import net.minecraft.world.chunk.WorldChunk;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.TagsUpdatedEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -21,8 +24,19 @@ import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
 public class KessokuLifecycleEventsImplNeo {
-    public static void registerClientEvents(IEventBus modEventBus, IEventBus forgeEventBus) {
+    public static void registerClientEvents(IEventBus forgeEventBus) {
         KessokuLifecycleEventsImpl.clientInit();
+
+        NeoEventUtils.registerEvent(forgeEventBus, ChunkEvent.Load.class, event -> {
+            if (event.getLevel() instanceof ClientWorld world && event.getChunk() instanceof WorldChunk chunk) {
+                ClientChunkEvent.LOADED.invoker().onChunkLoaded(world, chunk);
+            }
+        });
+        NeoEventUtils.registerEvent(forgeEventBus, ChunkEvent.Unload.class, event -> {
+            if (event.getLevel() instanceof ClientWorld world && event.getChunk() instanceof WorldChunk chunk) {
+                ClientChunkEvent.UNLOADED.invoker().onChunkUnloaded(world, chunk);
+            }
+        });
 
         NeoEventUtils.registerEvent(forgeEventBus, ClientTickEvent.Pre.class, event -> {
             band.kessoku.lib.events.lifecycle.api.client.ClientTickEvent.START_CLIENT_TICK.invoker().onStartTick(MinecraftClient.getInstance());
@@ -43,11 +57,22 @@ public class KessokuLifecycleEventsImplNeo {
         });
     }
 
-    public static void registerCommonEvents(IEventBus modEventBus, IEventBus forgeEventBus) {
+    public static void registerCommonEvents(IEventBus forgeEventBus) {
         KessokuLifecycleEventsImpl.init();
 
         NeoEventUtils.registerEvent(forgeEventBus, TagsUpdatedEvent.class, event -> {
             LifecycleEvent.TAG_LOADED.invoker().onTagsLoaded(event.getRegistryAccess(), event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.CLIENT_PACKET_RECEIVED);
+        });
+
+        NeoEventUtils.registerEvent(forgeEventBus, ChunkEvent.Load.class, event -> {
+            if (event.getLevel() instanceof ServerWorld world && event.getChunk() instanceof WorldChunk chunk) {
+                ServerChunkEvent.LOADED.invoker().onChunkLoaded(world, chunk);
+            }
+        });
+        NeoEventUtils.registerEvent(forgeEventBus, ChunkEvent.Unload.class, event -> {
+            if (event.getLevel() instanceof ServerWorld world && event.getChunk() instanceof WorldChunk chunk) {
+                ServerChunkEvent.UNLOADED.invoker().onChunkUnloaded(world, chunk);
+            }
         });
 
         NeoEventUtils.registerEvent(forgeEventBus, ServerStartingEvent.class, event -> {

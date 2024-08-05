@@ -20,6 +20,9 @@ config = "kessoku-lifecycle-events.mixins.json"
 [[mixins]]
 config = "kessoku-lifecycle-events.neo.mixins.json"
 
+[[accessTransformers]]
+file = "META-INF/accesstransformer.cfg"
+
 [[dependencies.kessoku-event-base]]
 modId = "neoforge"
 type = "required"

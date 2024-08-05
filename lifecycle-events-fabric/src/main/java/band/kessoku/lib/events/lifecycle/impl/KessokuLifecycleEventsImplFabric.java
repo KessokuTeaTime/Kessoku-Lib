@@ -1,11 +1,9 @@
 package band.kessoku.lib.events.lifecycle.impl;
 
 import band.kessoku.lib.events.lifecycle.api.*;
-import band.kessoku.lib.events.lifecycle.api.client.ClientLifecycleEvent;
-import band.kessoku.lib.events.lifecycle.api.client.ClientTickEvent;
+import band.kessoku.lib.events.lifecycle.api.client.*;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 
 public class KessokuLifecycleEventsImplFabric {
@@ -19,6 +17,15 @@ public class KessokuLifecycleEventsImplFabric {
         ClientTickEvents.END_CLIENT_TICK.register(client -> ClientTickEvent.END_CLIENT_TICK.invoker().onEndTick(client));
         ClientTickEvents.START_WORLD_TICK.register(world -> ClientTickEvent.START_WORLD_TICK.invoker().onStartTick(world));
         ClientTickEvents.END_WORLD_TICK.register(world -> ClientTickEvent.END_WORLD_TICK.invoker().onEndTick(world));
+
+        ClientEntityEvents.ENTITY_LOAD.register((entity, world) -> ClientEntityEvent.LOADED.invoker().onLoaded(entity, world));
+        ClientEntityEvents.ENTITY_UNLOAD.register((entity, world) -> ClientEntityEvent.UNLOADED.invoker().onUnloaded(entity, world));
+
+        ClientChunkEvents.CHUNK_LOAD.register((world, chunk) -> ClientChunkEvent.LOADED.invoker().onChunkLoaded(world, chunk));
+        ClientChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> ClientChunkEvent.UNLOADED.invoker().onChunkUnloaded(world, chunk));
+
+        ClientBlockEntityEvents.BLOCK_ENTITY_LOAD.register((blockEntity, world) -> ClientBlockEntityEvent.LOADED.invoker().onLoaded(blockEntity, world));
+        ClientBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register((blockEntity, world) -> ClientBlockEntityEvent.UNLOADED.invoker().onUnloaded(blockEntity, world));
     }
 
     public static void registerCommonEvents() {

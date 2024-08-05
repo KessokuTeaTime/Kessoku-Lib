@@ -13,10 +13,9 @@ public class KessokuLifecycleEventsEntrypoint {
     public KessokuLifecycleEventsEntrypoint(IEventBus modEventBus, ModContainer modContainer) {
         var forgeEventBus = NeoForge.EVENT_BUS;
 
-        KessokuLifecycleEventsImplNeo.registerCommonEvents(modEventBus, forgeEventBus);
-
+        KessokuLifecycleEventsImplNeo.registerCommonEvents(forgeEventBus);
         if (FMLLoader.getDist().isClient()) {
-            KessokuLifecycleEventsImplNeo.registerClientEvents(modEventBus, forgeEventBus);
+            KessokuLifecycleEventsImplNeo.registerClientEvents(forgeEventBus);
         }
     }
 }

@@ -68,6 +68,4 @@ public class ClientTickEvent {
             void onEndTick(ClientWorld world);
         }
     }
-
-
 }
