@@ -1,4 +1,4 @@
-group = "band.kessoku.lib.event"
+group = "band.kessoku.lib.events.lifecycle"
 version = libs.versions.mod.get() + "+common." + libs.versions.minecraft.get()
 
 base {

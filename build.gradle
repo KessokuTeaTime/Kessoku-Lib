@@ -3,6 +3,7 @@ plugins {
     alias libs.plugins.architectury
     alias libs.plugins.shadow apply false
     alias libs.plugins.spotless apply false
+    id 'maven-publish'
 }
 
 architectury {
@@ -57,7 +58,17 @@ subprojects {
                 from components.java
             }
         }
+
         repositories {
+            maven {
+                name = "KessokuLib"
+                url = "https://maven.cloudsmith.io/kessokuteatime/kessokulib/"
+
+                credentials {
+                    username = "tex-true"
+                    password = System.getenv("CLOUDSMITH_MAVEN_TOKEN")
+                }
+            }
         }
     }
 }

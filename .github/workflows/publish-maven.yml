@@ -1,0 +1,36 @@
+name: Publish to CloudSmith Maven
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: 21
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            .gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*', '**/*.gradle*', '**/gradle-wrapper.properties', 'build.gradle.kts', 'build.gradle') }}
+      - uses: gradle/wrapper-validation-action@v2
+      - run: |
+          chmod +x gradlew
+
+      - name: Publish package
+        run: ./gradlew publish
+        env:
+          CLOUDSMITH_MAVEN_TOKEN: ${{ secrets.CLOUDSMITH_MAVEN_TOKEN }}

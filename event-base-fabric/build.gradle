@@ -6,7 +6,7 @@ group = "band.kessoku.lib.event"
 version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
 
 base {
-    archivesName = rootProject.name + "-eventbase"
+    archivesName = rootProject.name + "-event-base"
 }
 
 architectury {

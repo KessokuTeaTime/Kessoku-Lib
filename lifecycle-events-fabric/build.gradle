@@ -2,7 +2,7 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-group = "band.kessoku.lib.event"
+group = "band.kessoku.lib.events.lifecycle"
 version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
 
 base {
