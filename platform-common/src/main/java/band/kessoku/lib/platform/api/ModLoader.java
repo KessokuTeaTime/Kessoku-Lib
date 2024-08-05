@@ -20,4 +20,5 @@ public interface ModLoader {
     boolean isModLoaded(String id);
     Collection<String> getModIds();
     Collection<? extends ModData> getMods();
+    boolean isDevEnv();
 }

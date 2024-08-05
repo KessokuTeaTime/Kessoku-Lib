@@ -68,4 +68,9 @@ public class ModLoaderImpl implements ModLoader {
     public Collection<? extends ModData> getMods() {
         return FabricLoader.getInstance().getAllMods().stream().map(ModDataImpl::new).toList();
     }
+
+    @Override
+    public boolean isDevEnv() {
+        return FabricLoader.getInstance().isDevelopmentEnvironment();
+    }
 }
