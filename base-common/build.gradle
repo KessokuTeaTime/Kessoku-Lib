@@ -1,14 +1,4 @@
+apply from: rootProject.file("gradle/scripts/kessokulib-common.gradle")
+
 group = "band.kessoku.lib.base"
-version = libs.versions.mod.get() + "+common." + libs.versions.minecraft.get()
-
-base {
-    archivesName = rootProject.name + "-base"
-}
-
-architectury {
-    common(["fabric", "neoforge"])
-}
-
-dependencies {
-    modImplementation libs.fabric.loader
-}
+base.archivesName = rootProject.name + "-base"

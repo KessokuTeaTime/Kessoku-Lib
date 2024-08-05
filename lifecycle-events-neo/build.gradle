@@ -1,18 +1,7 @@
-plugins {
-    id 'com.github.johnrengelman.shadow'
-}
+apply from: rootProject.file("gradle/scripts/kessokulib-neo.gradle")
 
 group = "band.kessoku.lib.events.lifecycle"
-version = libs.versions.mod.get() + "+neoforge." + libs.versions.minecraft.get()
-
-base {
-    archivesName = rootProject.name + "-lifecycle-events"
-}
-
-architectury {
-    platformSetupLoomIde()
-    neoForge()
-}
+base.archivesName = rootProject.name + "-lifecycle-events"
 
 loom {
     neoForge {
@@ -20,47 +9,10 @@ loom {
     }
 }
 
-repositories {
-    maven { url "https://maven.neoforged.net/releases/" }
-}
-
-configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentNeoForge.extendsFrom common
-    shadowBundle {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-}
-
 dependencies {
-    neoForge libs.neo
-
-    implementation(project(":event-base-common"))
-    implementation(project(":event-base-neo"))
+    moduleImplementation(project(":event-base-common"))
+    moduleImplementation(project(":event-base-neo"))
 
     common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionNeoForge')
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('META-INF/neoforge.mods.toml') {
-        expand version: project.version
-    }
-}
-
-shadowJar {
-    configurations = [project.configurations.shadowBundle]
-    archiveClassifier = 'dev-shadow'
-}
-
-remapJar {
-    input.set shadowJar.archiveFile
 }

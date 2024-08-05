@@ -19,17 +19,17 @@ subprojects {
     assemble.dependsOn spotlessApply
 
     repositories {
-        maven { url "https://maven.neoforged.net/releases/" }
+
     }
 
     dependencies {
-        minecraft libs.minecraft
-        mappings loom.layered {
+        minecraft(libs.minecraft)
+        mappings(loom.layered {
             mappings(variantOf(libs.yarn) { classifier("v2") })
-            mappings libs.yarn.patch
-        }
-        implementation 'com.google.auto.service:auto-service-annotations:1.1.1'
-        annotationProcessor 'com.google.auto.service:auto-service:1.1.1'
+            mappings(libs.yarn.patch)
+        })
+        implementation("com.google.auto.service:auto-service-annotations:1.1.1")
+        annotationProcessor("com.google.auto.service:auto-service:1.1.1")
     }
 
     java {
@@ -70,5 +70,21 @@ subprojects {
                 }
             }
         }
+    }
+}
+
+allprojects {
+    configurations {
+        moduleImplementation {
+            canBeResolved = true
+            canBeConsumed = false
+        }
+        compileClasspath.extendsFrom moduleImplementation
+        runtimeClasspath.extendsFrom moduleImplementation
+        moduleInclude {
+            canBeResolved = true
+            canBeConsumed = false
+        }
+        include.extendsFrom moduleInclude
     }
 }
