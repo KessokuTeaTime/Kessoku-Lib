@@ -1,4 +1,4 @@
-## English
+## English (US)
 1. `Right click` on the root project "Kessoku-Lib", select New->Module in the context menu, create "package-common", "package-fabric "package-common", "package-fabric", "package-neo" (`package` refers to the module name);
 2. Copy and paste the gradle script files under [`gradle/example`](./gradle/example) to their respective modules (`common` to `package-common`, `fabric` to `package-fabric`, and `neo` to `package-neo`);
 3. Check that `settings.gradle` has added the modules you just added, and it's fine if it hasn't;
