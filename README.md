@@ -15,3 +15,6 @@
     Cloudsmith is the only fully hosted, cloud-native, universal package management solution, that enables organizations to create, store and share packages in any format, to any place, with total confidence.
   </blockquote>
 </details>
+
+
+#### [HOW TO ADD MODULE](./ADD-MODULE.md)
