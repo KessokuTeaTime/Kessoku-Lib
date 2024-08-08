@@ -1,7 +1,5 @@
 package band.kessoku.lib.registry.api;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -169,15 +167,9 @@ public class FuelRegistry<T extends Recipe<?>> {
      * @return The fuel time.
      */
     public static <T extends AbstractFurnaceBlock> int getFuelTime(T block, ItemStack stack) {
-        try {
-            BlockEntity entity = block.createBlockEntity(null, null);
-            if (!(entity instanceof AbstractFurnaceBlockEntity)) return 0;
-            Method method = AbstractFurnaceBlockEntity.class.getDeclaredMethod("getFuelTime", ItemStack.class);
-            method.setAccessible(true);
-            return (int) method.invoke(entity, stack);
-        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+        BlockEntity entity = block.createBlockEntity(null, null);
+        if (!(entity instanceof AbstractFurnaceBlockEntity)) return 0;
+        return ((AbstractFurnaceBlockEntity) entity).getFuelTime(stack);
     }
 
     public record ItemWithData(ComponentMap componentMap, ItemConvertible item) {

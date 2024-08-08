@@ -6,3 +6,6 @@ base.archivesName = rootProject.name + "-registry"
 dependencies {
     moduleImplementation(project(":base-common"))
 }
+loom {
+    accessWidenerPath = file("src/main/resources/kessoku_registry.accesswidener")
+}
