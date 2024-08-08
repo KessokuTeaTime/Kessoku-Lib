@@ -1,5 +1,6 @@
 package band.kessoku.lib.command;
 
+import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.command.impl.KessokuCommandImpl;
 
 import net.neoforged.bus.api.IEventBus;
@@ -10,7 +11,7 @@ import net.neoforged.neoforge.common.NeoForge;
 public class KessokuCommandEntrypoint {
     public KessokuCommandEntrypoint(IEventBus modEventBus) {
         var forgeEventBus = NeoForge.EVENT_BUS;
-
+        ModUtils.getLogger().info(KessokuCommand.MARKER, "KessokuLib-Command is Loaded!");
         KessokuCommandImpl.registerCommonEvents(forgeEventBus);
     }
 }

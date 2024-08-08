@@ -4,6 +4,7 @@ group = "band.kessoku.lib.event"
 base.archivesName = rootProject.name + "-event-base"
 
 dependencies {
+    moduleImplementation(project(":base-common"))
     common(project(path: ':event-base-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':event-base-common', configuration: 'transformProductionFabric')
 }

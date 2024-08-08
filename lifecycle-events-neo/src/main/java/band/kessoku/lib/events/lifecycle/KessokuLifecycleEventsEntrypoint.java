@@ -1,5 +1,6 @@
 package band.kessoku.lib.events.lifecycle;
 
+import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.events.lifecycle.impl.KessokuLifecycleEventsImplNeo;
 
 import net.neoforged.bus.api.IEventBus;
@@ -12,9 +13,10 @@ import net.neoforged.neoforge.common.NeoForge;
 public class KessokuLifecycleEventsEntrypoint {
     public KessokuLifecycleEventsEntrypoint(IEventBus modEventBus, ModContainer modContainer) {
         var forgeEventBus = NeoForge.EVENT_BUS;
-
+        ModUtils.getLogger().info(KessokuLifecycleEvents.MARKER, "KessokuLib-LifecycleEvents is loaded!");
         KessokuLifecycleEventsImplNeo.registerCommonEvents(forgeEventBus);
         if (FMLLoader.getDist().isClient()) {
+            ModUtils.getLogger().info(KessokuLifecycleEvents.MARKER, "KessokuLib-LifecycleEvents is loaded on client!");
             KessokuLifecycleEventsImplNeo.registerClientEvents(forgeEventBus);
         }
     }

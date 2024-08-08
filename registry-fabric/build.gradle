@@ -4,6 +4,8 @@ group = "band.kessoku.lib.registry"
 base.archivesName = rootProject.name + "-registry"
 
 dependencies {
+    moduleImplementation(project(":base-common"))
+
     common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }
     shadowBundle(project(path: ':registry-common', configuration: 'transformProductionFabric'))
 }

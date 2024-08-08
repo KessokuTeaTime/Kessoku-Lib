@@ -1,0 +1,11 @@
+apply from: rootProject.file("gradle/scripts/kessokulib-fabric.gradle")
+
+group = "band.kessoku.lib.keybind"
+base.archivesName = rootProject.name + "-keybind"
+
+dependencies {
+    moduleImplementation(project(":base-common"))
+
+    common(project(path: ':keybind-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle(project(path: ':keybind-common', configuration: 'transformProductionFabric'))
+}

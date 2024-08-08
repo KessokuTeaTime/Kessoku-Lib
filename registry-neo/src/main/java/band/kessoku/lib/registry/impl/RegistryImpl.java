@@ -9,8 +9,6 @@ import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraft.util.Identifier;
 
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 @AutoService(Registry.class)
@@ -19,7 +17,6 @@ public class RegistryImpl implements Registry {
     private static final Map<net.minecraft.registry.Registry, Set<EntryWithId>> registries = new ConcurrentHashMap<>();
     private static boolean registered = false;
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
     @ApiStatus.Internal
     public static void onRegister(RegisterEvent event) {
         registries.forEach((registry, entryWithIds) ->
