@@ -1,5 +1,8 @@
 package band.kessoku.lib.events.lifecycle.mixin.neo.client;
 
+import band.kessoku.lib.events.lifecycle.api.client.ClientBlockEntityEvent;
+import band.kessoku.lib.events.lifecycle.api.client.ClientEntityEvent;
+import band.kessoku.lib.events.lifecycle.impl.LoadedChunksCache;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,10 +16,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.network.packet.s2c.play.PlayerRespawnS2CPacket;
 import net.minecraft.world.chunk.WorldChunk;
-
-import band.kessoku.lib.events.lifecycle.api.client.ClientBlockEntityEvent;
-import band.kessoku.lib.events.lifecycle.api.client.ClientEntityEvent;
-import band.kessoku.lib.events.lifecycle.impl.LoadedChunksCache;
 
 @Mixin(ClientPlayNetworkHandler.class)
 abstract class ClientPlayNetworkHandlerMixin {

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.registry.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractFurnaceBlockEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

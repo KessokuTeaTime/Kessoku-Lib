@@ -1,5 +1,6 @@
 package band.kessoku.lib.events.lifecycle.mixin.neo.client;
 
+import band.kessoku.lib.events.lifecycle.api.client.ClientEntityEvent;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,8 +10,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
-
-import band.kessoku.lib.events.lifecycle.api.client.ClientEntityEvent;
 
 @Mixin(targets = "net/minecraft/client/world/ClientWorld$ClientEntityHandler")
 public class ClientEntityHandlerMixin {

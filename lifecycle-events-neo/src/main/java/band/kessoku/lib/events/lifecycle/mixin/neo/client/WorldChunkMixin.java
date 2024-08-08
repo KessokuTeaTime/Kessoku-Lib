@@ -2,6 +2,8 @@ package band.kessoku.lib.events.lifecycle.mixin.neo.client;
 
 import java.util.Map;
 
+import band.kessoku.lib.events.lifecycle.api.ServerBlockEntityEvent;
+import band.kessoku.lib.events.lifecycle.api.client.ClientBlockEntityEvent;
 import com.llamalad7.mixinextras.sugar.Local;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
@@ -20,9 +22,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
-
-import band.kessoku.lib.events.lifecycle.api.ServerBlockEntityEvent;
-import band.kessoku.lib.events.lifecycle.api.client.ClientBlockEntityEvent;
 
 @Mixin(WorldChunk.class)
 abstract class WorldChunkMixin {

@@ -2,14 +2,14 @@ package band.kessoku.lib.events.lifecycle.impl;
 
 import band.kessoku.lib.event.util.NeoEventUtils;
 import band.kessoku.lib.events.lifecycle.api.*;
-
 import band.kessoku.lib.events.lifecycle.api.client.ClientChunkEvent;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-
 import net.minecraft.world.chunk.WorldChunk;
+
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;

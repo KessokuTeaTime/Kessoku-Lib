@@ -2,6 +2,7 @@ package band.kessoku.lib.events.lifecycle.mixin.neo.client;
 
 import java.util.function.Consumer;
 
+import band.kessoku.lib.events.lifecycle.api.client.ClientChunkEvent;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,8 +19,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.WorldChunk;
-
-import band.kessoku.lib.events.lifecycle.api.client.ClientChunkEvent;
 
 @Mixin(ClientChunkManager.class)
 public abstract class ClientChunkManagerMixin {

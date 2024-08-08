@@ -5,11 +5,11 @@ yarn = "1.21+build.9"
 yarn-patch-neoforge = "1.21+build.4"
 
 # Loaders
-neo = "21.0.151"
+neo = "21.0.163"
 fabric-loader = "0.16.0"
 
 # Mods
-fabric-api = "0.100.8+1.21"
+fabric-api = "0.101.2+1.21"
 
 # Plugin version
 loom = "1.7-SNAPSHOT"

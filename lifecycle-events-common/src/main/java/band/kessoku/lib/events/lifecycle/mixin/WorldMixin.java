@@ -3,12 +3,12 @@ package band.kessoku.lib.events.lifecycle.mixin;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
+import band.kessoku.lib.events.lifecycle.impl.LoadedChunksCache;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-import band.kessoku.lib.events.lifecycle.impl.LoadedChunksCache;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.WorldChunk;
 
 @Mixin(World.class)
 public abstract class WorldMixin implements LoadedChunksCache {

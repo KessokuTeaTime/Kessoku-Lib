@@ -1,8 +1,8 @@
 package band.kessoku.lib.events.lifecycle.impl;
 
-import net.minecraft.world.chunk.WorldChunk;
-
 import java.util.Set;
+
+import net.minecraft.world.chunk.WorldChunk;
 
 /**
  * A simple marker interface which holds references to chunks which block entities may be loaded or unloaded from.

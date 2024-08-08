@@ -3,6 +3,7 @@ package band.kessoku.lib.events.lifecycle.mixin.neo;
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
+import band.kessoku.lib.events.lifecycle.api.ServerLifecycleEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,8 +11,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.server.MinecraftServer;
-
-import band.kessoku.lib.events.lifecycle.api.ServerLifecycleEvent;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {

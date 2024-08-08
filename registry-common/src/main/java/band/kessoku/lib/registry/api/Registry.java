@@ -10,6 +10,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
+@SuppressWarnings("unused")
 public interface Registry {
     static Registry getInstance() {
         return KessokuRegistryServices.getRegistry();
