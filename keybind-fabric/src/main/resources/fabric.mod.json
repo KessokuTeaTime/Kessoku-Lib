@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku_registry",
+  "id": "kessoku_keybind",
   "version": "${version}",
-  "name": "Kessoku Registry",
-  "description": "Provide registry-related API.",
+  "name": "Kessoku Keybind",
+  "description": "Simple Keybinding register API.",
   "authors": [
     "Kessoku Tea Time"
   ],
@@ -14,16 +14,7 @@
   },
   "license": "LGPL-3.0-only",
   "icon": "icon.png",
-  "entrypoints": {
-    "main": [
-      "band.kessoku.lib.registry.KessokuRegistryEntrypoint"
-    ]
-  },
   "environment": "*",
-  "mixins": [
-    "kessoku-registry-fabric.mixins.json"
-  ],
-  "accessWidener": "kessoku-registry.accesswidener",
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "1.21",
