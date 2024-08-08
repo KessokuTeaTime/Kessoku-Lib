@@ -4,9 +4,7 @@ group = "band.kessoku.lib.events.lifecycle"
 base.archivesName = rootProject.name + "-lifecycle-events"
 
 loom {
-    neoForge {
-        setAccessTransformers(files("src/main/resources/META-INF/accesstransformer.cfg"))
-    }
+    accessWidenerPath = file("src/main/resources/kessoku-lifecycle-events.accesswidener")
 }
 
 dependencies {
@@ -16,4 +14,8 @@ dependencies {
 
     common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionNeoForge')
+}
+
+remapJar {
+    atAccessWideners.add("kessoku-lifecycle-events.accesswidener")
 }
