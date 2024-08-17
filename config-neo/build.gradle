@@ -1,0 +1,12 @@
+apply from: rootProject.file("gradle/scripts/kessokulib-neo.gradle")
+
+group = "band.kessoku.lib.config"
+base.archivesName = rootProject.name + "-config"
+
+dependencies {
+    moduleImplementation(project(":base-common"))
+    moduleImplementation(project(":platform-common"))
+
+    common(project(path: ':config-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':config-common', configuration: 'transformProductionNeoForge')
+}

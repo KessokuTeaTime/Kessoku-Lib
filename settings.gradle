@@ -17,4 +17,5 @@ include("registry-common", "registry-fabric", "registry-neo") // Registry
 include("lifecycle-events-common", "lifecycle-events-fabric", "lifecycle-events-neo") // Lifecycle Events
 include("command-common", "command-fabric", "command-neo") // Command API
 include("keybind-common", "keybind-fabric", "keybind-neo") // Keybind API
+include("config-common", "config-fabric", "config-neo") // Config API
 

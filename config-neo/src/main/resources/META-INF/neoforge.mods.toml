@@ -4,24 +4,24 @@ license = "LGPL-3.0-only"
 issueTrackerURL = "https://github.com/KessokuTeaTime/KessokuLib/issues"
 
 [[mods]]
-modId = "kessoku_command"
+modId = "kessoku_config"
 version = "${version}"
-displayName = "Kessoku Command API"
+displayName = "Kessoku Config API"
 description = '''
-About command registries.
+A simple config api. Based quilt-config.
 '''
 logoFile = "icon.png"
 authors = "Kessoku Tea Time"
 displayURL = "https://modrinth.com/mod/kessoku-lib"
 
-[[dependencies.kessoku_command]]
+[[dependencies.kessoku_config]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.kessoku_command]]
+[[dependencies.kessoku_config]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"
