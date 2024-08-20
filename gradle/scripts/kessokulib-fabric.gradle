@@ -1,4 +1,4 @@
-apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: "com.gradleup.shadow"
 
 version = libs.versions.mod.get() + "+fabric." + libs.versions.minecraft.get()
 
