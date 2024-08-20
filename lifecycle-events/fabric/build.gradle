@@ -1,0 +1,12 @@
+apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
+
+group = "band.kessoku.lib.events.lifecycle"
+base.archivesName = rootProject.name + "-lifecycle-events"
+
+dependencies {
+    moduleImplementation(project(":base-common"))
+    moduleImplementation(project(":event-base-common"))
+
+    common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionFabric')
+}

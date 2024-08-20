@@ -1,9 +1,0 @@
-apply from: rootProject.file("gradle/scripts/kessokulib-common.gradle")
-
-group = "band.kessoku.lib.command"
-base.archivesName = rootProject.name + "-command"
-
-dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-common"))
-}

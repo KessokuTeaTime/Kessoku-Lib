@@ -1,0 +1,12 @@
+apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
+
+group = "band.kessoku.lib"
+base.archivesName = rootProject.name
+
+var modules = ["base", "event-base", "lifecycle-events", "platform", "registry"]
+
+dependencies {
+    //modules.each {
+    //    moduleInclude(project, "$it", "fabric")
+    //}
+}

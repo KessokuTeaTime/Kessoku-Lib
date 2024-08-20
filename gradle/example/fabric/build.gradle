@@ -1,4 +1,4 @@
-apply from: rootProject.file("gradle/scripts/kessokulib-fabric.gradle")
+apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 group = "band.kessoku.lib.package"
 base.archivesName = rootProject.name + "-package"

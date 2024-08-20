@@ -1,0 +1,9 @@
+apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
+
+group = "band.kessoku.lib.base"
+base.archivesName = rootProject.name + "-base"
+
+dependencies {
+    common(project(path: ':base-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':base-common', configuration: 'transformProductionFabric')
+}

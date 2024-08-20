@@ -19,7 +19,7 @@ subprojects {
     assemble.dependsOn spotlessApply
 
     repositories {
-
+        maven { url "https://maven.neoforged.net/releases/" }
     }
 
     dependencies {

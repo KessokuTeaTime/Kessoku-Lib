@@ -9,13 +9,31 @@ pluginManagement {
 
 rootProject.name = 'kessoku-lib'
 
-include("fabric", "neo") // Bundle modules
-include("base-common", "base-fabric", "base-neo") // Base
-include("event-base-common", "event-base-fabric", "event-base-neo") // Event Base
-include("platform-common", "platform-fabric", "platform-neo") // Platform
-include("registry-common", "registry-fabric", "registry-neo") // Registry
-include("lifecycle-events-common", "lifecycle-events-fabric", "lifecycle-events-neo") // Lifecycle Events
-include("command-common", "command-fabric", "command-neo") // Command API
-include("keybind-common", "keybind-fabric", "keybind-neo") // Keybind API
-include("config-common", "config-fabric", "config-neo") // Config API
+includeWrapper("fabric")
+includeWrapper("neo")
 
+includeModule("base") // Base
+includeModule("event-base") // Event Base
+includeModule("platform") // Platform
+includeModule("registry") // Registry
+includeModule("lifecycle-events") // Lifecycle Events
+includeModule("command") // Command API
+includeModule("keybind") // Keybind API
+includeModule("config") // Config API
+
+
+void includeWrapper(String platform) {
+    include("wrapper/$platform")
+    project(":wrapper/$platform").name = "$rootProject.name-$platform"
+}
+
+void includeModule(String moduleName) {
+    includePlatform(moduleName, "common")
+    includePlatform(moduleName, "fabric")
+    includePlatform(moduleName, "neo")
+}
+
+void includePlatform(String moduleName, String platform) {
+    include("$moduleName/$platform")
+    project(":$moduleName/$platform").name = "$moduleName-$platform"
+}

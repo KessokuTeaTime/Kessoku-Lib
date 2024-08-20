@@ -1,9 +1,0 @@
-version = libs.versions.mod.get() + "+common." + libs.versions.minecraft.get()
-
-architectury {
-    common(["fabric", "neoforge"])
-}
-
-dependencies {
-    modImplementation libs.fabric.loader
-}
