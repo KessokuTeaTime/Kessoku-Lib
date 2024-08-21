@@ -7,6 +7,8 @@ import java.util.Map;
 
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -167,9 +169,11 @@ public class FuelRegistry<T extends Recipe<?>> {
      * @return The fuel time.
      */
     public static <T extends AbstractFurnaceBlock> int getFuelTime(T block, ItemStack stack) {
-        BlockEntity entity = block.createBlockEntity(null, null);
+        BlockEntity entity = block.createBlockEntity((BlockPos) BlockPos.ZERO, block.getDefaultState());
         if (!(entity instanceof AbstractFurnaceBlockEntity)) return 0;
-        return ((AbstractFurnaceBlockEntity) entity).getFuelTime(stack);
+        int fuelTime = ((AbstractFurnaceBlockEntity) entity).getFuelTime(stack);
+        entity.markRemoved();
+        return fuelTime;
     }
 
     public record ItemWithData(ComponentMap componentMap, ItemConvertible item) {
