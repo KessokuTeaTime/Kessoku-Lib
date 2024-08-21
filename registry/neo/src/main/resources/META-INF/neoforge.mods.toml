@@ -14,14 +14,14 @@ logoFile = "icon.png"
 authors = "Kessoku Tea Time"
 displayURL = "https://modrinth.com/mod/kessoku-lib"
 
-[[dependencies.kessoku-event-base]]
+[[dependencies.kessoku_registry]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.kessoku-event-base]]
+[[dependencies.kessoku_registry]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"

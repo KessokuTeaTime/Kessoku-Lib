@@ -23,14 +23,14 @@ config = "kessoku-lifecycle-events.neo.mixins.json"
 [[accessTransformers]]
 file = "META-INF/accesstransformer.cfg"
 
-[[dependencies.kessoku-event-base]]
+[[dependencies.kessoku_lifecycle_events]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.kessoku-event-base]]
+[[dependencies.kessoku_lifecycle_events]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"

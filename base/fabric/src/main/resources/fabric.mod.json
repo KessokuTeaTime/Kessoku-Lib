@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku_platform",
+  "id": "kessoku_base",
   "version": "${version}",
-  "name": "Kessoku Platform",
+  "name": "Kessoku Base",
   "description": "Provide some basic API.",
   "authors": [
     "Kessoku Tea Time"

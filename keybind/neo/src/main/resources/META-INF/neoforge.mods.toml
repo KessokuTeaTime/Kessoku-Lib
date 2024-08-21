@@ -17,14 +17,14 @@ displayURL = "https://modrinth.com/mod/kessoku-lib"
 [[mixins]]
 config = "kessoku-keybind.mixins.json"
 
-[[dependencies.kessoku-event-base]]
+[[dependencies.kessoku_keybind]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.kessoku-event-base]]
+[[dependencies.kessoku_keybind]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"
