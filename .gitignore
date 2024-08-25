@@ -9,3 +9,4 @@ build
 !.idea/icon.svg
 
 run
+.DS_Store
