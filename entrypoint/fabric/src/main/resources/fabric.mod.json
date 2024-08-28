@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "kessoku_platform",
+  "version": "${version}",
+  "name": "Kessoku Platform",
+  "description": "Provide some basic API.",
+  "authors": [
+    "Kessoku Tea Time"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/kessoku-lib",
+    "sources": "https://github.com/KessokuTeaTime/KessokuLib",
+    "issues": "https://github.com/KessokuTeaTime/KessokuLib/issues"
+  },
+  "license": "LGPL-3.0-only",
+  "icon": "icon.png",
+  "entrypoints": {
+    "main": [
+      "band.kessoku.lib.entrypoint.KessokuEntrypointEntrypoint"
+    ],
+    "client": [
+      "band.kessoku.lib.entrypoint.KessokuEntrypointEntrypoint"
+    ],
+    "server": [
+      "band.kessoku.lib.entrypoint.KessokuEntrypointEntrypoint"
+    ],
+    "preLaunch": [
+      "band.kessoku.lib.entrypoint.KessokuEntrypointEntrypoint"
+    ]
+  },
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}

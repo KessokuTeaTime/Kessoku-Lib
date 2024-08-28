@@ -7,8 +7,6 @@ import java.util.Map;
 
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -24,6 +22,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.math.BlockPos;
 
 /**
  * Poor compatibility in Fabric

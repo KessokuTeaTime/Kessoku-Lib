@@ -1,18 +1,20 @@
 package band.kessoku.lib.keybind.impl;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import band.kessoku.lib.event.util.NeoEventUtils;
 import band.kessoku.lib.keybind.api.KeyBindRegister;
 import band.kessoku.lib.keybind.mixin.KeyBindingAccessor;
 import com.google.auto.service.AutoService;
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
+
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @AutoService(KeyBindRegister.class)
 public class KeyBindRegisterImpl implements KeyBindRegister {

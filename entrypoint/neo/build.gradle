@@ -1,0 +1,10 @@
+apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
+
+group = "band.kessoku.lib.entrypoint"
+base.archivesName = rootProject.name + "-entrypoint"
+
+dependencies {
+    moduleImplementation(project(":base-common"))
+    common(project(path: ':entrypoint-common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':entrypoint-common', configuration: 'transformProductionNeoForge')
+}

@@ -4,7 +4,10 @@ group = "band.kessoku.lib.config"
 base.archivesName = rootProject.name + "-config"
 
 repositories {
-    maven { url = "https://maven.quiltmc.org/repository/release/" }
+    maven {
+        url 'http://maven.snowlyicewolf.club/'
+        allowInsecureProtocol = true
+    }
 }
 
 dependencies {
@@ -12,5 +15,5 @@ dependencies {
     moduleImplementation(project(":platform-common"))
 
     implementation(libs.bundles.night.config)
-    implementation(libs.bundles.quilt.config)
+    implementation libs.aj4j
 }

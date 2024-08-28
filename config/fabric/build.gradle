@@ -1,4 +1,5 @@
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
+apply plugin: "com.gradleup.shadow"
 
 group = "band.kessoku.lib.config"
 base.archivesName = rootProject.name + "-config"
@@ -9,4 +10,9 @@ dependencies {
 
     common(project(path: ':config-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':config-common', configuration: 'transformProductionFabric')
+}
+
+shadowJar {
+    relocate 'club.someoneice.json', 'band.kessoku.lib.shadow.json'
+    archiveClassifier = "shadow"
 }

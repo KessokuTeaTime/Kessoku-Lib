@@ -20,6 +20,7 @@ includeModule("lifecycle-events") // Lifecycle Events
 includeModule("command") // Command API
 includeModule("keybind") // Keybind API
 includeModule("config") // Config API
+includeModule("entrypoint") // Entrypoint API
 
 
 void includeWrapper(String platform) {

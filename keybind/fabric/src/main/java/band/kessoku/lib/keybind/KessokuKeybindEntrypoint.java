@@ -1,6 +1,7 @@
 package band.kessoku.lib.keybind;
 
 import band.kessoku.lib.base.ModUtils;
+
 import net.fabricmc.api.ClientModInitializer;
 
 public class KessokuKeybindEntrypoint implements ClientModInitializer {

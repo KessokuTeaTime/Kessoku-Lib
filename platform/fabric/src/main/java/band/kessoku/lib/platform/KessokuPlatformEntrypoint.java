@@ -1,6 +1,7 @@
 package band.kessoku.lib.platform;
 
 import band.kessoku.lib.base.ModUtils;
+
 import net.fabricmc.api.ModInitializer;
 
 public class KessokuPlatformEntrypoint implements ModInitializer {
