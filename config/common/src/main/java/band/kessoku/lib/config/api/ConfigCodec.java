@@ -2,7 +2,7 @@ package band.kessoku.lib.config.api;
 
 import java.util.function.Function;
 
-public abstract class ConfigCodec<A, B extends ConfigValue<?>> {
+public abstract class ConfigCodec<A, B> {
     private final Function<A, B> encode;
     private final Function<B, A> decode;
 
