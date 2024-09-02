@@ -2,7 +2,7 @@ plugins {
     alias libs.plugins.loom apply false
     alias libs.plugins.architectury
     alias libs.plugins.shadow apply false
-    alias libs.plugins.spotless apply false
+    alias libs.plugins.spotless
     id 'maven-publish'
 }
 
@@ -13,7 +13,7 @@ architectury {
 subprojects {
     apply plugin: 'dev.architectury.loom'
     apply plugin: 'architectury-plugin'
-    apply plugin: 'com.diffplug.spotless'
+    apply plugin: "com.diffplug.spotless"
     apply plugin: 'maven-publish'
 
     assemble.dependsOn spotlessApply
@@ -33,19 +33,20 @@ subprojects {
         annotationProcessor("com.google.auto.service:auto-service:1.1.1")
     }
 
-    java {
-        withSourcesJar()
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-
     spotless {
         java {
+            licenseHeaderFile(rootProject.file("HEADER"))
             importOrder('java|javax', '', 'net.minecraft', 'net.fabricmc|net.neoforged')
             removeUnusedImports()
             indentWithSpaces()
             trimTrailingWhitespace()
         }
+    }
+
+    java {
+        withSourcesJar()
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     tasks.withType(JavaCompile).configureEach {
@@ -75,6 +76,8 @@ subprojects {
 }
 
 allprojects {
+    apply plugin: "com.diffplug.spotless"
+
     configurations {
         moduleImplementation {
             canBeResolved = true
