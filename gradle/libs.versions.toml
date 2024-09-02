@@ -39,7 +39,7 @@ night-config-toml = { group = "com.electronwill.night-config", name = "toml", ve
 night-config-yaml = { group = "com.electronwill.night-config", name = "yaml", version.ref = "night-config" }
 night-config-hocon = { group = "com.electronwill.night-config", name = "hocon", version.ref = "night-config" }
 
-aj4j = { group = "club.someoneice.json", name = "amarok-json-for-java", version.ref = "aj4j" }
+aj4j = { group = "com.github.AmarokIce", name = "AmarokJsonForJava", version.ref = "aj4j" }
 
 [plugins]
 loom = { id = "dev.architectury.loom", version.ref = "loom" }
