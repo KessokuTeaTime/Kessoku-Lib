@@ -16,6 +16,7 @@ loom = "1.7-SNAPSHOT"
 architectury = "3.4-SNAPSHOT"
 shadow = "8.3.0"
 spotless = "6.25.0"
+idea-ext = "1.1.7"
 
 # Config libraries
 night-config = "3.8.1"
@@ -46,6 +47,7 @@ loom = { id = "dev.architectury.loom", version.ref = "loom" }
 architectury = { id = "architectury-plugin", version.ref = "architectury" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+idea-ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "idea-ext" }
 
 [bundles]
 night-config = ["night-config-core", "night-config-toml", "night-config-yaml", "night-config-hocon"]

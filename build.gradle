@@ -1,13 +1,31 @@
+import org.jetbrains.gradle.ext.Gradle
+
 plugins {
     alias libs.plugins.loom apply false
     alias libs.plugins.architectury
     alias libs.plugins.shadow apply false
     alias libs.plugins.spotless
+    alias libs.plugins.idea.ext
     id 'maven-publish'
 }
 
 architectury {
     minecraft = libs.versions.minecraft.get()
+}
+
+idea {
+    project {
+        settings {
+            runConfigurations {
+                "Run Client"(Gradle) {
+                    taskNames = ["runClient"]
+                }
+                "Spotless"(Gradle) {
+                    taskNames = ["spotlessApply"]
+                }
+            }
+        }
+    }
 }
 
 subprojects {
