@@ -6,4 +6,6 @@ base.archivesName = rootProject.name + "-lifecycle-events"
 dependencies {
     moduleImplementation(project(":base-common"))
     moduleImplementation(project(":event-base-common"))
+
+    testImplementation(project(":event-base-common"))
 }

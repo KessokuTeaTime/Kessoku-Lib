@@ -6,4 +6,7 @@ base.archivesName = rootProject.name + "-command"
 dependencies {
     moduleImplementation(project(":base-common"))
     moduleImplementation(project(":event-base-common"))
+
+    testImplementation(project(":base-common"))
+    testImplementation(project(":event-base-common"))
 }
