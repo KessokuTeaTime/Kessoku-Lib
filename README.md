@@ -7,7 +7,7 @@
 <details>
   <summary>
     <sub><a href="https://cloudsmith.com">
-      <img src="https://img.shields.io/badge/OSS%20Hosting%20by-Cloudsmith-blue?logo=cloudsmith&style=flat-square" />
+      <img src="https://img.shields.io/badge/OSS%20Hosting%20by-Cloudsmith-blue?logo=cloudsmith&style=flat-square"  alt=""/>
     </a></sub>
   </summary>
   <blockquote>
@@ -18,7 +18,6 @@
 
 
 #### [HOW TO ADD MODULE](./ADD-MODULE.md)
-
 
 ## Another
 - Config API part based [`quilt-config`](https://github.com/QuiltMC/quilt-config)
