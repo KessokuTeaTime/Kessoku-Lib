@@ -27,7 +27,7 @@ public abstract class KesssokuExtension {
         DependencyHandler dependencies = project.getDependencies();
 
         Dependency dependency = dependencies.project(Map.of(
-                "path", ":" + name + "-common",
+                "path", ":" + name + "-" + plat,
                 "configuration", "namedElements"
         ));
         dependencies.add("api", dependency);
