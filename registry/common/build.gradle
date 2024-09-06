@@ -9,4 +9,5 @@ loom {
 
 dependencies {
     moduleImplementation(project(":base-common"))
+    moduleImplementation(project(":event-base-common"))
 }
