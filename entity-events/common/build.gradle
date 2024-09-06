@@ -4,6 +4,5 @@ group = "band.kessoku.lib.events.entity"
 base.archivesName = rootProject.name + "-entity-events"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-common"))
+    kessoku.moduleImpls(["base", "event-base"], "common")
 }

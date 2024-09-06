@@ -4,5 +4,5 @@ group = "band.kessoku.lib.keybind"
 base.archivesName = rootProject.name + "-keybind"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
+    kessoku.moduleImpl("base", "common")
 }

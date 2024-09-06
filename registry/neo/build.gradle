@@ -8,7 +8,8 @@ loom {
 }
 
 dependencies {
-    moduleImplementation(project(":base-common"))
+    kessoku.moduleImpl("base", "common")
+    kessoku.moduleImpl("event-base", "neo")
     moduleImplementation(project(":event-base-neo"))
 
     common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }

@@ -1,0 +1,33 @@
+plugins {
+    id "java-gradle-plugin"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.fabricmc.net/" }
+    maven { url "https://maven.architectury.dev/" }
+    maven { url "https://maven.neoforged.net/releases/" }
+}
+
+dependencies {
+    gradleApi()
+    implementation("dev.architectury:architectury-loom:${readLoomVersion()}")
+}
+
+gradlePlugin {
+    plugins {
+        create("kessoku") {
+            id = "band.kessoku.scripts"
+            implementationClass = "band.kessoku.gradle.plugin.KessokuGradlePlugin"
+        }
+    }
+}
+
+def readLoomVersion() {
+    // cannot access directly during buildSrc configuration
+    Properties properties = new Properties()
+    // also can't use rootProject, it's buildSrc some reason
+    properties.load(project.file("../gradle.properties").newReader())
+    return properties.get("loom_version")
+}
+

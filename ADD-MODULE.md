@@ -3,7 +3,7 @@
 2. Copy and paste the gradle script files under [`gradle/example`](./gradle/example) to their respective modules (`common` to `package/common`, `fabric` to `package/fabric`, and `neo` to `package/neo`);
 3. Check that `settings.gradle` has added the modules you just added, and it's fine if it hasn't;
 4. Synchronizing the gradle
-5. If you want to add module dependencies use `moduleImplementation(project("module-name-common"))`.
+5. If you want to add module dependencies use `kessoku.moduleImpl(project("module-name", "common"))`.
 6. Finally, add include to `fabric` and `neo`.
 
 ## Simplified Chinese
@@ -11,5 +11,5 @@
 2. 复制粘贴 [`gradle/example`](./gradle/example) 下的gradle脚本文件到各自所属模块（common复制common文件夹内的到`package/common`模块，fabric复制fabric文件夹内的到`package/fabric`，neo复制neo文件夹内的到`package/neo`）；
 3. 检查 `settings.gradle` 是否添加了刚才的模块，没有添加即可；
 4. 同步gradle
-5. 如果要添加模块依赖请用`moduleImplementation(project("模块名-common"))`
-6. 最后在`fabric`和`neo`添加include（请用`moduleInclude(project("模块名-modloader"))`）
+5. 如果要添加模块依赖请用`kessoku.moduleImpl("模块名", "common")`
+6. 最后在`fabric`和`neo`添加include（请用`kessoku.moduleInclude(("模块名", "modloader"))`）

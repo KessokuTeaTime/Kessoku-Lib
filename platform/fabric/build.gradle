@@ -4,7 +4,7 @@ group = "band.kessoku.lib.platform"
 base.archivesName = rootProject.name + "-platform"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
+    kessoku.moduleImpl("base", "common")
 
     common(project(path: ':platform-common', configuration: 'namedElements')) { transitive false }
     shadowBundle(project(path: ':platform-common', configuration: 'transformProductionFabric'))

@@ -1,11 +1,14 @@
+import com.google.common.collect.Lists
+
 apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
 group = "band.kessoku.lib.command"
 base.archivesName = rootProject.name + "-command"
 
+
+
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-common"))
+    kessoku.moduleImpls(["base", "event-base"], "common")
 
     testImplementation(project(":base-common"))
     testImplementation(project(":event-base-common"))

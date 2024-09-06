@@ -8,7 +8,7 @@ loom {
 }
 
 dependencies {
-    moduleImplementation(project(":base-common"))
+    kessoku.moduleImpl("base", "common")
 
     common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }
     shadowBundle(project(path: ':registry-common', configuration: 'transformProductionFabric'))

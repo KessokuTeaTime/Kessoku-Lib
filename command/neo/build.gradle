@@ -4,9 +4,8 @@ group = "band.kessoku.lib.command"
 base.archivesName = rootProject.name + "-command"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-common"))
-    moduleImplementation(project(":event-base-neo"))
+    kessoku.moduleImpls(["base", "event-base"], "common")
+    kessoku.moduleImpl("event-base", "neo")
 
     common(project(path: ':command-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':command-common', configuration: 'transformProductionNeoForge')

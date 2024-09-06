@@ -4,6 +4,8 @@ group = "band.kessoku.lib.package"
 base.archivesName = rootProject.name + "-package"
 
 dependencies {
+    //kessoku.moduleImpl("base", "common")
+
     common(project(path: ':package-common', configuration: 'namedElements')) { transitive false }
     shadowBundle(project(path: ':package-common', configuration: 'transformProductionNeoForge'))
 }
