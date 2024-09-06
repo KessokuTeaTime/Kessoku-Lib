@@ -4,8 +4,7 @@ group = "band.kessoku.lib.events.entity"
 base.archivesName = rootProject.name + "-entity-events"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-common"))
+    kessoku.moduleImpls(["base", "event-base"], "common")
 
     common(project(path: ':entity-events-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':entity-events-common', configuration: 'transformProductionFabric')

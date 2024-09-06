@@ -4,8 +4,7 @@ group = "band.kessoku.lib.events.lifecycle"
 base.archivesName = rootProject.name + "-lifecycle-events"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-common"))
+    kessoku.moduleImpls(["base", "event-base"], "common")
 
     testImplementation(project(":event-base-common"))
 }

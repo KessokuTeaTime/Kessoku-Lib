@@ -6,8 +6,7 @@ base.archivesName = rootProject.name + "-config"
 dependencies {
     shadowBundle(libs.aj4j)
 
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":platform-common"))
+    kessoku.moduleImpls(["base", "platform"], "common")
 
     common(project(path: ':config-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':config-common', configuration: 'transformProductionNeoForge')

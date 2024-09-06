@@ -8,5 +8,5 @@ loom {
 }
 
 dependencies {
-    moduleImplementation(project(":base-common"))
+    kessoku.moduleImpl("base", "common")
 }

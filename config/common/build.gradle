@@ -4,8 +4,7 @@ group = "band.kessoku.lib.config"
 base.archivesName = rootProject.name + "-config"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":platform-common"))
+    kessoku.moduleImpls(["base", "platform"], "common")
 
     implementation(libs.bundles.night.config)
     implementation(libs.aj4j)

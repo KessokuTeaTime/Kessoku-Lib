@@ -4,8 +4,8 @@ group = "band.kessoku.lib.keybind"
 base.archivesName = rootProject.name + "-keybind"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
-    moduleImplementation(project(":event-base-neo"))
+    kessoku.moduleImpl("base", "common")
+    kessoku.moduleImpl("event-base", "neo")
 
     common(project(path: ':keybind-common', configuration: 'namedElements')) { transitive false }
     shadowBundle(project(path: ':keybind-common', configuration: 'transformProductionNeoForge'))

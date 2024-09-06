@@ -4,7 +4,8 @@ group = "band.kessoku.lib.entrypoint"
 base.archivesName = rootProject.name + "-entrypoint"
 
 dependencies {
-    moduleImplementation(project(":base-common"))
+    kessoku.moduleImpl("base", "common")
+
     common(project(path: ':entrypoint-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':entrypoint-common', configuration: 'transformProductionNeoForge')
 }
