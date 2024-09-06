@@ -18,6 +18,3 @@
 
 
 #### [HOW TO ADD MODULE](./ADD-MODULE.md)
-
-## Another
-- Config API part based [`quilt-config`](https://github.com/QuiltMC/quilt-config)
