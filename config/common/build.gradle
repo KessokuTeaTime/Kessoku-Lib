@@ -3,20 +3,10 @@ apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 group = "band.kessoku.lib.config"
 base.archivesName = rootProject.name + "-config"
 
-repositories {
-    maven {
-        url = "http://maven.snowlyicewolf.club/"
-        allowInsecureProtocol = true
-        content {
-            includeGroup("com.github.AmarokIce")
-        }
-    }
-}
-
 dependencies {
     moduleImplementation(project(":base-common"))
     moduleImplementation(project(":platform-common"))
 
     implementation(libs.bundles.night.config)
-    implementation libs.aj4j
+    implementation(libs.aj4j)
 }

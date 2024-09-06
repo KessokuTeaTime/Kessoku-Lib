@@ -40,6 +40,13 @@ subprojects {
     repositories {
         maven { url "https://maven.neoforged.net/releases/" }
         maven { url "https://jitpack.io" }
+        maven {
+            url = "http://maven.snowlyicewolf.club/"
+            allowInsecureProtocol = true
+            content {
+                includeGroup("com.github.AmarokIce")
+            }
+        }
     }
 
     dependencies {

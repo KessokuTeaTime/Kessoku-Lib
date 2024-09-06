@@ -1,33 +1,8 @@
 apply from: rootProject.file("gradle/scripts/klib-common.gradle")
-apply plugin: "com.gradleup.shadow"
-
-configurations {
-    shadowCommon
-}
 
 group = "band.kessoku.lib.base"
 base.archivesName = rootProject.name + "-base"
 
-repositories {
-    maven {
-        url 'http://maven.snowlyicewolf.club/'
-        allowInsecureProtocol = true
-    }
-}
-
 dependencies {
-    //implementation libs.aj4j
-    shadowCommon libs.aj4j
-}
 
-shadowJar {
-    configurations = [project.configurations.shadowCommon]
-    relocate 'club.someoneice.json', 'band.kessoku.lib.shadow.json'
-    archiveClassifier = "shadow"
-}
-
-remapJar {
-    dependsOn(shadowJar)
-    inputFile.set(shadowJar.archiveFile)
-    archiveClassifier = null
 }
