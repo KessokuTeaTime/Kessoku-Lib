@@ -5,8 +5,11 @@ base.archivesName = rootProject.name + "-config"
 
 repositories {
     maven {
-        url 'http://maven.snowlyicewolf.club/'
+        url = "http://maven.snowlyicewolf.club/"
         allowInsecureProtocol = true
+        content {
+            includeGroup("com.github.AmarokIce")
+        }
     }
 }
 

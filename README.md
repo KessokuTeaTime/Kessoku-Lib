@@ -4,6 +4,10 @@
 
 ###### The next generation cross-platform modular Minecraft modding API.
 
+![fabric](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg)
+![neoforge](https://raw.githubusercontent.com/KessokuTeaTime/Badges-Extra/main/assets/cozy/supported/neoforge_vector.svg)
+![forge](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/unsupported/forge_vector.svg)
+
 <details>
   <summary>
     <sub><a href="https://cloudsmith.com">

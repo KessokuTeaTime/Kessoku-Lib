@@ -16,7 +16,7 @@ loom = "1.7-SNAPSHOT"
 architectury = "3.4-SNAPSHOT"
 shadow = "8.3.0"
 spotless = "6.25.0"
-idea-ext = "1.1.7"
+idea-ext = "1.1.8"
 
 # Config libraries
 night-config = "3.8.1"
