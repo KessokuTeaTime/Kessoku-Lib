@@ -3,7 +3,8 @@ import org.jetbrains.gradle.ext.Gradle
 plugins {
     id "java"
     id "maven-publish"
-    alias libs.plugins.loom apply false
+    id "band.kessoku.scripts" apply false
+    id "dev.architectury.loom" apply false
     alias libs.plugins.architectury
     alias libs.plugins.shadow apply false
     alias libs.plugins.spotless
@@ -30,6 +31,7 @@ idea {
 }
 
 subprojects {
+    apply plugin: "band.kessoku.scripts"
     apply plugin: "dev.architectury.loom"
     apply plugin: "architectury-plugin"
     apply plugin: "com.diffplug.spotless"
@@ -38,15 +40,7 @@ subprojects {
     assemble.dependsOn spotlessApply
 
     repositories {
-        maven { url "https://maven.neoforged.net/releases/" }
         maven { url "https://jitpack.io" }
-        maven {
-            url = "http://maven.snowlyicewolf.club/"
-            allowInsecureProtocol = true
-            content {
-                includeGroup("com.github.AmarokIce")
-            }
-        }
     }
 
     dependencies {
