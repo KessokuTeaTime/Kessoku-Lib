@@ -39,10 +39,6 @@ subprojects {
 
     assemble.dependsOn spotlessApply
 
-    repositories {
-        maven { url "https://jitpack.io" }
-    }
-
     dependencies {
         minecraft(libs.minecraft)
         mappings(loom.layered {
