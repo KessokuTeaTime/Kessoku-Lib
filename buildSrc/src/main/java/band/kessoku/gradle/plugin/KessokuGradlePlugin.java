@@ -25,7 +25,7 @@ public class KessokuGradlePlugin implements Plugin<Project> {
             repo.setUrl("http://maven.snowlyicewolf.club/");
             repo.setAllowInsecureProtocol(true);
             repo.mavenContent(context -> {
-                context.includeGroup("club.someoneice");
+                context.includeGroupByRegex("club\\.someoneice\\..*");
             });
         });
 
