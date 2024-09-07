@@ -43,15 +43,6 @@ public class KessokuGradlePlugin implements Plugin<PluginAware> {
         repositories.maven(repo -> {
             repo.setName("NeoForge");
             repo.setUrl("https://maven.neoforged.net/releases/");
-
-            repo.content(descriptor -> {
-                NEO_GROUPS.forEach(descriptor::includeGroupAndSubgroups);
-            });
-
-            repo.metadataSources(sources -> {
-                sources.mavenPom();
-                sources.ignoreGradleMetadataRedirection();
-            });
         });
 
         repositories.maven(repo -> {
