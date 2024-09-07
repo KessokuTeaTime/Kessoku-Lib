@@ -2,3 +2,8 @@ apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
 group = "band.kessoku.lib.entrypoint"
 base.archivesName = rootProject.name + "-entrypoint"
+
+dependencies {
+    moduleImplementation(project(":base-common"))
+    implementation libs.aj4j
+}

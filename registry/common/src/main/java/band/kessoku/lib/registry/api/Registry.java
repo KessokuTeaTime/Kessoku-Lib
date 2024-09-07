@@ -24,48 +24,55 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.ApiStatus;
 
 @SuppressWarnings("unused")
 public interface Registry {
+    @ApiStatus.Internal
     static Registry getInstance() {
         return KessokuRegistryServices.getRegistry();
     }
 
-    default <T> T register(net.minecraft.registry.Registry<? super T> registry, String id, T entry) {
+    static  <T> T register(net.minecraft.registry.Registry<? super T> registry, String id, T entry) {
         return register(registry, Identifier.of(id), entry);
     }
 
-    <V, T extends V> T register(net.minecraft.registry.Registry<V> registry, Identifier id, T entry);
+    @ApiStatus.Internal
+    <V, T extends V> T registerInternal(net.minecraft.registry.Registry<V> registry, Identifier id, T entry);
 
-    default Item registerItem(Identifier id, Item.Settings settings) {
+    static <V, T extends V> T register(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
+        return Registry.getInstance().registerInternal(registry, id, entry);
+    }
+
+    static Item registerItem(Identifier id, Item.Settings settings) {
         return register(Registries.ITEM, id, new Item(settings));
     }
 
-    default Item registerSimpleItem(Identifier id) {
+    static Item registerSimpleItem(Identifier id) {
         return register(Registries.ITEM, id, new Item(new Item.Settings()));
     }
 
-    default Block registerBlock(Identifier id, AbstractBlock.Settings settings) {
+    static Block registerBlock(Identifier id, AbstractBlock.Settings settings) {
         return register(Registries.BLOCK, id, new Block(settings));
     }
 
-    default Block registerSimpleBlock(Identifier id) {
+    static Block registerSimpleBlock(Identifier id) {
         return registerBlock(id, AbstractBlock.Settings.create());
     }
 
-    default Item registerSimpleBlockItem(Identifier id, Block block) {
+    static Item registerSimpleBlockItem(Identifier id, Block block) {
         return registerSimpleBlockItem(id, block, new Item.Settings());
     }
 
-    default Item registerSimpleBlockItem(Identifier id, Block block, Item.Settings settings) {
+    static Item registerSimpleBlockItem(Identifier id, Block block, Item.Settings settings) {
         return register(Registries.ITEM, id, new BlockItem(block, settings));
     }
 
-    default Item registerSimpleBlockItem(RegistryEntry<Block> block, Item.Settings settings) {
+    static Item registerSimpleBlockItem(RegistryEntry<Block> block, Item.Settings settings) {
         return registerSimpleBlockItem(block.getKey().orElseThrow().getValue(), block.value(), settings);
     }
 
-    default Item registerSimpleBlockItem(RegistryEntry<Block> block) {
+    static Item registerSimpleBlockItem(RegistryEntry<Block> block) {
         return registerSimpleBlockItem(block.getKey().orElseThrow().getValue(), block.value(), new Item.Settings());
     }
 }
