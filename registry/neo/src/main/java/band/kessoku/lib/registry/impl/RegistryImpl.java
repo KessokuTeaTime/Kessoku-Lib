@@ -27,30 +27,25 @@ import net.minecraft.util.Identifier;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 @AutoService(Registry.class)
-@SuppressWarnings("unchecked, rawtypes")
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class RegistryImpl implements Registry {
-    private static final Map<net.minecraft.registry.Registry, Set<EntryWithId>> registries = new ConcurrentHashMap<>();
+    private static final Map<net.minecraft.registry.Registry, Map<Identifier, Object>> registries = new ConcurrentHashMap<>();
     private static boolean registered = false;
 
     @ApiStatus.Internal
     public static void onRegister(RegisterEvent event) {
-        registries.forEach((registry, entryWithIds) ->
-                entryWithIds.forEach(entryWithId ->
-                        event.register(registry.getKey(), entryWithId.id(), () -> entryWithId.entry())
-                )
-        );
+        registries.forEach((registry, map) -> map.forEach((id, entry) -> event.register(registry.getKey(), id, () -> entry)));
         registered = true;
     }
 
     @Override
-    public <V, T extends V> T register(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
+    public <V, T extends V> T registerInternal(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
         if (registered)
-            throw new IllegalStateException("net.neoforged.neoforge.registries.RegisterEvent has already been called!");
-        if (!registries.containsKey(registry)) registries.put(registry, new HashSet<>());
-        registries.get(registry).add(new EntryWithId<>(id, entry));
+            throw new IllegalStateException("Cannot register new entries after net.neoforged.neoforge.registries.RegisterEvent has been fired.");
+        if (!registries.containsKey(registry)) registries.put(registry, new HashMap<>());
+        if (registries.get(registry).putIfAbsent(id, entry) != null) {
+            throw new IllegalArgumentException("Duplicate registration " + id.toString());
+        }
         return entry;
-    }
-
-    record EntryWithId<T>(Identifier id, T entry) {
     }
 }
