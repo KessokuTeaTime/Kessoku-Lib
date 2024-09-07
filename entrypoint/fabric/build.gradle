@@ -5,6 +5,7 @@ base.archivesName = rootProject.name + "-entrypoint"
 
 dependencies {
     kessoku.moduleImpl("base", "common")
+    implementation libs.aj4j
 
     common(project(path: ':entrypoint-common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':entrypoint-common', configuration: 'transformProductionFabric')
