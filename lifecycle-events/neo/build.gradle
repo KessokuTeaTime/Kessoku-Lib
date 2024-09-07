@@ -1,3 +1,5 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 group = "band.kessoku.lib.events.lifecycle"
@@ -7,12 +9,12 @@ loom {
     accessWidenerPath = file("src/main/resources/kessoku-lifecycle-events.accesswidener")
 }
 
-dependencies {
-    kessoku.moduleImpls(["base", "event-base"], "common")
-    kessoku.moduleImpl("event-base", "neo")
+kessoku {
+    modules(["base", "event-base"], "common")
+    module("event-base", "neo")
 
-    common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionNeoForge')
+    common("lifecycle-events", ModPlatform.NEOFORGE)
+    shadowBundle("lifecycle-events", ModPlatform.NEOFORGE)
 }
 
 remapJar {

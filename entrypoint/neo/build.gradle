@@ -1,11 +1,13 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 group = "band.kessoku.lib.entrypoint"
 base.archivesName = rootProject.name + "-entrypoint"
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
+kessoku {
+    module("base", "common")
 
-    common(project(path: ':entrypoint-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':entrypoint-common', configuration: 'transformProductionNeoForge')
+    common("entrypoint", ModPlatform.NEOFORGE)
+    shadowBundle("entrypoint", ModPlatform.NEOFORGE)
 }

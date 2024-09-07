@@ -1,11 +1,13 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 group = "band.kessoku.lib.keybind"
 base.archivesName = rootProject.name + "-keybind"
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
+kessoku {
+    module("base", "common")
 
-    common(project(path: ':keybind-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle(project(path: ':keybind-common', configuration: 'transformProductionFabric'))
+    common("keybind", ModPlatform.FABRIC)
+    shadowBundle("keybind", ModPlatform.FABRIC)
 }

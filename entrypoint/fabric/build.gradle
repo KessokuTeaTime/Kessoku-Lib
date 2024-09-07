@@ -1,12 +1,17 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 group = "band.kessoku.lib.entrypoint"
 base.archivesName = rootProject.name + "-entrypoint"
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
-    implementation libs.aj4j
+kessoku {
+    module("base", "common")
 
-    common(project(path: ':entrypoint-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':entrypoint-common', configuration: 'transformProductionFabric')
+    common("entrypoint", ModPlatform.FABRIC)
+    shadowBundle("entrypoint", ModPlatform.FABRIC)
+}
+
+dependencies {
+    implementation libs.aj4j
 }

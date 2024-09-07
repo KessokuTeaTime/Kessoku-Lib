@@ -1,11 +1,13 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 group = "band.kessoku.lib.event"
 base.archivesName = rootProject.name + "-event-base"
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
+kessoku {
+    module("base", "common")
 
-    common(project(path: ':event-base-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':event-base-common', configuration: 'transformProductionNeoForge')
+    common("event-base", ModPlatform.NEOFORGE)
+    shadowBundle("event-base", ModPlatform.NEOFORGE)
 }

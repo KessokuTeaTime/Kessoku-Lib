@@ -1,11 +1,13 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 group = "band.kessoku.lib.events.lifecycle"
 base.archivesName = rootProject.name + "-lifecycle-events"
 
-dependencies {
-    kessoku.moduleImpls(["base", "event-base"], "common")
+kessoku {
+    modules(["base", "event-base"], "common")
 
-    common(project(path: ':lifecycle-events-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':lifecycle-events-common', configuration: 'transformProductionFabric')
+    common("lifecycle-events", ModPlatform.FABRIC)
+    shadowBundle("lifecycle-events", ModPlatform.FABRIC)
 }

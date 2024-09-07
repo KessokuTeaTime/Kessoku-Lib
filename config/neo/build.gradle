@@ -1,15 +1,19 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 group = "band.kessoku.lib.config"
 base.archivesName = rootProject.name + "-config"
 
+kessoku {
+    modules(["base", "platform"], "common")
+
+    common("config", ModPlatform.NEOFORGE)
+    shadowBundle("config", ModPlatform.NEOFORGE)
+}
+
 dependencies {
     shadowBundle(libs.aj4j)
-
-    kessoku.moduleImpls(["base", "platform"], "common")
-
-    common(project(path: ':config-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':config-common', configuration: 'transformProductionNeoForge')
 }
 
 shadowJar {

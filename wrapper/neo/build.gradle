@@ -5,6 +5,6 @@ base.archivesName = rootProject.name
 
 var modules = ["base", "event-base", "lifecycle-events", "platform", "registry"]
 
-dependencies {
-    kessoku.moduleIncludes(modules, "neo")
+kessoku {
+    moduleIncludes(modules, "neo")
 }

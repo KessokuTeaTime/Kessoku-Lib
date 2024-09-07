@@ -1,12 +1,14 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 group = "band.kessoku.lib.keybind"
 base.archivesName = rootProject.name + "-keybind"
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
-    kessoku.moduleImpl("event-base", "neo")
+kessoku {
+    module("base", "common")
+    module("event-base", "neo")
 
-    common(project(path: ':keybind-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle(project(path: ':keybind-common', configuration: 'transformProductionNeoForge'))
+    common("keybind", ModPlatform.NEOFORGE)
+    shadowBundle("keybind", ModPlatform.NEOFORGE)
 }

@@ -1,3 +1,5 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 group = "band.kessoku.lib.registry"
@@ -7,9 +9,9 @@ loom {
     accessWidenerPath = project(":registry-common").loom.accessWidenerPath
 }
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
+kessoku {
+    module("base", "common")
 
-    common(project(path: ':registry-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle(project(path: ':registry-common', configuration: 'transformProductionFabric'))
+    common("registry", ModPlatform.FABRIC)
+    shadowBundle("registry", ModPlatform.FABRIC)
 }

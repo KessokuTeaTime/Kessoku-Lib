@@ -7,6 +7,6 @@ loom {
     accessWidenerPath = file("src/main/resources/kessoku-registry.accesswidener")
 }
 
-dependencies {
-    kessoku.moduleImpl("base", "common")
+kessoku {
+    module("base", "common")
 }

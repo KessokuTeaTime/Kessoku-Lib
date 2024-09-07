@@ -1,7 +1,10 @@
 package band.kessoku.gradle.plugin;
 
 import net.fabricmc.loom.api.LoomGradleExtensionAPI;
+import net.fabricmc.loom.api.NeoForgeExtensionAPI;
+import net.fabricmc.loom.configuration.FabricApiExtension;
 import net.fabricmc.loom.util.ModPlatform;
+import org.gradle.api.Action;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.artifacts.ModuleDependency;
@@ -16,19 +19,30 @@ public abstract class KesssokuExtension {
     @Inject
     protected abstract Project getProject();
 
-    public void testModuleImpls(List<String> names, String plat) {
-        names.forEach(name -> testModuleImpl(name, plat));
+    public void library(String lib) {
+        Project project = this.getProject();
+        DependencyHandler dependencies = project.getDependencies();
+
+        Dependency dependency = dependencies.project(Map.of(
+                "path", lib,
+                "configuration", "namedElements"
+        ));
+        dependencies.add("implementation", dependency);
     }
 
-    public void moduleImpls(List<String> names, String plat) {
-        names.forEach(name -> moduleImpl(name, plat));
+    public void testModules(List<String> names, String plat) {
+        names.forEach(name -> testModule(name, plat));
+    }
+
+    public void modules(List<String> names, String plat) {
+        names.forEach(name -> module(name, plat));
     }
 
     public void moduleIncludes(List<String> names, String plat) {
         names.forEach(name -> moduleInclude(name, plat));
     }
 
-    public void testModuleImpl(String name, String plat) {
+    public void testModule(String name, String plat) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 
@@ -37,16 +51,9 @@ public abstract class KesssokuExtension {
                 "configuration", "namedElements"
         ));
         dependencies.add("testImplementation", dependency);
-
-//        LoomGradleExtensionAPI loom = project.getExtensions().getByType(LoomGradleExtensionAPI.class);
-//        loom.mods(mods -> mods.register("kessoku-" + name + "-" + plat, settings -> {
-//            Project depProject = project.project(":" + name + "-" + plat);
-//            SourceSetContainer sourceSets = depProject.getExtensions().getByType(SourceSetContainer.class);
-//            settings.sourceSet(sourceSets.getByName("main"), depProject);
-//        }));
     }
 
-    public void moduleImpl(String name, String plat) {
+    public void module(String name, String plat) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 
@@ -82,7 +89,7 @@ public abstract class KesssokuExtension {
         }));
     }
 
-    public void commonImpl(String name, ModPlatform platform) {
+    public void common(String name, ModPlatform platform) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 
@@ -95,7 +102,7 @@ public abstract class KesssokuExtension {
         dependencies.add("development" + platform.displayName(), dependency);
     }
 
-    public void shade(String name, ModPlatform platform) {
+    public void shadowBundle(String name, ModPlatform platform) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 

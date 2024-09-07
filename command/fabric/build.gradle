@@ -1,11 +1,13 @@
+import net.fabricmc.loom.util.ModPlatform
+
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 group = "band.kessoku.lib.command"
 base.archivesName = rootProject.name + "-command"
 
-dependencies {
-    kessoku.moduleImpls(["base", "event-base"], "common")
+kessoku {
+    modules(["base", "event-base"], "common")
 
-    common(project(path: ':command-common', configuration: 'namedElements')) { transitive false }
-    shadowBundle project(path: ':command-common', configuration: 'transformProductionFabric')
+    common("command", ModPlatform.FABRIC)
+    shadowBundle("command", ModPlatform.FABRIC)
 }
