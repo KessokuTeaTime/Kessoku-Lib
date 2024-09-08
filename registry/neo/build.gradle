@@ -11,6 +11,7 @@ loom {
 
 kessoku {
     module("base", "common")
+    module("event-base", "neo")
 
     common("registry", ModPlatform.NEOFORGE)
     shadowBundle("registry", ModPlatform.NEOFORGE)
