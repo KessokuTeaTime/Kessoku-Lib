@@ -7,19 +7,8 @@ architectury {
     neoForge()
 }
 
-repositories {
-    maven { url "https://maven.neoforged.net/releases/" }
-}
-
 configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentNeoForge.extendsFrom common
-    shadowBundle {
+    shade {
         canBeResolved = true
         canBeConsumed = false
     }
@@ -38,10 +27,10 @@ processResources {
 }
 
 shadowJar {
-    configurations = [project.configurations.shadowBundle]
+    configurations = [project.configurations.shade]
     archiveClassifier.set("dev-shadow")
 }
 
 remapJar {
-    inputFile.set shadowJar.archiveFile
+    inputFile.set(shadowJar.archiveFile)
 }

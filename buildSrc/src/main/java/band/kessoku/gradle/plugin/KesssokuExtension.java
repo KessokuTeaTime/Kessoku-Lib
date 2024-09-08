@@ -1,10 +1,7 @@
 package band.kessoku.gradle.plugin;
 
 import net.fabricmc.loom.api.LoomGradleExtensionAPI;
-import net.fabricmc.loom.api.NeoForgeExtensionAPI;
-import net.fabricmc.loom.configuration.FabricApiExtension;
 import net.fabricmc.loom.util.ModPlatform;
-import org.gradle.api.Action;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.artifacts.ModuleDependency;
@@ -110,6 +107,6 @@ public abstract class KesssokuExtension {
                 "path", ":" + name + "-common",
                 "configuration", "transformProduction" + platform.displayName()
         ));
-        dependencies.add("shadow", dependency);
+        dependencies.add("shade", dependency);
     }
 }

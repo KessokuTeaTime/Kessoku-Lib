@@ -8,14 +8,7 @@ architectury {
 }
 
 configurations {
-    common {
-        canBeResolved = true
-        canBeConsumed = false
-    }
-    compileClasspath.extendsFrom common
-    runtimeClasspath.extendsFrom common
-    developmentFabric.extendsFrom common
-    shadowBundle {
+    shade {
         canBeResolved = true
         canBeConsumed = false
     }
@@ -35,10 +28,10 @@ processResources {
 }
 
 shadowJar {
-    configurations = [project.configurations.shadowBundle]
+    configurations = [project.configurations.shade]
     archiveClassifier.set("dev-shadow")
 }
 
 remapJar {
-    inputFile.set shadowJar.archiveFile
+    inputFile.set(shadowJar.archiveFile)
 }

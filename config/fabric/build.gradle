@@ -13,7 +13,7 @@ kessoku {
 }
 
 dependencies {
-    shadowBundle(libs.aj4j)
+    shade(libs.aj4j)
 }
 
 shadowJar {

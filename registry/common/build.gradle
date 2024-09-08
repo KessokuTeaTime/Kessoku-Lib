@@ -10,3 +10,7 @@ loom {
 kessoku {
     module("base", "common")
 }
+
+dependencies {
+
+}
