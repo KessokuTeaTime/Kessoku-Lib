@@ -95,7 +95,8 @@ public abstract class KesssokuExtension {
                 "configuration", "namedElements"
         ));
         dependency.setTransitive(false);
-        dependencies.add("api", dependency);
+        dependencies.add("compileOnly", dependency);
+        dependencies.add("runtimeOnly", dependency);
         dependencies.add("development" + platform.displayName(), dependency);
     }
 
