@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+package band.kessoku.lib.events.entity.api;
+
+import band.kessoku.lib.event.api.Event;
+=======
+>>>>>>> Stashed changes
 /*
  * Copyright (c) 2024 KessokuTeaTime
  *
@@ -17,6 +25,10 @@ package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> 4e466673b651ef2c6248fa5a9e055d5952613930
+>>>>>>> Stashed changes
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;

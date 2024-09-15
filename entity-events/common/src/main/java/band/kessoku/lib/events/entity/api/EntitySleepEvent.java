@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+package band.kessoku.lib.events.entity.api;
+
+import band.kessoku.lib.event.api.Event;
+=======
+>>>>>>> Stashed changes
 /*
  * Copyright (c) 2024 KessokuTeaTime
  *
@@ -18,6 +26,10 @@ package band.kessoku.lib.events.entity.api;
 import band.kessoku.lib.event.api.Event;
 import org.jetbrains.annotations.Nullable;
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> 4e466673b651ef2c6248fa5a9e055d5952613930
+>>>>>>> Stashed changes
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,6 +37,13 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+import org.jetbrains.annotations.Nullable;
+=======
+>>>>>>> 4e466673b651ef2c6248fa5a9e055d5952613930
+>>>>>>> Stashed changes
 
 /**
  * Events about the sleep of {@linkplain LivingEntity living entities}.

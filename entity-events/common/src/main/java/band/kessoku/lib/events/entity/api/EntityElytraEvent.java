@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 /*
  * Copyright (c) 2024 KessokuTeaTime
  *
@@ -13,11 +18,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< Updated upstream
+=======
+>>>>>>> 4e466673b651ef2c6248fa5a9e055d5952613930
+>>>>>>> Stashed changes
 package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
 import band.kessoku.lib.events.entity.api.item.KessokuElytraItem;
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e466673b651ef2c6248fa5a9e055d5952613930
+>>>>>>> Stashed changes
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
