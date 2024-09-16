@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
 import band.kessoku.lib.events.entity.api.item.KessokuElytraItem;
-
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

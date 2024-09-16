@@ -1,0 +1,103 @@
+package band.kessoku.lib.data.impl.structure;
+
+import band.kessoku.lib.data.api.AbstractDataStructure;
+import band.kessoku.lib.data.api.NBTSerializable;
+import band.kessoku.lib.data.impl.collection.DefaultedListData;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.RegistryWrapper;
+
+public class InventoryStructure extends AbstractDataStructure implements NBTSerializable, Inventory {
+    public final DefaultedListData<ItemStack> inventory;
+
+    public InventoryStructure(String id, int size) {
+        inventory = DefaultedListData.create(id, size, ItemStack.EMPTY);
+    }
+
+    @Override
+    public void write(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+        NbtList nbtList = new NbtList();
+
+        for(int i = 0; i < inventory.size(); i++) {
+            ItemStack itemStack = inventory.get(i);
+            if (!itemStack.isEmpty()) {
+                NbtCompound nbtCompound = new NbtCompound();
+                nbtCompound.putByte("Slot", (byte)i);
+                nbtList.add(itemStack.encode(registries, nbtCompound));
+            }
+        }
+
+        nbt.put(inventory.id(), nbtList);
+    }
+
+    @Override
+    public void read(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+        inventory.clear();
+
+        NbtList nbtList = nbt.getList(inventory.id(), 10);
+
+        for(int i = 0; i < nbtList.size(); ++i) {
+            NbtCompound nbtCompound = nbtList.getCompound(i);
+            int j = nbtCompound.getByte("Slot") & 255;
+            if (j < inventory.size()) {
+                inventory.set(j, ItemStack.fromNbt(registries, nbtCompound).orElse(ItemStack.EMPTY));
+            }
+        }
+    }
+
+    @Override
+    public int size() {
+        return inventory.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return inventory.isEmpty();
+    }
+
+    @Override
+    public ItemStack getStack(int slot) {
+        return inventory.get(slot);
+    }
+
+    @Override
+    public ItemStack removeStack(int slot, int amount) {
+        ItemStack itemStack = Inventories.splitStack(this.inventory, slot, amount);
+        if (!itemStack.isEmpty()) {
+            this.markDirty();
+        }
+
+        return itemStack;
+    }
+
+    @Override
+    public ItemStack removeStack(int slot) {
+        return Inventories.removeStack(this.inventory, slot);
+    }
+
+    @Override
+    public void setStack(int slot, ItemStack stack) {
+        this.inventory.set(slot, stack);
+        stack.capCount(this.getMaxCount(stack));
+        this.markDirty();
+    }
+
+    @Override
+    public void markDirty() {
+
+    }
+
+    @Override
+    public boolean canPlayerUse(PlayerEntity player) {
+        return true;
+    }
+
+    @Override
+    public void clear() {
+        this.inventory.clear();
+    }
+}
