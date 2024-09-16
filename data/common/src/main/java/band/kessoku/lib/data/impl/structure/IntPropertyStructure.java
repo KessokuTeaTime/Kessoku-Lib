@@ -6,11 +6,11 @@ import net.minecraft.screen.PropertyDelegate;
 
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public final class IntPropertyStructure extends AbstractDataStructure implements PropertyDelegate {
-    private final List<MutableData<Integer>> list;
 
     private IntPropertyStructure(List<MutableData<Integer>> list) {
-        this.list = list;
+        list.forEach(this::integrate);
     }
 
     @SafeVarargs
@@ -20,16 +20,16 @@ public final class IntPropertyStructure extends AbstractDataStructure implements
 
     @Override
     public int get(int index) {
-        return list.get(index).get();
+        return ((MutableData<Integer>) dataList.get(index)).get();
     }
 
     @Override
     public void set(int index, int value) {
-        list.get(index).set(value);
+        ((MutableData<Integer>) dataList.get(index)).set(value);
     }
 
     @Override
     public int size() {
-        return list.size();
+        return dataList.size();
     }
 }

@@ -1,26 +1,16 @@
 package band.kessoku.lib.data.impl.base;
 
-import band.kessoku.lib.data.api.Data;
-import band.kessoku.lib.data.api.MutableData;
-import band.kessoku.lib.data.api.NBTData;
+import band.kessoku.lib.data.api.NBTSerializable;
 import band.kessoku.lib.data.impl.BaseData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 
-public final class FloatData extends BaseData<Float> implements NBTData<Float> {
+public final class FloatData extends BaseData<Float> implements NBTSerializable {
     private FloatData(String id, float defaultValue) {
         super(id, defaultValue);
     }
 
-    public static MutableData<Float> mutable(String id, float defaultValue) {
-        return new FloatData(id, defaultValue);
-    }
-
-    public static Data<Float> immutable(String id, float defaultValue) {
-        return new FloatData(id, defaultValue);
-    }
-
-    public static NBTData<Float> nbt(String id, float defaultValue) {
+    public static FloatData create(String id, float defaultValue) {
         return new FloatData(id, defaultValue);
     }
 

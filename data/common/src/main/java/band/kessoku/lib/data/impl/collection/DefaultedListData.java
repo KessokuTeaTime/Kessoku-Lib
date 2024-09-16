@@ -31,7 +31,7 @@ public final class DefaultedListData<T> extends ListData<T> {
 
     @Override
     public void clear() {
-        for(int i = 0; i < this.size(); ++i) {
+        for(int i = 0; i < this.size(); i++) {
             this.set(i, defaultValue);
         }
     }

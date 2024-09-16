@@ -10,5 +10,5 @@ package band.kessoku.lib.data.api;
  */
 public interface DataStructure {
     <T, K extends Data<T>> K integrate(K data);
-    DataStructure integrate(DataStructure dataStructure);
+    <K extends DataStructure> K integrate(K dataStructure);
 }

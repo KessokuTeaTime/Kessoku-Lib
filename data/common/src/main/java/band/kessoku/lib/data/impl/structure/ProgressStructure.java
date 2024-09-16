@@ -8,10 +8,14 @@ public final class ProgressStructure extends AbstractNBTStructure {
     public final MutableData<Integer> progressTime;
     public final MutableData<Integer> progressTimeTotal;
 
-    public ProgressStructure() {
-        super("Progress");
-        progressTime = integrate(IntData.mutable("Time", 0));
-        progressTimeTotal = integrate(IntData.mutable("TimeTotal", 200));
+    private ProgressStructure(String id, int timeTotal) {
+        super(id);
+        progressTime = integrate(IntData.create("Time", 0));
+        progressTimeTotal = integrate(IntData.create("TimeTotal", timeTotal));
+    }
+
+    public static ProgressStructure create(String id, int timeTotal) {
+        return new ProgressStructure(id, timeTotal);
     }
 
     public int proportion() {

@@ -1,26 +1,16 @@
 package band.kessoku.lib.data.impl.base;
 
-import band.kessoku.lib.data.api.Data;
-import band.kessoku.lib.data.api.MutableData;
-import band.kessoku.lib.data.api.NBTData;
+import band.kessoku.lib.data.api.NBTSerializable;
 import band.kessoku.lib.data.impl.BaseData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 
-public final class ShortData extends BaseData<Short> implements NBTData<Short> {
+public final class ShortData extends BaseData<Short> implements NBTSerializable {
     private ShortData(String id, short defaultValue) {
         super(id, defaultValue);
     }
 
-    public static MutableData<Short> mutable(String id, short defaultValue) {
-        return new ShortData(id, defaultValue);
-    }
-
-    public static Data<Short> immutable(String id, short defaultValue) {
-        return new ShortData(id, defaultValue);
-    }
-
-    public static NBTData<Short> nbt(String id, short defaultValue) {
+    public static ShortData create(String id, short defaultValue) {
         return new ShortData(id, defaultValue);
     }
 

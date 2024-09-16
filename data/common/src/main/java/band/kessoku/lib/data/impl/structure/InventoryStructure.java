@@ -3,6 +3,8 @@ package band.kessoku.lib.data.impl.structure;
 import band.kessoku.lib.data.api.AbstractDataStructure;
 import band.kessoku.lib.data.api.NBTSerializable;
 import band.kessoku.lib.data.impl.collection.DefaultedListData;
+import band.kessoku.lib.data.impl.collection.Element;
+import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
@@ -11,11 +13,32 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
 
+import java.util.List;
+
 public class InventoryStructure extends AbstractDataStructure implements NBTSerializable, Inventory {
     public final DefaultedListData<ItemStack> inventory;
 
     public InventoryStructure(String id, int size) {
-        inventory = DefaultedListData.create(id, size, ItemStack.EMPTY);
+        inventory = integrate(DefaultedListData.create(id, size, ItemStack.EMPTY));
+    }
+
+    public Element<ItemStack> element(String id, int index) {
+        return new Element<>(id, index, inventory);
+    }
+
+    public ContainerComponent toComponent() {
+        return ContainerComponent.fromStacks(inventory);
+    }
+
+    public void copy(List<ItemStack> copySource) {
+        for (int i = 0; i < inventory.size(); i++) {
+            ItemStack itemStack = i < copySource.size() ? copySource.get(i) : ItemStack.EMPTY;
+            inventory.set(i, itemStack.copy());
+        }
+    }
+
+    public void copy(ContainerComponent copySource) {
+        copy(copySource.stream().toList());
     }
 
     @Override

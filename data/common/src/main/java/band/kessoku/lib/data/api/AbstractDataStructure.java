@@ -14,7 +14,7 @@ public abstract class AbstractDataStructure implements DataStructure {
     }
 
     @Override
-    public DataStructure integrate(DataStructure dataStructure) {
+    public <K extends DataStructure> K integrate(K dataStructure) {
         dataStructureList.add(dataStructure);
         return dataStructure;
     }

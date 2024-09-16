@@ -1,26 +1,16 @@
 package band.kessoku.lib.data.impl.base;
 
-import band.kessoku.lib.data.api.Data;
-import band.kessoku.lib.data.api.MutableData;
-import band.kessoku.lib.data.api.NBTData;
+import band.kessoku.lib.data.api.NBTSerializable;
 import band.kessoku.lib.data.impl.BaseData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 
-public final class LongData extends BaseData<Long> implements NBTData<Long> {
+public final class LongData extends BaseData<Long> implements NBTSerializable {
     private LongData(String id, long defaultValue) {
         super(id, defaultValue);
     }
 
-    public static MutableData<Long> mutable(String id, long defaultValue) {
-        return new LongData(id, defaultValue);
-    }
-
-    public static Data<Long> immutable(String id, long defaultValue) {
-        return new LongData(id, defaultValue);
-    }
-
-    public static NBTData<Long> nbt(String id, long defaultValue) {
+    public static LongData create(String id, long defaultValue) {
         return new LongData(id, defaultValue);
     }
 

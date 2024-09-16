@@ -4,23 +4,24 @@ import band.kessoku.lib.data.api.NBTSerializable;
 import band.kessoku.lib.data.impl.BaseData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
 
-public final class IntData extends BaseData<Integer> implements NBTSerializable {
-    private IntData(String id, int defaultValue) {
+public final class IdentifierData extends BaseData<Identifier> implements NBTSerializable {
+    private IdentifierData(String id, Identifier defaultValue) {
         super(id, defaultValue);
     }
 
-    public static IntData create(String id, int defaultValue) {
-        return new IntData(id, defaultValue);
+    public static IdentifierData create(String id, Identifier defaultValue) {
+        return new IdentifierData(id, defaultValue);
     }
 
     @Override
     public void write(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        nbt.putInt(id(), get());
+        nbt.putString(id(), get().toString());
     }
 
     @Override
     public void read(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        set(nbt.getInt(id()));
+        set(Identifier.of(nbt.getString(id())));
     }
 }

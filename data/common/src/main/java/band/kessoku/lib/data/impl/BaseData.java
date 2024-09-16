@@ -15,7 +15,7 @@ public class BaseData<T> implements MutableData<T> {
     }
 
     @Override
-    public void set(@NotNull T newValue) {
+    public void set(T newValue) {
         this.value = newValue;
     }
 
