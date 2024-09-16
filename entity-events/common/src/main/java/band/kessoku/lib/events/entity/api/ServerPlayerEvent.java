@@ -17,7 +17,6 @@ package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
 
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class ServerPlayerEvent {

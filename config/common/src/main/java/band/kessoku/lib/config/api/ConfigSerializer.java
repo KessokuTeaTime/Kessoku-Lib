@@ -15,22 +15,12 @@
  */
 package band.kessoku.lib.config.api;
 
-import java.util.function.Function;
+import java.util.Map;
 
-public abstract class ConfigCodec<A, B> {
-    private final Function<A, B> encode;
-    private final Function<B, A> decode;
+public interface ConfigSerializer {
+    String serialize(Map<String, AbstractConfig.ValueWithComment> value);
 
-    public ConfigCodec(Function<A, B> encode, Function<B, A> decode) {
-        this.encode = encode;
-        this.decode = decode;
-    }
+    Map<String, Object> deserialize(String value);
 
-    public B encode(A value) {
-        return encode.apply(value);
-    }
-
-    public A decode(B value) {
-        return decode.apply(value);
-    }
+    String getFileExtension();
 }
