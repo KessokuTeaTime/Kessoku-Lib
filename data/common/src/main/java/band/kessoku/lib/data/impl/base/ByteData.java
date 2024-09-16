@@ -1,12 +1,13 @@
-package band.kessoku.lib.data.impl;
+package band.kessoku.lib.data.impl.base;
 
 import band.kessoku.lib.data.api.Data;
 import band.kessoku.lib.data.api.MutableData;
 import band.kessoku.lib.data.api.NBTData;
+import band.kessoku.lib.data.impl.BaseData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 
-public class ByteData extends BaseData<Byte> implements NBTData<Byte> {
+public final class ByteData extends BaseData<Byte> implements NBTData<Byte> {
     private ByteData(String id, byte defaultValue) {
         super(id, defaultValue);
     }
@@ -24,12 +25,12 @@ public class ByteData extends BaseData<Byte> implements NBTData<Byte> {
     }
 
     @Override
-    public void write(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+    public void write(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         nbt.putByte(id(), get());
     }
 
     @Override
-    public void read(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+    public void read(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         set(nbt.getByte(id()));
     }
 }

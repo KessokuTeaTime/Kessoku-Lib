@@ -10,12 +10,16 @@ public interface BlockEntityStructure extends DataStructure {
      * @see band.kessoku.lib.data.mixin.BlockEntityMixin#integrate(DataStructure)
      */
     @Override
-    default void integrate(DataStructure dataStructure) {}
+    default DataStructure integrate(DataStructure dataStructure) {
+        return dataStructure;
+    }
 
     /**
      * Use to integrate a {@link Data Data} to {@link BlockEntityStructure}.
      * @see band.kessoku.lib.data.mixin.BlockEntityMixin#integrate(Data)
      */
     @Override
-    default <T> void integrate(Data<T> data) {}
+    default  <T, K extends Data<T>> K integrate(K data) {
+        return data;
+    }
 }

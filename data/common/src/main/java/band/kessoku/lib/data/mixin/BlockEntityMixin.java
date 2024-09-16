@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(BlockEntity.class)
 public class BlockEntityMixin implements BlockEntityStructure {
     @Unique
@@ -25,13 +26,15 @@ public class BlockEntityMixin implements BlockEntityStructure {
     private final List<DataStructure> kessoku$DataStructureList = new ArrayList<>();
 
     @Override
-    public <T> void integrate(Data<T> data) {
+    public <T, K extends Data<T>> K integrate(K data) {
         kessoku$dataList.add(data);
+        return data;
     }
 
     @Override
-    public void integrate(DataStructure dataStructure) {
+    public DataStructure integrate(DataStructure dataStructure) {
         kessoku$DataStructureList.add(dataStructure);
+        return dataStructure;
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))

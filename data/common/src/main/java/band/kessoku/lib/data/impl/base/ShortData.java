@@ -1,12 +1,13 @@
-package band.kessoku.lib.data.impl;
+package band.kessoku.lib.data.impl.base;
 
 import band.kessoku.lib.data.api.Data;
 import band.kessoku.lib.data.api.MutableData;
 import band.kessoku.lib.data.api.NBTData;
+import band.kessoku.lib.data.impl.BaseData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 
-public class ShortData extends BaseData<Short> implements NBTData<Short> {
+public final class ShortData extends BaseData<Short> implements NBTData<Short> {
     private ShortData(String id, short defaultValue) {
         super(id, defaultValue);
     }
@@ -24,12 +25,12 @@ public class ShortData extends BaseData<Short> implements NBTData<Short> {
     }
 
     @Override
-    public void write(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+    public void write(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         nbt.putShort(id(), get());
     }
 
     @Override
-    public void read(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+    public void read(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         set(nbt.getShort(id()));
     }
 }
