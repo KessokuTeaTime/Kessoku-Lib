@@ -23,7 +23,7 @@ import club.someoneice.json.JSON;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.processor.Json5Builder;
 
-//todo
+// TODO
 public class Json5Serializer implements ConfigSerializer {
     @Override
     public String serialize(Map<String, AbstractConfig.ValueWithComment> value) {

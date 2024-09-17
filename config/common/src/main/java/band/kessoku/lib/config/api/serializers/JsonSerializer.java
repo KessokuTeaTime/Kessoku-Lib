@@ -33,6 +33,7 @@ public class JsonSerializer implements ConfigSerializer {
                 .map(it -> new Pair<>(it.getKey(), JsonNode.asJsonNodeOrEmpty(it.getValue().object())))
                 .filter(it -> it.getValue().nonNull())
                 .forEach(it -> node.put(it.getKey(), it.getValue()));
+
         return JsonBuilder.prettyPrint(node);
     }
 

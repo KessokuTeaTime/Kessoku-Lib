@@ -42,7 +42,7 @@ public interface ConfigValue<F, T> extends Supplier<F> {
     T getDefaultTo();
 
     enum Type {
-        LIST, MAP, BOOLEAN, STRING, INTEGER, LONG, FLOAT, DOUBLE;
+        LIST, MAP, BOOLEAN, STRING, INTEGER, LONG, FLOAT, DOUBLE, NULL;
 
         public static Type asType(Object o) {
             return switch (o) {
@@ -54,7 +54,13 @@ public interface ConfigValue<F, T> extends Supplier<F> {
                 case Integer ignored -> INTEGER;
                 case Float ignored -> FLOAT;
                 case Double ignored -> DOUBLE;
-                case null, default -> throw new IllegalArgumentException();
+
+                /* AmarokIce Note:
+                    try catch 对性能会造成额外影响。此处 throw 后在 { @code AbstractConfig } 中捕获是无意义的。
+                    因此，改用 NULL 作为空置对象。
+                 */
+                case null, default -> NULL;
+                // case null, default -> throw new IllegalArgumentException();
             };
         }
     }
