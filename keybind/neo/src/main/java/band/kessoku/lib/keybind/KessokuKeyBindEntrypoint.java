@@ -17,7 +17,6 @@ package band.kessoku.lib.keybind;
 
 import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.keybind.impl.KeyBindRegisterImpl;
-
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;

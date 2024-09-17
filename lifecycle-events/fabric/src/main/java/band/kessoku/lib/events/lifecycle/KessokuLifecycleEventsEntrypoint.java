@@ -17,7 +17,6 @@ package band.kessoku.lib.events.lifecycle;
 
 import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.events.lifecycle.impl.KessokuLifecycleEventsImplFabric;
-
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 

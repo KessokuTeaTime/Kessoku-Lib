@@ -17,7 +17,6 @@ package band.kessoku.lib.events.lifecycle.impl;
 
 import band.kessoku.lib.events.lifecycle.api.*;
 import band.kessoku.lib.events.lifecycle.api.client.*;
-
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 

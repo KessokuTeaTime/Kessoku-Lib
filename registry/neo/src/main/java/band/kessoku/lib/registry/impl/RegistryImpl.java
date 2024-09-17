@@ -15,16 +15,15 @@
  */
 package band.kessoku.lib.registry.impl;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-
 import band.kessoku.lib.registry.api.Registry;
 import com.google.auto.service.AutoService;
+import net.minecraft.util.Identifier;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.jetbrains.annotations.ApiStatus;
 
-import net.minecraft.util.Identifier;
-
-import net.neoforged.neoforge.registries.RegisterEvent;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @AutoService(Registry.class)
 @SuppressWarnings({"unchecked", "rawtypes"})

@@ -15,12 +15,6 @@
  */
 package band.kessoku.lib.config;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
 import band.kessoku.lib.config.api.AbstractConfig;
 import band.kessoku.lib.config.api.ConfigSerializer;
 import org.apache.commons.io.FileUtils;
@@ -29,6 +23,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public final class KessokuConfig {
     private static final Map<AbstractConfig, Class<ConfigSerializer>> configs = new HashMap<>();

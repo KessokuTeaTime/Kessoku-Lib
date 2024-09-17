@@ -16,7 +16,6 @@
 package band.kessoku.lib.events.lifecycle.api;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 

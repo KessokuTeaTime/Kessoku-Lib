@@ -17,7 +17,6 @@ package band.kessoku.lib.events.entity;
 
 import band.kessoku.lib.events.entity.api.EntityElytraEvent;
 import band.kessoku.lib.events.entity.api.EntitySleepEvent;
-
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;

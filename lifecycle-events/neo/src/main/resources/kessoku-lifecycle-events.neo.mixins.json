@@ -12,8 +12,8 @@
   ],
   "client": [
     "client.ClientChunkManagerMixin",
-    "client.ClientPlayNetworkHandlerMixin",
     "client.ClientEntityHandlerMixin",
+    "client.ClientPlayNetworkHandlerMixin",
     "client.MinecraftClientMixin",
     "client.WorldChunkMixin"
   ],

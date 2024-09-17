@@ -16,12 +16,11 @@
 package band.kessoku.lib.events.lifecycle.mixin.neo.client;
 
 import band.kessoku.lib.events.lifecycle.api.client.ClientLifecycleEvent;
+import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.MinecraftClient;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {

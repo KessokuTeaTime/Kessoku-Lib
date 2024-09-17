@@ -19,10 +19,8 @@ import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.event.util.NeoEventUtils;
 import band.kessoku.lib.registry.api.FuelRegistry;
 import band.kessoku.lib.registry.impl.RegistryImpl;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
-
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;

@@ -19,7 +19,6 @@ import band.kessoku.lib.events.lifecycle.api.ServerBlockEntityEvent;
 import band.kessoku.lib.events.lifecycle.api.ServerChunkEvent;
 import band.kessoku.lib.events.lifecycle.api.ServerEntityEvent;
 import band.kessoku.lib.events.lifecycle.api.ServerWorldEvent;
-
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.chunk.WorldChunk;

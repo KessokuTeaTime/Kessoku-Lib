@@ -1,9 +1,9 @@
 package band.kessoku.lib.data.mixin;
 
-import band.kessoku.lib.data.api.Data;
-import band.kessoku.lib.data.api.NBTSerializable;
-import band.kessoku.lib.data.api.DataStructure;
 import band.kessoku.lib.data.api.BlockEntityStructure;
+import band.kessoku.lib.data.api.Data;
+import band.kessoku.lib.data.api.DataStructure;
+import band.kessoku.lib.data.api.NBTSerializable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
