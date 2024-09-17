@@ -15,12 +15,12 @@
  */
 package band.kessoku.lib.base;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.ServiceLoader;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ModUtils {
     public static <T> T loadService(Class<T> clazz) {

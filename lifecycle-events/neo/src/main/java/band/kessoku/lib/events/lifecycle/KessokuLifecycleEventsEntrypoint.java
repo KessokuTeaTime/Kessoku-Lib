@@ -17,7 +17,6 @@ package band.kessoku.lib.events.lifecycle;
 
 import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.events.lifecycle.impl.KessokuLifecycleEventsImplNeo;
-
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;

@@ -16,7 +16,6 @@
 package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;

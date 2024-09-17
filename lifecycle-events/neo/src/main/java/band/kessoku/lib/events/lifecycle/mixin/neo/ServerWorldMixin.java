@@ -15,16 +15,15 @@
  */
 package band.kessoku.lib.events.lifecycle.mixin.neo;
 
-import java.util.function.BooleanSupplier;
-
 import band.kessoku.lib.events.lifecycle.api.ServerTickEvent;
+import net.minecraft.server.world.ServerWorld;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.server.world.ServerWorld;
+import java.util.function.BooleanSupplier;
 
 @Mixin(ServerWorld.class)
 public abstract class ServerWorldMixin {

@@ -15,15 +15,15 @@
  */
 package band.kessoku.lib.config.api.serializers;
 
-import java.util.Map;
-
 import band.kessoku.lib.config.api.AbstractConfig;
 import band.kessoku.lib.config.api.ConfigSerializer;
 import club.someoneice.json.JSON;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.processor.Json5Builder;
 
-//todo
+import java.util.Map;
+
+// TODO
 public class Json5Serializer implements ConfigSerializer {
     @Override
     public String serialize(Map<String, AbstractConfig.ValueWithComment> value) {

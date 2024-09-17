@@ -15,11 +15,6 @@
  */
 package band.kessoku.lib.config;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import band.kessoku.lib.config.api.AbstractConfig;
 import band.kessoku.lib.config.api.ConfigSerializer;
 import org.apache.commons.io.FileUtils;
@@ -29,38 +24,47 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class KessokuConfig {
     private static final Map<AbstractConfig, Class<ConfigSerializer>> configs = new HashMap<>();
-    private static final Map<Class<ConfigSerializer>, ConfigSerializer> serializerCache = new HashMap<>();
+    private static final Map<Class<? extends ConfigSerializer>, ConfigSerializer> serializerCache = new HashMap<>();
+
     public static final String MOD_ID = "kessoku_config";
     public static final Marker MARKER = MarkerFactory.getMarker("[KessokuConfig]");
 
     @SuppressWarnings({"unchecked", "unused"})
     public static <T extends AbstractConfig, S extends ConfigSerializer> T register(T config, Class<S> serializer) {
         if (config.getClass().isAnonymousClass()) throw new IllegalArgumentException();
-        final File file = config.getPath().toFile();
+
         try {
-            FileUtils.touch(file);
+            FileUtils.touch(config.getPath().toFile());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         configs.put(config, (Class<ConfigSerializer>) serializer);
         return config;
     }
 
     @Contract(pure = true)
-    public static <T extends AbstractConfig> @Nullable Class<ConfigSerializer> getSerializer(T config) {
+    @Nullable
+    public static <T extends AbstractConfig> Class<ConfigSerializer> getSerializer(T config) {
         return configs.get(config);
     }
 
     @Contract(pure = true)
     @SuppressWarnings("unchecked")
-    public static <T extends ConfigSerializer> @NotNull ConfigSerializer getSerializerInstance(Class<T> serializer) {
-        if (serializerCache.containsKey(serializer)) return serializerCache.get(serializer);
+    @NotNull
+    public static <T extends ConfigSerializer> T getSerializerInstance(Class<T> serializer) {
         try {
-            T serializerInstance = serializer.getConstructor().newInstance();
-            serializerCache.put((Class<ConfigSerializer>) serializer, serializerInstance);
-            return serializerInstance;
+            return (T) Objects.requireNonNull(serializerCache.containsKey(serializer)
+                    ? serializerCache.get(serializer)
+                    : serializerCache.put(serializer,
+                        serializer.getConstructor().newInstance()));
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }

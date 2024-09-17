@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.config.api.values;
 
-import java.util.function.Supplier;
-
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 public final class IntegerValue extends DefaultConfigValue<Integer> {
     private IntegerValue(Supplier<Integer> defaultValue) {

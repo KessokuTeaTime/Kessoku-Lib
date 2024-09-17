@@ -15,6 +15,17 @@
  */
 package band.kessoku.lib.config.api;
 
+import band.kessoku.lib.base.ModUtils;
+import band.kessoku.lib.config.KessokuConfig;
+import band.kessoku.lib.config.api.annotations.Comment;
+import band.kessoku.lib.config.api.annotations.Comments;
+import band.kessoku.lib.config.api.annotations.Name;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.logging.log4j.core.util.ReflectionUtil;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,22 +37,12 @@ import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import band.kessoku.lib.base.ModUtils;
-import band.kessoku.lib.config.KessokuConfig;
-import band.kessoku.lib.config.api.annotations.Comment;
-import band.kessoku.lib.config.api.annotations.Comments;
-import band.kessoku.lib.config.api.annotations.Name;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-
-//@SuppressWarnings({"rawtypes", "unchecked", "unused"})
+@SuppressWarnings({"rawtypes", "unused"})
 public abstract class AbstractConfig {
-    private final List<Consumer> preSave = new ArrayList<>();
-    private final List<Consumer> preLoad = new ArrayList<>();
-    private final List<BiConsumer> postSave = new ArrayList<>();
-    private final List<BiConsumer> postLoad = new ArrayList<>();
+    private final List<Consumer<AbstractConfig>> preSave = new ArrayList<>();
+    private final List<Consumer<AbstractConfig>> preLoad = new ArrayList<>();
+    private final List<BiConsumer<AbstractConfig, Boolean>> postSave = new ArrayList<>();
+    private final List<BiConsumer<AbstractConfig, Boolean>> postLoad = new ArrayList<>();
     private List<Field> values;
     private List<Field> categories;
     private boolean split = false;
@@ -53,13 +54,14 @@ public abstract class AbstractConfig {
         preSave.forEach(consumer -> consumer.accept(this));
         File file = this.getPath().toFile();
         ConfigSerializer serializer = this.getSerializer();
-        boolean result;
+
+        boolean result = true;
         try (FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8)) {
             writer.write(serializer.serialize(this.serialize()));
-            result = true;
         } catch (IOException e) {
             result = false;
         }
+
         final boolean finalResult = result;
         postSave.forEach(biConsumer -> biConsumer.accept(this, finalResult));
         return finalResult;
@@ -69,59 +71,62 @@ public abstract class AbstractConfig {
         preLoad.forEach(consumer -> consumer.accept(this));
         ConfigSerializer serializer = this.getSerializer();
         File file = this.getPath().toFile();
-        boolean result;
+
+        boolean result = true;
         try {
             Map<String, Object> map = serializer.deserialize(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
             // Put values into the config
             for (Map.Entry<String, Object> entry : map.entrySet()) {
-                String string = entry.getKey();
-                Object object = entry.getValue();
+                String key = entry.getKey();
+                Object cValue = entry.getValue();
+
                 ConfigValue value;
                 // Check the value is public and not static
                 try {
-                    Field field = this.getClass().getField(string);
+                    Field field = this.getClass().getField(key);
                     if (!Modifier.isPublic(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) continue;
-                    value = (ConfigValue<?, ?>) field.get(this);
-                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    value = (ConfigValue) ReflectionUtil.getFieldValue(field, this);
+                } catch (NoSuchFieldException e) {
                     continue;
                 }
-                ConfigValue.Type type;
+
+                ConfigValue.Type type = ConfigValue.Type.asType(cValue);
                 // Check if the type is valid to deserialize
-                try {
-                    type = ConfigValue.Type.asType(object);
-                } catch (IllegalArgumentException e) {
-                    ModUtils.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file!", object.getClass().getName());
+                if (type == ConfigValue.Type.NULL) {
+                    ModUtils.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file!", cValue.getClass().getName());
                     continue;
                 }
+
                 // Check if the type matches the value's type
                 if (value.getType() != type) {
                     ModUtils.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file! Expect {}.", type.toString().toLowerCase(), value.getType().toString().toLowerCase());
                     continue;
                 }
-                value.setTo(object);
+
+                value.setTo(cValue);
             }
-            result = true;
         } catch (IOException e) {
             result = false;
         }
+
         final boolean finalResult = result;
         postLoad.forEach(biConsumer -> biConsumer.accept(this, finalResult));
         return finalResult;
     }
 
-    public <T extends AbstractConfig> void registerPreSaveListener(Consumer<T> preSave) {
+    public void registerPreSaveListener(Consumer<AbstractConfig> preSave) {
         this.preSave.add(preSave);
     }
 
-    public <T extends AbstractConfig> void registerPreLoadListener(Consumer<T> preLoad) {
+    public void registerPreLoadListener(Consumer<AbstractConfig> preLoad) {
         this.preLoad.add(preLoad);
     }
 
-    public <T extends AbstractConfig> void registerPostSaveListener(BiConsumer<T, Boolean> postSave) {
+    public void registerPostSaveListener(BiConsumer<AbstractConfig, Boolean> postSave) {
         this.postSave.add(postSave);
     }
 
-    public <T extends AbstractConfig> void registerPostLoadListener(BiConsumer<T, Boolean> postLoad) {
+    public void registerPostLoadListener(BiConsumer<AbstractConfig, Boolean> postLoad) {
         this.postLoad.add(postLoad);
     }
 
@@ -131,37 +136,41 @@ public abstract class AbstractConfig {
     }
 
     public ImmutableList<ConfigValue<?, ?>> getValidValues() {
-        if (this.values != null)
-            return ImmutableList.<ConfigValue<?, ?>>builder().addAll(this.values.stream().map(field -> {
-                try {
-                    return (ConfigValue<?, ?>) field.get(this);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }).toList()).build();
+        if (this.values != null) {
+            return ImmutableList.<ConfigValue<?, ?>>builder().addAll(this.values.stream().map(field ->
+                    (ConfigValue<?, ?>) ReflectionUtil.getFieldValue(field, this)).toList()).build();
+        }
+
         List<Field> fields = new ArrayList<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            if (declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class) && Modifier.isPublic(declaredField.getModifiers()) && !Modifier.isStatic(declaredField.getModifiers()))
+            final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class);
+            final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
+            final boolean flag2 = !Modifier.isStatic(declaredField.getModifiers());
+            if (flag0 && flag1 && flag2) {
                 fields.add(declaredField);
+            }
         }
+
         this.values = fields;
         return this.getValidValues();
     }
 
     public ImmutableList<AbstractConfig> getValidCategories() {
-        if (this.categories != null)
-            return ImmutableList.<AbstractConfig>builder().addAll(this.categories.stream().map(field -> {
-                try {
-                    return (AbstractConfig) field.get(this);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }).toList()).build();
+        if (this.categories != null){
+            return ImmutableList.<AbstractConfig>builder().addAll(this.categories.stream().map(field ->
+                (AbstractConfig) ReflectionUtil.getFieldValue(field, this)).toList()).build();
+        }
+
         List<Field> fields = new ArrayList<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            if (declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class) && Modifier.isPublic(declaredField.getModifiers()))
+
+            final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class);
+            final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
+            if (flag0 && flag1){
                 fields.add(declaredField);
+            }
         }
+
         this.categories = fields;
         return this.getValidCategories();
     }
@@ -169,8 +178,16 @@ public abstract class AbstractConfig {
     private ImmutableList<Field> getValidFields() {
         ImmutableList.Builder<Field> builder = ImmutableList.builder();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            if ((declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class) || declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class)) && Modifier.isPublic(declaredField.getModifiers()))
+
+            final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class);
+            final boolean flag1 = declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class);
+            final boolean flag2 = Modifier.isPublic(declaredField.getModifiers());
+
+            final var flag = flag0 || flag1;
+
+            if (flag && flag2){
                 builder.add(declaredField);
+            }
         }
         return builder.build();
     }
@@ -178,21 +195,20 @@ public abstract class AbstractConfig {
     private Map<String, ValueWithComment> serialize() {
         ImmutableMap.Builder<String, ValueWithComment> builder = ImmutableMap.builder();
         for (Field field : this.getValidFields()) {
+            field.setAccessible(true);
             final String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
             final String[] comments = field.isAnnotationPresent(Comments.class) ? (String[]) Arrays.stream(field.getAnnotation(Comments.class).value()).map(Comment::value).toArray() : new String[0];
-            Object o;
-            try {
-                o = field.get(this);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
+
+            Object fieldValue = ReflectionUtil.getFieldValue(field, this);
+
             // ConfigValue
-            if (o instanceof ConfigValue<?, ?> value) {
+            if (fieldValue instanceof ConfigValue<?, ?> value) {
                 builder.put(name, new ValueWithComment(value.get(), comments));
                 continue;
             }
+
             // Category
-            AbstractConfig category = (AbstractConfig) o;
+            AbstractConfig category = (AbstractConfig) fieldValue;
             if (this.split) {
                 if (!category.save()) {
                     ModUtils.getLogger().error(KessokuConfig.MARKER, "Failed to save category `{}!`", category.getSimpleName());
@@ -212,13 +228,20 @@ public abstract class AbstractConfig {
         return this.split;
     }
 
+    /**
+     * Get config full name. If it's a sub file, it will include the paths.
+     * @return Get the full name of the config.
+     */
     // Not including file ext, but parent path `/`
     public String getName() {
         Name name = this.getClass().getAnnotation(Name.class);
         return name == null ? this.getClass().getSimpleName() : name.value();
     }
 
-    // Just config name
+    /**
+     * Get the config name. Even it's a sub file, just config name.
+     * @return The simple config name.
+     */
     public String getSimpleName() {
         String[] strings = this.getName().split("/");
         return strings[strings.length - 1];

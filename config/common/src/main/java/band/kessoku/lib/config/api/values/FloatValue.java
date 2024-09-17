@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.config.api.values;
 
-import java.util.function.Supplier;
-
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 public final class FloatValue extends DefaultConfigValue<Float> {
     private FloatValue(Supplier<Float> defaultValue) {

@@ -15,8 +15,6 @@
  */
 package band.kessoku.lib.config.api.serializers;
 
-import java.util.Map;
-
 import band.kessoku.lib.config.api.AbstractConfig;
 import band.kessoku.lib.config.api.ConfigSerializer;
 import club.someoneice.json.JSON;
@@ -24,6 +22,8 @@ import club.someoneice.json.Pair;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;
 import club.someoneice.json.processor.JsonBuilder;
+
+import java.util.Map;
 
 public class JsonSerializer implements ConfigSerializer {
     @Override
@@ -33,6 +33,7 @@ public class JsonSerializer implements ConfigSerializer {
                 .map(it -> new Pair<>(it.getKey(), JsonNode.asJsonNodeOrEmpty(it.getValue().object())))
                 .filter(it -> it.getValue().nonNull())
                 .forEach(it -> node.put(it.getKey(), it.getValue()));
+
         return JsonBuilder.prettyPrint(node);
     }
 

@@ -16,8 +16,6 @@
 package band.kessoku.lib.registry.api;
 
 import band.kessoku.lib.registry.impl.KessokuRegistryServices;
-import org.jetbrains.annotations.ApiStatus;
-
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -25,6 +23,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.ApiStatus;
 
 @SuppressWarnings("unused")
 public interface Registry {

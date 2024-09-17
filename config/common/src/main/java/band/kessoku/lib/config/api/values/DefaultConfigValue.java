@@ -15,9 +15,9 @@
  */
 package band.kessoku.lib.config.api.values;
 
-import java.util.function.Supplier;
-
 import band.kessoku.lib.config.api.ConfigValue;
+
+import java.util.function.Supplier;
 
 sealed abstract class DefaultConfigValue<T> implements ConfigValue<T, T> permits BooleanValue, DoubleValue, FloatValue, IntegerValue, ListValue, LongValue, MapValue, StringValue {
     public final Supplier<T> defaultValue;

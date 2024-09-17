@@ -15,23 +15,22 @@
  */
 package band.kessoku.lib.entrypoint;
 
-import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Map;
-
 import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.entrypoint.api.KessokuClientModInitializer;
 import band.kessoku.lib.entrypoint.api.KessokuDedicatedServerModInitializer;
 import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
 import com.google.common.collect.ImmutableMap;
-
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
+
+import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Map;
 
 public class KessokuEntrypointEntrypoint implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer, PreLaunchEntrypoint {
     private static ImmutableMap<String,KessokuInfo> modInfoList;

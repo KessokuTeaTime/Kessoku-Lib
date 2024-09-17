@@ -17,7 +17,6 @@ package kessoku.testmod.keybind;
 
 import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
 import band.kessoku.lib.keybind.api.KeyBindRegister;
-
 import net.minecraft.client.option.KeyBinding;
 
 public class KessokuTestKeybind implements KessokuModInitializer {

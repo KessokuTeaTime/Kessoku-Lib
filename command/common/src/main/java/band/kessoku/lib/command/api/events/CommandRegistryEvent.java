@@ -17,7 +17,6 @@ package band.kessoku.lib.command.api.events;
 
 import band.kessoku.lib.event.api.Event;
 import com.mojang.brigadier.CommandDispatcher;
-
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
