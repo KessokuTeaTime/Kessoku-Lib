@@ -17,9 +17,7 @@ package band.kessoku.lib.registry.api;
 
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
@@ -28,7 +26,6 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -178,15 +175,11 @@ public class FuelRegistry<T extends Recipe<?>> {
     }
 
     /**
-     * @param block the block which acts like a furnace
      * @return The fuel time.
      */
-    public static <T extends AbstractFurnaceBlock> int getFuelTime(T block, ItemStack stack) {
-        BlockEntity entity = block.createBlockEntity((BlockPos) BlockPos.ZERO, block.getDefaultState());
-        if (!(entity instanceof AbstractFurnaceBlockEntity)) return 0;
-        int fuelTime = ((AbstractFurnaceBlockEntity) entity).getFuelTime(stack);
-        entity.markRemoved();
-        return fuelTime;
+    public static int getFuelTime(ItemStack stack) {
+        final var fuelMap = AbstractFurnaceBlockEntity.createFuelTimeMap();
+        return fuelMap.getOrDefault(stack.getItem(), 0);
     }
 
     public record ItemWithData(ComponentMap componentMap, ItemConvertible item) {

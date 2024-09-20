@@ -27,13 +27,15 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @AutoService(KeyBindRegister.class)
 public class KeyBindRegisterImpl implements KeyBindRegister {
     private static final List<KeyBinding> KEY_BINDINGS = new ReferenceArrayList<>();
     private static boolean processed;
 
+    /* Amarok Note:
+        Maybe Object2IntMap ...?
+     */
     private static Map<String, Integer> getCategoryMap() {
         return KeyBindingAccessor.kessoku$getCategoryMap();
     }
@@ -46,9 +48,8 @@ public class KeyBindRegisterImpl implements KeyBindRegister {
             return false;
         }
 
-        Optional<Integer> largest = map.values().stream().max(Integer::compareTo);
-        int largestInt = largest.orElse(0);
-        map.put(categoryTranslationKey, largestInt + 1);
+        final int largest = map.values().stream().max(Integer::compareTo).orElse(0);
+        map.put(categoryTranslationKey, largest + 1);
         return true;
     }
 

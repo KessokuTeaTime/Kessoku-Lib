@@ -17,12 +17,13 @@ package band.kessoku.lib.registry.impl;
 
 import band.kessoku.lib.registry.api.Registry;
 import com.google.auto.service.AutoService;
+import com.google.common.collect.Maps;
 import net.minecraft.util.Identifier;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 @AutoService(Registry.class)
@@ -39,12 +40,15 @@ public class RegistryImpl implements Registry {
 
     @Override
     public <V, T extends V> T registerInternal(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
-        if (registered)
+        if (registered) {
             throw new IllegalStateException("Cannot register new entries after net.neoforged.neoforge.registries.RegisterEvent has been fired.");
-        if (!registries.containsKey(registry)) registries.put(registry, new HashMap<>());
-        if (registries.get(registry).putIfAbsent(id, entry) != null) {
+        }
+
+        final var map = Objects.requireNonNull(registries.putIfAbsent(registry, Maps.newHashMap()));
+        if (map.putIfAbsent(id, entry) != null) {
             throw new IllegalArgumentException("Duplicate registration " + id.toString());
         }
+
         return entry;
     }
 }
