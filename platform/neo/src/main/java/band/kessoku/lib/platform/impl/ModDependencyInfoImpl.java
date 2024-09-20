@@ -25,21 +25,13 @@ public class ModDependencyInfoImpl implements ModDependencyInfo {
     }
     @Override
     public DependencyKind getKind() {
-        switch (value.getType()) {
-            case OPTIONAL -> {
-                return DependencyKind.OPTIONAL;
-            }
-            case REQUIRED -> {
-                return DependencyKind.DEPENDS;
-            }
-            case DISCOURAGED -> {
-                return DependencyKind.CONFLICTS;
-            }
-            case INCOMPATIBLE -> {
-                return DependencyKind.BREAKS;
-            }
-        }
-        return null;
+        return switch (value.getType()) {
+            case OPTIONAL -> DependencyKind.OPTIONAL;
+            case REQUIRED -> DependencyKind.DEPENDS;
+            case DISCOURAGED -> DependencyKind.CONFLICTS;
+            case INCOMPATIBLE -> DependencyKind.BREAKS;
+            default -> null;
+        };
     }
 
     @Override

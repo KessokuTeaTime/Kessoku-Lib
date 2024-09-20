@@ -143,6 +143,8 @@ public abstract class AbstractConfig {
 
         List<Field> fields = new ArrayList<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
+            declaredField.setAccessible(true);
+
             final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class);
             final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
             final boolean flag2 = !Modifier.isStatic(declaredField.getModifiers());
@@ -163,6 +165,7 @@ public abstract class AbstractConfig {
 
         List<Field> fields = new ArrayList<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
+            declaredField.setAccessible(true);
 
             final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class);
             final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
@@ -178,6 +181,7 @@ public abstract class AbstractConfig {
     private ImmutableList<Field> getValidFields() {
         ImmutableList.Builder<Field> builder = ImmutableList.builder();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
+            declaredField.setAccessible(true);
 
             final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class);
             final boolean flag1 = declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class);
@@ -196,6 +200,7 @@ public abstract class AbstractConfig {
         ImmutableMap.Builder<String, ValueWithComment> builder = ImmutableMap.builder();
         for (Field field : this.getValidFields()) {
             field.setAccessible(true);
+
             final String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
             final String[] comments = field.isAnnotationPresent(Comments.class) ? (String[]) Arrays.stream(field.getAnnotation(Comments.class).value()).map(Comment::value).toArray() : new String[0];
 

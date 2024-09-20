@@ -178,15 +178,11 @@ public class FuelRegistry<T extends Recipe<?>> {
     }
 
     /**
-     * @param block the block which acts like a furnace
      * @return The fuel time.
      */
-    public static <T extends AbstractFurnaceBlock> int getFuelTime(T block, ItemStack stack) {
-        BlockEntity entity = block.createBlockEntity((BlockPos) BlockPos.ZERO, block.getDefaultState());
-        if (!(entity instanceof AbstractFurnaceBlockEntity)) return 0;
-        int fuelTime = ((AbstractFurnaceBlockEntity) entity).getFuelTime(stack);
-        entity.markRemoved();
-        return fuelTime;
+    public static int getFuelTime(ItemStack stack) {
+        final var fuelMap = AbstractFurnaceBlockEntity.createFuelTimeMap();
+        return fuelMap.getOrDefault(stack.getItem(), 0);
     }
 
     public record ItemWithData(ComponentMap componentMap, ItemConvertible item) {

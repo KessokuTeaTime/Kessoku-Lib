@@ -27,18 +27,18 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+import java.util.Objects;
+import java.util.Optional;
+
 @Mod(KessokuRegistry.MOD_ID)
 public class KessokuRegistryEntrypoint {
     public KessokuRegistryEntrypoint(IEventBus modEventBus) {
         ModUtils.getLogger().info(KessokuRegistry.MARKER, "KessokuLib-Registry is loaded!");
         NeoEventUtils.registerEvent(modEventBus, RegisterEvent.class, RegistryImpl::onRegister);
         NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, FurnaceFuelBurnTimeEvent.class, event -> {
-            ItemStack stack = event.getItemStack();
-            RecipeType<?> recipeType = event.getRecipeType();
-            Integer burnTime;
-            if (recipeType != null) burnTime = FuelRegistry.of(recipeType).get(stack);
-            else burnTime = FuelRegistry.of(RecipeType.SMELTING).get(stack);
-            if (burnTime != null) event.setBurnTime(burnTime);
+            final ItemStack stack = event.getItemStack();
+            final RecipeType<?> recipeType = Objects.requireNonNullElse(event.getRecipeType(), RecipeType.SMELTING);
+            Optional.ofNullable(FuelRegistry.of(recipeType).get(stack)).ifPresent(event::setBurnTime);
         });
     }
 }
