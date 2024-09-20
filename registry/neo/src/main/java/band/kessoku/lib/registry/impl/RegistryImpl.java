@@ -17,14 +17,11 @@ package band.kessoku.lib.registry.impl;
 
 import band.kessoku.lib.registry.api.Registry;
 import com.google.auto.service.AutoService;
-import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Table;
 import net.minecraft.util.Identifier;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;

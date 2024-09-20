@@ -16,7 +16,6 @@
 package band.kessoku.lib.base;
 
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 @Mod(KessokuBase.MOD_ID)
 public class KessokuBaseEntrypoint {

@@ -30,7 +30,6 @@ public class ModDependencyInfoImpl implements ModDependencyInfo {
             case REQUIRED -> DependencyKind.DEPENDS;
             case DISCOURAGED -> DependencyKind.CONFLICTS;
             case INCOMPATIBLE -> DependencyKind.BREAKS;
-            default -> null;
         };
     }
 
