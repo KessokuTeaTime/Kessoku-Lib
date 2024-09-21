@@ -21,7 +21,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 @AutoService(RegistryService.class)
-public class RegistryImpl implements RegistryService {
+public final class RegistryImpl implements RegistryService {
     @Override
     public <V, T extends V> T register(Registry<V> registry, Identifier id, T entry) {
         return Registry.register(registry, id, entry);

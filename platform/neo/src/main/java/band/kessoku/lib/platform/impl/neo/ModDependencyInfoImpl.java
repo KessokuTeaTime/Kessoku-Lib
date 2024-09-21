@@ -18,11 +18,13 @@ package band.kessoku.lib.platform.impl.neo;
 import band.kessoku.lib.platform.api.ModDependencyInfo;
 import net.neoforged.neoforgespi.language.IModInfo;
 
-public class ModDependencyInfoImpl implements ModDependencyInfo {
+public final class ModDependencyInfoImpl implements ModDependencyInfo {
     private final IModInfo.ModVersion value;
+
     public ModDependencyInfoImpl(IModInfo.ModVersion modVersion) {
         this.value = modVersion;
     }
+
     @Override
     public DependencyKind getKind() {
         return switch (value.getType()) {

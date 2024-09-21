@@ -31,7 +31,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Mod(KessokuRegistry.MOD_ID)
-public class KessokuRegistryNeoforge {
+public final class KessokuRegistryNeoforge {
     public KessokuRegistryNeoforge(IEventBus modEventBus) {
         ModUtils.getLogger().info(KessokuRegistry.MARKER, "KessokuLib-Registry is loaded!");
         NeoEventUtils.registerEvent(modEventBus, RegisterEvent.class, RegistryImpl::onRegister);

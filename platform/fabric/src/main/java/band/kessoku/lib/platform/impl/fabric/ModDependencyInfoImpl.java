@@ -18,31 +18,22 @@ package band.kessoku.lib.platform.impl.fabric;
 import band.kessoku.lib.platform.api.ModDependencyInfo;
 import net.fabricmc.loader.api.metadata.ModDependency;
 
-public class ModDependencyInfoImpl implements ModDependencyInfo {
+public final class ModDependencyInfoImpl implements ModDependencyInfo {
     private final ModDependency value;
+
     public ModDependencyInfoImpl(ModDependency dependency) {
         this.value = dependency;
     }
+
     @Override
     public DependencyKind getKind() {
-        switch (value.getKind()) {
-            case DEPENDS -> {
-                return DependencyKind.DEPENDS;
-            }
-            case RECOMMENDS -> {
-                return DependencyKind.RECOMMENDS;
-            }
-            case SUGGESTS -> {
-                return DependencyKind.SUGGESTS;
-            }
-            case CONFLICTS -> {
-                return DependencyKind.CONFLICTS;
-            }
-            case BREAKS -> {
-                return DependencyKind.BREAKS;
-            }
-        }
-        return null;
+        return switch (value.getKind()) {
+            case DEPENDS -> DependencyKind.DEPENDS;
+            case RECOMMENDS -> DependencyKind.RECOMMENDS;
+            case SUGGESTS -> DependencyKind.SUGGESTS;
+            case CONFLICTS -> DependencyKind.CONFLICTS;
+            case BREAKS -> DependencyKind.BREAKS;
+        };
     }
 
     @Override

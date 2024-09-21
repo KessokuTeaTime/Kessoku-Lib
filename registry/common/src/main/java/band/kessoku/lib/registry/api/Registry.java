@@ -10,6 +10,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 public final class Registry {
+    private Registry() {
+    }
+
     public static <T> T register(net.minecraft.registry.Registry<? super T> registry, String id, T entry) {
         return register(registry, Identifier.of(id), entry);
     }

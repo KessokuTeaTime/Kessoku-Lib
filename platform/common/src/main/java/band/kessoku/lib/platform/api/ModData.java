@@ -25,10 +25,12 @@ public interface ModData {
      * Returns the mod's ID.
      */
     String getModId();
+
     /**
      * Returns the mod's version.
      */
     String getVersion();
+
     /**
      * Returns all of the mod's dependencies.
      */
@@ -43,6 +45,7 @@ public interface ModData {
      * Get the description of the mod.
      */
     String getDescription();
+
     /**
      * Returns the mod's authors.
      */

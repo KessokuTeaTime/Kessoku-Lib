@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class ModDataImpl implements ModData {
+public final class ModDataImpl implements ModData {
     private final ModContainer modContainer;
     private final IModInfo modInfo;
 

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ModDataImpl implements ModData {
+public final class ModDataImpl implements ModData {
     private final ModContainer modContainer;
     private final ModMetadata modMetadata;
 
@@ -36,6 +36,7 @@ public class ModDataImpl implements ModData {
         this.modContainer = FabricLoader.getInstance().getModContainer(modid).orElseThrow();
         this.modMetadata = modContainer.getMetadata();
     }
+
     public ModDataImpl(ModContainer container) {
         this.modContainer = container;
         this.modMetadata = modContainer.getMetadata();

@@ -18,7 +18,7 @@ package band.kessoku.lib.platform;
 import band.kessoku.lib.base.ModUtils;
 import net.fabricmc.api.ModInitializer;
 
-public class KessokuPlatformFabric implements ModInitializer {
+public final class KessokuPlatformFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ModUtils.getLogger().info(KessokuPlatform.MARKER, "KessokuLib-Platform is loaded!");

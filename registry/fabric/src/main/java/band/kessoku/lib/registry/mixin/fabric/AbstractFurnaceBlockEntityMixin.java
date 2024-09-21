@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractFurnaceBlockEntity.class)
-public class AbstractFurnaceBlockEntityMixin {
+public final class AbstractFurnaceBlockEntityMixin {
     @Unique
     private RecipeType<? extends AbstractCookingRecipe> recipeType;
 

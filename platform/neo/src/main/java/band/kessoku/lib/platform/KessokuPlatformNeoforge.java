@@ -19,7 +19,7 @@ import band.kessoku.lib.base.ModUtils;
 import net.neoforged.fml.common.Mod;
 
 @Mod(KessokuPlatform.MOD_ID)
-public class KessokuPlatformNeoforge {
+public final class KessokuPlatformNeoforge {
     public KessokuPlatformNeoforge() {
         ModUtils.getLogger().info(KessokuPlatform.MARKER, "KessokuLib-Platform is loaded!");
     }

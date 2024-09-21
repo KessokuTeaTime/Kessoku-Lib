@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @AutoService(RegistryService.class)
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class RegistryImpl implements RegistryService {
+public final class RegistryImpl implements RegistryService {
     private static final Map<Registry, Map<Identifier, Object>> registries = new ConcurrentHashMap<>();
     private static boolean registered = false;
 

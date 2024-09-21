@@ -18,7 +18,7 @@ package band.kessoku.lib.registry;
 import band.kessoku.lib.base.ModUtils;
 import net.fabricmc.api.ModInitializer;
 
-public class KessokuRegistryFabric implements ModInitializer {
+public final class KessokuRegistryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         ModUtils.getLogger().info(KessokuRegistry.MARKER, "KessokuLib-Registry is loaded!");

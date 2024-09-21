@@ -43,7 +43,7 @@ import java.util.Map;
  *
  * @param <T>
  */
-@SuppressWarnings("unused, deprecation, rawtypes")
+@SuppressWarnings({"unused", "deprecation", "rawtypes"})
 @ApiStatus.Experimental
 public final class FuelRegistry<T extends Recipe<?>> {
     private final Object2IntMap<ItemConvertible> itemRegistries = new Object2IntLinkedOpenHashMap<>();

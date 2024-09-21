@@ -28,14 +28,24 @@ public interface ModLoaderService {
     }
 
     ModData getModData(String modid);
+
     boolean isFabric();
+
     boolean isNeoForge();
+
     Env getEnv();
+
     Path getGameFolder();
+
     Path getConfigFolder();
+
     Path getModsFolder();
+
     boolean isModLoaded(String id);
+
     Collection<String> getModIds();
+
     Collection<? extends ModData> getMods();
+
     boolean isDevEnv();
 }

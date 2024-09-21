@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @AutoService(ModLoaderService.class)
-public class ModLoaderImpl implements ModLoaderService {
+public final class ModLoaderImpl implements ModLoaderService {
     private final Map<String, ModData> modDataMap = new ConcurrentHashMap<>();
 
     @Override

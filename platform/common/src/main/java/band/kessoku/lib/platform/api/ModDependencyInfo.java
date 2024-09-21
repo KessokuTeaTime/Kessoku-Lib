@@ -23,6 +23,7 @@ public interface ModDependencyInfo {
      * Get the kind of dependency.
      */
     DependencyKind getKind();
+
     /**
      * Returns the ID of the mod to check.
      */

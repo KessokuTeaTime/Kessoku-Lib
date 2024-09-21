@@ -19,7 +19,6 @@ import band.kessoku.lib.base.ModUtils;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-@SuppressWarnings("unused")
 public interface RegistryService {
     static RegistryService getInstance() {
         return ModUtils.loadService(RegistryService.class);
