@@ -49,7 +49,7 @@ public class AbstractFurnaceBlockEntityMixin {
     @WrapMethod(method = "getFuelTime")
     private int getFuelTimeHook(ItemStack fuel, Operation<Integer> original) {
         if (fuel.isEmpty()) return 0;
-        Integer fuelTime = FuelRegistry.of(this.recipeType).get(fuel);
-        return fuelTime == null ? original.call(fuel) : fuelTime;
+        int fuelTime = FuelRegistry.of(this.recipeType).get(fuel);
+        return fuelTime <= 0 ? original.call(fuel) : fuelTime;
     }
 }
