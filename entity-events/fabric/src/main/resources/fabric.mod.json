@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku_data",
+  "id": "kessoku_entity_events",
   "version": "${version}",
-  "name": "Kessoku Data",
-  "description": "About data in Minecraft.",
+  "name": "Kessoku Entity Events API",
+  "description": "Provide some events about entity.",
   "authors": [
     "Kessoku Tea Time"
   ],
@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.data.KessokuDataEntrypoint"
+      "band.kessoku.lib.events.entity.KessokuEntityEventFabric"
     ]
   },
   "environment": "*",
@@ -26,9 +26,6 @@
     "java": ">=21",
     "fabric-api": "*"
   },
-  "mixins": [
-    "kessoku-data-fabric.mixins.json"
-  ],
   "custom": {
     "modmenu": {
       "badges": [

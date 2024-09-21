@@ -21,9 +21,10 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntityElytraEvents;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 
-public class KessokuEntityEventEntrypoint implements ModInitializer {
+public final class KessokuEntityEventFabric implements ModInitializer {
     @Override
     public void onInitialize() {
+        KessokuEntityEvents.init();
         EntityElytraEvents.ALLOW.register(entity -> EntityElytraEvent.ALLOW.invoker().allowElytraFlight(entity));
         EntityElytraEvents.CUSTOM.register((entity, tickElytra) -> EntityElytraEvent.CUSTOM.invoker().useCustomElytra(entity, tickElytra));
 

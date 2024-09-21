@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.base;
 
-import net.neoforged.fml.common.Mod;
+import net.fabricmc.api.ModInitializer;
 
-@Mod(KessokuBase.MOD_ID)
-public final class KessokuBaseEntrypoint {
-    public KessokuBaseEntrypoint() {
+public final class KessokuBaseFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
         ModUtils.getLogger().info(KessokuBase.MARKER, "KessokuLib-Base is loaded!");
     }
 }

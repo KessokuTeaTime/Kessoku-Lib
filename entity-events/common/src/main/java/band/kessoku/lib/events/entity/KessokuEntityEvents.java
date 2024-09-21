@@ -15,10 +15,25 @@
  */
 package band.kessoku.lib.events.entity;
 
+import band.kessoku.lib.events.entity.api.EntityElytraEvent;
+import band.kessoku.lib.events.entity.api.item.KessokuElytraItem;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-public class KessokuEntityEvents {
+public final class KessokuEntityEvents {
     public static final String MOD_ID = "kessoku_entity_events";
     public static final Marker MARKER = MarkerFactory.getMarker("[KessokuEntityEvents]");
+    static void init() {
+        EntityElytraEvent.CUSTOM.register((entity, tickElytra) -> {
+            ItemStack chestStack = entity.getEquippedStack(EquipmentSlot.CHEST);
+
+            if (chestStack.getItem() instanceof KessokuElytraItem fabricElytraItem) {
+                return fabricElytraItem.useCustomElytra(entity, chestStack, tickElytra);
+            }
+
+            return false;
+        });
+    }
 }

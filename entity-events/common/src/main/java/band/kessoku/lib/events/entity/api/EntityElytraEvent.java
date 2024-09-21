@@ -18,20 +18,20 @@ package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
 import band.kessoku.lib.events.entity.api.item.KessokuElytraItem;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Events related to elytra flight for living entities. Elytra flight is also known as "fall flying".
  */
-public class EntityElytraEvent {
+@ApiStatus.NonExtendable
+public interface EntityElytraEvent {
 
     /**
      * An event to check if elytra flight (both through normal and custom elytras) is allowed.
      * All listeners need to return true to allow the entity to fly, otherwise elytra flight will be blocked/stopped.
      */
-    public static final Event<Allow> ALLOW = Event.of(listeners -> entity -> {
+    Event<Allow> ALLOW = Event.of(listeners -> entity -> {
         for (Allow listener : listeners) {
             if (!listener.allowElytraFlight(entity)) {
                 return false;
@@ -47,7 +47,7 @@ public class EntityElytraEvent {
      *
      * <p>Items that wish to enable custom elytra flight when worn in the chest equipment slot can simply implement {@link KessokuElytraItem} instead of registering a listener.
      */
-    public static final Event<Custom> CUSTOM = Event.of(listeners -> (entity, tickElytra) -> {
+    Event<Custom> CUSTOM = Event.of(listeners -> (entity, tickElytra) -> {
         for (Custom listener : listeners) {
             if (listener.useCustomElytra(entity, tickElytra)) {
                 return true;
@@ -57,20 +57,8 @@ public class EntityElytraEvent {
         return false;
     });
 
-    static {
-        CUSTOM.register((entity, tickElytra) -> {
-            ItemStack chestStack = entity.getEquippedStack(EquipmentSlot.CHEST);
-
-            if (chestStack.getItem() instanceof KessokuElytraItem fabricElytraItem) {
-                return fabricElytraItem.useCustomElytra(entity, chestStack, tickElytra);
-            }
-
-            return false;
-        });
-    }
-
     @FunctionalInterface
-    public interface Allow {
+    interface Allow {
         /**
          * @return false to block elytra flight, true to allow it (unless another listener returns false)
          */
@@ -78,7 +66,7 @@ public class EntityElytraEvent {
     }
 
     @FunctionalInterface
-    public interface Custom {
+    interface Custom {
         /**
          * Try to use a custom elytra for an entity.
          * A custom elytra is anything that allows an entity to enter and continue elytra flight when some condition is met.
@@ -104,8 +92,4 @@ public class EntityElytraEvent {
          */
         boolean useCustomElytra(LivingEntity entity, boolean tickElytra);
     }
-
-    private EntityElytraEvent() {
-    }
-
 }

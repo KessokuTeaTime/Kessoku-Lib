@@ -32,8 +32,9 @@ import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 @Mod(KessokuEntityEvents.MOD_ID)
-public class KessokuEntityEventEntrypoint {
-    public KessokuEntityEventEntrypoint() {
+public final class KessokuEntityEventNeoforge {
+    public KessokuEntityEventNeoforge() {
+        KessokuEntityEvents.init();
         NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, LivingIncomingDamageEvent.class, event -> {
             var entity = event.getEntity();
             if (!entity.getWorld().isClient() && ServerLivingEntityEvent.ALLOW_DAMAGE.invoker().allowDamage(entity, event.getSource(), event.getAmount())) {
