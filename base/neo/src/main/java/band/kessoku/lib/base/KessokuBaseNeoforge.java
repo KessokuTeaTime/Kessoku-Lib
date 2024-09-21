@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.config;
+package band.kessoku.lib.base;
 
 import net.neoforged.fml.common.Mod;
 
-@Mod(KessokuConfig.MOD_ID)
-public class KessokuConfigEntrypoint {
-    public KessokuConfigEntrypoint() {
+@Mod(KessokuBase.MOD_ID)
+public final class KessokuBaseNeoforge {
+    public KessokuBaseNeoforge() {
+        ModUtils.getLogger().info(KessokuBase.MARKER, "KessokuLib-Base is loaded!");
     }
 }

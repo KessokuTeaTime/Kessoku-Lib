@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.base;
+package band.kessoku.lib.command;
 
-import net.neoforged.fml.common.Mod;
+import band.kessoku.lib.base.ModUtils;
+import band.kessoku.lib.command.impl.KessokuCommandImpl;
+import net.fabricmc.api.ModInitializer;
 
-@Mod(KessokuBase.MOD_ID)
-public final class KessokuBaseEntrypointNeoforge {
-    public KessokuBaseEntrypointNeoforge() {
-        ModUtils.getLogger().info(KessokuBase.MARKER, "KessokuLib-Base is loaded!");
+public final class KessokuCommandFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+        ModUtils.getLogger().info(KessokuCommand.MARKER, "KessokuLib-Command is Loaded!");
+        KessokuCommandImpl.registerCommonEvents();
     }
 }

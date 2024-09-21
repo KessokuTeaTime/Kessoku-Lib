@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.config;
 
-import net.fabricmc.api.ModInitializer;
+import net.neoforged.fml.common.Mod;
 
-public class KessokuConfigEntrypoint implements ModInitializer {
-    @Override
-    public void onInitialize() {
+@Mod(KessokuConfig.MOD_ID)
+public final class KessokuConfigNeoforge {
+    public KessokuConfigNeoforge() {
     }
 }

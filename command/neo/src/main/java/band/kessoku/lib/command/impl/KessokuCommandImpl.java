@@ -20,7 +20,7 @@ import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
-public class KessokuCommandImpl {
+public final class KessokuCommandImpl {
     public static void registerCommonEvents(IEventBus forgeEventBus) {
         NeoEventUtils.registerEvent(forgeEventBus, RegisterCommandsEvent.class, event -> {
             CommandRegistryEvent.EVENT.invoker().register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
