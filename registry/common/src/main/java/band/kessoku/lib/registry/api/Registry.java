@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.ApiStatus;
 
 public final class Registry {
     public static <T> T register(net.minecraft.registry.Registry<? super T> registry, String id, T entry) {
@@ -16,7 +15,7 @@ public final class Registry {
     }
 
     static <V, T extends V> T register(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
-        return RegistryService.getInstance().registerInternal(registry, id, entry);
+        return RegistryService.getInstance().register(registry, id, entry);
     }
 
     static Item registerItem(Identifier id, Item.Settings settings) {
