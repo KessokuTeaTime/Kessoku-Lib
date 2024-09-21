@@ -24,10 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class EventImpl<T> implements Event<T> {
-
-    private Map<EventPhase, List<T>> listeners = new HashMap<>();
-    private Function<List<T>, T> invokerFunc;
+public final class EventImpl<T> implements Event<T> {
+    private final Map<EventPhase, List<T>> listeners = new HashMap<>();
+    private final Function<List<T>, T> invokerFunc;
 
     public EventImpl(Function<List<T>, T> invokerFunc) {
         this.invokerFunc = invokerFunc;

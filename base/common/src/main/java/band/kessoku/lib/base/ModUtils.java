@@ -22,7 +22,10 @@ import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.ServiceLoader;
 
-public class ModUtils {
+public final class ModUtils {
+    private ModUtils() {
+    }
+
     public static <T> T loadService(Class<T> clazz) {
         return ServiceLoader.load(clazz).findFirst().orElseThrow(() -> new AssertionError("No impl found for " + clazz.getName()));
     }
@@ -39,6 +42,7 @@ public class ModUtils {
         }
         return true;
     }
+
     public static <V> V constructUnsafely(Class<V> cls) {
         try {
             Constructor<V> constructor = cls.getDeclaredConstructor();
