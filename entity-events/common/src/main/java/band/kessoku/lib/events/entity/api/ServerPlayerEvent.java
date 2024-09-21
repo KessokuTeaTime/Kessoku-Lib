@@ -17,15 +17,17 @@ package band.kessoku.lib.events.entity.api;
 
 import band.kessoku.lib.event.api.Event;
 import net.minecraft.server.network.ServerPlayerEntity;
+import org.jetbrains.annotations.ApiStatus;
 
-public class ServerPlayerEvent {
+@ApiStatus.NonExtendable
+public interface ServerPlayerEvent {
     /**
      * An event that is called when the data from an old player is copied to a new player.
      *
      * <p>This event is typically called before a player is completely respawned.
      * Mods may use this event to copy old player data to a new player.
      */
-    public static final Event<CopyFrom> COPY_FROM = Event.of(callbacks -> (oldPlayer, newPlayer, alive) -> {
+    Event<CopyFrom> COPY_FROM = Event.of(callbacks -> (oldPlayer, newPlayer, alive) -> {
         for (CopyFrom callback : callbacks) {
             callback.copyFromPlayer(oldPlayer, newPlayer, alive);
         }
@@ -36,36 +38,33 @@ public class ServerPlayerEvent {
      *
      * <p>Mods may use this event for reference clean up on the old player.
      */
-    public static final Event<ServerPlayerEvent.AfterRespawn> AFTER_RESPAWN = Event.of(callbacks -> (oldPlayer, newPlayer, alive) -> {
+    Event<ServerPlayerEvent.AfterRespawn> AFTER_RESPAWN = Event.of(callbacks -> (oldPlayer, newPlayer, alive) -> {
         for (AfterRespawn callback : callbacks) {
             callback.afterRespawn(oldPlayer, newPlayer, alive);
         }
     });
 
     @FunctionalInterface
-    public interface CopyFrom {
+    interface CopyFrom {
         /**
          * Called when player data is copied to a new player.
          *
          * @param oldPlayer the old player
          * @param newPlayer the new player
-         * @param alive whether the old player is still alive
+         * @param alive     whether the old player is still alive
          */
         void copyFromPlayer(ServerPlayerEntity oldPlayer, ServerPlayerEntity newPlayer, boolean alive);
     }
 
     @FunctionalInterface
-    public interface AfterRespawn {
+    interface AfterRespawn {
         /**
          * Called after player a has been respawned.
          *
          * @param oldPlayer the old player
          * @param newPlayer the new player
-         * @param alive whether the old player is still alive
+         * @param alive     whether the old player is still alive
          */
         void afterRespawn(ServerPlayerEntity oldPlayer, ServerPlayerEntity newPlayer, boolean alive);
-    }
-
-    private ServerPlayerEvent() {
     }
 }

@@ -19,17 +19,19 @@ import band.kessoku.lib.event.api.Event;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Various server-side only events related to living entities.
  */
-public class ServerLivingEntityEvent {
+@ApiStatus.NonExtendable
+public interface ServerLivingEntityEvent {
     /**
      * An event that is called when a living entity is going to take damage.
      * This is fired from {@link LivingEntity#damage}, before armor or any other mitigation are applied.
      * Mods can cancel this to prevent the damage entirely.
      */
-    public static final Event<AllowDamage> ALLOW_DAMAGE = Event.of(callbacks -> (entity, source, amount) -> {
+    Event<AllowDamage> ALLOW_DAMAGE = Event.of(callbacks -> (entity, source, amount) -> {
         for (AllowDamage callback : callbacks) {
             if (!callback.allowDamage(entity, source, amount)) {
                 return false;
@@ -49,7 +51,7 @@ public class ServerLivingEntityEvent {
      *
      * <p>This event is not fired if the entity was killed by the damage.
      */
-    public static final Event<AfterDamage> AFTER_DAMAGE = Event.of(callbacks -> (entity, source, baseDamageTaken, damageTaken, blocked) -> {
+    Event<AfterDamage> AFTER_DAMAGE = Event.of(callbacks -> (entity, source, baseDamageTaken, damageTaken, blocked) -> {
         for (AfterDamage callback : callbacks) {
             callback.afterDamage(entity, source, baseDamageTaken, damageTaken, blocked);
         }
@@ -68,7 +70,7 @@ public class ServerLivingEntityEvent {
      *     <li>a mod that changes death mechanics switching the player over to the mod's play-mode, where death doesn't apply</li>
      * </ul>
      */
-    public static final Event<AllowDeath> ALLOW_DEATH = Event.of(callbacks -> (entity, damageSource, damageAmount) -> {
+    Event<AllowDeath> ALLOW_DEATH = Event.of(callbacks -> (entity, damageSource, damageAmount) -> {
         for (AllowDeath callback : callbacks) {
             if (!callback.allowDeath(entity, damageSource, damageAmount)) {
                 return false;
@@ -81,7 +83,7 @@ public class ServerLivingEntityEvent {
     /**
      * An event that is called when a living entity dies.
      */
-    public static final Event<AfterDeath> AFTER_DEATH = Event.of(callbacks -> (entity, damageSource) -> {
+    Event<AfterDeath> AFTER_DEATH = Event.of(callbacks -> (entity, damageSource) -> {
         for (AfterDeath callback : callbacks) {
             callback.afterDeath(entity, damageSource);
         }
@@ -96,14 +98,14 @@ public class ServerLivingEntityEvent {
      * <p>This event only handles cases where the entity type changes, requiring a new instance. Notably it does not
      * cover mooshrooms changing color from lightning, creepers getting charged, or wolves being tamed.</p>
      */
-    public static final Event<MobConversion> MOB_CONVERSION = Event.of(callbacks -> (previous, converted, keepEquipment) -> {
+    Event<MobConversion> MOB_CONVERSION = Event.of(callbacks -> (previous, converted, keepEquipment) -> {
         for (MobConversion callback : callbacks) {
             callback.onConversion(previous, converted, keepEquipment);
         }
     });
 
     @FunctionalInterface
-    public interface AllowDamage {
+    interface AllowDamage {
         /**
          * Called when a living entity is going to take damage. Can be used to cancel the damage entirely.
          *
@@ -118,26 +120,26 @@ public class ServerLivingEntityEvent {
     }
 
     @FunctionalInterface
-    public interface AfterDamage {
+    interface AfterDamage {
         /**
          * Called after a living entity took damage, unless they were killed. The base damage taken is given as damage
          * taken before armor or enchantments are applied, but after other effects like shields are applied.
          *
-         * @param entity the entity that was damaged
-         * @param source the source of the damage
+         * @param entity          the entity that was damaged
+         * @param source          the source of the damage
          * @param baseDamageTaken the amount of damage initially dealt
-         * @param damageTaken the amount of damage actually taken by the entity, before armor and enchantment effects
-         * @param blocked whether the damage was blocked by a shield
+         * @param damageTaken     the amount of damage actually taken by the entity, before armor and enchantment effects
+         * @param blocked         whether the damage was blocked by a shield
          */
         void afterDamage(LivingEntity entity, DamageSource source, float baseDamageTaken, float damageTaken, boolean blocked);
     }
 
     @FunctionalInterface
-    public interface AllowDeath {
+    interface AllowDeath {
         /**
          * Called when a living entity takes fatal damage (before totems of undying can take effect).
          *
-         * @param entity the entity
+         * @param entity       the entity
          * @param damageSource the source of the fatal damage
          * @param damageAmount the amount of damage that has killed the entity
          * @return true if the death should go ahead, false to cancel the death.
@@ -146,28 +148,25 @@ public class ServerLivingEntityEvent {
     }
 
     @FunctionalInterface
-    public interface AfterDeath {
+    interface AfterDeath {
         /**
          * Called when a living entity dies. The death cannot be canceled at this point.
          *
-         * @param entity the entity
+         * @param entity       the entity
          * @param damageSource the source of the fatal damage
          */
         void afterDeath(LivingEntity entity, DamageSource damageSource);
     }
 
     @FunctionalInterface
-    public interface MobConversion {
+    interface MobConversion {
         /**
          * Called when a mob is converted to another type.
          *
-         * @param previous the previous entity instance
-         * @param converted the new instance for the converted entity
+         * @param previous      the previous entity instance
+         * @param converted     the new instance for the converted entity
          * @param keepEquipment whether the converted entity should keep the previous one's equipment, like armor
          */
         void onConversion(MobEntity previous, MobEntity converted, boolean keepEquipment);
-    }
-
-    private ServerLivingEntityEvent() {
     }
 }
