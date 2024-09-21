@@ -28,7 +28,6 @@ import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Mod(KessokuRegistry.MOD_ID)
 public class KessokuRegistryEntrypoint {
