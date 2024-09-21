@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.events.lifecycle.impl;
 
-import band.kessoku.lib.event.util.NeoEventUtils;
+import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
 import band.kessoku.lib.events.lifecycle.api.*;
 import band.kessoku.lib.events.lifecycle.api.client.ClientChunkEvent;
 import net.minecraft.client.MinecraftClient;

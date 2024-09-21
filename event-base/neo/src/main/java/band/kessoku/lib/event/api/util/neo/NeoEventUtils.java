@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.event.util;
+package band.kessoku.lib.event.api.util.neo;
 
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
@@ -21,7 +21,10 @@ import net.neoforged.bus.api.IEventBus;
 
 import java.util.function.Consumer;
 
-public class NeoEventUtils {
+public final class NeoEventUtils {
+    private NeoEventUtils() {
+    }
+
     public static <T extends Event> void registerEvent(IEventBus eventBus, Class<T> eventClass, Consumer<T> consumer) {
         eventBus.addListener(EventPriority.HIGHEST, eventClass, consumer);
     }

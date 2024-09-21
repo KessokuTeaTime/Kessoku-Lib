@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.events.entity;
 
-import band.kessoku.lib.event.util.NeoEventUtils;
+import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
 import band.kessoku.lib.events.entity.api.EntitySleepEvent;
 import band.kessoku.lib.events.entity.api.ServerLivingEntityEvent;
 import band.kessoku.lib.events.entity.api.ServerPlayerEvent;

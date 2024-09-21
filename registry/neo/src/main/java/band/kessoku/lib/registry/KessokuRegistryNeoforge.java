@@ -16,7 +16,7 @@
 package band.kessoku.lib.registry;
 
 import band.kessoku.lib.base.ModUtils;
-import band.kessoku.lib.event.util.NeoEventUtils;
+import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
 import band.kessoku.lib.registry.api.FuelRegistry;
 import band.kessoku.lib.registry.impl.neo.RegistryImpl;
 import net.minecraft.item.ItemStack;

@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.keybind.impl;
 
-import band.kessoku.lib.event.util.NeoEventUtils;
+import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
 import band.kessoku.lib.keybind.api.KeyBindRegister;
 import band.kessoku.lib.keybind.mixin.KeyBindingAccessor;
 import com.google.auto.service.AutoService;
