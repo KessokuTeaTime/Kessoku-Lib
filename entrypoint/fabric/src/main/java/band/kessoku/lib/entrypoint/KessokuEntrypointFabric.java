@@ -27,22 +27,18 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
 
-public class KessokuEntrypointFabric implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer, PreLaunchEntrypoint {
-
+public final class KessokuEntrypointFabric implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer, PreLaunchEntrypoint {
     @Override
     public void onInitialize() {
         ModUtils.getLogger().info(KessokuEntrypoint.MARKER, "KessokuLib-Entrypoint is loaded!");
-        FabricLoader.getInstance().invokeEntrypoints("kMain", KessokuModInitializer.class, KessokuModInitializer::onInitialize);
     }
 
     @Override
     public void onInitializeClient() {
-        FabricLoader.getInstance().invokeEntrypoints("kClient", KessokuClientModInitializer.class, KessokuClientModInitializer::onInitializeClient);
     }
 
     @Override
     public void onInitializeServer() {
-        FabricLoader.getInstance().invokeEntrypoints("kServer", KessokuDedicatedServerModInitializer.class, KessokuDedicatedServerModInitializer::onInitializeServer);
     }
 
     @Override

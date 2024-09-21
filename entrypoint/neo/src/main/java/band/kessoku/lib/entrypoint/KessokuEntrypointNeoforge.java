@@ -19,8 +19,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 
 @Mod(KessokuEntrypoint.MOD_ID)
-public final class KessokuEntrypointEntrypoint {
-    public KessokuEntrypointEntrypoint(Dist dist) {
+public final class KessokuEntrypointNeoforge {
+    public KessokuEntrypointNeoforge() {
     }
 
     public static void init() {

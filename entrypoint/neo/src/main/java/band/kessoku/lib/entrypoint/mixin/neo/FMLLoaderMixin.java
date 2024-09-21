@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.entrypoint.mixin;
+package band.kessoku.lib.entrypoint.mixin.neo;
 
-import band.kessoku.lib.entrypoint.KessokuEntrypoint;
-import band.kessoku.lib.entrypoint.KessokuEntrypointEntrypoint;
+import band.kessoku.lib.entrypoint.KessokuEntrypointNeoforge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,6 +27,6 @@ import net.neoforged.fml.loading.FMLLoader;
 public class FMLLoaderMixin {
     @Inject(method = "beforeStart", at = @At("HEAD"))
     private static void preLaunch(ModuleLayer gameLayer, CallbackInfo ci) {
-        KessokuEntrypointEntrypoint.init();
+        KessokuEntrypointNeoforge.init();
     }
 }
