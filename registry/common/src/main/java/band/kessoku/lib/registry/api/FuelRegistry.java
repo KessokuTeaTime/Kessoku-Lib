@@ -123,7 +123,7 @@ public class FuelRegistry<T extends Recipe<?>> {
 
     @ApiStatus.Internal
     public static boolean canBurn(ItemStack stack) {
-        return fuelRegistries.values().stream().map(registry -> registry.get(stack)).anyMatch(time -> time != null && time != 0);
+        return fuelRegistries.values().stream().map(registry -> registry.get(stack)).anyMatch(time -> time > 0);
     }
 
     public void remove(ItemConvertible item) {
