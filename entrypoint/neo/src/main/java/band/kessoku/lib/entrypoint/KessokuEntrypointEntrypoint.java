@@ -23,7 +23,9 @@ import com.google.common.collect.ImmutableList;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforgespi.language.IModInfo;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,28 +41,45 @@ public final class KessokuEntrypointEntrypoint {
         registerEntrypoint("kServer", KessokuDedicatedServerModInitializer.class);
     }
 
-    @SuppressWarnings("unchecked")
     public static  <T> void registerEntrypoint(String entrypointName, Class<T> initializer) {
         if (entrypointMap.containsKey(entrypointName)) throw new UnsupportedOperationException();
         final ImmutableList.Builder<T> builder = ImmutableList.builder();
+
         ModList.get().getMods().forEach(info -> {
             try {
-                Map<String, Object> properties = info.getModProperties();
-                if (properties.containsKey(entrypointName)) {
-                    Object entrypointList = properties.get(entrypointName);
-                    if (!(entrypointList instanceof List)) throw new IllegalArgumentException();
-                    if (!ModUtils.isType((List<?>) entrypointList, String.class)) {
-                        for (Object entrypoint : ((List<?>) entrypointList)) {
-                            Class<?> clazz = Class.forName((String) entrypoint);
-                            if (!clazz.isAssignableFrom(initializer)) throw new IllegalArgumentException();
-                            builder.add((T) clazz.getConstructor().newInstance());
-                        }
-                    }
-                }
+                modinfoHandler(info, entrypointName, initializer, builder);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         });
+
         entrypointMap.put(entrypointName, builder.build());
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> void modinfoHandler(IModInfo info, String entrypointName, Class<T> initializer,
+                                           ImmutableList.Builder<T> builder) throws Exception {
+        Map<String, Object> properties = info.getModProperties();
+        if (!properties.containsKey(entrypointName)) {
+            return;
+        }
+
+        Object entrypointList = properties.get(entrypointName);
+
+        if (!(entrypointList instanceof List)) {
+            throw new RuntimeException(new IllegalArgumentException());
+        }
+
+        if (ModUtils.isType((List<?>) entrypointList, String.class)) {
+            return;
+        }
+
+        for (Object entrypoint : ((List<?>) entrypointList)) {
+            Class<?> clazz = Class.forName((String) entrypoint);
+            if (!clazz.isAssignableFrom(initializer)) {
+                throw new RuntimeException(new IllegalArgumentException());
+            }
+            builder.add((T) clazz.getConstructor().newInstance());
+        }
     }
 }
