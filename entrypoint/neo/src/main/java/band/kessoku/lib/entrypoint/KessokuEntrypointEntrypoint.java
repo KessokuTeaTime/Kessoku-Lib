@@ -48,7 +48,10 @@ public final class KessokuEntrypointEntrypoint {
                 Map<String, Object> properties = info.getModProperties();
                 if (properties.containsKey(entrypointName)) {
                     Object entrypointList = properties.get(entrypointName);
-                    if (!(entrypointList instanceof List)) throw new IllegalArgumentException();
+                    if (!(entrypointList instanceof List)) {
+                        throw new IllegalArgumentException();
+                    }
+
                     if (!ModUtils.isType((List<?>) entrypointList, String.class)) {
                         for (Object entrypoint : ((List<?>) entrypointList)) {
                             Class<?> clazz = Class.forName((String) entrypoint);
