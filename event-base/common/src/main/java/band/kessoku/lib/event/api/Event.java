@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.function.Function;
 
 public interface Event<T> {
-
     T invoker();
 
     void register(T listener, EventPhase phase);

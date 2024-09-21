@@ -18,7 +18,7 @@ package band.kessoku.lib.registry;
 import band.kessoku.lib.base.ModUtils;
 import band.kessoku.lib.event.util.NeoEventUtils;
 import band.kessoku.lib.registry.api.FuelRegistry;
-import band.kessoku.lib.registry.impl.RegistryImpl;
+import band.kessoku.lib.registry.impl.neo.RegistryImpl;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
 import net.neoforged.bus.api.IEventBus;
@@ -31,8 +31,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Mod(KessokuRegistry.MOD_ID)
-public class KessokuRegistryEntrypoint {
-    public KessokuRegistryEntrypoint(IEventBus modEventBus) {
+public class KessokuRegistryNeoforge {
+    public KessokuRegistryNeoforge(IEventBus modEventBus) {
         ModUtils.getLogger().info(KessokuRegistry.MARKER, "KessokuLib-Registry is loaded!");
         NeoEventUtils.registerEvent(modEventBus, RegisterEvent.class, RegistryImpl::onRegister);
         NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, FurnaceFuelBurnTimeEvent.class, event -> {

@@ -16,11 +16,11 @@
 package band.kessoku.lib.platform;
 
 import band.kessoku.lib.base.ModUtils;
-import net.fabricmc.api.ModInitializer;
+import net.neoforged.fml.common.Mod;
 
-public class KessokuPlatformEntrypoint implements ModInitializer {
-    @Override
-    public void onInitialize() {
+@Mod(KessokuPlatform.MOD_ID)
+public class KessokuPlatformNeoforge {
+    public KessokuPlatformNeoforge() {
         ModUtils.getLogger().info(KessokuPlatform.MARKER, "KessokuLib-Platform is loaded!");
     }
 }

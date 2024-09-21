@@ -13,21 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package kessoku.testmod.keybind;
+package band.kessoku.lib.entrypoint.api.entrypoints;
 
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
-import band.kessoku.lib.keybind.api.KeyBindRegister;
-import net.minecraft.client.option.KeyBinding;
-
-public class KessokuTestKeybind implements KessokuModInitializer {
-    @Override
-    public void onInitialize() {
-        KeyBindRegister.getInstance().register(
-                new KeyBinding(
-                "Test Name",
-                0,
-                "Test Category"
-                )
-        );
-    }
+@FunctionalInterface
+public interface KessokuPreLaunchEntrypoint {
+    void onPreLaunch();
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.platform.impl;
+package band.kessoku.lib.platform.impl.neo;
 
 import band.kessoku.lib.platform.api.ModDependencyInfo;
 import net.neoforged.neoforgespi.language.IModInfo;

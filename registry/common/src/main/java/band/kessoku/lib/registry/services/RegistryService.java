@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.registry.impl;
+package band.kessoku.lib.registry.services;
 
 import band.kessoku.lib.base.ModUtils;
-import band.kessoku.lib.registry.api.Registry;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
-public class KessokuRegistryServices {
-    private static final Registry registry = ModUtils.loadService(Registry.class);
-
-    public static Registry getRegistry() {
-        return registry;
+@SuppressWarnings("unused")
+public interface RegistryService {
+    static RegistryService getInstance() {
+        return ModUtils.loadService(RegistryService.class);
     }
+    <V, T extends V> T register(Registry<V> registry, Identifier id, T entry);
 }

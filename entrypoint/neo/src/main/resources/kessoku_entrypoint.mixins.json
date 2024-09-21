@@ -1,9 +1,9 @@
 {
   "required": true,
-  "package": "band.kessoku.lib.registry.mixin.fabric",
+  "package": "band.kessoku.lib.entrypoint.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AbstractFurnaceBlockEntityMixin"
+    "FMLLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

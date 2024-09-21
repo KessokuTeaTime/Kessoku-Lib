@@ -15,7 +15,7 @@
  */
 package kessoku.testmod.event;
 
-import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
+import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
 import band.kessoku.lib.event.api.Event;
 
 public class KessokuTestEvent implements KessokuModInitializer {

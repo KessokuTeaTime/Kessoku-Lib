@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.entrypoint.api;
+package band.kessoku.lib.registry;
 
-@FunctionalInterface
-public interface KessokuDedicatedServerModInitializer {
-    /**
-     * Runs the mod initializer on the server environment.
-     */
-    void onInitializeServer();
+import band.kessoku.lib.base.ModUtils;
+import net.fabricmc.api.ModInitializer;
+
+public class KessokuRegistryFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+        ModUtils.getLogger().info(KessokuRegistry.MARKER, "KessokuLib-Registry is loaded!");
+    }
 }

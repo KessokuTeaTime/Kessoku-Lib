@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.registry.impl;
+package band.kessoku.lib.entrypoint.api.entrypoints;
 
-import band.kessoku.lib.registry.api.Registry;
-import com.google.auto.service.AutoService;
-import net.minecraft.util.Identifier;
-
-@AutoService(Registry.class)
-public class RegistryImpl implements Registry {
-    @Override
-    public <V, T extends V> T registerInternal(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
-        return net.minecraft.registry.Registry.register(registry, id, entry);
-    }
+@FunctionalInterface
+public interface KessokuDedicatedServerModInitializer {
+    /**
+     * Runs the mod initializer on the server environment.
+     */
+    void onInitializeServer();
 }

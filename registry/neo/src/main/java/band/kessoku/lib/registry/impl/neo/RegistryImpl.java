@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.registry.impl;
+package band.kessoku.lib.registry.impl.neo;
 
-import band.kessoku.lib.registry.api.Registry;
+import band.kessoku.lib.registry.services.RegistryService;
 import com.google.auto.service.AutoService;
 import com.google.common.collect.Maps;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.jetbrains.annotations.ApiStatus;
@@ -26,10 +27,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-@AutoService(Registry.class)
+@AutoService(RegistryService.class)
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class RegistryImpl implements Registry {
-    private static final Map<net.minecraft.registry.Registry, Map<Identifier, Object>> registries = new ConcurrentHashMap<>();
+public class RegistryImpl implements RegistryService {
+    private static final Map<Registry, Map<Identifier, Object>> registries = new ConcurrentHashMap<>();
     private static boolean registered = false;
 
     @ApiStatus.Internal
@@ -39,7 +40,7 @@ public class RegistryImpl implements Registry {
     }
 
     @Override
-    public <V, T extends V> T registerInternal(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
+    public <V, T extends V> T register(Registry<V> registry, Identifier id, T entry) {
         if (registered) {
             throw new IllegalStateException("Cannot register new entries after net.neoforged.neoforge.registries.RegisterEvent has been fired.");
         }

@@ -5,6 +5,7 @@ base.archivesName = rootProject.name + "-entrypoint"
 
 kessoku {
     module("base", "common")
+    module("platform", "common")
 }
 
 dependencies {

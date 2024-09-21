@@ -15,6 +15,7 @@
  */
 package band.kessoku.lib.platform.api;
 
+import band.kessoku.lib.platform.services.ModLoaderService;
 import org.jetbrains.annotations.Nullable;
 
 public interface ModDependencyInfo {
@@ -88,7 +89,7 @@ public interface ModDependencyInfo {
          */
         @Nullable
         public String getKey() {
-            return ModLoader.getInstance().isFabric() ? fabricKey : neoKey;
+            return ModLoaderService.getInstance().isFabric() ? fabricKey : neoKey;
         }
     }
 }

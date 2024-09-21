@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.registry.mixin;
+package band.kessoku.lib.registry.mixin.fabric;
 
 import band.kessoku.lib.registry.api.FuelRegistry;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;

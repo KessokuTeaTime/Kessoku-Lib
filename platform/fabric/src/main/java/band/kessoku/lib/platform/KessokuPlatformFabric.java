@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.platform.impl;
+package band.kessoku.lib.platform;
 
 import band.kessoku.lib.base.ModUtils;
-import band.kessoku.lib.platform.api.ModLoader;
+import net.fabricmc.api.ModInitializer;
 
-public class KessokuPlatformServices {
-    private static final ModLoader modLoader = ModUtils.loadService(ModLoader.class);
-
-    public static ModLoader getModLoader() {
-        return modLoader;
+public class KessokuPlatformFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
+        ModUtils.getLogger().info(KessokuPlatform.MARKER, "KessokuLib-Platform is loaded!");
     }
 }

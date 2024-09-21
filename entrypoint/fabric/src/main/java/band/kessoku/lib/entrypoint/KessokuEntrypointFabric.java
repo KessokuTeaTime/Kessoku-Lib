@@ -15,25 +15,19 @@
  */
 package band.kessoku.lib.entrypoint;
 
+
 import band.kessoku.lib.base.ModUtils;
-import band.kessoku.lib.entrypoint.api.KessokuClientModInitializer;
-import band.kessoku.lib.entrypoint.api.KessokuDedicatedServerModInitializer;
-import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
-import com.google.common.collect.ImmutableMap;
+import band.kessoku.lib.entrypoint.api.entrypoints.KessokuClientModInitializer;
+import band.kessoku.lib.entrypoint.api.entrypoints.KessokuDedicatedServerModInitializer;
+import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
 
-import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Map;
-
-public class KessokuEntrypointEntrypoint implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer, PreLaunchEntrypoint {
-    private static ImmutableMap<String,KessokuInfo> modInfoList;
+public class KessokuEntrypointFabric implements ModInitializer, ClientModInitializer, DedicatedServerModInitializer, PreLaunchEntrypoint {
 
     @Override
     public void onInitialize() {
@@ -53,24 +47,6 @@ public class KessokuEntrypointEntrypoint implements ModInitializer, ClientModIni
 
     @Override
     public void onPreLaunch() {
-        for (ModContainer modContainer : FabricLoader.getInstance().getAllMods()) {
-            Path path = modContainer.findPath("kessoku.json").orElse(null);
-            if (path == null) continue;
-
-            try {
-                String json = Files.readString(path);
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to read accessWidener file from mod " + modContainer.getMetadata().getId(), e);
-            }
-        }
-    }
-
-    public record KessokuInfo(Map<String, EntrypointInfo<?>> entrypointMap) {
-    }
-
-    public record EntrypointInfo<T>(Class<T> entrypoint, T instance) {
-        public static <K> EntrypointInfo<K> create(Class<K> entrypoint) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-            return new EntrypointInfo<>(entrypoint, entrypoint.getDeclaredConstructor().newInstance());
-        }
+        KessokuEntrypoint.init();
     }
 }

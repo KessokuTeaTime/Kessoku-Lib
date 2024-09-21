@@ -15,7 +15,7 @@
  */
 package kessoku.testmod.lifecycle;
 
-import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
+import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
 import band.kessoku.lib.events.lifecycle.api.LifecycleEvent;
 
 public class CommonLifecycleTest implements KessokuModInitializer {

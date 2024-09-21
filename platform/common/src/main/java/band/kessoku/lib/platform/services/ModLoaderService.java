@@ -13,14 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.platform;
+package band.kessoku.lib.platform.services;
 
 import band.kessoku.lib.base.ModUtils;
-import net.neoforged.fml.common.Mod;
+import band.kessoku.lib.platform.api.Env;
+import band.kessoku.lib.platform.api.ModData;
 
-@Mod(KessokuPlatform.MOD_ID)
-public class KessokuPlatformEntrypoint {
-    public KessokuPlatformEntrypoint() {
-        ModUtils.getLogger().info(KessokuPlatform.MARKER, "KessokuLib-Platform is loaded!");
+import java.nio.file.Path;
+import java.util.Collection;
+
+public interface ModLoaderService {
+    static ModLoaderService getInstance() {
+        return ModUtils.loadService(ModLoaderService.class);
     }
+
+    ModData getModData(String modid);
+    boolean isFabric();
+    boolean isNeoForge();
+    Env getEnv();
+    Path getGameFolder();
+    Path getConfigFolder();
+    Path getModsFolder();
+    boolean isModLoaded(String id);
+    Collection<String> getModIds();
+    Collection<? extends ModData> getMods();
+    boolean isDevEnv();
 }
