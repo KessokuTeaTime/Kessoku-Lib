@@ -46,7 +46,7 @@ public final class RegistryImpl implements RegistryService {
         }
 
         final var map = Objects.requireNonNull(registries.putIfAbsent(registry, Maps.newHashMap()));
-        if (map.putIfAbsent(id, entry) != null) {
+        if (map.putIfAbsent(id, entry) == null) {
             throw new IllegalArgumentException("Duplicate registration " + id.toString());
         }
 

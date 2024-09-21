@@ -15,18 +15,8 @@
  */
 package band.kessoku.lib.entrypoint;
 
-import band.kessoku.lib.base.ModUtils;
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuClientModInitializer;
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuDedicatedServerModInitializer;
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
-import com.google.common.collect.ImmutableList;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Mod(KessokuEntrypoint.MOD_ID)
 public final class KessokuEntrypointEntrypoint {

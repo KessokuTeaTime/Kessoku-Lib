@@ -31,12 +31,10 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Poor compatibility in Fabric
@@ -88,10 +86,20 @@ public final class FuelRegistry<T extends Recipe<?>> {
     /**
      * Get current modification in KessokuLib.
      */
-    @Nullable
-    public Integer get(ItemConvertible item) {
+    public int get(ItemConvertible item) {
         if (this.itemRegistries.containsKey(item))
             return this.itemRegistries.get(item);
+
+        final RegistryEntry.Reference<Item> itemReference = item.asItem().getRegistryEntry();
+        final var tag = this.tagRegistries.keySet()
+                .stream()
+                .filter(itemReference::isIn)
+                .findFirst()
+                .orElse(null);
+
+        return Objects.nonNull(tag) ? this.tagRegistries.get(tag) : -1;
+
+        /*
         final ArrayList<TagKey<Item>> tags = new ArrayList<>(this.tagRegistries.keySet());
         Collections.reverse(tags);
         RegistryEntry.Reference<Item> itemReference = item.asItem().getRegistryEntry();
@@ -99,28 +107,26 @@ public final class FuelRegistry<T extends Recipe<?>> {
             if (itemReference.isIn(tag)) return this.tagRegistries.getInt(tag);
         }
         return null;
+        */
     }
 
     /**
      * Get current modification in KessokuLib.
      */
-    @Nullable
-    public Integer get(ItemWithData data) {
-        if (this.dataRegistries.containsKey(data)) return this.dataRegistries.getInt(data);
-        return this.get(data.item());
+    public int get(ItemWithData data) {
+        return this.dataRegistries.getOrDefault(data, this.get(data.item()));
     }
 
     /**
      * Get current modification in KessokuLib.
      */
-    @Nullable
-    public Integer get(ItemStack stack) {
+    public int get(ItemStack stack) {
         return this.get(ItemWithData.of(stack));
     }
 
     @ApiStatus.Internal
     public static boolean canBurn(ItemStack stack) {
-        return fuelRegistries.values().stream().map(registry -> registry.get(stack)).anyMatch(time -> time != null && time != 0);
+        return fuelRegistries.values().stream().map(registry -> registry.get(stack)).anyMatch(time -> time > 0);
     }
 
     public void remove(ItemConvertible item) {

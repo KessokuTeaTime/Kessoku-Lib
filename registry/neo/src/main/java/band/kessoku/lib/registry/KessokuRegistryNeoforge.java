@@ -28,7 +28,6 @@ import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Mod(KessokuRegistry.MOD_ID)
 public final class KessokuRegistryNeoforge {
@@ -38,7 +37,11 @@ public final class KessokuRegistryNeoforge {
         NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, FurnaceFuelBurnTimeEvent.class, event -> {
             final ItemStack stack = event.getItemStack();
             final RecipeType<?> recipeType = Objects.requireNonNullElse(event.getRecipeType(), RecipeType.SMELTING);
-            Optional.ofNullable(FuelRegistry.of(recipeType).get(stack)).ifPresent(event::setBurnTime);
+
+            int burnTime;
+            if ((burnTime = FuelRegistry.of(recipeType).get(stack)) <= 0) {
+                event.setBurnTime(burnTime);
+            }
         });
     }
 }
