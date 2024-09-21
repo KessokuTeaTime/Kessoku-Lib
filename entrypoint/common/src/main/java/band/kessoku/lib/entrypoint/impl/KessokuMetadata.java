@@ -43,7 +43,7 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
                 switch (pair.getKey()) {
                     case "entrypoint" -> parseEntrypoint(entrypoints, pair.getValue(), modid);
                     case "languageAdapters" -> parseLanguageAdapters(languageAdapters, pair.getValue(), modid);
-                    case null, default -> throw new IllegalArgumentException();
+                    default -> throw new IllegalArgumentException();
                 }
             }
             return new KessokuMetadata(entrypoints, languageAdapters,modid);
@@ -58,6 +58,7 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
         ((MapNode) node).forEach(pair -> {
             // normalize value
             final JsonNode<?> rawValue = pair.getValue();
+            // TODO
             final List<EntrypointMetadata> entrypointMetadataList = switch (rawValue.getType()) {
                 case Map -> parseObjectEntrypoint((MapNode) rawValue);
                 case String -> List.of(new EntrypointMetadata() {
