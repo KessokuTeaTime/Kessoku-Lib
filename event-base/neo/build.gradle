@@ -2,7 +2,6 @@ import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
-group = "band.kessoku.lib.event"
 base.archivesName = rootProject.name + "-event-base"
 
 kessoku {
