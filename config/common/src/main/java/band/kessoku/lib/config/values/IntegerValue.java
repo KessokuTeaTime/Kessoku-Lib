@@ -13,30 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.config.api.values;
+package band.kessoku.lib.config.values;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public final class DoubleValue extends DefaultConfigValue<Double> {
-    private DoubleValue(Supplier<Double> defaultValue) {
+public final class IntegerValue extends DefaultConfigValue<Integer> {
+    private IntegerValue(Supplier<Integer> defaultValue) {
         super(defaultValue);
     }
 
     @Override
     public Type getType() {
-        return Type.DOUBLE;
+        return Type.INTEGER;
     }
 
     @Contract("_ -> new")
-    public static @NotNull DoubleValue of(double d) {
-        return new DoubleValue(() -> d);
+    public static @NotNull IntegerValue of(int integer) {
+        return new IntegerValue(() -> integer);
     }
 
     @Contract("_ -> new")
-    public static @NotNull DoubleValue of(Supplier<Double> doubleSupplier) {
-        return new DoubleValue(doubleSupplier);
+    public static @NotNull IntegerValue of(Supplier<Integer> integerSupplier) {
+        return new IntegerValue(integerSupplier);
     }
 }

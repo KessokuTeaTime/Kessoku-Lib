@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.config.api.values;
+package band.kessoku.lib.config.values;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
