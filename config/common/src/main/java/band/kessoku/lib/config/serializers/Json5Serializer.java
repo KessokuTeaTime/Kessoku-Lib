@@ -45,9 +45,13 @@ public class Json5Serializer implements ConfigSerializer {
         Json5Builder builder = new Json5Builder();
         Json5Builder.ObjectBean objectBean = builder.getObjectBean();
         value.forEach((s, valueWithComment) -> {
-            for (String comment : valueWithComment.comments()) objectBean.addNote(comment);
-            if (valueWithComment.object() instanceof Map<?, ?>)
+            for (String comment : valueWithComment.comments()) {
+                objectBean.addNote(comment);
+            }
+
+            if (valueWithComment.object() instanceof Map<?, ?>) {
                 objectBean.addBean(s, this.toBean((Map<String, AbstractConfig.ValueWithComment>) valueWithComment.object()));
+            }
         });
         return objectBean;
     }
