@@ -18,7 +18,7 @@ package kessoku.testmod.lifecycle;
 import java.util.ArrayList;
 import java.util.List;
 
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
 import band.kessoku.lib.events.lifecycle.api.ServerEntityEvent;
 
 import net.minecraft.entity.Entity;

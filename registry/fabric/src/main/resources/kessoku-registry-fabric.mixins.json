@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "band.kessoku.lib.registry.mixin.fabric",
+  "package": "band.kessoku.lib.mixins.registry.fabric",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractFurnaceBlockEntityMixin"

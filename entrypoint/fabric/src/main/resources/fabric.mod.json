@@ -16,16 +16,16 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.entrypoint.KessokuEntrypointFabric"
+      "band.kessoku.lib.impl.entrypoint.fabric.KessokuEntrypointFabric"
     ],
     "client": [
-      "band.kessoku.lib.entrypoint.KessokuEntrypointFabric"
+      "band.kessoku.lib.impl.entrypoint.fabric.KessokuEntrypointFabric"
     ],
     "server": [
-      "band.kessoku.lib.entrypoint.KessokuEntrypointFabric"
+      "band.kessoku.lib.impl.entrypoint.fabric.KessokuEntrypointFabric"
     ],
     "preLaunch": [
-      "band.kessoku.lib.entrypoint.KessokuEntrypointFabric"
+      "band.kessoku.lib.impl.entrypoint.fabric.KessokuEntrypointFabric"
     ]
   },
   "environment": "*",

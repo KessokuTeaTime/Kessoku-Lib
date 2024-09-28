@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixins.data",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

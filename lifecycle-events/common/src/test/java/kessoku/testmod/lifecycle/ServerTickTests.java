@@ -18,7 +18,7 @@ package kessoku.testmod.lifecycle;
 import java.util.HashMap;
 import java.util.Map;
 
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuModInitializer;
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
 import band.kessoku.lib.events.lifecycle.api.ServerTickEvent;
 
 import net.minecraft.registry.RegistryKey;

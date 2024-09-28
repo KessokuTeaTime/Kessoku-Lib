@@ -1,9 +1,9 @@
 package band.kessoku.lib.data.example;
 
-import band.kessoku.lib.data.impl.collection.Access;
-import band.kessoku.lib.data.impl.structure.IntPropertyStructure;
-import band.kessoku.lib.data.impl.structure.ProgressStructure;
-import band.kessoku.lib.data.impl.structure.SidedInventoryStructure;
+import band.kessoku.lib.impl.data.collection.Access;
+import band.kessoku.lib.impl.data.structure.IntPropertyStructure;
+import band.kessoku.lib.impl.data.structure.ProgressStructure;
+import band.kessoku.lib.impl.data.structure.SidedInventoryStructure;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
+// TODO consider moving to tests
 public abstract class SimpleFunraceBlockEntity extends BlockEntity implements NamedScreenHandlerFactory {
     public final SidedInventoryStructure items = integrate(new SidedInventoryStructure("Items",2));
     public final ProgressStructure progress = integrate(ProgressStructure.create("CookProgress", 200));

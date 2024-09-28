@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.events.entity.KessokuEntityEventFabric"
+      "band.kessoku.lib.impl.events.entity.fabric.KessokuEntityEventsFabric"
     ]
   },
   "environment": "*",

@@ -15,7 +15,7 @@ authors = "Kessoku Tea Time"
 displayURL = "https://modrinth.com/mod/kessoku-lib"
 
 [[mixins]]
-config = "kessoku-entity-events.mixins.json"
+config = "kessoku_entity_events-neo.mixins.json"
 
 [[dependencies.kessoku_entity_events]]
 modId = "neoforge"

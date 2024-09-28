@@ -15,7 +15,7 @@
  */
 package kessoku.testmod.lifecycle.client;
 
-import band.kessoku.lib.entrypoint.api.entrypoints.KessokuClientModInitializer;
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuClientModInitializer;
 import band.kessoku.lib.events.lifecycle.api.client.ClientChunkEvent;
 
 public class ClientChunkTests implements KessokuClientModInitializer {

@@ -3,7 +3,7 @@
   "id": "kessoku_base",
   "version": "${version}",
   "name": "Kessoku Base",
-  "description": "Provide some basic API.",
+  "description": "Kessoku base API.",
   "authors": [
     "Kessoku Tea Time"
   ],
@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.base.KessokuBaseFabric"
+      "band.kessoku.lib.impl.base.fabric.KessokuBaseFabric"
     ]
   },
   "environment": "*",

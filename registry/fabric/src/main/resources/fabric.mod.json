@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.registry.KessokuRegistryFabric"
+      "band.kessoku.lib.impl.registry.fabric.KessokuRegistryFabric"
     ]
   },
   "environment": "*",

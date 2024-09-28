@@ -16,7 +16,7 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.data.KessokuDataFabric"
+      "band.kessoku.lib.impl.data.fabric.KessokuDataFabric"
     ]
   },
   "environment": "*",
@@ -27,7 +27,7 @@
     "fabric-api": "*"
   },
   "mixins": [
-    "kessoku-data-fabric.mixins.json"
+    "kessoku_data.mixins.json"
   ],
   "custom": {
     "modmenu": {
