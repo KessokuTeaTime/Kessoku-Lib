@@ -16,6 +16,7 @@
 package band.kessoku.lib.event;
 
 import band.kessoku.lib.impl.base.KessokuUtils;
+
 import net.fabricmc.api.ModInitializer;
 
 public final class KessokuEventBaseEntrypoint implements ModInitializer {

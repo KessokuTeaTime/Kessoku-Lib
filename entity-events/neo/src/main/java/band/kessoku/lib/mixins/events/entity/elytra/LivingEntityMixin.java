@@ -16,14 +16,15 @@
 package band.kessoku.lib.mixins.events.entity.elytra;
 
 import band.kessoku.lib.api.events.entity.EntityElytraEvent;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 @Mixin(LivingEntity.class)

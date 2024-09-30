@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
-import band.kessoku.lib.events.lifecycle.api.ServerEntityEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerEntityEvent;
 
 import net.minecraft.entity.Entity;
 

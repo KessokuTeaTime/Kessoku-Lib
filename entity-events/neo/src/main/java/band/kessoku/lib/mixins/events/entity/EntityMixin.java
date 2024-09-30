@@ -15,20 +15,21 @@
  */
 package band.kessoku.lib.mixins.events.entity;
 
+import java.util.Set;
+
 import band.kessoku.lib.api.events.entity.ServerEntityWorldChangeEvent;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.packet.s2c.play.PositionFlag;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.TeleportTarget;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Set;
+import net.minecraft.entity.Entity;
+import net.minecraft.network.packet.s2c.play.PositionFlag;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.TeleportTarget;
+import net.minecraft.world.World;
 
 @Mixin(Entity.class)
 abstract class EntityMixin {

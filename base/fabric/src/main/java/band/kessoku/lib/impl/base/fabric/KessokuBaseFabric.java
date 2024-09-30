@@ -17,6 +17,7 @@ package band.kessoku.lib.impl.base.fabric;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.KessokuBase;
+
 import net.fabricmc.api.ModInitializer;
 
 public final class KessokuBaseFabric implements ModInitializer {

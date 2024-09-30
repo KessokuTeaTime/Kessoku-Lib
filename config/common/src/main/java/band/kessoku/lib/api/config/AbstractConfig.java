@@ -15,16 +15,6 @@
  */
 package band.kessoku.lib.api.config;
 
-import band.kessoku.lib.impl.base.KessokuUtils;
-import band.kessoku.lib.api.config.annotations.Comment;
-import band.kessoku.lib.api.config.annotations.Comments;
-import band.kessoku.lib.api.config.annotations.Name;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.core.util.ReflectionUtil;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,6 +25,16 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+
+import band.kessoku.lib.api.config.annotations.Comment;
+import band.kessoku.lib.api.config.annotations.Comments;
+import band.kessoku.lib.api.config.annotations.Name;
+import band.kessoku.lib.impl.base.KessokuUtils;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.logging.log4j.core.util.ReflectionUtil;
 
 @SuppressWarnings({"rawtypes", "unused"})
 public abstract class AbstractConfig {

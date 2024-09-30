@@ -15,17 +15,17 @@
  */
 package band.kessoku.lib.api.config.values;
 
-import com.google.common.collect.ImmutableMap;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.Unmodifiable;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
+
+import com.google.common.collect.ImmutableMap;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 public final class MapValue<K, V> extends DefaultConfigValue<Map<K, V>> implements Map<K, V> {
     private MapValue(Supplier<Map<K, V>> defaultValue) {

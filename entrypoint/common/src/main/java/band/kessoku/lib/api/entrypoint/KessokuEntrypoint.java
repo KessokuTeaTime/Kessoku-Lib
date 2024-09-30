@@ -19,11 +19,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+import band.kessoku.lib.api.platform.ModData;
+import band.kessoku.lib.api.platform.ModLoader;
 import band.kessoku.lib.impl.base.KessokuUtils;
 import band.kessoku.lib.impl.entrypoint.JavaLanguageAdapter;
 import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.api.platform.ModLoader;
 import club.someoneice.json.JSON;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;

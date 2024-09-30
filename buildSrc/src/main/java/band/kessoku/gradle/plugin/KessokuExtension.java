@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
-public abstract class KesssokuExtension {
+public abstract class KessokuExtension {
     @Inject
     protected abstract Project getProject();
 

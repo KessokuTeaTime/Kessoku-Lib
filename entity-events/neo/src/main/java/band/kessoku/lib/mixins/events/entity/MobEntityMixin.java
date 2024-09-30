@@ -17,11 +17,12 @@ package band.kessoku.lib.mixins.events.entity;
 
 import band.kessoku.lib.api.events.entity.ServerLivingEntityEvent;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.mob.MobEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.mob.MobEntity;
 
 @Mixin(MobEntity.class)
 public class MobEntityMixin {

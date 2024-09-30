@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.event.api.util.neo;
 
+import java.util.function.Consumer;
+
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
-
-import java.util.function.Consumer;
 
 public final class NeoEventUtils {
     private NeoEventUtils() {

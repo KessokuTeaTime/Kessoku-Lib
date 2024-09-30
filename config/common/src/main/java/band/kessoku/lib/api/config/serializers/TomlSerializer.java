@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.api.config.serializers;
 
+import java.util.Map;
+
 import band.kessoku.lib.api.config.AbstractConfig;
 import band.kessoku.lib.api.config.ConfigSerializer;
 import com.electronwill.nightconfig.core.CommentedConfig;
-
-import java.util.Map;
 
 //todo
 public class TomlSerializer implements ConfigSerializer {

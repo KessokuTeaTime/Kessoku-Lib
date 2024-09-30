@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
-import band.kessoku.lib.events.lifecycle.api.ServerTickEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerTickEvent;
 
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.World;

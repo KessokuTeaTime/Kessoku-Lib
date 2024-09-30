@@ -13,43 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.events.lifecycle.api.client;
+package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
 
-public class ClientEntityEvent {
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.chunk.WorldChunk;
+
+public class ServerChunkEvent {
 
     /**
-     * Called when an Entity is loaded into a ClientWorld.
+     * Called when a chunk is loaded into a ServerWorld.
      *
      * <p>When this event is called, the chunk is already in the world.
      */
-    public static final Event<Loaded> LOADED = Event.of(loadeds -> (entity, world) -> {
+    public static final Event<Loaded> LOADED = Event.of(loadeds -> (serverWorld, chunk) -> {
         for (Loaded loaded : loadeds) {
-            loaded.onLoaded(entity, world);
+            loaded.onChunkLoaded(serverWorld, chunk);
         }
     });
 
     /**
-     * Called when an Entity is about to be unloaded from a ClientWorld.
+     * Called when a chunk is unloaded from a ServerWorld.
      *
-     * <p>This event is called before the entity is unloaded from the world.
+     * <p>When this event is called, the chunk is still present in the world.
      */
-    public static final Event<Unloaded> UNLOADED = Event.of(unloadeds -> (entity, world) -> {
+    public static final Event<Unloaded> UNLOADED = Event.of(unloadeds -> (serverWorld, chunk) -> {
         for (Unloaded unloaded : unloadeds) {
-            unloaded.onUnloaded(entity, world);
+            unloaded.onChunkUnloaded(serverWorld, chunk);
         }
     });
 
     @FunctionalInterface
     public interface Loaded {
-        void onLoaded(Entity entity, ClientWorld world);
+        void onChunkLoaded(ServerWorld world, WorldChunk chunk);
     }
 
     @FunctionalInterface
     public interface Unloaded {
-        void onUnloaded(Entity entity, ClientWorld world);
+        void onChunkUnloaded(ServerWorld world, WorldChunk chunk);
     }
 }

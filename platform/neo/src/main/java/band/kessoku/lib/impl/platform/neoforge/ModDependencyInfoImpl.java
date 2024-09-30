@@ -16,6 +16,7 @@
 package band.kessoku.lib.impl.platform.neoforge;
 
 import band.kessoku.lib.api.platform.ModDependencyInfo;
+
 import net.neoforged.neoforgespi.language.IModInfo;
 
 public final class ModDependencyInfoImpl implements ModDependencyInfo {

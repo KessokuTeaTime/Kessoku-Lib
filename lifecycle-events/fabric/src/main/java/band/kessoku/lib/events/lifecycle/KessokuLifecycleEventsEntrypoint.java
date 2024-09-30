@@ -15,8 +15,10 @@
  */
 package band.kessoku.lib.events.lifecycle;
 
-import band.kessoku.lib.impl.base.KessokuUtils;
 import band.kessoku.lib.events.lifecycle.impl.KessokuLifecycleEventsImplFabric;
+import band.kessoku.lib.impl.base.KessokuUtils;
+import band.kessoku.lib.impl.event.lifecycle.KessokuLifecycleEvents;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 

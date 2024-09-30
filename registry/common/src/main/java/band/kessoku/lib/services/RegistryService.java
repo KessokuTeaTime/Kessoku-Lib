@@ -16,6 +16,7 @@
 package band.kessoku.lib.services;
 
 import band.kessoku.lib.impl.base.KessokuUtils;
+
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 

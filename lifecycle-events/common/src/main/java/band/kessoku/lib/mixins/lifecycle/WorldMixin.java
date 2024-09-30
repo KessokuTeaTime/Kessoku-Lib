@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.events.lifecycle.mixin;
-
-import band.kessoku.lib.events.lifecycle.impl.LoadedChunksCache;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+package band.kessoku.lib.mixins.lifecycle;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import band.kessoku.lib.impl.event.lifecycle.LoadedChunksCache;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.WorldChunk;
 
 @Mixin(World.class)
 public abstract class WorldMixin implements LoadedChunksCache {

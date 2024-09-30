@@ -16,6 +16,7 @@
 package band.kessoku.lib.impl.command.fabric;
 
 import band.kessoku.lib.api.events.command.CommandRegistryEvent;
+
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 public final class KessokuCommandImpl {

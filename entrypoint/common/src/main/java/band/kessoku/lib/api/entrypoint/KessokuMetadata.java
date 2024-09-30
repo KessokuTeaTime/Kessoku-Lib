@@ -15,15 +15,15 @@
  */
 package band.kessoku.lib.api.entrypoint;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
+
 import band.kessoku.lib.impl.entrypoint.exceptions.KessokuParseException;
 import club.someoneice.json.Pair;
 import club.someoneice.json.api.exception.NodeCastException;
 import club.someoneice.json.node.ArrayNode;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
 
 public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
                               Map<String, LanguageAdapter> languageAdapters, String modid) {

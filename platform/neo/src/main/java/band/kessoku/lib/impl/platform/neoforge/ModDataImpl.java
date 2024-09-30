@@ -15,20 +15,21 @@
  */
 package band.kessoku.lib.impl.platform.neoforge;
 
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.api.platform.ModDependencyInfo;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.moddiscovery.ModFileInfo;
-import net.neoforged.neoforgespi.language.IModFileInfo;
-import net.neoforged.neoforgespi.language.IModInfo;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import band.kessoku.lib.api.platform.ModData;
+import band.kessoku.lib.api.platform.ModDependencyInfo;
+
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.moddiscovery.ModFileInfo;
+import net.neoforged.neoforgespi.language.IModFileInfo;
+import net.neoforged.neoforgespi.language.IModInfo;
 
 public final class ModDataImpl implements ModData {
     private final ModContainer modContainer;

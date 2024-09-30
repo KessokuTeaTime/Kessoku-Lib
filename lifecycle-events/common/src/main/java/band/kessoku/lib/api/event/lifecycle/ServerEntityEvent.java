@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.events.lifecycle.api;
+package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

@@ -16,11 +16,12 @@
 package band.kessoku.lib.api.events.entity;
 
 import band.kessoku.lib.api.events.entity.item.KessokuElytraItem;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ItemStack;
 
 public final class KessokuEntityEvents {
     public static final String MOD_ID = "kessoku_entity_events";

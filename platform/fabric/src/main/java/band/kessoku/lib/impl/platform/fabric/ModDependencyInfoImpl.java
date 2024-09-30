@@ -16,6 +16,7 @@
 package band.kessoku.lib.impl.platform.fabric;
 
 import band.kessoku.lib.api.platform.ModDependencyInfo;
+
 import net.fabricmc.loader.api.metadata.ModDependency;
 
 public final class ModDependencyInfoImpl implements ModDependencyInfo {

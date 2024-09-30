@@ -16,10 +16,11 @@
 package band.kessoku.lib.api.events.entity;
 
 import band.kessoku.lib.event.api.Event;
+import org.jetbrains.annotations.ApiStatus;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;
-import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Events related to entities in combat.

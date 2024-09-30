@@ -16,15 +16,17 @@
 package band.kessoku.lib.impl.events.entity;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.events.entity.KessokuEntityEvents;
-import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
 import band.kessoku.lib.api.events.entity.EntitySleepEvent;
+import band.kessoku.lib.api.events.entity.KessokuEntityEvents;
 import band.kessoku.lib.api.events.entity.ServerLivingEntityEvent;
 import band.kessoku.lib.api.events.entity.ServerPlayerEvent;
+import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
+
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
+
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingConversionEvent;

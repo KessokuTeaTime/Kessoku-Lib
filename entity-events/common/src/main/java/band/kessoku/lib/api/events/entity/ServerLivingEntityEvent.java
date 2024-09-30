@@ -16,10 +16,11 @@
 package band.kessoku.lib.api.events.entity;
 
 import band.kessoku.lib.event.api.Event;
+import org.jetbrains.annotations.ApiStatus;
+
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
-import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Various server-side only events related to living entities.

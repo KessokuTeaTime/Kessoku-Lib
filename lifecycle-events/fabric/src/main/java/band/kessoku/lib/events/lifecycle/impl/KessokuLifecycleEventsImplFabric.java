@@ -15,14 +15,16 @@
  */
 package band.kessoku.lib.events.lifecycle.impl;
 
-import band.kessoku.lib.events.lifecycle.api.*;
-import band.kessoku.lib.events.lifecycle.api.client.*;
+import band.kessoku.lib.api.event.lifecycle.*;
+import band.kessoku.lib.api.event.lifecycle.client.*;
+import band.kessoku.lib.impl.event.lifecycle.KessokuLifecycleEvents;
+
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 
 public class KessokuLifecycleEventsImplFabric {
     public static void registerClientEvents() {
-        KessokuLifecycleEventsImpl.clientInit();
+        KessokuLifecycleEvents.clientInit();
 
         ClientLifecycleEvents.CLIENT_STARTED.register(client -> ClientLifecycleEvent.STARTED.invoker().onClientStarted(client));
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> ClientLifecycleEvent.STOPPING.invoker().onClientStopping(client));
@@ -43,7 +45,7 @@ public class KessokuLifecycleEventsImplFabric {
     }
 
     public static void registerCommonEvents() {
-        KessokuLifecycleEventsImpl.init();
+        KessokuLifecycleEvents.init();
 
         CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> LifecycleEvent.TAG_LOADED.invoker().onTagsLoaded(registries, client));
 

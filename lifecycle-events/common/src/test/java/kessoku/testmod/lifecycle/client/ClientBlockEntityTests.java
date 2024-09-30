@@ -16,7 +16,7 @@
 package kessoku.testmod.lifecycle.client;
 
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuClientModInitializer;
-import band.kessoku.lib.events.lifecycle.api.client.ClientBlockEntityEvent;
+import band.kessoku.lib.api.event.lifecycle.client.ClientBlockEntityEvent;
 
 public class ClientBlockEntityTests implements KessokuClientModInitializer {
     @Override

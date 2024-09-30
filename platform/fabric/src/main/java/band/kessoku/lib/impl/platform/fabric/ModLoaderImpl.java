@@ -15,19 +15,20 @@
  */
 package band.kessoku.lib.impl.platform.fabric;
 
-import band.kessoku.lib.api.platform.Env;
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.services.platform.ModLoaderService;
-import com.google.auto.service.AutoService;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
-import net.fabricmc.loader.api.metadata.ModMetadata;
-
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import band.kessoku.lib.api.platform.Env;
+import band.kessoku.lib.api.platform.ModData;
+import band.kessoku.lib.services.platform.ModLoaderService;
+import com.google.auto.service.AutoService;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import net.fabricmc.loader.api.metadata.ModMetadata;
 
 @AutoService(ModLoaderService.class)
 public final class ModLoaderImpl implements ModLoaderService {

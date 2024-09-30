@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.events.lifecycle.impl;
+package band.kessoku.lib.impl.event.lifecycle;
 
-import band.kessoku.lib.events.lifecycle.api.ServerBlockEntityEvent;
-import band.kessoku.lib.events.lifecycle.api.ServerChunkEvent;
-import band.kessoku.lib.events.lifecycle.api.ServerEntityEvent;
-import band.kessoku.lib.events.lifecycle.api.ServerWorldEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerBlockEntityEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerChunkEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerEntityEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerWorldEvent;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.chunk.WorldChunk;
 
-public class KessokuLifecycleEventsImpl {
-    public static void clientInit() {
+public class KessokuLifecycleEvents {
+    public static final String MOD_ID = "kessoku_lifecycle_events";
+    public static final String NAME = "Kessoku Lifecycle Events API";
+    public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME + "]");
 
+    public static void clientInit() {
     }
 
     public static void init() {

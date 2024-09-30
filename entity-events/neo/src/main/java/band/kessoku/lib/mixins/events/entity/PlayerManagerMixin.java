@@ -16,13 +16,14 @@
 package band.kessoku.lib.mixins.events.entity;
 
 import band.kessoku.lib.api.events.entity.ServerPlayerEvent;
-import net.minecraft.entity.Entity;
-import net.minecraft.server.PlayerManager;
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.server.PlayerManager;
+import net.minecraft.server.network.ServerPlayerEntity;
 
 @Mixin(PlayerManager.class)
 abstract class PlayerManagerMixin {

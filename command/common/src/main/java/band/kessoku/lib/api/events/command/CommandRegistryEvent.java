@@ -17,10 +17,11 @@ package band.kessoku.lib.api.events.command;
 
 import band.kessoku.lib.event.api.Event;
 import com.mojang.brigadier.CommandDispatcher;
+import org.jetbrains.annotations.ApiStatus;
+
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable
 public interface CommandRegistryEvent {

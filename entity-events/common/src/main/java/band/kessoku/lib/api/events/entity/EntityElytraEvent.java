@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package band.kessoku.lib.api.events.entity;
 
-import band.kessoku.lib.event.api.Event;
 import band.kessoku.lib.api.events.entity.item.KessokuElytraItem;
-import net.minecraft.entity.LivingEntity;
+import band.kessoku.lib.event.api.Event;
 import org.jetbrains.annotations.ApiStatus;
+
+import net.minecraft.entity.LivingEntity;
 
 /**
  * Events related to elytra flight for living entities. Elytra flight is also known as "fall flying".

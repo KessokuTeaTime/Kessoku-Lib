@@ -2,10 +2,19 @@ import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
-group = "band.kessoku.lib"
 base.archivesName = rootProject.name
 
-var modules = ["base", "event-base", "lifecycle-events", "platform", "registry"]
+var modules = ["base",
+               "command",
+               "config",
+               "data",
+               "entity-events",
+               "entrypoint",
+               "event-base",
+               "keybinding",
+               "lifecycle-events",
+               "platform",
+               "registry"]
 
 kessoku {
     moduleIncludes(modules, ModPlatform.FABRIC.id())

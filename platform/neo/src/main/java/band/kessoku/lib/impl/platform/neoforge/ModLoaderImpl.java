@@ -15,19 +15,20 @@
  */
 package band.kessoku.lib.impl.platform.neoforge;
 
-import band.kessoku.lib.api.platform.Env;
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.services.platform.ModLoaderService;
-import com.google.auto.service.AutoService;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
-import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforgespi.language.IModInfo;
-
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import band.kessoku.lib.api.platform.Env;
+import band.kessoku.lib.api.platform.ModData;
+import band.kessoku.lib.services.platform.ModLoaderService;
+import com.google.auto.service.AutoService;
+
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforgespi.language.IModInfo;
 
 @AutoService(ModLoaderService.class)
 public final class ModLoaderImpl implements ModLoaderService {

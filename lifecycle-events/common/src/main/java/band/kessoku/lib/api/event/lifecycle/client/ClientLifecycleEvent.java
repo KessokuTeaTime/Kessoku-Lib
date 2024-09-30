@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.events.lifecycle.api.client;
+package band.kessoku.lib.api.event.lifecycle.client;
 
 import band.kessoku.lib.event.api.Event;
+
 import net.minecraft.client.MinecraftClient;
 
 public class ClientLifecycleEvent {
