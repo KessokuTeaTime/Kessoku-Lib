@@ -1,21 +1,9 @@
-import net.fabricmc.loom.util.ModPlatform
+import band.kessoku.gradle.plugin.PlatformIdentifier
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 base.archivesName = rootProject.name
 
-var modules = ["base",
-               "command",
-               "config",
-               "data",
-               "entity-events",
-               "entrypoint",
-               "event-base",
-               "keybinding",
-               "lifecycle-events",
-               "platform",
-               "registry"]
-
 kessoku {
-    moduleIncludes(modules, ModPlatform.FABRIC.id())
+    moduleIncludes(getModuleList(), PlatformIdentifier.FABRIC.id())
 }

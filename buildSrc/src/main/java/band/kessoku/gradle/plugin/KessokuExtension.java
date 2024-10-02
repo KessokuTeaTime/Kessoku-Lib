@@ -16,6 +16,24 @@ public abstract class KessokuExtension {
     @Inject
     protected abstract Project getProject();
 
+    protected static final List<String> MODULES = List.of(
+            "base",
+            "command",
+            "config",
+            "data",
+            "entity-events",
+            "entrypoint",
+            "event-base",
+            "keybinding",
+            "lifecycle-events",
+            "platform",
+            "registry"
+    );
+
+    public List<String> getModuleList() {
+        return MODULES;
+    }
+
     public void library(String lib) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
@@ -77,13 +95,6 @@ public abstract class KessokuExtension {
                 "configuration", "namedElements"
         ));
         dependencies.add("include", dependency);
-
-        LoomGradleExtensionAPI loom = project.getExtensions().getByType(LoomGradleExtensionAPI.class);
-        loom.mods(mods -> mods.register("kessoku-" + name + "-" + plat, settings -> {
-            Project depProject = project.project(":" + name + "-" + plat);
-            SourceSetContainer sourceSets = depProject.getExtensions().getByType(SourceSetContainer.class);
-            settings.sourceSet(sourceSets.getByName("main"), depProject);
-        }));
     }
 
     public void common(String name, ModPlatform platform) {
