@@ -1,7 +1,0 @@
-{
-  "injected_interfaces": {
-    "net/minecraft/class_2586": [
-      "band/kessoku/lib/api/data/BlockEntityStructure"
-    ]
-  }
-}

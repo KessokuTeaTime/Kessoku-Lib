@@ -30,10 +30,6 @@ public class ListData<T> extends AbstractList<T> implements Data<List<T>> {
         this.id = id;
     }
 
-    public Element<T> element(String id, int index) {
-        return new Element<>(id, index, this);
-    }
-
     @Override
     public T set(int index, T element) {
         return list.set(index, element);
