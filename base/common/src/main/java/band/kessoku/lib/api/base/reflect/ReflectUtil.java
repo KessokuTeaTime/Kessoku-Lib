@@ -1,4 +1,4 @@
-package band.kessoku.lib.base.reflect;
+package band.kessoku.lib.api.base.reflect;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

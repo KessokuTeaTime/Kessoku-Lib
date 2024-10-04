@@ -27,6 +27,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import band.kessoku.lib.api.KessokuLib;
+import band.kessoku.lib.api.base.reflect.ModifiersUtil;
+import band.kessoku.lib.api.base.reflect.ReflectUtil;
 import band.kessoku.lib.api.config.annotations.Comment;
 import band.kessoku.lib.api.config.annotations.Comments;
 import band.kessoku.lib.api.config.annotations.Name;
