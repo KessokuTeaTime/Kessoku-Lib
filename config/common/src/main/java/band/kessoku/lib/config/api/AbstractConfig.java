@@ -195,7 +195,7 @@ public abstract class AbstractConfig {
     private Map<String, ValueWithComment> serialize() {
         ImmutableMap.Builder<String, ValueWithComment> builder = ImmutableMap.builder();
         for (Field field : this.getValidFields()) {
-            ReflectUtil.makeAccessible(field);
+            ReflectionUtil.makeAccessible(field);
 
             final String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
             final String[] comments = field.isAnnotationPresent(Comments.class) ? (String[]) Arrays.stream(field.getAnnotation(Comments.class).value()).map(Comment::value).toArray() : new String[0];
