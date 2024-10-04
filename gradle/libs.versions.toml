@@ -14,7 +14,7 @@ fabric-api = "0.102.0+1.21"
 # Plugin version
 loom = "1.7-SNAPSHOT"
 architectury = "3.4-SNAPSHOT"
-shadow = "8.3.1"
+shadow = "8.3.2"
 spotless = "7.0.0.BETA2"
 idea-ext = "1.1.8"
 

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.entrypoint.neoforge",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FMLLoaderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -19,7 +19,7 @@ includeModule("platform") // Platform
 includeModule("registry") // Registry
 includeModule("lifecycle-events") // Lifecycle Events
 includeModule("command") // Command API
-includeModule("keybind") // Keybind API
+includeModule("keybinding") // Keybinding API
 includeModule("config") // Config API
 includeModule("entrypoint") // Entrypoint API
 includeModule("entity-events") // Entity Events

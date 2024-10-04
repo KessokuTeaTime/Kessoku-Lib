@@ -17,10 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.events.lifecycle.KessokuLifecycleEventsEntrypoint::onInitialize"
+      "band.kessoku.lib.impl.event.lifecycle.fabric.KessokuLifecycleEventsFabric::onInitialize"
     ],
     "client": [
-      "band.kessoku.lib.events.lifecycle.KessokuLifecycleEventsEntrypoint::onInitializeClient"
+      "band.kessoku.lib.impl.event.lifecycle.fabric.KessokuLifecycleEventsFabric::onInitializeClient"
     ]
   },
   "depends": {
@@ -30,7 +30,7 @@
     "fabric-api": "*"
   },
   "mixins": [
-    "kessoku-lifecycle-events.mixins.json"
+    "kessoku_lifecycle_events.mixins.json"
   ],
   "custom": {
     "modmenu": {

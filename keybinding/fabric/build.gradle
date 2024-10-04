@@ -1,0 +1,12 @@
+import net.fabricmc.loom.util.ModPlatform
+
+apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
+
+base.archivesName = rootProject.name + "-keybinding"
+
+kessoku {
+    module("base", "common")
+
+    common("keybinding", ModPlatform.FABRIC)
+    shadowBundle("keybinding", ModPlatform.FABRIC)
+}

@@ -15,13 +15,12 @@
  */
 package band.kessoku.lib.event.api;
 
-import band.kessoku.lib.event.impl.EventImpl;
-
 import java.util.List;
 import java.util.function.Function;
 
-public interface Event<T> {
+import band.kessoku.lib.event.impl.EventImpl;
 
+public interface Event<T> {
     T invoker();
 
     void register(T listener, EventPhase phase);

@@ -99,4 +99,5 @@ subprojects {
 
 allprojects {
     apply plugin: "com.diffplug.spotless"
+    group = "band.kessoku.lib"
 }

@@ -17,7 +17,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.platform.KessokuPlatformEntrypoint"
+      "band.kessoku.lib.impl.platform.fabric.KessokuPlatformFabric"
     ]
   },
   "depends": {

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.keybinding.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "KeyBindingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
