@@ -14,6 +14,11 @@
   },
   "license": "LGPL-3.0-only",
   "icon": "icon.png",
+  "entrypoints": {
+    "main": [
+      "band.kessoku.lib.impl.data.fabric.KessokuDataFabric"
+    ]
+  },
   "environment": "*",
   "depends": {
     "fabricloader": ">=0.16.0",
@@ -22,7 +27,7 @@
     "fabric-api": "*"
   },
   "mixins": [
-    "kessoku-data-fabric.mixins.json"
+    "kessoku_data.mixins.json"
   ],
   "custom": {
     "modmenu": {

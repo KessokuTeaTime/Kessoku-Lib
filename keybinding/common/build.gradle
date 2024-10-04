@@ -1,0 +1,7 @@
+apply from: rootProject.file("gradle/scripts/klib-common.gradle")
+
+base.archivesName = rootProject.name + "-keybinding"
+
+kessoku {
+    module("base", "common")
+}

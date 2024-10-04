@@ -2,12 +2,11 @@ import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
-group = "band.kessoku.lib.command"
 base.archivesName = rootProject.name + "-command"
 
 kessoku {
     modules(["base", "event-base"], "common")
-    module("event-base", "neo")
+    module("base", "neo")
 
     common("command", ModPlatform.NEOFORGE)
     shadowBundle("command", ModPlatform.NEOFORGE)

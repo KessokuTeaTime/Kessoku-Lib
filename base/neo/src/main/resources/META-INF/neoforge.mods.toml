@@ -8,7 +8,7 @@ modId = "kessoku_base"
 version = "${version}"
 displayName = "Kessoku Base"
 description = '''
-Provide some basic API.
+Kessoku base API.
 '''
 logoFile = "icon.png"
 authors = "Kessoku Tea Time"

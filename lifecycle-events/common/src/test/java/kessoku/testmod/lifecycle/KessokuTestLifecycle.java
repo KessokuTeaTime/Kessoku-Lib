@@ -15,9 +15,9 @@
  */
 package kessoku.testmod.lifecycle;
 
-import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
-import band.kessoku.lib.events.lifecycle.api.ServerChunkEvent;
-import band.kessoku.lib.events.lifecycle.api.ServerLifecycleEvent;
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
+import band.kessoku.lib.api.event.lifecycle.ServerChunkEvent;
+import band.kessoku.lib.api.event.lifecycle.ServerLifecycleEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

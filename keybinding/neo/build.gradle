@@ -1,0 +1,13 @@
+import net.fabricmc.loom.util.ModPlatform
+
+apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
+
+base.archivesName = rootProject.name + "-keybinding"
+
+kessoku {
+    module("base", "common")
+    module("base", "neo")
+
+    common("keybinding", ModPlatform.NEOFORGE)
+    shadowBundle("keybinding", ModPlatform.NEOFORGE)
+}

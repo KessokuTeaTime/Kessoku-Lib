@@ -15,13 +15,14 @@
  */
 package kessoku.testmod.lifecycle;
 
-import band.kessoku.lib.entrypoint.api.KessokuModInitializer;
-import band.kessoku.lib.events.lifecycle.api.ServerTickEvent;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.world.World;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
+import band.kessoku.lib.api.event.lifecycle.ServerTickEvent;
+
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.world.World;
 
 public class ServerTickTests implements KessokuModInitializer {
     private final Map<RegistryKey<World>, Integer> tickTracker = new HashMap<>();

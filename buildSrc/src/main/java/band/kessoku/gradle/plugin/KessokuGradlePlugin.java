@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class KessokuGradlePlugin implements Plugin<PluginAware> {
+public final class KessokuGradlePlugin implements Plugin<PluginAware> {
+
     private static final List<String> NEO_GROUPS = List.of(
             "net.neoforged",
             "cpw.mods",
@@ -28,14 +29,15 @@ public class KessokuGradlePlugin implements Plugin<PluginAware> {
                 settings.getGradle().getPluginManager().apply(KessokuGradlePlugin.class);
             }
             case Project project -> {
-                project.getExtensions().create("kessoku", KesssokuExtension.class);
+                project.getExtensions().create("kessoku", KessokuExtension.class);
 
                 additionalRepositories(project.getRepositories());
             }
             case Gradle gradle -> {
                 return;
             }
-            default -> throw new IllegalArgumentException("Expected target to be a Project or Settings, but was a " + target.getClass());
+            default ->
+                    throw new IllegalArgumentException("Expected target to be a Project or Settings, but was a " + target.getClass());
         }
     }
 

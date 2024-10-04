@@ -1,6 +1,5 @@
 apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
-group = "band.kessoku.lib.events.lifecycle"
 base.archivesName = rootProject.name + "-lifecycle-events"
 
 kessoku {

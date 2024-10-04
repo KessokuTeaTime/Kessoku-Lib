@@ -16,14 +16,14 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.registry.KessokuRegistryEntrypoint"
+      "band.kessoku.lib.impl.registry.fabric.KessokuRegistryFabric"
     ]
   },
   "environment": "*",
   "mixins": [
-    "kessoku-registry-fabric.mixins.json"
+    "kessoku_registry.fabric.mixins.json"
   ],
-  "accessWidener": "kessoku-registry.accesswidener",
+  "accessWidener": "kessoku_registry.accesswidener",
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "1.21",

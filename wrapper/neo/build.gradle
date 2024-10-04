@@ -1,10 +1,9 @@
+import band.kessoku.gradle.plugin.PlatformIdentifier
+
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
-group = "band.kessoku.lib"
 base.archivesName = rootProject.name
 
-var modules = ["base", "event-base", "lifecycle-events", "platform", "registry"]
-
 kessoku {
-    moduleIncludes(modules, "neo")
+    moduleIncludes(getModuleList(), PlatformIdentifier.NEO.id())
 }
