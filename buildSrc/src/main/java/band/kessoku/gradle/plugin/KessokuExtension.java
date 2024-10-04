@@ -91,8 +91,7 @@ public abstract class KessokuExtension {
         DependencyHandler dependencies = project.getDependencies();
 
         Dependency dependency = dependencies.project(Map.of(
-                "path", ":" + name + "-" + plat,
-                "configuration", "namedElements"
+                "path", ":" + name + "-" + plat
         ));
         dependencies.add("include", dependency);
     }
