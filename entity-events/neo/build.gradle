@@ -10,7 +10,7 @@ loom {
 
 kessoku {
     modules(["base", "event-base"], "common")
-    module("event-base", "neo")
+    module("base", "neo")
 
     common("entity-events", ModPlatform.NEOFORGE)
     shadowBundle("entity-events", ModPlatform.NEOFORGE)

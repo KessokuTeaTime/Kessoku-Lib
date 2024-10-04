@@ -15,7 +15,6 @@
  */
 package band.kessoku.lib.impl.entrypoint.neoforge;
 
-import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.entrypoint.KessokuEntrypoint;
 
 import net.neoforged.fml.common.Mod;
@@ -23,9 +22,5 @@ import net.neoforged.fml.common.Mod;
 @Mod(KessokuEntrypoint.MOD_ID)
 public final class KessokuEntrypointNeoforge {
     public KessokuEntrypointNeoforge() {
-    }
-
-    public static void init() {
-        KessokuLib.loadModule(KessokuEntrypoint.class);
     }
 }

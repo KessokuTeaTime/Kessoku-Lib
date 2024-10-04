@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.impl.registry.fabric;
 
-import band.kessoku.lib.services.RegistryService;
+import band.kessoku.lib.service.registry.RegistryService;
 import com.google.auto.service.AutoService;
 
 import net.minecraft.registry.Registry;

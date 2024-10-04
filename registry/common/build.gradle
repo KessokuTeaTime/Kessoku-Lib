@@ -3,7 +3,7 @@ apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 base.archivesName = rootProject.name + "-registry"
 
 loom {
-    accessWidenerPath = file("src/main/resources/kessoku-registry.accesswidener")
+    accessWidenerPath = file("src/main/resources/kessoku_registry.accesswidener")
 }
 
 kessoku {

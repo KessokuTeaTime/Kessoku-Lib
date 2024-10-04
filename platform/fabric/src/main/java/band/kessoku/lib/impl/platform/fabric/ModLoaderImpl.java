@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import band.kessoku.lib.api.platform.Env;
 import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.services.platform.ModLoaderService;
+import band.kessoku.lib.service.platform.ModLoaderService;
 import com.google.auto.service.AutoService;
 
 import net.fabricmc.api.EnvType;

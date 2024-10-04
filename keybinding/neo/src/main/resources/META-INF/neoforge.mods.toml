@@ -4,7 +4,7 @@ license = "LGPL-3.0-only"
 issueTrackerURL = "https://github.com/KessokuTeaTime/KessokuLib/issues"
 
 [[mods]]
-modId = "kessoku_keybind"
+modId = "kessoku_key_binding"
 version = "${version}"
 displayName = "Kessoku Keybind"
 description = '''
@@ -15,16 +15,19 @@ authors = "Kessoku Tea Time"
 displayURL = "https://modrinth.com/mod/kessoku-lib"
 
 [[mixins]]
-config = "kessoku-keybind.mixins.json"
+config = "kessoku_key_binding.neoforge.mixins.json"
 
-[[dependencies.kessoku_keybind]]
+[[mixins]]
+config = "kessoku_key_binding.mixins.json"
+
+[[dependencies.kessoku_key_binding]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.kessoku_keybind]]
+[[dependencies.kessoku_key_binding]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"

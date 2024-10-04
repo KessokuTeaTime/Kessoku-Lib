@@ -18,7 +18,7 @@ package band.kessoku.lib.api.platform;
 import java.nio.file.Path;
 import java.util.Collection;
 
-import band.kessoku.lib.services.platform.ModLoaderService;
+import band.kessoku.lib.service.platform.ModLoaderService;
 
 public final class ModLoader {
     private ModLoader() {

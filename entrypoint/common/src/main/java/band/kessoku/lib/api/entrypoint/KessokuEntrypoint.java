@@ -19,9 +19,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.platform.ModData;
 import band.kessoku.lib.api.platform.ModLoader;
-import band.kessoku.lib.impl.base.KessokuUtils;
 import band.kessoku.lib.impl.entrypoint.JavaLanguageAdapter;
 import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
 import club.someoneice.json.JSON;
@@ -42,9 +42,8 @@ public final class KessokuEntrypoint {
     private static final Map<String, LanguageAdapter> adapters = new HashMap<>();
     private static final Map<String, List<Entry>> entryMap = new HashMap<>();
 
-    @SuppressWarnings("unused")
-    private static void init() {
-        KessokuUtils.getLogger().info(MARKER, "Start loading Kessoku Entrypoint API.");
+    static {
+        KessokuLib.getLogger().info(MARKER, "Start loading Kessoku Entrypoint API.");
         Map<String, KessokuMetadata> modInfoMap = new HashMap<>();
         for (ModData modData : ModLoader.getMods()) {
             final String modid = modData.getModId();

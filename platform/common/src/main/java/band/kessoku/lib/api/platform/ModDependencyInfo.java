@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.api.platform;
 
-import band.kessoku.lib.services.platform.ModLoaderService;
+import band.kessoku.lib.service.platform.ModLoaderService;
 import org.jetbrains.annotations.Nullable;
 
 public interface ModDependencyInfo {

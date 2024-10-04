@@ -26,10 +26,10 @@ import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.config.annotations.Comment;
 import band.kessoku.lib.api.config.annotations.Comments;
 import band.kessoku.lib.api.config.annotations.Name;
-import band.kessoku.lib.impl.base.KessokuUtils;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.io.FileUtils;
@@ -92,13 +92,13 @@ public abstract class AbstractConfig {
                 ConfigValue.Type type = ConfigValue.Type.asType(cValue);
                 // Check if the type is valid to deserialize
                 if (type == ConfigValue.Type.NULL) {
-                    KessokuUtils.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file!", cValue.getClass().getName());
+                    KessokuLib.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file!", cValue.getClass().getName());
                     continue;
                 }
 
                 // Check if the type matches the value's type
                 if (value.getType() != type) {
-                    KessokuUtils.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file! Expect {}.", type.toString().toLowerCase(), value.getType().toString().toLowerCase());
+                    KessokuLib.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file! Expect {}.", type.toString().toLowerCase(), value.getType().toString().toLowerCase());
                     continue;
                 }
 
@@ -215,7 +215,7 @@ public abstract class AbstractConfig {
             AbstractConfig category = (AbstractConfig) fieldValue;
             if (this.split) {
                 if (!category.save()) {
-                    KessokuUtils.getLogger().error(KessokuConfig.MARKER, "Failed to save category `{}!`", category.getSimpleName());
+                    KessokuLib.getLogger().error(KessokuConfig.MARKER, "Failed to save category `{}!`", category.getSimpleName());
                 }
                 continue;
             }

@@ -2,7 +2,7 @@ import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
-base.archivesName = "kessoku-registry"
+base.archivesName = rootProject.name + "-registry"
 
 loom {
     accessWidenerPath = project(":registry-common").loom.accessWidenerPath
@@ -10,12 +10,12 @@ loom {
 
 kessoku {
     module("base", "common")
-    module("event-base", "neo")
+    module("base", "neo")
 
     common("registry", ModPlatform.NEOFORGE)
     shadowBundle("registry", ModPlatform.NEOFORGE)
 }
 
 remapJar {
-    atAccessWideners.add("kessoku-registry.accesswidener")
+    atAccessWideners.add("kessoku_registry.accesswidener")
 }

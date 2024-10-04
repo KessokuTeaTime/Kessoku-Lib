@@ -15,10 +15,10 @@ authors = "Kessoku Tea Time"
 displayURL = "https://modrinth.com/mod/kessoku-lib"
 
 [[mixins]]
-config = "kessoku-lifecycle-events.mixins.json"
+config = "kessoku_lifecycle-events.mixins.json"
 
 [[mixins]]
-config = "kessoku-lifecycle-events.neo.mixins.json"
+config = "kessoku_lifecycle_events.neoforge.mixins.json"
 
 [[accessTransformers]]
 file = "META-INF/accesstransformer.cfg"

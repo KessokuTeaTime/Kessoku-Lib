@@ -17,10 +17,10 @@ package band.kessoku.lib.impl.registry.neoforge;
 
 import java.util.Objects;
 
+import band.kessoku.lib.api.KessokuLib;
+import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
 import band.kessoku.lib.api.registry.FuelRegistry;
 import band.kessoku.lib.api.registry.KessokuRegistry;
-import band.kessoku.lib.event.api.util.neo.NeoEventUtils;
-import band.kessoku.lib.impl.base.KessokuUtils;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
@@ -34,7 +34,7 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 @Mod(KessokuRegistry.MOD_ID)
 public final class KessokuRegistryNeoforge {
     public KessokuRegistryNeoforge(IEventBus modEventBus) {
-        KessokuUtils.getLogger().info(KessokuRegistry.MARKER, "KessokuLib-Registry is loaded!");
+        KessokuLib.loadModule(KessokuRegistry.class);
         NeoEventUtils.registerEvent(modEventBus, RegisterEvent.class, RegistryImpl::onRegister);
         NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, FurnaceFuelBurnTimeEvent.class, event -> {
             final ItemStack stack = event.getItemStack();

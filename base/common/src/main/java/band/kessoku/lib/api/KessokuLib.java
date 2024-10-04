@@ -16,16 +16,12 @@
 package band.kessoku.lib.api;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import band.kessoku.lib.impl.base.KessokuUtils;
 import org.jetbrains.annotations.UnmodifiableView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class KessokuLib {
     private static final List<Class<?>> initializedModules = new ArrayList<>();
@@ -33,7 +29,7 @@ public final class KessokuLib {
     private KessokuLib() {
     }
 
-    public static void loadModule(Class<?> moduleCommonClass, Object... args) {
+    public static void loadModule(Class<?> moduleCommonClass) {
         // Try to get module name
         String moduleName;
         try {
@@ -43,46 +39,14 @@ public final class KessokuLib {
             field.setAccessible(true);
             moduleName = (String) field.get(null);
         } catch (NoSuchFieldException e) {
-            KessokuUtils.getLogger().warn("no NAME found for {}! Using package name", moduleCommonClass.getPackageName());
+            getLogger().warn("no NAME found for {}! Using package name", moduleCommonClass.getPackageName());
             moduleName = moduleCommonClass.getPackageName();
         } catch (IllegalAccessException e) {
             // Already set accessible, shouldn't be called
             moduleName = moduleCommonClass.getPackageName();
         }
-
-        // Modules shouldn't be able to load for multiple times
-        if (isModuleLoaded(moduleCommonClass)) {
-            throw new UnsupportedOperationException(moduleName + " is already loaded!");
-        }
-
-        // Get init method
-        Class<?>[] argClasses = (Class<?>[]) Arrays.stream(args).map(Object::getClass).toArray();
-        Method method;
-        try {
-            method = moduleCommonClass.getMethod("init", argClasses);
-        } catch (NoSuchMethodException e) {
-            // The module doesn't need to be initialized
-            initializedModules.add(moduleCommonClass);
-            KessokuUtils.getLogger().info("{} loaded!", moduleName);
-            return;
-        }
-
-        // init method should be static
-        if (!Modifier.isStatic(method.getModifiers())) {
-            KessokuUtils.getLogger().error("init method of {} is not static!", moduleName);
-            return;
-        }
-
-        method.setAccessible(true);
-
-        // initialize module
-        try {
-            method.invoke(null, args);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Failed to initialize Kessoku Module " + moduleName + " !");
-        }
         initializedModules.add(moduleCommonClass);
-        KessokuUtils.getLogger().info("{} loaded!", moduleName);
+        getLogger().info("{} loaded!", moduleName);
     }
 
     public static boolean isModuleLoaded(Class<?> moduleCommonClass) {
@@ -92,5 +56,13 @@ public final class KessokuLib {
     @UnmodifiableView
     public static List<Class<?>> getActiveModules() {
         return Collections.unmodifiableList(initializedModules);
+    }
+
+    public static <T> T loadService(final Class<T> clazz) {
+        return ServiceLoader.load(clazz).findFirst().orElseThrow(() -> new AssertionError("No impl found for " + clazz.getPackageName()));
+    }
+
+    public static Logger getLogger() {
+        return LoggerFactory.getLogger("[Kessoku Lib]");
     }
 }

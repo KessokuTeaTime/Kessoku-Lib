@@ -18,9 +18,9 @@ package band.kessoku.lib.api.keybinding.client;
 import java.util.Map;
 import java.util.Set;
 
-import band.kessoku.lib.impl.base.KessokuUtils;
+import band.kessoku.lib.api.base.KessokuUtils;
 import band.kessoku.lib.impl.keybinding.client.CategoryOrderMap;
-import band.kessoku.lib.services.keybinding.client.KeyBindingRegisterService;
+import band.kessoku.lib.service.keybinding.client.KeyBindingRegisterService;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.option.KeyBinding;

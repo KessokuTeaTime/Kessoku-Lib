@@ -18,7 +18,7 @@ package band.kessoku.lib.impl.keybinding.client;
 import java.util.HashMap;
 import java.util.Map;
 
-import band.kessoku.lib.impl.base.KessokuUtils;
+import band.kessoku.lib.api.KessokuLib;
 import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraft.text.Text;
@@ -43,7 +43,7 @@ public final class CategoryOrderMap extends HashMap<String, Integer> {
     @Override
     public Integer put(String key, Integer value) {
         if (this.containsValue(value) && value != Integer.MAX_VALUE && value != Integer.MIN_VALUE)
-            KessokuUtils.getLogger().warn(KessokuKeybinding.MARKER, "Duplicate category index found! Category: {} Index: {}", Text.translatable(key), value);
+            KessokuLib.getLogger().warn(KessokuKeybinding.MARKER, "Duplicate category index found! Category: {} Index: {}", Text.translatable(key), value);
         return super.put(key, value);
     }
 

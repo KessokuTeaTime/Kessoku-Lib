@@ -6,7 +6,7 @@ base.archivesName = rootProject.name + "-command"
 
 kessoku {
     modules(["base", "event-base"], "common")
-    module("event-base", "neo")
+    module("base", "neo")
 
     common("command", ModPlatform.NEOFORGE)
     shadowBundle("command", ModPlatform.NEOFORGE)

@@ -16,10 +16,13 @@
   "icon": "icon.png",
   "entrypoints": {
     "client": [
-      "band.kessoku.lib.keybind.KessokuKeybindingFabric"
+      "band.kessoku.lib.impl.keybinding.fabric.KessokuKeyBindingFabric"
     ]
   },
-  "environment": "*",
+  "environment": "client",
+  "mixins": [
+    "kessoku_key_binding.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "1.21",

@@ -29,4 +29,4 @@ ordering = "NONE"
 side = "BOTH"
 
 [[mixins]]
-config = "kessoku_entrypoint.mixins.json"
+config = "kessoku_entrypoint.neoforge.mixins.json"

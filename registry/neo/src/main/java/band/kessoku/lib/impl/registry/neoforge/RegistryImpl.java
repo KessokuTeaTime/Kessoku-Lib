@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-import band.kessoku.lib.services.RegistryService;
+import band.kessoku.lib.service.registry.RegistryService;
 import com.google.auto.service.AutoService;
 import com.google.common.collect.Maps;
 import org.jetbrains.annotations.ApiStatus;

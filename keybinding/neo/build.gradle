@@ -6,7 +6,7 @@ base.archivesName = rootProject.name + "-keybinding"
 
 kessoku {
     module("base", "common")
-    module("event-base", "neo")
+    module("base", "neo")
 
     common("keybinding", ModPlatform.NEOFORGE)
     shadowBundle("keybinding", ModPlatform.NEOFORGE)
