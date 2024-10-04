@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.config.values;
+package band.kessoku.lib.config.api.values;
 
 import band.kessoku.lib.config.api.ConfigValue;
 
