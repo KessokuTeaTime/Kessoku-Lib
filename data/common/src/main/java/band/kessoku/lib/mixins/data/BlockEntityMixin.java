@@ -48,7 +48,7 @@ public class BlockEntityMixin implements BlockEntityStructure {
     }
 
     @Override
-    public DataStructure integrate(DataStructure dataStructure) {
+    public <K extends DataStructure> K integrate(K dataStructure) {
         kessoku$DataStructureList.add(dataStructure);
         return dataStructure;
     }

@@ -11,19 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public final class KessokuGradlePlugin implements Plugin<PluginAware> {
-    public static final List<String> MODULES = List.of(
-            "base",
-            "command",
-            "config",
-            "data",
-            "entity-events",
-            "entrypoint",
-            "event-base",
-            "keybinding",
-            "lifecycle-events",
-            "platform",
-            "registry"
-    );
+
     private static final List<String> NEO_GROUPS = List.of(
             "net.neoforged",
             "cpw.mods",
