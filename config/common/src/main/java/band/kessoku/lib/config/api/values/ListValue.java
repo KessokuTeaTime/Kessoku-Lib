@@ -16,7 +16,6 @@
 package band.kessoku.lib.config.api.values;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Sets;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -114,11 +113,7 @@ public final class ListValue<T> extends DefaultConfigValue<List<T>> implements L
 
     @Override
     public boolean containsAll(@NotNull Collection<?> c) {
-        /* Amarok Note:
-        *   ArrayList 的数据存储量不可知的情况下，悲观假设有大量数据，那么 ArrayList#containsAll 的效率会低的令人发指...
-        *   虽说如果数据量少的话套一层 Set 也是无端浪费性能... 但我依然建议悲观演算。
-        * */
-        return Sets.newHashSet(this.value).containsAll(c);
+        return this.value.containsAll(c);
     }
 
     @Override
