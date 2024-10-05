@@ -1,4 +1,4 @@
-package band.kessoku.lib.api.command.util;
+package band.kessoku.lib.api.util.command;
 
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;

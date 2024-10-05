@@ -16,12 +16,23 @@
 package band.kessoku.lib.impl.command.neoforge;
 
 import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
-import band.kessoku.lib.api.command.event.CommandRegistryEvent;
+import band.kessoku.lib.api.event.command.ClientCommandRegistryEvent;
+import band.kessoku.lib.api.event.command.CommandRegistryEvent;
 
+import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
+import com.mojang.brigadier.CommandDispatcher;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 public final class KessokuCommandImpl {
+    public static void registerClientEvents(IEventBus forgeEventBus) {
+        NeoEventUtils.registerEvent(forgeEventBus, RegisterClientCommandsEvent.class, event -> {
+            ClientCommandRegistryEvent.EVENT.invoker().register((CommandDispatcher<ClientCommandSourceExtension>)
+                    (CommandDispatcher<?>) event.getDispatcher(), event.getBuildContext());
+        });
+    }
+
     public static void registerCommonEvents(IEventBus forgeEventBus) {
         NeoEventUtils.registerEvent(forgeEventBus, RegisterCommandsEvent.class, event -> {
             CommandRegistryEvent.EVENT.invoker().register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());

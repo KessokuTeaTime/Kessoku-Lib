@@ -1,6 +1,6 @@
-package band.kessoku.lib.mixin.command;
+package band.kessoku.lib.mixin.command.neoforge;
 
-import band.kessoku.lib.api.command.util.ClientCommandSourceExtension;
+import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.client.network.ClientPlayerEntity;

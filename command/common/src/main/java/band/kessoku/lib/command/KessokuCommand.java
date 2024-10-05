@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.command;
+package band.kessoku.lib.command;
 
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;

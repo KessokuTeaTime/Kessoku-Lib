@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.command.event;
+package band.kessoku.lib.api.event.command;
 
 import band.kessoku.lib.event.api.Event;
 import com.mojang.brigadier.CommandDispatcher;

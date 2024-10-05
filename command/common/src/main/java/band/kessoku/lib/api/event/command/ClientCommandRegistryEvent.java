@@ -1,6 +1,6 @@
-package band.kessoku.lib.api.command.event;
+package band.kessoku.lib.api.event.command;
 
-import band.kessoku.lib.api.command.util.ClientCommandSourceExtension;
+import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
 import band.kessoku.lib.event.api.Event;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandRegistryAccess;

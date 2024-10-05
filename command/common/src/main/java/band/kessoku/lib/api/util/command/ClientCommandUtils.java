@@ -1,7 +1,7 @@
-package band.kessoku.lib.api.command.util;
+package band.kessoku.lib.api.util.command;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.command.KessokuCommand;
+import band.kessoku.lib.command.KessokuCommand;
 import band.kessoku.lib.mixin.command.HelpCommandAccessor;
 import com.google.common.collect.Iterables;
 import com.mojang.brigadier.CommandDispatcher;

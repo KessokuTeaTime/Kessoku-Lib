@@ -1,4 +1,4 @@
-package band.kessoku.lib.api.command.util;
+package band.kessoku.lib.api.util.command;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
