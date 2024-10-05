@@ -16,7 +16,7 @@
 package band.kessoku.lib.impl.command.neoforge;
 
 import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
-import band.kessoku.lib.api.event.command.CommandRegistryEvent;
+import band.kessoku.lib.api.command.event.CommandRegistryEvent;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;

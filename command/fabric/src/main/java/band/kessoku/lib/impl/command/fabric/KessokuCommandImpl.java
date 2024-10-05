@@ -15,11 +15,18 @@
  */
 package band.kessoku.lib.impl.command.fabric;
 
-import band.kessoku.lib.api.event.command.CommandRegistryEvent;
+import band.kessoku.lib.api.command.event.CommandRegistryEvent;
 
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 public final class KessokuCommandImpl {
+    public static void registerClientEvents() {
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+
+        });
+    }
+
     public static void registerCommonEvents() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             CommandRegistryEvent.EVENT.invoker().register(dispatcher, registryAccess, environment);

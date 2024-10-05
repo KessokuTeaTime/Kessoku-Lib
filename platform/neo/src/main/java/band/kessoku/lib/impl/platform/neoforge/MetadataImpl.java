@@ -22,8 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.api.platform.ModDependencyInfo;
+import band.kessoku.lib.api.platform.Metadata;
+import band.kessoku.lib.api.platform.DependencyInfo;
 
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -31,16 +31,16 @@ import net.neoforged.fml.loading.moddiscovery.ModFileInfo;
 import net.neoforged.neoforgespi.language.IModFileInfo;
 import net.neoforged.neoforgespi.language.IModInfo;
 
-public final class ModDataImpl implements ModData {
+public final class MetadataImpl implements Metadata {
     private final ModContainer modContainer;
     private final IModInfo modInfo;
 
-    public ModDataImpl(String modid) {
+    public MetadataImpl(String modid) {
         this.modContainer = ModList.get().getModContainerById(modid).orElseThrow();
         this.modInfo = modContainer.getModInfo();
     }
 
-    public ModDataImpl(IModInfo info) {
+    public MetadataImpl(IModInfo info) {
         this.modContainer = ModList.get().getModContainerById(info.getModId()).orElseThrow();
         this.modInfo = info;
     }
@@ -56,8 +56,8 @@ public final class ModDataImpl implements ModData {
     }
 
     @Override
-    public Collection<? extends ModDependencyInfo> getDependencies() {
-        return modInfo.getDependencies().stream().map(ModDependencyInfoImpl::new).toList();
+    public Collection<? extends DependencyInfo> getDependencies() {
+        return modInfo.getDependencies().stream().map(DependencyInfoImpl::new).toList();
     }
 
     @Override

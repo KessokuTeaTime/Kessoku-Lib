@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import band.kessoku.lib.api.entrypoint.LanguageAdapter;
-import band.kessoku.lib.api.platform.ModData;
+import band.kessoku.lib.api.platform.Metadata;
 import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
 
 public final class JavaLanguageAdapter implements LanguageAdapter {
@@ -31,7 +31,7 @@ public final class JavaLanguageAdapter implements LanguageAdapter {
     }
 
     @Override
-    public Object parse(final ModData mod, final String value) throws LanguageAdapterException {
+    public Object parse(final Metadata mod, final String value) throws LanguageAdapterException {
         final String[] methodSplit = value.split("::");
         if (methodSplit.length >= 3) {
             throw new LanguageAdapterException("Invalid handle format: " + value);
@@ -57,7 +57,7 @@ public final class JavaLanguageAdapter implements LanguageAdapter {
             Getter getter = null;
             // Try to find method
             try {
-                final Method method = c.getMethod(methodSplit[1], ModData.class);
+                final Method method = c.getMethod(methodSplit[1], Metadata.class);
                 if (!Modifier.isStatic(method.getModifiers())) throw new LanguageAdapterException("Method " + value + " must be static!");
                 getter = () -> {
                     method.setAccessible(true);
