@@ -44,7 +44,7 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
                     default -> throw new IllegalArgumentException();
                 }
             }
-            return new KessokuMetadata(entrypoints, languageAdapters,modid);
+            return new KessokuMetadata(entrypoints, languageAdapters, modid);
         } catch (Exception e) {
             throw new KessokuParseException(e, "Failed to parse kessoku.json provided by " + modid);
         }
@@ -56,7 +56,7 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
         ((MapNode) node).forEach(pair -> {
             // normalize value
             final JsonNode<?> rawValue = pair.getValue();
-            // TODO
+            // TODO refactor it to make it more clear
             final List<EntrypointMetadata> entrypointMetadataList = switch (rawValue.getType()) {
                 case Map -> parseObjectEntrypoint((MapNode) rawValue);
                 case String -> List.of(new EntrypointMetadata() {
@@ -96,11 +96,13 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
                                 arrayNode.forEach(jsonNode -> list.addAll(parseObjectEntrypoint((MapNode) jsonNode)));
                                 yield list;
                             }
-                            case null, default -> throw new NodeCastException("");
+                            default ->
+                                    throw new IllegalArgumentException("Entrypoint should be an array of string or map, but it's " + arrayNode.get(0).getType().toString().toLowerCase() + "!");
                         };
                     }
                 }
-                case null, default -> throw new NodeCastException("");
+                default ->
+                        throw new IllegalArgumentException("Entrypoint should be a object, string or array, but it's " + rawValue.getType().toString().toLowerCase() + "!");
             };
             entrypoints.put(pair.getKey(), entrypointMetadataList);
         });

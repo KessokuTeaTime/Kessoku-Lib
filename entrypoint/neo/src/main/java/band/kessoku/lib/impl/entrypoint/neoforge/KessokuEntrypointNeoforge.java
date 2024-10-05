@@ -17,10 +17,19 @@ package band.kessoku.lib.impl.entrypoint.neoforge;
 
 import band.kessoku.lib.api.entrypoint.KessokuEntrypoint;
 
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuClientModInitializer;
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuDedicatedServerModInitializer;
+import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 
 @Mod(KessokuEntrypoint.MOD_ID)
 public final class KessokuEntrypointNeoforge {
-    public KessokuEntrypointNeoforge() {
+    public KessokuEntrypointNeoforge(Dist dist) {
+        KessokuEntrypoint.invokeEntrypoint("main", KessokuModInitializer.class, KessokuModInitializer::onInitialize);
+        if (dist.isClient())
+            KessokuEntrypoint.invokeEntrypoint("client", KessokuClientModInitializer.class, KessokuClientModInitializer::onInitializeClient);
+        if (dist.isDedicatedServer())
+            KessokuEntrypoint.invokeEntrypoint("server", KessokuDedicatedServerModInitializer.class, KessokuDedicatedServerModInitializer::onInitializeServer);
     }
 }
