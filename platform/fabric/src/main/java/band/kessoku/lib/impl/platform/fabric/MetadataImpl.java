@@ -21,24 +21,24 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.api.platform.ModDependencyInfo;
+import band.kessoku.lib.api.platform.Metadata;
+import band.kessoku.lib.api.platform.DependencyInfo;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.fabricmc.loader.api.metadata.Person;
 
-public final class ModDataImpl implements ModData {
+public final class MetadataImpl implements Metadata {
     private final ModContainer modContainer;
     private final ModMetadata modMetadata;
 
-    public ModDataImpl(String modid) {
+    public MetadataImpl(String modid) {
         this.modContainer = FabricLoader.getInstance().getModContainer(modid).orElseThrow();
         this.modMetadata = modContainer.getMetadata();
     }
 
-    public ModDataImpl(ModContainer container) {
+    public MetadataImpl(ModContainer container) {
         this.modContainer = container;
         this.modMetadata = modContainer.getMetadata();
     }
@@ -54,8 +54,8 @@ public final class ModDataImpl implements ModData {
     }
 
     @Override
-    public Collection<? extends ModDependencyInfo> getDependencies() {
-        return modMetadata.getDependencies().stream().map(ModDependencyInfoImpl::new).toList();
+    public Collection<? extends DependencyInfo> getDependencies() {
+        return modMetadata.getDependencies().stream().map(DependencyInfoImpl::new).toList();
     }
 
     @Override

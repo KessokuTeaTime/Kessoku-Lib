@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.api.platform;
 
-import band.kessoku.lib.service.platform.ModLoaderService;
+import band.kessoku.lib.service.platform.LoaderService;
 import org.jetbrains.annotations.Nullable;
 
-public interface ModDependencyInfo {
+public interface DependencyInfo {
     /**
      * Get the kind of dependency.
      */
@@ -90,7 +90,7 @@ public interface ModDependencyInfo {
          */
         @Nullable
         public String getKey() {
-            return ModLoaderService.getInstance().isFabric() ? fabricKey : neoKey;
+            return LoaderService.getInstance().isFabric() ? fabricKey : neoKey;
         }
     }
 }

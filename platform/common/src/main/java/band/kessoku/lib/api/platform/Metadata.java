@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public interface ModData {
+public interface Metadata {
     /**
      * Returns the mod's ID.
      */
@@ -34,7 +34,7 @@ public interface ModData {
     /**
      * Returns all of the mod's dependencies.
      */
-    Collection<? extends ModDependencyInfo> getDependencies();
+    Collection<? extends DependencyInfo> getDependencies();
 
     /**
      * Get the name of the mod.

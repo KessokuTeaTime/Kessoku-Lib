@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.impl.platform.neoforge;
+package band.kessoku.lib.impl.platform.fabric;
 
 import java.nio.file.Path;
 import java.util.Collection;
@@ -21,71 +21,71 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import band.kessoku.lib.api.platform.Env;
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.service.platform.ModLoaderService;
+import band.kessoku.lib.api.platform.Metadata;
+import band.kessoku.lib.service.platform.LoaderService;
 import com.google.auto.service.AutoService;
 
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
-import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforgespi.language.IModInfo;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
+import net.fabricmc.loader.api.metadata.ModMetadata;
 
-@AutoService(ModLoaderService.class)
-public final class ModLoaderImpl implements ModLoaderService {
-    private final Map<String, ModData> modDataMap = new ConcurrentHashMap<>();
+@AutoService(LoaderService.class)
+public final class LoaderImpl implements LoaderService {
+    private final Map<String, Metadata> modMetadataMap = new ConcurrentHashMap<>();
 
     @Override
-    public ModData getModData(String modid) {
-        return modDataMap.computeIfAbsent(modid, ModDataImpl::new);
+    public Metadata getModMetadata(String modid) {
+        return modMetadataMap.computeIfAbsent(modid, MetadataImpl::new);
     }
 
     @Override
     public boolean isFabric() {
-        return false;
-    }
-
-    @Override
-    public boolean isNeoForge() {
         return true;
     }
 
     @Override
+    public boolean isNeoForge() {
+        return false;
+    }
+
+    @Override
     public Env getEnv() {
-        return FMLLoader.getDist().isClient() ? Env.CLIENT : Env.SERVER;
+        return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT ? Env.CLIENT : Env.SERVER;
     }
 
     @Override
     public Path getGameFolder() {
-        return FMLPaths.GAMEDIR.get();
+        return FabricLoader.getInstance().getGameDir();
     }
 
     @Override
     public Path getConfigFolder() {
-        return FMLPaths.CONFIGDIR.get();
+        return FabricLoader.getInstance().getConfigDir();
     }
 
     @Override
     public Path getModsFolder() {
-        return FMLPaths.MODSDIR.get();
+        return getGameFolder().resolve("mods");
     }
 
     @Override
     public boolean isModLoaded(String id) {
-        return ModList.get().isLoaded(id);
+        return FabricLoader.getInstance().isModLoaded(id);
     }
 
     @Override
     public Collection<String> getModIds() {
-        return ModList.get().getMods().parallelStream().map(IModInfo::getModId).toList();
+        return FabricLoader.getInstance().getAllMods().parallelStream().map(ModContainer::getMetadata).map(ModMetadata::getId).toList();
     }
 
     @Override
-    public Collection<? extends ModData> getMods() {
-        return ModList.get().getMods().parallelStream().map(ModDataImpl::new).toList();
+    public Collection<? extends Metadata> getMods() {
+        return FabricLoader.getInstance().getAllMods().parallelStream().map(MetadataImpl::new).toList();
     }
 
     @Override
     public boolean isDevEnv() {
-        return !FMLLoader.isProduction();
+        return FabricLoader.getInstance().isDevelopmentEnvironment();
     }
 }

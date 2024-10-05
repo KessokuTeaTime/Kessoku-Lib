@@ -13,26 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.impl.platform.neoforge;
+package band.kessoku.lib.impl.platform.fabric;
 
-import band.kessoku.lib.api.platform.ModDependencyInfo;
+import band.kessoku.lib.api.platform.DependencyInfo;
 
-import net.neoforged.neoforgespi.language.IModInfo;
+import net.fabricmc.loader.api.metadata.ModDependency;
 
-public final class ModDependencyInfoImpl implements ModDependencyInfo {
-    private final IModInfo.ModVersion value;
+public final class DependencyInfoImpl implements DependencyInfo {
+    private final ModDependency value;
 
-    public ModDependencyInfoImpl(IModInfo.ModVersion modVersion) {
-        this.value = modVersion;
+    public DependencyInfoImpl(ModDependency dependency) {
+        this.value = dependency;
     }
 
     @Override
     public DependencyKind getKind() {
-        return switch (value.getType()) {
-            case OPTIONAL -> DependencyKind.OPTIONAL;
-            case REQUIRED -> DependencyKind.DEPENDS;
-            case DISCOURAGED -> DependencyKind.CONFLICTS;
-            case INCOMPATIBLE -> DependencyKind.BREAKS;
+        return switch (value.getKind()) {
+            case DEPENDS -> DependencyKind.DEPENDS;
+            case RECOMMENDS -> DependencyKind.RECOMMENDS;
+            case SUGGESTS -> DependencyKind.SUGGESTS;
+            case CONFLICTS -> DependencyKind.CONFLICTS;
+            case BREAKS -> DependencyKind.BREAKS;
         };
     }
 
@@ -41,7 +42,7 @@ public final class ModDependencyInfoImpl implements ModDependencyInfo {
         return value.getModId();
     }
 
-    public IModInfo.ModVersion getModVersion() {
+    public ModDependency getModDependency() {
         return value;
     }
 }

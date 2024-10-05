@@ -27,4 +27,8 @@ public enum PlatformIdentifier {
     public String displayName() {
         return displayName;
     }
+
+    public ModPlatform platform() {
+        return modPlatform;
+    }
 }

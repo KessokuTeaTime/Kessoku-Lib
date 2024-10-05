@@ -22,9 +22,9 @@ import java.util.*;
 import java.util.function.Consumer;
 
 import band.kessoku.lib.api.KessokuLib;
+import band.kessoku.lib.api.platform.Metadata;
+import band.kessoku.lib.api.platform.Loader;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuPreLaunchEntrypoint;
-import band.kessoku.lib.api.platform.ModData;
-import band.kessoku.lib.api.platform.ModLoader;
 import band.kessoku.lib.impl.entrypoint.JavaLanguageAdapter;
 import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
 import club.someoneice.json.JSON;
@@ -49,7 +49,7 @@ public final class KessokuEntrypoint {
     static {
         KessokuLib.getLogger().info(MARKER, "Start loading.");
         Map<String, KessokuMetadata> modInfoMap = new HashMap<>();
-        for (ModData modData : ModLoader.getMods()) {
+        for (Metadata modData : Loader.getMods()) {
             final String modid = modData.getModId();
             final Path kessokuJsonPath = modData.findPath("kessoku.json").orElse(null);
             // Not found
@@ -84,7 +84,7 @@ public final class KessokuEntrypoint {
                 List<Entry> entries = new ArrayList<>();
                 entrypointMetadataList.forEach(entrypointMetadata -> {
                             try {
-                                Object instance = getAdapter(entrypointMetadata.getAdapter()).parse(ModLoader.getModData(modid), entrypointMetadata.getValue());
+                                Object instance = getAdapter(entrypointMetadata.getAdapter()).parse(Loader.getModMetadata(modid), entrypointMetadata.getValue());
                                 entries.add(new Entry(modid, instance, entrypointMetadata.getValue()));
                             } catch (LanguageAdapterException e) {
                                 throw new RuntimeException(e);
@@ -123,7 +123,7 @@ public final class KessokuEntrypoint {
             } catch (Throwable t) {
                 exceptions.add(new RuntimeException(String.format(
                         "Could not execute entrypoint stage '%s' due to errors, provided by '%s' at '%s'!",
-                        key, entry.modData.getModId(), entry.definition
+                        key, entry.metadata.getModId(), entry.definition
                 )));
             }
         }
@@ -149,12 +149,12 @@ public final class KessokuEntrypoint {
 
     @SuppressWarnings("unchecked")
     public static final class Entry {
-        public final ModData modData;
+        public final Metadata metadata;
         private final Object instance;
         public final String definition;
 
         private Entry(String modid, Object instance, String definition) {
-            this.modData = ModLoader.getModData(modid);
+            this.metadata = Loader.getModMetadata(modid);
             this.instance = instance;
             this.definition = definition;
         }

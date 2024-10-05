@@ -20,14 +20,14 @@ import java.util.Collection;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.platform.Env;
-import band.kessoku.lib.api.platform.ModData;
+import band.kessoku.lib.api.platform.Metadata;
 
-public interface ModLoaderService {
-    static ModLoaderService getInstance() {
-        return KessokuLib.loadService(ModLoaderService.class);
+public interface LoaderService {
+    static LoaderService getInstance() {
+        return KessokuLib.loadService(LoaderService.class);
     }
 
-    ModData getModData(String modid);
+    Metadata getModMetadata(String modid);
 
     boolean isFabric();
 
@@ -45,7 +45,7 @@ public interface ModLoaderService {
 
     Collection<String> getModIds();
 
-    Collection<? extends ModData> getMods();
+    Collection<? extends Metadata> getMods();
 
     boolean isDevEnv();
 }
