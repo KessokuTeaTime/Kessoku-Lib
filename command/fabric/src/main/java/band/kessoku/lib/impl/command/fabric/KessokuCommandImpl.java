@@ -17,13 +17,14 @@ package band.kessoku.lib.impl.command.fabric;
 
 import band.kessoku.lib.api.event.command.ClientCommandRegistryEvent;
 import band.kessoku.lib.api.event.command.CommandRegistryEvent;
-
 import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
 import com.mojang.brigadier.CommandDispatcher;
+
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
 public final class KessokuCommandImpl {
+    @SuppressWarnings("unchecked")
     public static void registerClientEvents() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             ClientCommandRegistryEvent.EVENT.invoker().register((CommandDispatcher<ClientCommandSourceExtension>)

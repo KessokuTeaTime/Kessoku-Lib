@@ -22,8 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import band.kessoku.lib.api.platform.Metadata;
 import band.kessoku.lib.api.platform.DependencyInfo;
+import band.kessoku.lib.api.platform.Metadata;
 
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;

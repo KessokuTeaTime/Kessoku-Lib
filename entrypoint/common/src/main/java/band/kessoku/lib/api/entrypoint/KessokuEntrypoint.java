@@ -22,9 +22,9 @@ import java.util.*;
 import java.util.function.Consumer;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.platform.Metadata;
-import band.kessoku.lib.api.platform.Loader;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuPreLaunchEntrypoint;
+import band.kessoku.lib.api.platform.Loader;
+import band.kessoku.lib.api.platform.Metadata;
 import band.kessoku.lib.impl.entrypoint.JavaLanguageAdapter;
 import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
 import club.someoneice.json.JSON;

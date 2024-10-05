@@ -18,10 +18,10 @@ package band.kessoku.lib.impl.entrypoint.fabric;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.entrypoint.KessokuEntrypoint;
-
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuClientModInitializer;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuDedicatedServerModInitializer;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.ModInitializer;

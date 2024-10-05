@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import band.kessoku.lib.api.platform.Metadata;
 import band.kessoku.lib.api.platform.DependencyInfo;
+import band.kessoku.lib.api.platform.Metadata;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;

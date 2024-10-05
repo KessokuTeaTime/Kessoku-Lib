@@ -16,10 +16,10 @@
 package band.kessoku.lib.impl.entrypoint.neoforge;
 
 import band.kessoku.lib.api.entrypoint.KessokuEntrypoint;
-
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuClientModInitializer;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuDedicatedServerModInitializer;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
+
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 

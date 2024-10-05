@@ -27,5 +27,6 @@ public final class KessokuCommandNeoforge {
         var forgeEventBus = NeoForge.EVENT_BUS;
         KessokuLib.loadModule(KessokuCommand.class);
         KessokuCommandImpl.registerCommonEvents(forgeEventBus);
+        KessokuCommandImpl.registerClientEvents(forgeEventBus);
     }
 }
