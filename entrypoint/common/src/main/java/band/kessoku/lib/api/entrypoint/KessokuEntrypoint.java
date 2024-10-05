@@ -49,9 +49,9 @@ public final class KessokuEntrypoint {
     static {
         KessokuLib.getLogger().info(MARKER, "Start loading.");
         Map<String, KessokuMetadata> modInfoMap = new HashMap<>();
-        for (Metadata modData : Loader.getMods()) {
-            final String modid = modData.getModId();
-            final Path kessokuJsonPath = modData.findPath("kessoku.json").orElse(null);
+        for (Metadata metadata : Loader.getMods()) {
+            final String modid = metadata.getModId();
+            final Path kessokuJsonPath = metadata.findPath("kessoku.json").orElse(null);
             // Not found
             if (kessokuJsonPath == null) continue;
             final MapNode json;
@@ -77,9 +77,9 @@ public final class KessokuEntrypoint {
         adapters.put("java", JavaLanguageAdapter.INSTANCE);
         // Init the entryMap
         // forEach mods
-        modInfoMap.forEach((modid, metadata) -> {
+        modInfoMap.forEach((modid, kessokuMetadata) -> {
             // forEach mod entrypoints by key and entrypoint
-            metadata.entrypoints().forEach((key, entrypointMetadataList) -> {
+            kessokuMetadata.entrypoints().forEach((key, entrypointMetadataList) -> {
                 // The entries of the key
                 List<Entry> entries = new ArrayList<>();
                 entrypointMetadataList.forEach(entrypointMetadata -> {
