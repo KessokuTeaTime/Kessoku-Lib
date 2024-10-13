@@ -2,7 +2,8 @@ apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
 base.archivesName = rootProject.name + "-package"
 
-// You can delete this section if you need to
-dependencies {
+kessoku {
+    modules(["base", "event-base"], "common")
 
+    testModule("event-base", "common")
 }
