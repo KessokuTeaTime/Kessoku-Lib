@@ -27,6 +27,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import band.kessoku.lib.api.KessokuLib;
+import band.kessoku.lib.api.base.reflect.ModifiersUtil;
+import band.kessoku.lib.api.base.reflect.ReflectUtil;
 import band.kessoku.lib.api.config.annotations.Comment;
 import band.kessoku.lib.api.config.annotations.Comments;
 import band.kessoku.lib.api.config.annotations.Name;
@@ -83,7 +85,9 @@ public abstract class AbstractConfig {
                 // Check the value is public and not static
                 try {
                     Field field = this.getClass().getField(key);
-                    if (!Modifier.isPublic(field.getModifiers()) || Modifier.isStatic(field.getModifiers())) continue;
+                    if (!ModifiersUtil.isPublicOrStatic(field, true, false)) {
+                        continue;
+                    }
                     value = (ConfigValue) ReflectionUtil.getFieldValue(field, this);
                 } catch (NoSuchFieldException e) {
                     continue;
@@ -142,12 +146,9 @@ public abstract class AbstractConfig {
 
         List<Field> fields = new ArrayList<>();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            declaredField.setAccessible(true);
-
-            final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class);
-            final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
-            final boolean flag2 = !Modifier.isStatic(declaredField.getModifiers());
-            if (flag0 && flag1 && flag2) {
+            final boolean flag0 = ReflectUtil.isAssignableFrom(declaredField, ConfigValue.class);
+            final boolean flag1 = ModifiersUtil.isPublicOrStatic(declaredField, true, false);
+            if (flag0 && flag1) {
                 fields.add(declaredField);
             }
         }
@@ -166,8 +167,8 @@ public abstract class AbstractConfig {
         for (Field declaredField : this.getClass().getDeclaredFields()) {
             declaredField.setAccessible(true);
 
-            final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class);
-            final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
+            final boolean flag0 = ReflectUtil.isAssignableFrom(declaredField, AbstractConfig.class);
+            final boolean flag1 = ModifiersUtil.isPublic(declaredField);
             if (flag0 && flag1){
                 fields.add(declaredField);
             }
@@ -180,15 +181,10 @@ public abstract class AbstractConfig {
     private ImmutableList<Field> getValidFields() {
         ImmutableList.Builder<Field> builder = ImmutableList.builder();
         for (Field declaredField : this.getClass().getDeclaredFields()) {
-            declaredField.setAccessible(true);
+            final boolean flag0 = ReflectUtil.isAssignableFrom(declaredField, AbstractConfig.class, ConfigValue.class);
+            final boolean flag1 = Modifier.isPublic(declaredField.getModifiers());
 
-            final boolean flag0 = declaredField.getDeclaringClass().isAssignableFrom(AbstractConfig.class);
-            final boolean flag1 = declaredField.getDeclaringClass().isAssignableFrom(ConfigValue.class);
-            final boolean flag2 = Modifier.isPublic(declaredField.getModifiers());
-
-            final var flag = flag0 || flag1;
-
-            if (flag && flag2){
+            if (flag0 && flag1){
                 builder.add(declaredField);
             }
         }
@@ -198,7 +194,7 @@ public abstract class AbstractConfig {
     private Map<String, ValueWithComment> serialize() {
         ImmutableMap.Builder<String, ValueWithComment> builder = ImmutableMap.builder();
         for (Field field : this.getValidFields()) {
-            field.setAccessible(true);
+            ReflectionUtil.makeAccessible(field);
 
             final String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
             final String[] comments = field.isAnnotationPresent(Comments.class) ? (String[]) Arrays.stream(field.getAnnotation(Comments.class).value()).map(Comment::value).toArray() : new String[0];
