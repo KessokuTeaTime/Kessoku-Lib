@@ -1,4 +1,4 @@
-package band.kessoku.lib.api.networking.util;
+package band.kessoku.lib.api.networking;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

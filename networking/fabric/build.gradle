@@ -5,7 +5,7 @@ apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 base.archivesName = rootProject.name + "-networking"
 
 kessoku {
-    module("base", "common")
+    modules(["base", "event-base"], "common")
 
     common("networking", ModPlatform.FABRIC)
     shadowBundle("networking", ModPlatform.FABRIC)

@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.networking.fabric",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ClientConnectionMixin",
+    "CommandManagerMixin",
+    "CustomPayloadC2SPacketMixin",
+    "CustomPayloadPacketCodecMixin",
+    "CustomPayloadS2CPacketMixin",
+    "LoginQueryRequestS2CPacketMixin",
+    "LoginQueryResponseC2SPacketMixin",
+    "PacketCodecDispatcherMixin",
+    "PlayerManagerMixin",
+    "ServerCommonNetworkHandlerMixin",
+    "ServerConfigurationNetworkHandlerMixin",
+    "ServerLoginNetworkHandlerMixin",
+    "ServerPlayNetworkHandlerMixin"
+  ],
+  "client": [
+    "client.ClientCommonNetworkHandlerMixin",
+    "client.ClientConfigurationNetworkHandlerMixin",
+    "client.ClientLoginNetworkHandlerMixin",
+    "client.ClientPlayNetworkHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

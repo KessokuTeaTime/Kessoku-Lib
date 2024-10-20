@@ -1,4 +1,4 @@
-package band.kessoku.lib.api.networking.util;
+package band.kessoku.lib.api.networking;
 
 import net.minecraft.server.network.ServerPlayerConfigurationTask;
 

@@ -5,7 +5,8 @@ apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 base.archivesName = rootProject.name + "-networking"
 
 kessoku {
-    module("base", "common")
+    modules(["base", "event-base"], "common")
+    module("base", "neo")
 
     common("networking", ModPlatform.NEOFORGE)
     shadowBundle("networking", ModPlatform.NEOFORGE)

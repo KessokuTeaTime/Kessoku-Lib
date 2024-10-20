@@ -1,6 +1,6 @@
 package band.kessoku.lib.impl.networking;
 
-import band.kessoku.lib.api.networking.util.ChannelRegister;
+import band.kessoku.lib.api.networking.PayloadTypeRegistry;
 import net.minecraft.network.NetworkPhase;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.PacketByteBuf;
@@ -14,17 +14,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class ChannelRegisterImpl<B extends PacketByteBuf> implements ChannelRegister<B> {
-    public static final ChannelRegisterImpl<PacketByteBuf> CONFIG_C2S = new ChannelRegisterImpl<>(NetworkPhase.CONFIGURATION, NetworkSide.SERVERBOUND);
-    public static final ChannelRegisterImpl<PacketByteBuf> CONFIG_S2C = new ChannelRegisterImpl<>(NetworkPhase.CONFIGURATION, NetworkSide.CLIENTBOUND);
-    public static final ChannelRegisterImpl<RegistryByteBuf> PLAY_C2S = new ChannelRegisterImpl<>(NetworkPhase.PLAY, NetworkSide.SERVERBOUND);
-    public static final ChannelRegisterImpl<RegistryByteBuf> PLAY_S2C = new ChannelRegisterImpl<>(NetworkPhase.PLAY, NetworkSide.CLIENTBOUND);
+public class PayloadTypeRegistryImpl<B extends PacketByteBuf> implements PayloadTypeRegistry<B> {
+    public static final PayloadTypeRegistryImpl<PacketByteBuf> CONFIG_C2S = new PayloadTypeRegistryImpl<>(NetworkPhase.CONFIGURATION, NetworkSide.SERVERBOUND);
+    public static final PayloadTypeRegistryImpl<PacketByteBuf> CONFIG_S2C = new PayloadTypeRegistryImpl<>(NetworkPhase.CONFIGURATION, NetworkSide.CLIENTBOUND);
+    public static final PayloadTypeRegistryImpl<RegistryByteBuf> PLAY_C2S = new PayloadTypeRegistryImpl<>(NetworkPhase.PLAY, NetworkSide.SERVERBOUND);
+    public static final PayloadTypeRegistryImpl<RegistryByteBuf> PLAY_S2C = new PayloadTypeRegistryImpl<>(NetworkPhase.PLAY, NetworkSide.CLIENTBOUND);
 
     private final Map<Identifier, CustomPayload.Type<B, ? extends CustomPayload>> packetTypes = new HashMap<>();
     private final NetworkPhase state;
     private final NetworkSide side;
 
-    private ChannelRegisterImpl(NetworkPhase state, NetworkSide side) {
+    private PayloadTypeRegistryImpl(NetworkPhase state, NetworkSide side) {
         this.state = state;
         this.side = side;
     }

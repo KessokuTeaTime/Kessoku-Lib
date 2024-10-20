@@ -1,7 +1,14 @@
-package band.kessoku.lib.mixin.networking.fabric;
+package band.kessoku.lib.mixin.networking.neoforge;
 
-import java.util.Queue;
-
+import band.kessoku.lib.api.networking.ServerConfigurationNetworkHandlerExtension;
+import band.kessoku.lib.impl.networking.NetworkHandlerExtension;
+import band.kessoku.lib.impl.networking.server.ServerConfigurationNetworkAddon;
+import net.minecraft.network.ClientConnection;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ConnectedClientData;
+import net.minecraft.server.network.ServerCommonNetworkHandler;
+import net.minecraft.server.network.ServerConfigurationNetworkHandler;
+import net.minecraft.server.network.ServerPlayerConfigurationTask;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,16 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.network.ClientConnection;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ConnectedClientData;
-import net.minecraft.server.network.ServerCommonNetworkHandler;
-import net.minecraft.server.network.ServerConfigurationNetworkHandler;
-import net.minecraft.server.network.ServerPlayerConfigurationTask;
-
-import band.kessoku.lib.api.networking.ServerConfigurationNetworkHandlerExtension;
-import band.kessoku.lib.impl.networking.NetworkHandlerExtension;
-import band.kessoku.lib.impl.networking.server.ServerConfigurationNetworkAddon;
+import java.util.Queue;
 
 // We want to apply a bit earlier than other mods which may not use us in order to prevent refCount issues
 @Mixin(value = ServerConfigurationNetworkHandler.class, priority = 900)
@@ -80,7 +78,7 @@ public abstract class ServerConfigurationNetworkHandlerMixin extends ServerCommo
 
         // Run the early tasks
         if (kessokulib$earlyTaskExecution) {
-            if (pollEarlyTasks()) {
+            if (kessokulib$pollEarlyTasks()) {
                 ci.cancel();
                 return;
             } else {
@@ -97,7 +95,7 @@ public abstract class ServerConfigurationNetworkHandlerMixin extends ServerCommo
     }
 
     @Unique
-    private boolean pollEarlyTasks() {
+    private boolean kessokulib$pollEarlyTasks() {
         if (!kessokulib$earlyTaskExecution) {
             throw new IllegalStateException("Early task execution has finished");
         }
@@ -114,7 +112,7 @@ public abstract class ServerConfigurationNetworkHandlerMixin extends ServerCommo
 
         if (task != null) {
             this.currentTask = task;
-            task.sendPacket(this::sendPacket);
+            task.sendPacket(this::send);
             return true;
         }
 
