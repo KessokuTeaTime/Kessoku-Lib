@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.networking.neoforge",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ServerConfigurationNetworkHandlerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
