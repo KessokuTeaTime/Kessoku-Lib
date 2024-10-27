@@ -90,7 +90,7 @@ public interface DependencyInfo {
          */
         @Nullable
         public String getKey() {
-            return LoaderService.getInstance().isFabric() ? fabricKey : neoKey;
+            return Loader.isFabric() ? fabricKey : neoKey;
         }
     }
 }

@@ -25,46 +25,46 @@ public final class Loader {
     }
 
     public static Metadata getModMetadata(String modid) {
-        return LoaderService.getInstance().getModMetadata(modid);
+        return LoaderService.INSTANCE.getModMetadata(modid);
     }
 
     public static boolean isFabric() {
-        return LoaderService.getInstance().isFabric();
+        return LoaderService.INSTANCE.isFabric();
     }
 
     public static boolean isNeoForge() {
-        return LoaderService.getInstance().isNeoForge();
+        return LoaderService.INSTANCE.isNeoForge();
     }
 
     public static Env getEnv() {
-        return LoaderService.getInstance().getEnv();
+        return LoaderService.INSTANCE.getEnv();
     }
 
     public static Path getGameFolder() {
-        return LoaderService.getInstance().getGameFolder();
+        return LoaderService.INSTANCE.getGameFolder();
     }
 
     public static Path getConfigFolder() {
-        return LoaderService.getInstance().getConfigFolder();
+        return LoaderService.INSTANCE.getConfigFolder();
     }
 
     public static Path getModsFolder() {
-        return LoaderService.getInstance().getModsFolder();
+        return LoaderService.INSTANCE.getModsFolder();
     }
 
     public static boolean isModLoaded(String id) {
-        return LoaderService.getInstance().isModLoaded(id);
+        return LoaderService.INSTANCE.isModLoaded(id);
     }
 
     public static Collection<String> getModIds() {
-        return LoaderService.getInstance().getModIds();
+        return LoaderService.INSTANCE.getModIds();
     }
 
     public static Collection<? extends Metadata> getMods() {
-        return LoaderService.getInstance().getMods();
+        return LoaderService.INSTANCE.getMods();
     }
 
     public static boolean isDevEnv() {
-        return LoaderService.getInstance().isDevEnv();
+        return LoaderService.INSTANCE.isDevEnv();
     }
 }
