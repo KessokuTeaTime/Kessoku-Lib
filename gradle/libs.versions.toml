@@ -6,7 +6,7 @@ yarn-patch-neoforge = "1.21+build.4"
 
 # Loaders
 neo = "21.0.167"
-fabric-loader = "0.16.5"
+fabric-loader = "0.16.7"
 
 # Mods
 fabric-api = "0.102.0+1.21"
