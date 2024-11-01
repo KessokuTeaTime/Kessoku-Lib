@@ -3,7 +3,7 @@
   "id": "kessoku_platform",
   "version": "${version}",
   "name": "Kessoku Platform",
-  "description": "Provide common loader API.",
+  "description": "The next generation cross-platform modular Minecraft modding API.",
   "authors": [
     "Kessoku Tea Time"
   ],

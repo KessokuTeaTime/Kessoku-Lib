@@ -1,0 +1,12 @@
+apply from: rootProject.file("gradle/scripts/klib-common.gradle")
+
+base.archivesName = rootProject.name + "-blockentity"
+
+kessoku {
+    module("base", "common")
+    module("platform", "common")
+}
+
+dependencies {
+    implementation libs.aj4j
+}

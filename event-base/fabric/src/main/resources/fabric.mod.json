@@ -3,7 +3,7 @@
   "id": "kessoku_event_base",
   "version": "${version}",
   "name": "Kessoku Event Base",
-  "description": "Provide basic API for event system.",
+  "description": "Basic API for an event system.",
   "authors": [
     "Kessoku Tea Time"
   ],
