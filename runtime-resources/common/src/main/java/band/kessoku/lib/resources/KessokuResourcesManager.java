@@ -1,6 +1,6 @@
 package band.kessoku.lib.resources;
 
-import band.kessoku.lib.resources.api.IProvider;
+import band.kessoku.lib.resources.api.provider.IProvider;
 import com.google.common.collect.ImmutableList;
 
 import java.util.ArrayList;

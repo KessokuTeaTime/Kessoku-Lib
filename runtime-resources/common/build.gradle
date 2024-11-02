@@ -3,7 +3,8 @@ apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 group = "band.kessoku.lib.resources"
 base.archivesName = rootProject.name + "-package"
 
-// You can delete this section if you need to
 dependencies {
-
+    moduleImplementation(project(":platform-common"))
+    moduleImplementation(project(":base-common"))
+    moduleImplementation(project(":event-base-common"))
 }
