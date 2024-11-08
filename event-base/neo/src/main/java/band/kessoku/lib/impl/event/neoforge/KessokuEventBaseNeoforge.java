@@ -17,7 +17,6 @@ package band.kessoku.lib.impl.event.neoforge;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.event.api.KessokuEventBase;
-
 import net.neoforged.fml.common.Mod;
 
 @Mod(KessokuEventBase.MOD_ID)

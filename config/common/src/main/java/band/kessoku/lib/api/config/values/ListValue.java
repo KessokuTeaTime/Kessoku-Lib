@@ -15,13 +15,13 @@
  */
 package band.kessoku.lib.api.config.values;
 
-import java.util.*;
-import java.util.function.Supplier;
-
 import com.google.common.collect.ImmutableList;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
+
+import java.util.*;
+import java.util.function.Supplier;
 
 @SuppressWarnings({"rawtypes"})
 public final class ListValue<T> extends DefaultConfigValue<List<T>> implements List<T> {

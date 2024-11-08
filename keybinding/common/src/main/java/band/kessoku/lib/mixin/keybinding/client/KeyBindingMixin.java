@@ -15,17 +15,16 @@
  */
 package band.kessoku.lib.mixin.keybinding.client;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.function.Consumer;
-
 import band.kessoku.lib.impl.keybinding.client.CategoryOrderMap;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.util.Util;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.util.Util;
+import java.util.Collections;
+import java.util.Map;
+import java.util.function.Consumer;
 
 @Mixin(KeyBinding.class)
 public class KeyBindingMixin {

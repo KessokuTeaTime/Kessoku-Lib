@@ -16,14 +16,13 @@
 package band.kessoku.lib.api.event.lifecycle.client;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 
 public class ClientEntityEvent {
 
     /**
-     * Called when an Entity is loaded into a ClientWorld.
+     * Called when an {@link Entity} is loaded into a {@link ClientWorld}.
      *
      * <p>When this event is called, the chunk is already in the world.
      */
@@ -34,7 +33,7 @@ public class ClientEntityEvent {
     });
 
     /**
-     * Called when an Entity is about to be unloaded from a ClientWorld.
+     * Called when an {@link Entity} is about to be unloaded from a {@link ClientWorld}.
      *
      * <p>This event is called before the entity is unloaded from the world.
      */

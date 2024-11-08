@@ -17,7 +17,6 @@ package kessoku.testmod.command;
 
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
 import band.kessoku.lib.api.event.command.CommandRegistryEvent;
-
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.Text;
 

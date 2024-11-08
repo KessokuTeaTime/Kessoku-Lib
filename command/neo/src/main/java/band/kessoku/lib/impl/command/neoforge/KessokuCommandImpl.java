@@ -20,7 +20,6 @@ import band.kessoku.lib.api.event.command.ClientCommandRegistryEvent;
 import band.kessoku.lib.api.event.command.CommandRegistryEvent;
 import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
 import com.mojang.brigadier.CommandDispatcher;
-
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;

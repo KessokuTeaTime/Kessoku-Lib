@@ -17,12 +17,11 @@ package band.kessoku.lib.mixin.entrypoint.neoforge;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.entrypoint.KessokuEntrypoint;
+import net.neoforged.fml.loading.FMLLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.neoforged.fml.loading.FMLLoader;
 
 @Mixin(FMLLoader.class)
 public class FMLLoaderMixin {

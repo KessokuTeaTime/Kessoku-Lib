@@ -16,7 +16,6 @@
 package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +24,7 @@ import net.minecraft.server.world.ServerWorld;
 
 public class ServerEntityEvent {
     /**
-     * Called when an Entity is loaded into a ServerWorld.
+     * Called when an {@link Entity} is loaded into a {@link ServerWorld}.
      *
      * <p>When this event is called, the entity is already in the world.
      */
@@ -36,7 +35,7 @@ public class ServerEntityEvent {
     });
 
     /**
-     * Called when an Entity is unloaded from a ServerWorld.
+     * Called when an {@link Entity} is unloaded from a {@link ServerWorld}.
      *
      * <p>This event is called before the entity is removed from the world.
      */

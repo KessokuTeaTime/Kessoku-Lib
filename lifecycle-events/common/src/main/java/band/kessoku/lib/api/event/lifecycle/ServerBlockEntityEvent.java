@@ -16,14 +16,13 @@
 package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
 
 public class ServerBlockEntityEvent {
 
     /**
-     * Called when an BlockEntity is loaded into a ServerWorld.
+     * Called when an {@link BlockEntity} is loaded into a {@link ServerWorld}.
      *
      * <p>When this is event is called, the block entity is already in the world.
      * However, its data might not be loaded yet, so don't rely on it.
@@ -35,7 +34,7 @@ public class ServerBlockEntityEvent {
     });
 
     /**
-     * Called when an BlockEntity is about to be unloaded from a ServerWorld.
+     * Called when an {@link BlockEntity} is about to be unloaded from a {@link ServerWorld}.
      *
      * <p>When this event is called, the block entity is still present on the world.
      */

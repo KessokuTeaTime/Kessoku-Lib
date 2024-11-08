@@ -17,7 +17,6 @@ package band.kessoku.lib.impl.data.base;
 
 import band.kessoku.lib.api.data.NBTSerializable;
 import band.kessoku.lib.impl.data.BaseData;
-
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 

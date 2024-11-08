@@ -15,13 +15,12 @@
  */
 package band.kessoku.lib.impl.keybinding.client;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import band.kessoku.lib.api.KessokuLib;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.ApiStatus;
 
-import net.minecraft.text.Text;
+import java.util.HashMap;
+import java.util.Map;
 
 // RawDiamondMC Note:
 // Maybe some hacky changes to implement insertAfter and insertBefore?

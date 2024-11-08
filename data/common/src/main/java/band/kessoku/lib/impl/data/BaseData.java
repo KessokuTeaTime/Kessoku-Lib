@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.impl.data;
 
-import java.util.Objects;
-
 import band.kessoku.lib.api.data.MutableData;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class BaseData<T> implements MutableData<T> {
     private final String id;

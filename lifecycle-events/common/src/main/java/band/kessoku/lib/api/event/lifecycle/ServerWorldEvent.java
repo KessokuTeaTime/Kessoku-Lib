@@ -16,14 +16,13 @@
 package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 
 public class ServerWorldEvent {
 
     /**
-     * Called just after a world is loaded by a Minecraft server.
+     * Called just after a world is loaded by a Logical-Server.
      *
      * <p>This can be used to load world specific metadata or initialize a {@link net.minecraft.world.PersistentState} on a server world.
      */
@@ -34,7 +33,7 @@ public class ServerWorldEvent {
     });
 
     /**
-     * Called before a world is unloaded by a Minecraft server.
+     * Called before a world is unloaded by a Logical-Server.
      *
      * <p>This typically occurs after a server has {@link ServerLifecycleEvent#STOPPING started shutting down}.
      * Mods which allow dynamic world (un)registration should call this event so mods can let go of world handles when a world is removed.

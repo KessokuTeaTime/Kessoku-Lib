@@ -15,10 +15,13 @@
  */
 package band.kessoku.lib.mixin.event.lifecycle.neoforge.server;
 
-import java.util.Map;
-
 import band.kessoku.lib.api.event.lifecycle.ServerBlockEntityEvent;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.WorldChunk;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,11 +33,7 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
+import java.util.Map;
 
 /**
  * This is a server only mixin for good reason:

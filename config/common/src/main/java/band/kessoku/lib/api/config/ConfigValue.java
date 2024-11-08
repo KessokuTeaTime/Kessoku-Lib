@@ -55,7 +55,8 @@ public interface ConfigValue<F, T> extends Supplier<F> {
                 case Float ignored -> FLOAT;
                 case Double ignored -> DOUBLE;
 
-                /* AmarokIce Note:
+                /*
+                AmarokIce Note:
                     try catch 对性能会造成额外影响。此处 throw 后在 { @code AbstractConfig } 中捕获是无意义的。
                     因此，改用 NULL 作为空置对象。
                  */

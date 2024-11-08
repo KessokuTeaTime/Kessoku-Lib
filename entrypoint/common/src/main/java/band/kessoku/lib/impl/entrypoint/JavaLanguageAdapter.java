@@ -15,14 +15,14 @@
  */
 package band.kessoku.lib.impl.entrypoint;
 
+import band.kessoku.lib.api.entrypoint.LanguageAdapter;
+import band.kessoku.lib.api.platform.Metadata;
+import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-
-import band.kessoku.lib.api.entrypoint.LanguageAdapter;
-import band.kessoku.lib.api.platform.Metadata;
-import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
 
 public final class JavaLanguageAdapter implements LanguageAdapter {
     public static final LanguageAdapter INSTANCE = new JavaLanguageAdapter();

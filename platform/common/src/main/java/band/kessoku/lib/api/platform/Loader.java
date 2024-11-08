@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.api.platform;
 
+import band.kessoku.lib.service.platform.LoaderService;
+
 import java.nio.file.Path;
 import java.util.Collection;
-
-import band.kessoku.lib.service.platform.LoaderService;
 
 public final class Loader {
     private Loader() {

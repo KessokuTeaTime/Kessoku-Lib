@@ -16,10 +16,9 @@
 package band.kessoku.lib.mixin.command;
 
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import net.minecraft.server.command.HelpCommand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
-
-import net.minecraft.server.command.HelpCommand;
 
 @Mixin(HelpCommand.class)
 public interface HelpCommandAccessor {

@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.impl.data.collection;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.ListIterator;
-
-import org.jetbrains.annotations.NotNull;
 
 public final class DefaultedListData<T> extends ListData<T> {
     private final @NotNull T defaultValue;

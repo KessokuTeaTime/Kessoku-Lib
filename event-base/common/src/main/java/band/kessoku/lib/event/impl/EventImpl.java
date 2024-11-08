@@ -15,14 +15,14 @@
  */
 package band.kessoku.lib.event.impl;
 
+import band.kessoku.lib.event.api.Event;
+import band.kessoku.lib.event.api.EventPhase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-
-import band.kessoku.lib.event.api.Event;
-import band.kessoku.lib.event.api.EventPhase;
 
 public final class EventImpl<T> implements Event<T> {
     private final Map<EventPhase, List<T>> listeners = new HashMap<>();

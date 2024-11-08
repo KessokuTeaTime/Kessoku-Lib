@@ -15,11 +15,15 @@
  */
 package band.kessoku.lib.mixin.event.lifecycle.neoforge.client;
 
-import java.util.Map;
-
 import band.kessoku.lib.api.event.lifecycle.ServerBlockEntityEvent;
 import band.kessoku.lib.api.event.lifecycle.client.ClientBlockEntityEvent;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.WorldChunk;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,12 +35,7 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
+import java.util.Map;
 
 @Mixin(WorldChunk.class)
 abstract class WorldChunkMixin {

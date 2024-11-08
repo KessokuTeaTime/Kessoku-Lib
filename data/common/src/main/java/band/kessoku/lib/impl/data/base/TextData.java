@@ -15,14 +15,13 @@
  */
 package band.kessoku.lib.impl.data.base;
 
-import static net.minecraft.block.entity.BlockEntity.tryParseCustomName;
-
 import band.kessoku.lib.api.data.NBTSerializable;
 import band.kessoku.lib.impl.data.BaseData;
-
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
+
+import static net.minecraft.block.entity.BlockEntity.tryParseCustomName;
 
 public final class TextData extends BaseData<Text> implements NBTSerializable {
     private TextData(String id, Text defaultValue) {

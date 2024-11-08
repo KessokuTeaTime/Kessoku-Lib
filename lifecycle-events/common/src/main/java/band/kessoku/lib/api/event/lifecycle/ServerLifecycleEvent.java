@@ -16,26 +16,28 @@
 package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.resource.LifecycledResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+// TODO - Is anyone remember the Dedicated-Server's starting event?
+
 public class ServerLifecycleEvent {
 
     /**
-     * Called when a Minecraft server is starting.
+     * This event will fire when Logical-Server is starting.
      *
      * <p>This occurs before the {@link net.minecraft.server.PlayerManager player manager} and any worlds are loaded.
      */
     public static final Event<Server.Starting> STARTING = Event.of(startings -> server ->  {
         for (Server.Starting serverStarting : startings) {
             serverStarting.onServerStarting(server);
+
         }
     });
 
     /**
-     * Called when a Minecraft server has started and is about to tick for the first time.
+     * This event will fire when a Logical-Server has started and is about to tick for the first time.
      *
      * <p>At this stage, all worlds are live.
      */
@@ -46,7 +48,7 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called when a Minecraft server has started shutting down.
+     * This event will fire when a Logical-Server has started shutting down.
      * This occurs before the server's network channel is closed and before any players are disconnected.
      *
      * <p>For example, an integrated server will begin stopping, but its client may continue to run.
@@ -60,11 +62,11 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called when a Minecraft server has stopped.
+     * This event will fire when a Logical-Server has stopped.
      * All worlds have been closed and all (block)entities and players have been unloaded.
      *
      * <p>For example, an {@link net.fabricmc.api.EnvType#CLIENT integrated server} will begin stopping, but its client may continue to run.
-     * Meanwhile, for a {@link net.fabricmc.api.EnvType#SERVER dedicated server}, this will be the last event called.
+     * Meanwhile, for a {@link net.fabricmc.api.EnvType#SERVER dedicated server}, this will be the last event This event will fire.
      */
     public static final Event<Server.Stopped> STOPPED = Event.of(stoppeds -> server ->  {
         for (Server.Stopped serverStopped : stoppeds) {
@@ -73,7 +75,7 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called when a Minecraft server is about to send tag and recipe data to a player.
+     * This event will fire when the Dedicated-Server is about to send tag and recipe data to a player.
      * @see Datapack.SyncContents
      */
     public static final Event<Datapack.SyncContents> SYNC_DATA_PACK_CONTENTS = Event.of(syncContents -> (player, joined) ->  {
@@ -83,7 +85,7 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called before a Minecraft server reloads data packs.
+     * This event will fire before the Dedicated-Server reloads data packs.
      */
     public static final Event<Datapack.StartReload> START_DATA_PACK_RELOAD = Event.of(startReloads -> (server, serverResourceManager) -> {
         for (Datapack.StartReload startDataPackReload : startReloads) {
@@ -92,7 +94,7 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called after a Minecraft server has reloaded data packs.
+     * This event fired after the Dedicated-Server has reloaded data packs.
      *
      * <p>If reloading data packs was unsuccessful, the current data packs will be kept.
      */
@@ -103,7 +105,7 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called before a Minecraft server begins saving data.
+     * This event will fire before a Logical-Server begins saving data.
      */
     public static final Event<SaveData.Before> BEFORE_SAVE = Event.of(befores -> (server, flush, force) -> {
         for (SaveData.Before beforeSaveData : befores) {
@@ -112,7 +114,7 @@ public class ServerLifecycleEvent {
     });
 
     /**
-     * Called after a Minecraft server finishes saving data.
+     * This event will fire after a Logical-Server finishes saving data.
      */
     public static final Event<SaveData.After> AFTER_SAVE = Event.of(afters -> (server, flush, force) -> {
         for (SaveData.After afterSaveData : afters) {
@@ -146,9 +148,9 @@ public class ServerLifecycleEvent {
         @FunctionalInterface
         interface SyncContents {
             /**
-             * Called right before tags and recipes are sent to a player,
+             * This event will fire before tags and recipes are sent to a player,
              * either because the player joined, or because the server reloaded resources.
-             * The {@linkplain MinecraftServer#getResourceManager() server resource manager} is up-to-date when this is called.
+             * The {@linkplain MinecraftServer#getResourceManager() server resource manager} is up-to-date when this is This event will fire.
              *
              * <p>For example, this event can be used to sync data loaded with custom resource reloaders.
              *
@@ -166,7 +168,7 @@ public class ServerLifecycleEvent {
         @FunctionalInterface
         interface EndReload {
             /**
-             * Called after data packs on a Minecraft server have been reloaded.
+             * This event will fire after data packs on a Minecraft server have been reloaded.
              *
              * <p>If the reload was not successful, the old data packs will be kept.
              *
@@ -182,7 +184,7 @@ public class ServerLifecycleEvent {
         @FunctionalInterface
         interface Before {
             /**
-             * Called before a Minecraft server begins saving data.
+             * This event will fire before a Logical-Server begins saving data.
              *
              * @param server the server
              * @param flush is true when all chunks are being written to disk, server will likely freeze during this time
@@ -194,7 +196,7 @@ public class ServerLifecycleEvent {
         @FunctionalInterface
         interface After {
             /**
-             * Called after a Minecraft server begins saving data.
+             * This event will fire after a Logical-Server begins saving data.
              *
              * @param server the server
              * @param flush is true when all chunks are being written to disk, server will likely freeze during this time

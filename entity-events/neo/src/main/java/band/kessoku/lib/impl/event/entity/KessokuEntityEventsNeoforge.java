@@ -21,12 +21,10 @@ import band.kessoku.lib.api.event.entity.EntitySleepEvent;
 import band.kessoku.lib.api.event.entity.KessokuEntityEvents;
 import band.kessoku.lib.api.event.entity.ServerLivingEntityEvent;
 import band.kessoku.lib.api.event.entity.ServerPlayerEvent;
-
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
-
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingConversionEvent;

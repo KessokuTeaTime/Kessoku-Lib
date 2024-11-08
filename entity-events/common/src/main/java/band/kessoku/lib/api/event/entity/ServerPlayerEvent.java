@@ -16,9 +16,8 @@
 package band.kessoku.lib.api.event.entity;
 
 import band.kessoku.lib.event.api.Event;
-import org.jetbrains.annotations.ApiStatus;
-
 import net.minecraft.server.network.ServerPlayerEntity;
+import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.NonExtendable
 public interface ServerPlayerEvent {

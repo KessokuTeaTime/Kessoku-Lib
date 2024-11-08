@@ -16,15 +16,13 @@
 package band.kessoku.lib.mixin.event.entity;
 
 import band.kessoku.lib.api.event.entity.item.KessokuElytraItem;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.neoforged.neoforge.common.extensions.IItemExtension;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-
-import net.neoforged.neoforge.common.extensions.IItemExtension;
 
 @Mixin(IItemExtension.class)
 public interface IItemExtensionMixin {

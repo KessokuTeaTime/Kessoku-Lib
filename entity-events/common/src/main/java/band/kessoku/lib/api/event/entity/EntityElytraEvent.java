@@ -17,9 +17,8 @@ package band.kessoku.lib.api.event.entity;
 
 import band.kessoku.lib.api.event.entity.item.KessokuElytraItem;
 import band.kessoku.lib.event.api.Event;
-import org.jetbrains.annotations.ApiStatus;
-
 import net.minecraft.entity.LivingEntity;
+import org.jetbrains.annotations.ApiStatus;
 
 /**
  * Events related to elytra flight for living entities. Elytra flight is also known as "fall flying".

@@ -17,11 +17,9 @@ package band.kessoku.lib.impl.keybinding.fabric;
 
 import band.kessoku.lib.service.keybinding.client.KeyBindingRegisterService;
 import com.google.auto.service.AutoService;
-
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 
 @AutoService(KeyBindingRegisterService.class)
 public final class KeyBindingRegisterImpl implements KeyBindingRegisterService {

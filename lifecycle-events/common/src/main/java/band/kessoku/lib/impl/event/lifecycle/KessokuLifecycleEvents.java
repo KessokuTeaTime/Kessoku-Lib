@@ -19,12 +19,11 @@ import band.kessoku.lib.api.event.lifecycle.ServerBlockEntityEvent;
 import band.kessoku.lib.api.event.lifecycle.ServerChunkEvent;
 import band.kessoku.lib.api.event.lifecycle.ServerEntityEvent;
 import band.kessoku.lib.api.event.lifecycle.ServerWorldEvent;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
-
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.chunk.WorldChunk;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class KessokuLifecycleEvents {
     public static final String MOD_ID = "kessoku_lifecycle_events";

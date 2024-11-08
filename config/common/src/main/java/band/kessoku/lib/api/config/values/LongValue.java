@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.api.config.values;
 
-import java.util.function.Supplier;
-
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 public final class LongValue extends DefaultConfigValue<Long> {
     private LongValue(Supplier<Long> defaultValue) {

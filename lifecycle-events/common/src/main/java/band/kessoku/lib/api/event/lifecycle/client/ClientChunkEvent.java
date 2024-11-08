@@ -16,14 +16,14 @@
 package band.kessoku.lib.api.event.lifecycle.client;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.WorldChunk;
 
 public class ClientChunkEvent {
 
     /**
-     * Called when a chunk is loaded into a ClientWorld.
+     * Called when a {@link Chunk} is loaded into a {@link ClientWorld}.
      *
      * <p>When this event is called, the chunk is already in the world.
      */
@@ -34,7 +34,7 @@ public class ClientChunkEvent {
     });
 
     /**
-     * Called when a chunk is about to be unloaded from a ClientWorld.
+     * Called when a {@link Chunk} is about to be unloaded from a {@link ClientWorld}.
      *
      * <p>When this event is called, the chunk is still present in the world.
      */

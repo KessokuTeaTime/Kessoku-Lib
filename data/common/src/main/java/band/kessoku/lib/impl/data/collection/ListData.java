@@ -15,12 +15,12 @@
  */
 package band.kessoku.lib.impl.data.collection;
 
+import band.kessoku.lib.api.data.Data;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
-
-import band.kessoku.lib.api.data.Data;
-import org.jetbrains.annotations.NotNull;
 
 public class ListData<T> extends AbstractList<T> implements Data<List<T>> {
     private final List<T> list = new ArrayList<>();

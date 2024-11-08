@@ -15,14 +15,13 @@
  */
 package kessoku.testmod.lifecycle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuModInitializer;
 import band.kessoku.lib.api.event.lifecycle.ServerBlockEntityEvent;
-
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.registry.Registries;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServerBlockEntityTests implements KessokuModInitializer {
     private final List<BlockEntity> serverBlockEntities = new ArrayList<>();

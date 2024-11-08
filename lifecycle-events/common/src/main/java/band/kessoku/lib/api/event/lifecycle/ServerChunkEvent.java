@@ -16,14 +16,14 @@
 package band.kessoku.lib.api.event.lifecycle;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.WorldChunk;
 
 public class ServerChunkEvent {
 
     /**
-     * Called when a chunk is loaded into a ServerWorld.
+     * Called when a {@link Chunk} is loaded into a {@link ServerWorld}.
      *
      * <p>When this event is called, the chunk is already in the world.
      */
@@ -34,7 +34,7 @@ public class ServerChunkEvent {
     });
 
     /**
-     * Called when a chunk is unloaded from a ServerWorld.
+     * Called when a {@link Chunk} is unloaded from a {@link ServerWorld}.
      *
      * <p>When this event is called, the chunk is still present in the world.
      */

@@ -15,21 +15,19 @@
  */
 package band.kessoku.lib.impl.registry.neoforge;
 
-import java.util.Objects;
-
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
 import band.kessoku.lib.api.registry.FuelRegistry;
 import band.kessoku.lib.api.registry.KessokuRegistry;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
-
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
+
+import java.util.Objects;
 
 @Mod(KessokuRegistry.MOD_ID)
 public final class KessokuRegistryNeoforge {

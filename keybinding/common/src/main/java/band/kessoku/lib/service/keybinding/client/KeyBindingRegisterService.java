@@ -16,7 +16,6 @@
 package band.kessoku.lib.service.keybinding.client;
 
 import band.kessoku.lib.api.KessokuLib;
-
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 

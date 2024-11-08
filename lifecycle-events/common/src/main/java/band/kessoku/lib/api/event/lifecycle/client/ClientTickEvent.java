@@ -16,7 +16,6 @@
 package band.kessoku.lib.api.event.lifecycle.client;
 
 import band.kessoku.lib.event.api.Event;
-
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 

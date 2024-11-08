@@ -15,12 +15,12 @@
  */
 package band.kessoku.lib.service.platform;
 
-import java.nio.file.Path;
-import java.util.Collection;
-
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.platform.Env;
 import band.kessoku.lib.api.platform.Metadata;
+
+import java.nio.file.Path;
+import java.util.Collection;
 
 public interface LoaderService {
     LoaderService INSTANCE = KessokuLib.loadService(LoaderService.class);

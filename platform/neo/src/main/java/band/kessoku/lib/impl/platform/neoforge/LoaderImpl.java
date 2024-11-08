@@ -15,20 +15,19 @@
  */
 package band.kessoku.lib.impl.platform.neoforge;
 
-import java.nio.file.Path;
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import band.kessoku.lib.api.platform.Env;
 import band.kessoku.lib.api.platform.Metadata;
 import band.kessoku.lib.service.platform.LoaderService;
 import com.google.auto.service.AutoService;
-
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforgespi.language.IModInfo;
+
+import java.nio.file.Path;
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @AutoService(LoaderService.class)
 public final class LoaderImpl implements LoaderService {

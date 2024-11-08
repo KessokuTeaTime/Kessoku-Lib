@@ -17,7 +17,6 @@ package band.kessoku.lib.impl.keybinding.fabric;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.impl.keybinding.client.KessokuKeybinding;
-
 import net.fabricmc.api.ClientModInitializer;
 
 public final class KessokuKeyBindingFabric implements ClientModInitializer {

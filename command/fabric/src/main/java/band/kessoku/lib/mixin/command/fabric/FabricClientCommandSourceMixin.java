@@ -16,8 +16,7 @@
 package band.kessoku.lib.mixin.command.fabric;
 
 import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
-import org.spongepowered.asm.mixin.Mixin;
-
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -25,8 +24,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
-
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(FabricClientCommandSource.class)
 public interface FabricClientCommandSourceMixin extends ClientCommandSourceExtension {

@@ -15,16 +15,15 @@
  */
 package band.kessoku.lib.api.keybinding.client;
 
-import java.util.Map;
-import java.util.Set;
-
 import band.kessoku.lib.api.base.KessokuUtils;
 import band.kessoku.lib.impl.keybinding.client.CategoryOrderMap;
 import band.kessoku.lib.service.keybinding.client.KeyBindingRegisterService;
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
+import java.util.Set;
 
 public final class KeyBindingRegister {
     private KeyBindingRegister() {

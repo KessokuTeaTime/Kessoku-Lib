@@ -15,12 +15,6 @@
  */
 package band.kessoku.lib.api.entrypoint;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.function.Consumer;
-
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.entrypoint.entrypoints.KessokuPreLaunchEntrypoint;
 import band.kessoku.lib.api.platform.Loader;
@@ -32,6 +26,12 @@ import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.function.Consumer;
 
 public final class KessokuEntrypoint {
     private KessokuEntrypoint() {

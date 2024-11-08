@@ -19,7 +19,6 @@ import band.kessoku.lib.api.event.command.ClientCommandRegistryEvent;
 import band.kessoku.lib.api.event.command.CommandRegistryEvent;
 import band.kessoku.lib.api.util.command.ClientCommandSourceExtension;
 import com.mojang.brigadier.CommandDispatcher;
-
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 

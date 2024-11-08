@@ -16,15 +16,14 @@
 package band.kessoku.lib.mixin.event.lifecycle.neoforge.client;
 
 import band.kessoku.lib.api.event.lifecycle.client.ClientEntityEvent;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
 
 @Mixin(targets = "net/minecraft/client/world/ClientWorld$ClientEntityHandler")
 public class ClientEntityHandlerMixin {
