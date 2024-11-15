@@ -26,6 +26,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git commit -m "chore: Apply Spotless"
           git add .
+          git commit -m "chore: Apply Spotless"
           git push
