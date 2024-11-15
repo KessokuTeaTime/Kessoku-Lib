@@ -22,9 +22,10 @@ jobs:
         run: chmod +x ./gradlew
       - name: apply spotless
         run: ./gradlew spotlessApply
-      - name: Commit and push to site branch
+      - name: Push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git commit -m "chore: Apply Spotless"
+          git add .
           git push
