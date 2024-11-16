@@ -1,9 +1,38 @@
+/*
+ * Copyright (c) 2024 KessokuTeaTime
+ *
+ * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.gnu.org/licenses/lgpl-3.0.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package band.kessoku.lib.impl.networking.client;
 
 import java.util.Objects;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.KessokuNetworking;
+import band.kessoku.lib.api.networking.PacketSender;
+import band.kessoku.lib.api.networking.client.ClientConfigurationConnectionEvent;
+import band.kessoku.lib.api.networking.client.ClientConfigurationNetworking;
+import band.kessoku.lib.api.networking.client.ClientLoginNetworking;
+import band.kessoku.lib.api.networking.client.ClientPlayConnectionEvent;
+import band.kessoku.lib.api.networking.client.ClientPlayNetworking;
+import band.kessoku.lib.impl.networking.GlobalReceiverRegistry;
+import band.kessoku.lib.impl.networking.NetworkHandlerExtension;
+import band.kessoku.lib.impl.networking.PayloadTypeRegistryImpl;
+import band.kessoku.lib.impl.networking.common.CommonPacketsImpl;
+import band.kessoku.lib.impl.networking.common.CommonRegisterPayload;
+import band.kessoku.lib.impl.networking.common.CommonVersionPayload;
+import band.kessoku.lib.mixin.networking.accessor.client.ConnectScreenAccessor;
+import band.kessoku.lib.mixin.networking.accessor.client.MinecraftClientAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.MinecraftClient;
@@ -18,21 +47,6 @@ import net.minecraft.network.listener.ServerCommonPacketListener;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.common.CustomPayloadC2SPacket;
-
-import band.kessoku.lib.api.networking.client.ClientConfigurationConnectionEvent;
-import band.kessoku.lib.api.networking.client.ClientConfigurationNetworking;
-import band.kessoku.lib.api.networking.client.ClientLoginNetworking;
-import band.kessoku.lib.api.networking.client.ClientPlayConnectionEvent;
-import band.kessoku.lib.api.networking.client.ClientPlayNetworking;
-import band.kessoku.lib.api.networking.PacketSender;
-import band.kessoku.lib.impl.networking.common.CommonPacketsImpl;
-import band.kessoku.lib.impl.networking.common.CommonRegisterPayload;
-import band.kessoku.lib.impl.networking.common.CommonVersionPayload;
-import band.kessoku.lib.impl.networking.GlobalReceiverRegistry;
-import band.kessoku.lib.impl.networking.NetworkHandlerExtension;
-import band.kessoku.lib.impl.networking.PayloadTypeRegistryImpl;
-import band.kessoku.lib.mixin.networking.accessor.client.ConnectScreenAccessor;
-import band.kessoku.lib.mixin.networking.accessor.client.MinecraftClientAccessor;
 
 public final class ClientNetworkingImpl {
     public static final GlobalReceiverRegistry<ClientLoginNetworking.LoginQueryRequestHandler> LOGIN = new GlobalReceiverRegistry<>(NetworkSide.CLIENTBOUND, NetworkPhase.LOGIN, null);

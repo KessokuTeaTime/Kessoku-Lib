@@ -1,21 +1,34 @@
+/*
+ * Copyright (c) 2024 KessokuTeaTime
+ *
+ * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.gnu.org/licenses/lgpl-3.0.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package band.kessoku.lib.impl.networking.neoforge;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.KessokuNetworking;
 import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
-import band.kessoku.lib.api.networking.server.ServerConfigurationConnectionEvent;
 import band.kessoku.lib.impl.networking.NetworkingImpl;
 import band.kessoku.lib.impl.networking.client.ClientNetworkingImpl;
-import band.kessoku.lib.impl.networking.common.CommonPacketsImpl;
+
 import net.minecraft.SharedConstants;
 import net.minecraft.server.command.DebugConfigCommand;
-import net.minecraft.server.network.ServerConfigurationNetworkHandler;
+
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.network.event.RegisterConfigurationTasksEvent;
 
 @Mod(KessokuNetworking.MOD_ID)
 public class KessokuNetworkingNeoForge {

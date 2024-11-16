@@ -1,17 +1,23 @@
+/*
+ * Copyright (c) 2024 KessokuTeaTime
+ *
+ * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.gnu.org/licenses/lgpl-3.0.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package band.kessoku.lib.impl.networking.server;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import net.minecraft.network.ClientConnection;
-import net.minecraft.network.NetworkPhase;
-import net.minecraft.network.packet.CustomPayload;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
 
 import band.kessoku.lib.api.networking.PacketSender;
 import band.kessoku.lib.api.networking.server.S2CPlayChannelEvent;
@@ -21,6 +27,15 @@ import band.kessoku.lib.impl.networking.AbstractChanneledNetworkAddon;
 import band.kessoku.lib.impl.networking.ChannelInfoHolder;
 import band.kessoku.lib.impl.networking.NetworkingImpl;
 import band.kessoku.lib.impl.networking.RegistrationPayload;
+
+import net.minecraft.network.ClientConnection;
+import net.minecraft.network.NetworkPhase;
+import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 
 public final class ServerPlayNetworkAddon extends AbstractChanneledNetworkAddon<ServerPlayNetworking.PlayPayloadHandler<?>> {
     private final ServerPlayNetworkHandler handler;
