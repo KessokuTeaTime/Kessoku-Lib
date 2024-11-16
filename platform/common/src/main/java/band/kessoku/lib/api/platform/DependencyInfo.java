@@ -15,7 +15,6 @@
  */
 package band.kessoku.lib.api.platform;
 
-import band.kessoku.lib.service.platform.LoaderService;
 import org.jetbrains.annotations.Nullable;
 
 public interface DependencyInfo {
