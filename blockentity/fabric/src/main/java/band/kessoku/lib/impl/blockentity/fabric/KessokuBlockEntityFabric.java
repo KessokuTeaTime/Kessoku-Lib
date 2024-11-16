@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.base.reflect;
+package band.kessoku.lib.impl.blockentity.fabric;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
+import net.fabricmc.api.ModInitializer;
 
-public final class ReflectUtil {
-    private ReflectUtil() {
-    }
+public class KessokuBlockEntityFabric implements ModInitializer {
+    @Override
+    public void onInitialize() {
 
-    public static boolean isAssignableFrom(Field field, Class<?>... clazzs) {
-        var flag = Arrays.stream(clazzs).anyMatch(clazz -> !field.getType().isAssignableFrom(clazz));
-        return !flag;
     }
 }

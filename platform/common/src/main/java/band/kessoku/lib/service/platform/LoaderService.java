@@ -23,9 +23,7 @@ import band.kessoku.lib.api.platform.Env;
 import band.kessoku.lib.api.platform.Metadata;
 
 public interface LoaderService {
-    static LoaderService getInstance() {
-        return KessokuLib.loadService(LoaderService.class);
-    }
+    LoaderService INSTANCE = KessokuLib.loadService(LoaderService.class);
 
     Metadata getModMetadata(String modid);
 
