@@ -25,10 +25,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: apply spotless
         run: ./gradlew spotlessApply
-      - name: Push
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "chore: Apply Spotless"
-          git push
+      - name: commit changes and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "chore: Apply Spotless"
+          default_author: github_actions
