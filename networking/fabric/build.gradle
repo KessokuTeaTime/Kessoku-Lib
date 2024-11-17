@@ -4,6 +4,10 @@ apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 base.archivesName = rootProject.name + "-networking"
 
+loom {
+    accessWidenerPath = project(":networking-common").loom.accessWidenerPath
+}
+
 kessoku {
     modules(["base", "event-base"], "common")
 

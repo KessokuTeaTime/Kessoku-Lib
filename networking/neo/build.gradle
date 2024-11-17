@@ -4,10 +4,18 @@ apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 base.archivesName = rootProject.name + "-networking"
 
+loom {
+    accessWidenerPath = project(":networking-common").loom.accessWidenerPath
+}
+
 kessoku {
     modules(["base", "event-base"], "common")
     module("base", "neo")
 
     common("networking", ModPlatform.NEOFORGE)
     shadowBundle("networking", ModPlatform.NEOFORGE)
+}
+
+remapJar {
+    atAccessWideners.add("kessoku-networking.accesswidener")
 }

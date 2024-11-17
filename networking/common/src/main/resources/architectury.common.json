@@ -1,4 +1,5 @@
 {
+  "accessWidener": "kessoku-networking.accesswidener",
   "injected_interfaces": {
     "net/minecraft/class_8610": [ "band/kessoku/lib/api/networking/ServerConfigurationNetworkHandlerExtension" ]
   }

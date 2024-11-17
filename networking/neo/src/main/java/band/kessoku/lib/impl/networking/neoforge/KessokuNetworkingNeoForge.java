@@ -22,7 +22,6 @@ public class KessokuNetworkingNeoForge {
     public KessokuNetworkingNeoForge(IEventBus modEventBus) {
         KessokuLib.loadModule(KessokuNetworking.class);
 
-        CommonPacketsImplNeoForge.init();
         NetworkingImpl.init();
 
         if (FMLLoader.getDist().isClient()) {
@@ -43,9 +42,9 @@ public class KessokuNetworkingNeoForge {
             DebugConfigCommand.register(event.getDispatcher());
         });
 
-//        NeoEventUtils.registerEvent(modEventBus, RegisterConfigurationTasksEvent.class, event -> {
-//            ServerConfigurationNetworkHandler listener = (ServerConfigurationNetworkHandler) event.getListener();
-//            ServerConfigurationConnectionEvent.CONFIGURE.invoker().onSendConfiguration(listener, listener.server);
-//        });
+        NeoEventUtils.registerEvent(modEventBus, RegisterConfigurationTasksEvent.class, event -> {
+            ServerConfigurationNetworkHandler listener = (ServerConfigurationNetworkHandler) event.getListener();
+            ServerConfigurationConnectionEvent.CONFIGURE.invoker().onSendConfiguration(listener, listener.server);
+        });
     }
 }
