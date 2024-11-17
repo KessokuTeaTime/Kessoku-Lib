@@ -1,9 +1,31 @@
+/*
+ * Copyright (c) 2024 KessokuTeaTime
+ *
+ * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.gnu.org/licenses/lgpl-3.0.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package band.kessoku.lib.impl.networking.client;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import band.kessoku.lib.api.networking.PacketByteBufHelper;
+import band.kessoku.lib.api.networking.client.ClientLoginConnectionEvent;
+import band.kessoku.lib.api.networking.client.ClientLoginNetworking;
+import band.kessoku.lib.impl.networking.AbstractNetworkAddon;
+import band.kessoku.lib.impl.networking.payload.PacketByteBufLoginQueryRequestPayload;
+import band.kessoku.lib.impl.networking.payload.PacketByteBufLoginQueryResponsePayload;
+import band.kessoku.lib.mixin.networking.accessor.client.ClientLoginNetworkHandlerAccessor;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.MinecraftClient;
@@ -13,14 +35,6 @@ import net.minecraft.network.PacketCallbacks;
 import net.minecraft.network.packet.c2s.login.LoginQueryResponseC2SPacket;
 import net.minecraft.network.packet.s2c.login.LoginQueryRequestS2CPacket;
 import net.minecraft.util.Identifier;
-
-import band.kessoku.lib.api.networking.client.ClientLoginConnectionEvent;
-import band.kessoku.lib.api.networking.client.ClientLoginNetworking;
-import band.kessoku.lib.api.networking.PacketByteBufHelper;
-import band.kessoku.lib.impl.networking.AbstractNetworkAddon;
-import band.kessoku.lib.impl.networking.payload.PacketByteBufLoginQueryRequestPayload;
-import band.kessoku.lib.impl.networking.payload.PacketByteBufLoginQueryResponsePayload;
-import band.kessoku.lib.mixin.networking.accessor.client.ClientLoginNetworkHandlerAccessor;
 
 public final class ClientLoginNetworkAddon extends AbstractNetworkAddon<ClientLoginNetworking.LoginQueryRequestHandler> {
     private final ClientLoginNetworkHandler handler;

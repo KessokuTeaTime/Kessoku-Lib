@@ -1,0 +1,32 @@
+name: Run spotless
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        java:
+          - 21
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: setup jdk ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: "microsoft"
+      - name: setup gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: apply spotless
+        run: ./gradlew spotlessApply
+      - name: commit changes and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "chore: Apply Spotless"
+          default_author: github_actions

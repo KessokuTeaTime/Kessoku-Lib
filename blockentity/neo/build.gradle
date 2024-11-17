@@ -1,0 +1,12 @@
+import net.fabricmc.loom.util.ModPlatform
+
+apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
+
+base.archivesName = rootProject.name + "-entrypoint"
+
+kessoku {
+    module("base", "common")
+
+    common("blockentity", ModPlatform.NEOFORGE)
+    shadowBundle("blockentity", ModPlatform.NEOFORGE)
+}

@@ -3,7 +3,7 @@
   "id": "kessoku_registry",
   "version": "${version}",
   "name": "Kessoku Registry",
-  "description": "Provide registry-related API.",
+  "description": "A Registry-related API.",
   "authors": [
     "Kessoku Tea Time"
   ],
