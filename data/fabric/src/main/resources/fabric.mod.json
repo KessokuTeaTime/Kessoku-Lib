@@ -3,7 +3,7 @@
   "id": "kessoku_data",
   "version": "${version}",
   "name": "Kessoku Data",
-  "description": "About data in Minecraft.",
+  "description": "A API about data in Minecraft.",
   "authors": [
     "Kessoku Tea Time"
   ],

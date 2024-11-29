@@ -5,8 +5,8 @@ apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 base.archivesName = rootProject.name + "-package"
 
 kessoku {
-    modules("base", "common")
+    module("base", "common")
 
-    common("package-common", ModPlatform.FABRIC)
-    shadowBundle("package-common", ModPlatform.FABRIC)
+    common("package", ModPlatform.NEOFORGE)
+    shadowBundle("package", ModPlatform.NEOFORGE)
 }

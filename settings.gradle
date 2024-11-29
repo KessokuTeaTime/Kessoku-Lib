@@ -24,6 +24,8 @@ includeModule("config") // Config API
 includeModule("entrypoint") // Entrypoint API
 includeModule("entity-events") // Entity Events
 includeModule("blockentity") // Block Entity
+includeModule("transfer") // Transfer
+includeModule("component") // Component
 
 void includeWrapper(String platform) {
     include("wrapper/$platform")

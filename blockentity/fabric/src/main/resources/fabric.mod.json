@@ -3,7 +3,7 @@
   "id": "kessoku_blockentity",
   "version": "${version}",
   "name": "Kessoku Block Entity",
-  "description": "Common blockentity API.",
+  "description": "A API of Block Entity Building.",
   "authors": [
     "Kessoku Tea Time"
   ],

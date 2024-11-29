@@ -1,0 +1,12 @@
+import net.fabricmc.loom.util.ModPlatform
+
+apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
+
+base.archivesName = rootProject.name + "-transfer"
+
+kessoku {
+    module("base", "common")
+
+    common("transfer", ModPlatform.NEOFORGE)
+    shadowBundle("transfer", ModPlatform.NEOFORGE)
+}

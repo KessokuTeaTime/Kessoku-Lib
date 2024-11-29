@@ -24,5 +24,6 @@ import net.neoforged.fml.common.Mod;
 public final class KessokuDataNeoforge {
     public KessokuDataNeoforge() {
         KessokuLib.loadModule(KessokuData.class);
+        KessokuData.init();
     }
 }

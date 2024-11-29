@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "LGPL-3.0-only"
+issueTrackerURL = "https://github.com/KessokuTeaTime/KessokuLib/issues"
+
+[[mods]]
+modId = "kessoku_transfer"
+version = "${version}"
+displayName = "Kessoku Block Entity"
+description = '''
+A Item/Fluid/Energy Transfer API.
+'''
+logoFile = "icon.png"
+authors = "Kessoku Tea Time"
+displayURL = "https://modrinth.com/mod/kessoku-lib"
+
+[[dependencies.kessoku_transfer]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kessoku_transfer]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"

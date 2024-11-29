@@ -1,0 +1,10 @@
+apply from: rootProject.file("gradle/scripts/klib-common.gradle")
+
+base.archivesName = rootProject.name + "-component"
+
+kessoku {
+    module("base", "common")
+    module("registry", "common")
+    module("data", "common")
+}
+

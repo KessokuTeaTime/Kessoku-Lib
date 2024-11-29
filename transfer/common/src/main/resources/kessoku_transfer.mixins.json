@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.transfer",
+  "compatibilityLevel": "JAVA_21",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

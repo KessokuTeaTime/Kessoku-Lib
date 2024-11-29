@@ -4,9 +4,5 @@ base.archivesName = rootProject.name + "-blockentity"
 
 kessoku {
     module("base", "common")
-    module("platform", "common")
-}
-
-dependencies {
-    implementation libs.aj4j
+    module("data", "common")
 }

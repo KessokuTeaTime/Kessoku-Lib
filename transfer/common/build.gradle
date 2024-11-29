@@ -1,0 +1,8 @@
+apply from: rootProject.file("gradle/scripts/klib-common.gradle")
+
+base.archivesName = rootProject.name + "-transfer"
+
+kessoku {
+    module("base", "common")
+    module("data", "common")
+}

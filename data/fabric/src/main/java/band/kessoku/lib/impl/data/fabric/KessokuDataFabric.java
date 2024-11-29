@@ -24,5 +24,6 @@ public final class KessokuDataFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         KessokuLib.loadModule(KessokuData.class);
+        KessokuData.init();
     }
 }

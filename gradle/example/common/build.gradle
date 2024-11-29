@@ -1,9 +1,7 @@
 apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
-group = "band.kessoku.lib.package"
 base.archivesName = rootProject.name + "-package"
 
-// You can delete this section if you need to
-dependencies {
-
+kessoku {
+    module("base", "common")
 }

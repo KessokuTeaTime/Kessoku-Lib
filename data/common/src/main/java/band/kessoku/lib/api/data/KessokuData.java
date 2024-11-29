@@ -22,4 +22,8 @@ public final class KessokuData {
     public static final String MOD_ID = "kessoku_data";
     public static final String NAME = "Kessoku Data API";
     public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME +"]");
+
+    public static void init() {
+
+    }
 }
