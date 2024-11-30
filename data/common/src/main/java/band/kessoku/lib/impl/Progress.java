@@ -1,12 +1,12 @@
 package band.kessoku.lib.impl;
 
-import band.kessoku.lib.api.data.DataStructure;
+import band.kessoku.lib.api.data.Timer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 
-public class Progress implements DataStructure {
+public class Progress implements Timer {
     public static final Codec<Progress> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.INT.fieldOf("time").forGetter(Progress::time),
             Codec.INT.fieldOf("totalTime").forGetter(Progress::totalTime)
@@ -30,11 +30,10 @@ public class Progress implements DataStructure {
     private Progress(int time, int totalTime) {
         this.time = time;
         this.totalTime = totalTime;
-
     }
 
-    public Progress(int totalTime) {
-        this.totalTime = totalTime;
+    public static Progress create(int totalTime) {
+        return new Progress(0, totalTime);
     }
 
     public void process() {
