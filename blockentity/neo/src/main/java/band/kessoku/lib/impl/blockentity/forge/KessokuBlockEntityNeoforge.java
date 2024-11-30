@@ -17,6 +17,7 @@ package band.kessoku.lib.impl.blockentity.forge;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.blockentity.KessokuBlockEntity;
+
 import net.neoforged.fml.common.Mod;
 
 @Mod(KessokuBlockEntity.MOD_ID)
