@@ -17,6 +17,7 @@ package band.kessoku.lib.api.blockentity;
 
 import band.kessoku.lib.api.data.DataAccess;
 import band.kessoku.lib.api.data.DataStructure;
+
 import net.minecraft.block.entity.BlockEntity;
 
 @FunctionalInterface

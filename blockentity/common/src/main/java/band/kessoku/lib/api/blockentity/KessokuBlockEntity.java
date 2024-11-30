@@ -17,9 +17,10 @@ package band.kessoku.lib.api.blockentity;
 
 import band.kessoku.lib.api.data.Storage;
 import band.kessoku.lib.impl.ItemSidinator;
-import net.minecraft.block.entity.BlockEntityType;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import net.minecraft.block.entity.BlockEntityType;
 
 public class KessokuBlockEntity {
     public static final String MOD_ID = "kessoku_blockentity";
