@@ -27,9 +27,9 @@ public class KessokuBlockEntity {
     public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME +"]");
 
     public void init() {
-        BlockEntityCoordinator.add(BlockEntityType.FURNACE, Storage::inventory);
-        BlockEntityCoordinator.add(BlockEntityType.CHEST, Storage::inventory);
-        BlockEntityCoordinator.add(
+        Coordinators.ITEM.add(BlockEntityType.FURNACE, Storage::inventory);
+        Coordinators.ITEM.add(BlockEntityType.CHEST, Storage::inventory);
+        Coordinators.ITEM_SIDE.add(
                 BlockEntityType.FURNACE,
                 (blockentity) -> ItemSidinator.builder().side(1).bottom(2, 1).top(0).build()
         );
