@@ -17,6 +17,7 @@ package band.kessoku.lib.api.transfer.neoforge;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.transfer.KessokuTransfer;
+
 import net.neoforged.fml.common.Mod;
 
 @Mod(KessokuTransfer.MOD_ID)

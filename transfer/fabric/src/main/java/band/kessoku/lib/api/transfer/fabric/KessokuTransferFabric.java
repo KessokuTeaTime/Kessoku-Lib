@@ -17,6 +17,7 @@ package band.kessoku.lib.api.transfer.fabric;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.transfer.KessokuTransfer;
+
 import net.fabricmc.api.ModInitializer;
 
 public final class KessokuTransferFabric implements ModInitializer {

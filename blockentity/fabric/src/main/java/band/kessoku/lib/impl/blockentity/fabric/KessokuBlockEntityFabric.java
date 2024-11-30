@@ -17,6 +17,7 @@ package band.kessoku.lib.impl.blockentity.fabric;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.blockentity.KessokuBlockEntity;
+
 import net.fabricmc.api.ModInitializer;
 
 public class KessokuBlockEntityFabric implements ModInitializer {

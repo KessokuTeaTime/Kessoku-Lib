@@ -15,7 +15,12 @@
  */
 package band.kessoku.lib.api.registry;
 
+import java.util.function.UnaryOperator;
+
 import band.kessoku.lib.service.registry.RegistryService;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.component.ComponentType;
@@ -24,10 +29,6 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
-
-import java.util.function.UnaryOperator;
 
 public final class KessokuRegistry {
     private KessokuRegistry() {
