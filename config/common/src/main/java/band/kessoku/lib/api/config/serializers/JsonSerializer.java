@@ -15,9 +15,10 @@
  */
 package band.kessoku.lib.api.config.serializers;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import band.kessoku.lib.api.config.AbstractConfig;
+import band.kessoku.lib.impl.config.AbstractConfig;
 import band.kessoku.lib.api.config.ConfigSerializer;
 import club.someoneice.json.JSON;
 import club.someoneice.json.Pair;
@@ -26,21 +27,18 @@ import club.someoneice.json.node.MapNode;
 import club.someoneice.json.processor.JsonBuilder;
 
 public class JsonSerializer implements ConfigSerializer {
+    // TODO
     @Override
-    public String serialize(Map<String, AbstractConfig.ValueWithComment> value) {
-        MapNode node = new MapNode();
-        value.entrySet().stream()
-                .map(it -> new Pair<>(it.getKey(), JsonNode.asJsonNodeOrEmpty(it.getValue().object())))
-                .filter(it -> it.getValue().nonNull())
-                .forEach(it -> node.put(it.getKey(), it.getValue()));
-
-        return JsonBuilder.prettyPrint(node);
+    public String serialize(Map<String, AbstractConfig.WrappedValue> valueMap) {
+        return "";
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public Map<String, Object> deserialize(String value) {
-        return (Map<String, Object>) JSON.json.parse(value).asTypeNodeOrThrow(JsonNode.NodeType.Map).getObj();
+        Map<String,Object> map = new HashMap<>();
+        ((Map<String, JsonNode<?>>) JSON.json.parse(value).asTypeNodeOrThrow(JsonNode.NodeType.Map).getObj()).forEach((key, jsonNode) -> map.put(key, jsonNode.getObj()));
+        return map;
     }
 
     @Override

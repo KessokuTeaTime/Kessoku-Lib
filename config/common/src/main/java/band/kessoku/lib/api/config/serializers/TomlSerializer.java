@@ -17,16 +17,14 @@ package band.kessoku.lib.api.config.serializers;
 
 import java.util.Map;
 
-import band.kessoku.lib.api.config.AbstractConfig;
+import band.kessoku.lib.impl.config.AbstractConfig;
 import band.kessoku.lib.api.config.ConfigSerializer;
 import com.electronwill.nightconfig.core.CommentedConfig;
 
-//todo
+// todo
 public class TomlSerializer implements ConfigSerializer {
     @Override
-    public String serialize(Map<String, AbstractConfig.ValueWithComment> value) {
-        CommentedConfig config = CommentedConfig.inMemory();
-        value.forEach(config::set);
+    public String serialize(Map<String, AbstractConfig.WrappedValue> value) {
         return "";
     }
 

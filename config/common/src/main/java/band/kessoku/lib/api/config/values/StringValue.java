@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public final class StringValue extends DefaultConfigValue<String> {
-    private StringValue(Supplier<String> defaultValue) {
+    private StringValue(final Supplier<String> defaultValue) {
         super(defaultValue);
     }
 
@@ -31,12 +31,14 @@ public final class StringValue extends DefaultConfigValue<String> {
     }
 
     @Contract("_ -> new")
-    public static @NotNull StringValue of(String s) {
+    @NotNull
+    public static StringValue of(final String s) {
         return new StringValue(() -> s);
     }
 
     @Contract("_ -> new")
-    public static @NotNull StringValue of(Supplier<String> stringSupplier) {
+    @NotNull
+    public static StringValue of(final Supplier<String> stringSupplier) {
         return new StringValue(stringSupplier);
     }
 }

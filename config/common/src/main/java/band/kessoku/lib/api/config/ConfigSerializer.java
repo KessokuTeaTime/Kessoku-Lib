@@ -15,10 +15,12 @@
  */
 package band.kessoku.lib.api.config;
 
+import band.kessoku.lib.impl.config.AbstractConfig;
+
 import java.util.Map;
 
 public interface ConfigSerializer {
-    String serialize(Map<String, AbstractConfig.ValueWithComment> value);
+    String serialize(Map<String, AbstractConfig.WrappedValue> valueMap);
 
     Map<String, Object> deserialize(String value);
 

@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public final class BooleanValue extends DefaultConfigValue<Boolean> {
-    private BooleanValue(Supplier<Boolean> defaultValue) {
+    private BooleanValue(final Supplier<Boolean> defaultValue) {
         super(defaultValue);
     }
 
@@ -31,12 +31,14 @@ public final class BooleanValue extends DefaultConfigValue<Boolean> {
     }
 
     @Contract("_ -> new")
-    public static @NotNull BooleanValue of(boolean bool) {
+    @NotNull
+    public static BooleanValue of(final boolean bool) {
         return new BooleanValue(() -> bool);
     }
 
     @Contract("_ -> new")
-    public static @NotNull BooleanValue of(Supplier<Boolean> booleanSupplier) {
+    @NotNull
+    public static BooleanValue of(final Supplier<Boolean> booleanSupplier) {
         return new BooleanValue(booleanSupplier);
     }
 }

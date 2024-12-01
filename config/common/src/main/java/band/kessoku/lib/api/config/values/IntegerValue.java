@@ -20,8 +20,8 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public final class IntegerValue extends DefaultConfigValue<Integer> {
-    private IntegerValue(Supplier<Integer> defaultValue) {
+public final class IntegerValue extends DefaultConfigValue<Long> {
+    private IntegerValue(final Supplier<Long> defaultValue) {
         super(defaultValue);
     }
 
@@ -31,12 +31,14 @@ public final class IntegerValue extends DefaultConfigValue<Integer> {
     }
 
     @Contract("_ -> new")
-    public static @NotNull IntegerValue of(int integer) {
-        return new IntegerValue(() -> integer);
+    @NotNull
+    public static IntegerValue of(final long l) {
+        return new IntegerValue(() -> l);
     }
 
     @Contract("_ -> new")
-    public static @NotNull IntegerValue of(Supplier<Integer> integerSupplier) {
+    @NotNull
+    public static IntegerValue of(final Supplier<Long> integerSupplier) {
         return new IntegerValue(integerSupplier);
     }
 }

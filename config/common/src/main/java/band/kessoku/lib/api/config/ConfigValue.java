@@ -15,6 +15,8 @@
  */
 package band.kessoku.lib.api.config;
 
+import band.kessoku.lib.api.base.reflect.ReflectUtil;
+
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -42,25 +44,47 @@ public interface ConfigValue<F, T> extends Supplier<F> {
     T getDefaultTo();
 
     enum Type {
-        LIST, MAP, BOOLEAN, STRING, INTEGER, LONG, FLOAT, DOUBLE, NULL;
+        ARRAY(List.class),
+        MAP(Map.class),
+        BOOLEAN(Boolean.class),
+        STRING(String.class),
+        INTEGER(Character.class, Byte.class, Short.class, Integer.class, Long.class),
+        DECIMAL(Float.class, Double.class),
+        NULL(Void.class);
+
+        public final Class<?>[] classes;
+
+        Type(Class<?>... classes) {
+            this.classes = classes;
+        }
 
         public static Type asType(Object o) {
-            return switch (o) {
-                case List<?> ignored -> LIST;
-                case Map<?, ?> ignored -> MAP;
-                case Boolean ignored -> BOOLEAN;
-                case String ignored -> STRING;
-                case Long ignored -> LONG;
-                case Integer ignored -> INTEGER;
-                case Float ignored -> FLOAT;
-                case Double ignored -> DOUBLE;
+            if (o.getClass().isArray()) return ARRAY;
+            for (Type type : Type.values()) {
+                if (type.is(o)) return type;
+            }
+            return NULL;
+        }
 
-                /* AmarokIce Note:
-                    try catch 对性能会造成额外影响。此处 throw 后在 { @code AbstractConfig } 中捕获是无意义的。
-                    因此，改用 NULL 作为空置对象。
-                 */
-                case null, default -> NULL;
-                // case null, default -> throw new IllegalArgumentException();
+        public boolean canCastFrom(Type type) {
+            // todo
+            return this == type;
+        }
+
+        public boolean is(Object o) {
+            return ReflectUtil.isAssignableFrom(o, this.classes);
+        }
+
+        public Object getDefaultValue() {
+            return switch (this) {
+                case ARRAY -> new Object[0];
+                case MAP -> Map.of();
+                case BOOLEAN -> false;
+                case STRING -> "";
+                case INTEGER -> 0L;
+                case DECIMAL -> 0.0d;
+
+                default -> null;
             };
         }
     }

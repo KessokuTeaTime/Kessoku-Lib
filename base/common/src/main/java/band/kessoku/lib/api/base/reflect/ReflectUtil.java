@@ -22,8 +22,13 @@ public final class ReflectUtil {
     private ReflectUtil() {
     }
 
-    public static boolean isAssignableFrom(Field field, Class<?>... clazzs) {
-        var flag = Arrays.stream(clazzs).anyMatch(clazz -> !field.getType().isAssignableFrom(clazz));
+    public static boolean isAssignableFrom(Field field, Class<?>... classes) {
+        var flag = Arrays.stream(classes).anyMatch(clazz -> !field.getType().isAssignableFrom(clazz));
+        return !flag;
+    }
+
+    public static boolean isAssignableFrom(Object o, Class<?>... classes) {
+        var flag = Arrays.stream(classes).anyMatch(clazz -> !o.getClass().isAssignableFrom(clazz));
         return !flag;
     }
 }

@@ -15,20 +15,23 @@
  */
 package band.kessoku.lib.api.config.values;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import com.google.common.collect.ImmutableMap;
+import band.kessoku.lib.api.config.ConfigValue;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
-public final class MapValue<K, V> extends DefaultConfigValue<Map<K, V>> implements Map<K, V> {
-    private MapValue(Supplier<Map<K, V>> defaultValue) {
+public final class MapValue<K extends ConfigValue<?, String>, V extends ConfigValue<?, ?>> extends DefaultConfigValue<Map<K, V>> implements Map<K, V> {
+    private MapValue(final Supplier<Map<K, V>> defaultValue) {
         super(defaultValue);
     }
 
@@ -43,25 +46,50 @@ public final class MapValue<K, V> extends DefaultConfigValue<Map<K, V>> implemen
     }
 
     @Override
-    @SuppressWarnings({"unchecked"})
-    public @NotNull @Unmodifiable Map<K, V> getDefaultFrom() {
-        return (ImmutableMap<K, V>) ImmutableMap.builder().putAll(super.getDefaultFrom()).build();
+    @NotNull
+    @Unmodifiable
+    public Map<K, V> getDefaultFrom() {
+        return Collections.unmodifiableMap(super.getDefaultFrom());
     }
 
     @Override
-    @SuppressWarnings({"unchecked"})
-    public @NotNull @Unmodifiable Map<K, V> getDefaultTo() {
-        return (ImmutableMap<K, V>) ImmutableMap.builder().putAll(super.getDefaultTo()).build();
+    @NotNull
+    @Unmodifiable
+    public Map<K, V> getDefaultTo() {
+        return Collections.unmodifiableMap(super.getDefaultTo());
+    }
+
+    public Map<String, ?> normalize() {
+        HashMap map = new HashMap<>();
+        this.value.forEach((key, value) -> {
+            if (List.of(Type.ARRAY, Type.MAP).contains(value.getType())) {
+                try {
+                    map.put(key.getTo(), MethodUtils.getAccessibleMethod(value.getClass(), "normalize").invoke(value));
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                map.put(key.getTo(), value.getTo());
+            }
+        });
+        return map;
     }
 
     // constructor
+    @NotNull
+    public static <K extends ConfigValue<?, String>, V extends ConfigValue<?, ?>> MapValue<K, V> of() {
+        return new MapValue<>(HashMap::new);
+    }
+
     @Contract("_ -> new")
-    public static <K, V> @NotNull MapValue<K, V> of(Map<K, V> m) {
+    @NotNull
+    public static <K extends ConfigValue<?, String>, V extends ConfigValue<?, ?>> MapValue<K, V> of(final Map<K, V> m) {
         return new MapValue<>(() -> m);
     }
 
     @Contract("_ -> new")
-    public static <K, V> @NotNull MapValue<K, V> of(Supplier<Map<K, V>> mapSupplier) {
+    @NotNull
+    public static <K extends ConfigValue<?, String>, V extends ConfigValue<?, ?>> MapValue<K, V> of(final Supplier<Map<K, V>> mapSupplier) {
         return new MapValue<>(mapSupplier);
     }
 
@@ -77,32 +105,32 @@ public final class MapValue<K, V> extends DefaultConfigValue<Map<K, V>> implemen
     }
 
     @Override
-    public boolean containsKey(Object key) {
+    public boolean containsKey(final Object key) {
         return this.value.containsKey(key);
     }
 
     @Override
-    public boolean containsValue(Object value) {
+    public boolean containsValue(final Object value) {
         return this.value.containsValue(value);
     }
 
     @Override
-    public V get(Object key) {
+    public V get(final Object key) {
         return this.value.get(key);
     }
 
     @Override
-    public @Nullable V put(K key, V value) {
+    public V put(final K key, final V value) {
         return this.value.put(key, value);
     }
 
     @Override
-    public V remove(Object key) {
+    public V remove(final Object key) {
         return this.value.remove(key);
     }
 
     @Override
-    public void putAll(@NotNull Map<? extends K, ? extends V> m) {
+    public void putAll(@NotNull final Map<? extends K, ? extends V> m) {
         this.value.putAll(m);
     }
 
@@ -112,17 +140,20 @@ public final class MapValue<K, V> extends DefaultConfigValue<Map<K, V>> implemen
     }
 
     @Override
-    public @NotNull Set<K> keySet() {
+    @NotNull
+    public Set<K> keySet() {
         return this.value.keySet();
     }
 
     @Override
-    public @NotNull Collection<V> values() {
+    @NotNull
+    public Collection<V> values() {
         return this.value.values();
     }
 
     @Override
-    public @NotNull Set<Entry<K, V>> entrySet() {
+    @NotNull
+    public Set<Entry<K, V>> entrySet() {
         return this.value.entrySet();
     }
 }

@@ -20,23 +20,25 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public final class FloatValue extends DefaultConfigValue<Float> {
-    private FloatValue(Supplier<Float> defaultValue) {
+public final class DecimalValue extends DefaultConfigValue<Double> {
+    private DecimalValue(final Supplier<Double> defaultValue) {
         super(defaultValue);
     }
 
     @Override
     public Type getType() {
-        return Type.FLOAT;
+        return Type.DECIMAL;
     }
 
     @Contract("_ -> new")
-    public static @NotNull FloatValue of(float f) {
-        return new FloatValue(() -> f);
+    @NotNull
+    public static DecimalValue of(final double d) {
+        return new DecimalValue(() -> d);
     }
 
     @Contract("_ -> new")
-    public static @NotNull FloatValue of(Supplier<Float> floatSupplier) {
-        return new FloatValue(floatSupplier);
+    @NotNull
+    public static DecimalValue of(final Supplier<Double> decimalSupplier) {
+        return new DecimalValue(decimalSupplier);
     }
 }

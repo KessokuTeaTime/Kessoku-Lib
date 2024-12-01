@@ -15,23 +15,28 @@
  */
 package band.kessoku.lib.api.config.values;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.function.Supplier;
 
-import com.google.common.collect.ImmutableList;
+import band.kessoku.lib.api.config.ConfigValue;
+import com.google.gson.internal.reflect.ReflectionHelper;
+import com.sun.jna.internal.ReflectionUtils;
+import io.netty.util.internal.ReflectionUtil;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 @SuppressWarnings({"rawtypes"})
-public final class ListValue<T> extends DefaultConfigValue<List<T>> implements List<T> {
-    private ListValue(Supplier<List<T>> defaultValue) {
+public final class ListValue<T extends ConfigValue<?, ?>> extends DefaultConfigValue<List<T>> implements List<T> {
+    private ListValue(final Supplier<List<T>> defaultValue) {
         super(defaultValue);
     }
 
     @Override
     public Type getType() {
-        return Type.LIST;
+        return Type.ARRAY;
     }
 
     @Override
@@ -41,31 +46,52 @@ public final class ListValue<T> extends DefaultConfigValue<List<T>> implements L
     }
 
     @Override
-    @SuppressWarnings({"unchecked"})
-    public @NotNull @Unmodifiable List<T> getDefaultFrom() {
-        return (ImmutableList<T>) ImmutableList.builder().add(super.getDefaultFrom()).build();
+    @NotNull
+    @Unmodifiable
+    public List<T> getDefaultFrom() {
+        return Collections.unmodifiableList(super.getDefaultFrom());
     }
 
     @Override
-    @SuppressWarnings({"unchecked"})
-    public @NotNull @Unmodifiable List<T> getDefaultTo() {
-        return (ImmutableList<T>) ImmutableList.builder().add(super.getDefaultTo()).build();
+    @NotNull
+    @Unmodifiable
+    public List<T> getDefaultTo() {
+        return Collections.unmodifiableList(super.getDefaultTo());
+    }
+
+    public List<?> normalize() {
+        List list = new ArrayList<>();
+        this.value.forEach(value -> {
+            if (List.of(Type.ARRAY,Type.MAP).contains(value.getType())) {
+                try {
+                    list.add(MethodUtils.getAccessibleMethod(value.getClass(),"normalize").invoke(value));
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                list.add(value.getTo());
+            }
+        });
+        return list;
     }
 
     // constructor
     @Contract("_ -> new")
     @SafeVarargs
-    public static <E> @NotNull ListValue<E> of(E... elements) {
+    @NotNull
+    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final E... elements) {
         return new ListValue<>(() -> new ArrayList<>(List.of(elements)));
     }
 
     @Contract("_ -> new")
-    public static <E> @NotNull ListValue<E> of(List<E> list) {
+    @NotNull
+    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final List<E> list) {
         return new ListValue<>(() -> new ArrayList<>(list));
     }
 
     @Contract("_ -> new")
-    public static <E> @NotNull ListValue<E> of(Supplier<List<E>> listSupplier) {
+    @NotNull
+    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final Supplier<List<E>> listSupplier) {
         return new ListValue<>(listSupplier);
     }
 
@@ -81,7 +107,7 @@ public final class ListValue<T> extends DefaultConfigValue<List<T>> implements L
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(final Object o) {
         return this.value.contains(o);
     }
 
@@ -97,42 +123,43 @@ public final class ListValue<T> extends DefaultConfigValue<List<T>> implements L
     }
 
     @Override
-    public <T1> T1 @NotNull [] toArray(T1 @NotNull [] a) {
+    public <T1> T1 @NotNull [] toArray(final T1 @NotNull [] a) {
         return this.value.toArray(a);
     }
 
     @Override
-    public boolean add(T t) {
+    public boolean add(final T t) {
         return this.value.add(t);
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(final Object o) {
         return this.value.remove(o);
     }
 
     @Override
-    public boolean containsAll(@NotNull Collection<?> c) {
+    @SuppressWarnings("SlowListContainsAll")
+    public boolean containsAll(@NotNull final Collection<?> c) {
         return this.value.containsAll(c);
     }
 
     @Override
-    public boolean addAll(@NotNull Collection<? extends T> c) {
+    public boolean addAll(@NotNull final Collection<? extends T> c) {
         return this.value.addAll(c);
     }
 
     @Override
-    public boolean addAll(int index, @NotNull Collection<? extends T> c) {
+    public boolean addAll(final int index, @NotNull final Collection<? extends T> c) {
         return this.value.addAll(index, c);
     }
 
     @Override
-    public boolean removeAll(@NotNull Collection<?> c) {
+    public boolean removeAll(@NotNull final Collection<?> c) {
         return this.value.removeAll(c);
     }
 
     @Override
-    public boolean retainAll(@NotNull Collection<?> c) {
+    public boolean retainAll(@NotNull final Collection<?> c) {
         return this.value.retainAll(c);
     }
 
@@ -142,47 +169,50 @@ public final class ListValue<T> extends DefaultConfigValue<List<T>> implements L
     }
 
     @Override
-    public T get(int index) {
+    public T get(final int index) {
         return this.value.get(index);
     }
 
     @Override
-    public T set(int index, T element) {
+    public T set(final int index, final T element) {
         return this.value.set(index, element);
     }
 
     @Override
-    public void add(int index, T element) {
+    public void add(final int index, final T element) {
         this.value.add(index, element);
     }
 
     @Override
-    public T remove(int index) {
+    public T remove(final int index) {
         return this.value.remove(index);
     }
 
     @Override
-    public int indexOf(Object o) {
+    public int indexOf(final Object o) {
         return this.value.indexOf(o);
     }
 
     @Override
-    public int lastIndexOf(Object o) {
+    public int lastIndexOf(final Object o) {
         return this.value.lastIndexOf(o);
     }
 
     @Override
-    public @NotNull ListIterator<T> listIterator() {
+    @NotNull
+    public ListIterator<T> listIterator() {
         return this.value.listIterator();
     }
 
     @Override
-    public @NotNull ListIterator<T> listIterator(int index) {
+    @NotNull
+    public ListIterator<T> listIterator(final int index) {
         return this.value.listIterator(index);
     }
 
     @Override
-    public @NotNull List<T> subList(int fromIndex, int toIndex) {
+    @NotNull
+    public List<T> subList(final int fromIndex, final int toIndex) {
         return this.value.subList(fromIndex, toIndex);
     }
 }
