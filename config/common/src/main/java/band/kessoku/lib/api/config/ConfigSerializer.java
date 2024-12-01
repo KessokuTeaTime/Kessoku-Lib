@@ -15,9 +15,9 @@
  */
 package band.kessoku.lib.api.config;
 
-import band.kessoku.lib.impl.config.AbstractConfig;
-
 import java.util.Map;
+
+import band.kessoku.lib.impl.config.AbstractConfig;
 
 public interface ConfigSerializer {
     String serialize(Map<String, AbstractConfig.WrappedValue> valueMap);

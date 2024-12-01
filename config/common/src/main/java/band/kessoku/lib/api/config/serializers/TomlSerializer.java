@@ -17,9 +17,8 @@ package band.kessoku.lib.api.config.serializers;
 
 import java.util.Map;
 
-import band.kessoku.lib.impl.config.AbstractConfig;
 import band.kessoku.lib.api.config.ConfigSerializer;
-import com.electronwill.nightconfig.core.CommentedConfig;
+import band.kessoku.lib.impl.config.AbstractConfig;
 
 // todo
 public class TomlSerializer implements ConfigSerializer {

@@ -18,11 +18,10 @@ package band.kessoku.lib.api.config.serializers;
 import java.util.HashMap;
 import java.util.Map;
 
-import band.kessoku.lib.impl.config.AbstractConfig;
 import band.kessoku.lib.api.config.ConfigSerializer;
+import band.kessoku.lib.impl.config.AbstractConfig;
 import club.someoneice.json.JSON;
 import club.someoneice.json.node.JsonNode;
-import club.someoneice.json.processor.Json5Builder;
 
 // TODO
 public class Json5Serializer implements ConfigSerializer {

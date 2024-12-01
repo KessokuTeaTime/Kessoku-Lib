@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.api.config;
 
-import band.kessoku.lib.api.base.reflect.ReflectUtil;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
+
+import band.kessoku.lib.api.base.reflect.ReflectUtil;
 
 public interface ConfigValue<F, T> extends Supplier<F> {
     void setFrom(F value);
