@@ -15,11 +15,7 @@
  */
 package band.kessoku.lib.api.config;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +24,6 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.impl.config.AbstractConfig;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.core.util.ReflectionUtil;
@@ -72,80 +66,11 @@ public final class KessokuConfig {
     }
 
     public static boolean save(AbstractConfig config) {
-        // Pre save
-        preSave.getOrDefault(config, List.of()).forEach(consumer -> consumer.accept(config));
-        File configFile = config.getPath().toFile();
-        ConfigSerializer serializer = config.getSerializer();
-
-        boolean success = true;
-        try (FileWriter writer = new FileWriter(configFile, StandardCharsets.UTF_8)) {
-            writer.write(serializer.serialize(config.serialize()));
-        } catch (IOException e) {
-            success = false;
-        }
-
-        // post save
-        final boolean finalResult = success;
-        postSave.getOrDefault(config, List.of()).forEach(biConsumer -> biConsumer.accept(config, finalResult));
-        return success;
+        return false;// todo
     }
 
     public static boolean load(AbstractConfig config) {
-        // pre load
-        preLoad.getOrDefault(config, List.of()).forEach(consumer -> consumer.accept(config));
-        ConfigSerializer serializer = config.getSerializer();
-        File file = config.getPath().toFile();
-        if (!file.exists()) {
-            config.save();
-            return false;
-        }
-
-        boolean success = true;
-        try {
-            Map<String, Object> map = serializer.deserialize(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
-            // Put values into the config
-            for (Map.Entry<String, Object> entry : map.entrySet()) {
-                String key = entry.getKey();
-                Object loadedValue = entry.getValue();
-
-                ConfigValue configValue;
-                // Check the value is public and not static
-                try {
-                    Field field = config.getClass().getField(key);
-                    if (!ModifiersUtil.isPublicOrStatic(field, true, false)) {
-                        continue;
-                    }
-                    if (!field.getDeclaringClass().isAssignableFrom(ConfigValue.class)) {
-                        continue;
-                    }
-                    configValue = (ConfigValue) ReflectionUtil.getFieldValue(field, config);
-                } catch (NoSuchFieldException e) {
-                    // not found
-                    continue;
-                }
-
-                ConfigValue.Type type = ConfigValue.Type.asType(loadedValue);
-                // Check if the type is valid to deserialize
-                if (type == ConfigValue.Type.NULL) {
-                    KessokuLib.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file!", loadedValue.getClass().getName());
-                    continue;
-                }
-
-                // Check if the type matches the value's type
-                if (configValue.getType() != type) {
-                    KessokuLib.getLogger().error(KessokuConfig.MARKER, "Illegal type`{}` found in the file! Expect {}.", type.toString().toLowerCase(), configValue.getType().toString().toLowerCase());
-                    continue;
-                }
-
-                configValue.setTo(loadedValue);
-            }
-        } catch (IOException e) {
-            success = false;
-        }
-
-        final boolean finalResult = success;
-        postLoad.getOrDefault(config, List.of()).forEach(biConsumer -> biConsumer.accept(config, finalResult));
-        return success;
+        return false;// todo
     }
 
     public static void registerPreSaveListener(final AbstractConfig config, Consumer<AbstractConfig> preSaveConsumer) {
