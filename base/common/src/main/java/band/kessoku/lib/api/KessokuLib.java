@@ -33,23 +33,23 @@ public final class KessokuLib {
     private KessokuLib() {
     }
 
-    public static void loadModule(@NotNull Class<?> moduleCommonClass) {
+    public static void loadModule(@NotNull final Class<?> moduleCommonClass) {
         if (moduleCommonClass.isArray())
             throw new UnsupportedOperationException("What the hell are you doing?? KessokuLib.loadModule receives an array class! " + moduleCommonClass.getName());
         if (isModuleLoaded(moduleCommonClass)) {
             throw new UnsupportedOperationException("Module `" + moduleCommonClass.getName() + "` has already been loaded!");
         }
         // Try to get module name
-        String moduleName;
+        final String moduleName;
         try {
             final Field field = moduleCommonClass.getField("NAME");
             moduleName = (String) ReflectionUtil.getStaticFieldValue(field);
         } catch (NoSuchFieldException e) {
-            moduleName = moduleCommonClass.getName();
-            getLogger().warn("Field `NAME` is not found in {}! Using fully qualified class name.", moduleName);
+            getLogger().error("Invalid Kessoku module! Field `NAME` is not found in {}!", moduleCommonClass.getName());
+            return;
         } catch (NullPointerException e) {
-            moduleName = moduleCommonClass.getName();
-            getLogger().warn("NAME in {} is not static! Using package name.", moduleName);
+            getLogger().error("Invalid Kessoku module! NAME in {} is not static!", moduleCommonClass.getName());
+            return;
         }
         initializedModules.add(moduleCommonClass);
         getLogger().info("{} loaded!", moduleName);
