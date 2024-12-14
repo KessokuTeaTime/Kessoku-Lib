@@ -5,7 +5,7 @@ yarn = "1.21.1+build.3"
 yarn-patch-neoforge = "1.21+build.4"
 
 # Loaders
-neo = "21.1.83"
+neo = "21.1.89"
 fabric-loader = "0.16.9"
 
 # Mods
