@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public final class IntegerValue extends DefaultConfigValue<Long> {
+public final class IntegerValue extends PrimitiveConfigValue<Long> {
     private IntegerValue(final Supplier<Long> defaultValue) {
         super(defaultValue);
     }

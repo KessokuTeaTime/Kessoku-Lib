@@ -16,19 +16,74 @@
 package band.kessoku.lib.api.config.values;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import band.kessoku.lib.api.config.ConfigValue;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Unmodifiable;
+import org.jetbrains.annotations.UnmodifiableView;
 
-@SuppressWarnings({"rawtypes"})
-public final class ListValue<T extends ConfigValue<?, ?>> extends DefaultConfigValue<List<T>> implements List<T> {
-    private ListValue(final Supplier<List<T>> defaultValue) {
-        super(defaultValue);
+public final class ListValue<T extends ConfigValue<?, ?>> extends ArrayList<T> implements ConfigValue<List<T>, T[]> {
+    private final Consumer<ArrayList<T>> initializeConsumer;
+    private ListValue(Consumer<ArrayList<T>> initializeConsumer) {
+        super();
+        this.initializeConsumer = initializeConsumer;
+        initializeConsumer.accept(this);
+    }
+
+    // constructor
+    @Contract("_ -> new")
+    @SafeVarargs
+    @NotNull
+    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final E... elements) {
+        return new ListValue<>(list -> list.addAll(List.of(elements)));
+    }
+
+    @Contract("_ -> new")
+    @NotNull
+    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final List<E> fromList) {
+        final List<E> clone = new ArrayList<>(fromList);
+        return new ListValue<>(list -> list.addAll(clone));
+    }
+
+    @Contract("_ -> new")
+    @NotNull
+    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final Consumer<ArrayList<E>> initializeConsumer) {
+        return new ListValue<>(initializeConsumer);
+    }
+
+    @Override
+    public void setFrom(List<T> value) {
+        this.addAll(value);
+    }
+
+    @Override
+    public void setTo(T[] value) {
+        Collections.addAll(this, value);
+    }
+
+    @Override
+    @UnmodifiableView
+    @SuppressWarnings("RedundantUnmodifiable")
+    public List<T> getFrom() {
+        return Collections.unmodifiableList(this);
+    }
+
+    @Override
+    @SuppressWarnings({"unchecked", "DataFlowIssue"})
+    public T[] getTo() {
+        return (T[]) this.toArray();
+    }
+
+    @Override
+    public void reset() {
+        this.clear();
+        this.initializeConsumer.accept(this);
     }
 
     @Override
@@ -37,29 +92,23 @@ public final class ListValue<T extends ConfigValue<?, ?>> extends DefaultConfigV
     }
 
     @Override
-    @SuppressWarnings({"unchecked"})
-    public void reset() {
-        this.value = new ArrayList(this.defaultValue.get());
-    }
-
-    @Override
-    @NotNull
-    @Unmodifiable
     public List<T> getDefaultFrom() {
-        return Collections.unmodifiableList(super.getDefaultFrom());
+        final ArrayList<T> list = new ArrayList<>();
+        initializeConsumer.accept(list);
+        return list;
     }
 
     @Override
-    @NotNull
-    @Unmodifiable
-    public List<T> getDefaultTo() {
-        return Collections.unmodifiableList(super.getDefaultTo());
+    @SuppressWarnings({"unchecked", "DataFlowIssue"})
+    public T[] getDefaultTo() {
+        return (T[]) getDefaultFrom().toArray();
     }
 
-    public List<?> normalize() {
-        List list = new ArrayList<>();
-        this.value.forEach(value -> {
-            if (List.of(Type.ARRAY,Type.MAP).contains(value.getType())) {
+    public List<Object> normalize() {
+        final List<Object> list = new ArrayList<>();
+        this.forEach(value -> {
+            final Type type = value.getType();
+            if (type == Type.ARRAY || type == Type.MAP) {
                 try {
                     list.add(MethodUtils.getAccessibleMethod(value.getClass(),"normalize").invoke(value));
                 } catch (IllegalAccessException | InvocationTargetException e) {
@@ -72,144 +121,11 @@ public final class ListValue<T extends ConfigValue<?, ?>> extends DefaultConfigV
         return list;
     }
 
-    // constructor
-    @Contract("_ -> new")
-    @SafeVarargs
-    @NotNull
-    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final E... elements) {
-        return new ListValue<>(() -> new ArrayList<>(List.of(elements)));
-    }
-
-    @Contract("_ -> new")
-    @NotNull
-    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final List<E> list) {
-        return new ListValue<>(() -> new ArrayList<>(list));
-    }
-
-    @Contract("_ -> new")
-    @NotNull
-    public static <E extends ConfigValue<?, ?>> ListValue<E> of(final Supplier<List<E>> listSupplier) {
-        return new ListValue<>(listSupplier);
-    }
-
-    // List
-    @Override
-    public int size() {
-        return this.value.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.value.isEmpty();
-    }
-
-    @Override
-    public boolean contains(final Object o) {
-        return this.value.contains(o);
-    }
-
-    @Override
-    public @NotNull Iterator<T> iterator() {
-        return this.value.iterator();
-    }
-
-    @Contract(pure = true)
-    @Override
-    public Object @NotNull [] toArray() {
-        return this.value.toArray();
-    }
-
-    @Override
-    public <T1> T1 @NotNull [] toArray(final T1 @NotNull [] a) {
-        return this.value.toArray(a);
-    }
-
-    @Override
-    public boolean add(final T t) {
-        return this.value.add(t);
-    }
-
-    @Override
-    public boolean remove(final Object o) {
-        return this.value.remove(o);
-    }
-
-    @Override
-    @SuppressWarnings("SlowListContainsAll")
-    public boolean containsAll(@NotNull final Collection<?> c) {
-        return this.value.containsAll(c);
-    }
-
-    @Override
-    public boolean addAll(@NotNull final Collection<? extends T> c) {
-        return this.value.addAll(c);
-    }
-
-    @Override
-    public boolean addAll(final int index, @NotNull final Collection<? extends T> c) {
-        return this.value.addAll(index, c);
-    }
-
-    @Override
-    public boolean removeAll(@NotNull final Collection<?> c) {
-        return this.value.removeAll(c);
-    }
-
-    @Override
-    public boolean retainAll(@NotNull final Collection<?> c) {
-        return this.value.retainAll(c);
-    }
-
-    @Override
-    public void clear() {
-        this.value.clear();
-    }
-
-    @Override
-    public T get(final int index) {
-        return this.value.get(index);
-    }
-
-    @Override
-    public T set(final int index, final T element) {
-        return this.value.set(index, element);
-    }
-
-    @Override
-    public void add(final int index, final T element) {
-        this.value.add(index, element);
-    }
-
-    @Override
-    public T remove(final int index) {
-        return this.value.remove(index);
-    }
-
-    @Override
-    public int indexOf(final Object o) {
-        return this.value.indexOf(o);
-    }
-
-    @Override
-    public int lastIndexOf(final Object o) {
-        return this.value.lastIndexOf(o);
-    }
-
-    @Override
-    @NotNull
-    public ListIterator<T> listIterator() {
-        return this.value.listIterator();
-    }
-
-    @Override
-    @NotNull
-    public ListIterator<T> listIterator(final int index) {
-        return this.value.listIterator(index);
-    }
-
-    @Override
-    @NotNull
-    public List<T> subList(final int fromIndex, final int toIndex) {
-        return this.value.subList(fromIndex, toIndex);
+    public static <E extends ConfigValue<V,?>,V> List<E> transform(List<V> list, Function<V,E> boxFunc) {
+        final List<E> result = new ArrayList<>();
+        list.forEach(v -> {
+            result.add(boxFunc.apply(v));
+        });
+        return result;
     }
 }

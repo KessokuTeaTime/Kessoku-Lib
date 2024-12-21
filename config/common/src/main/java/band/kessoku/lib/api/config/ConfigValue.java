@@ -17,9 +17,12 @@ package band.kessoku.lib.api.config;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 public interface ConfigValue<F, T> extends Supplier<F> {
     void setFrom(F value);
@@ -50,28 +53,60 @@ public interface ConfigValue<F, T> extends Supplier<F> {
         STRING(String.class),
         INTEGER(Character.class, Byte.class, Short.class, Integer.class, Long.class),
         DECIMAL(Float.class, Double.class),
-        NULL(Void.class);
+        CFG_VALUE(ConfigValue.class);//,
+        //NULL(Void.class);
 
         public final Class<?>[] classes;
 
-        Type(Class<?>... classes) {
+        Type(final Class<?>... classes) {
             this.classes = classes;
         }
 
-        public static Type asType(Object o) {
-            if (o.getClass().isArray()) return ARRAY;
-            for (Type type : Type.values()) {
-                if (type.is(o)) return type;
+        public static Optional<Type> asType(Object o) {
+            if (o == null) return Optional.empty();
+            if (o.getClass().isArray()) return Optional.of(ARRAY);
+            for (final Type type : Type.values()) {
+                if (type.is(o)) return Optional.of(type);
             }
-            return NULL;
+            return Optional.empty();
         }
 
-        public boolean canCastFrom(Type type) {
-            // todo
-            return this == type;
+        // Just like how java behave
+        public boolean canCastFrom(final Type type) {
+            return false;
         }
 
-        public boolean is(Object o) {
+        // Just like how java behave
+        public Object cast(final Object o) {
+            if (o == null) return null;
+            return switch (this) {
+                case ARRAY -> {
+                    if (o.getClass().isArray()) {
+                        yield o;
+                    } else {
+                        if (o.getClass().isAssignableFrom(Iterable.class)) {
+                            yield Lists.newArrayList(o);
+                        }
+                        throw new ClassCastException();
+                    }
+                };
+                case MAP -> (Map<?, ?>) o;
+                case BOOLEAN -> (boolean) o;
+                case STRING -> (String) o;
+                case INTEGER -> (long) o;
+                case DECIMAL -> (double) o;
+                case CFG_VALUE -> o;
+
+                //default -> null;
+            };
+        }
+
+        public boolean compatible(final Object o) {
+            final Optional<Type> optional = asType(o);
+            return optional.filter(this::canCastFrom).isPresent();
+        }
+
+        public boolean is(final Object o) {
             return ReflectUtil.isAssignableFrom(o, this.classes);
         }
 
@@ -84,7 +119,7 @@ public interface ConfigValue<F, T> extends Supplier<F> {
                 case INTEGER -> 0L;
                 case DECIMAL -> 0.0d;
 
-                default -> null;
+                //default -> null;
             };
         }
     }

@@ -52,7 +52,7 @@ public class AbstractConfig implements ConfigValue<AbstractConfig, MapValue<Stri
 
     @Override
     public final void setTo(final MapValue<StringValue, ? extends ConfigValue<?, ?>> value) {
-        for (Map.Entry<StringValue, ? extends ConfigValue<?, ?>> entry : value.entrySet()) {
+        for (final Map.Entry<StringValue, ? extends ConfigValue<?, ?>> entry : value.entrySet()) {
             final String key = entry.getKey().getTo();
             final ConfigValue<?, ?> fromConfigValue = entry.getValue();
             final Field field;
@@ -116,7 +116,7 @@ public class AbstractConfig implements ConfigValue<AbstractConfig, MapValue<Stri
 
     @Override
     public final AbstractConfig getDefaultFrom() {
-        AbstractConfig copy = (AbstractConfig) this.clone();
+        final AbstractConfig copy = (AbstractConfig) this.clone();
         copy.reset();
         return copy;
     }
@@ -146,7 +146,7 @@ public class AbstractConfig implements ConfigValue<AbstractConfig, MapValue<Stri
 
     private List<Field> getValidFields() {
         final List<Field> fields = new ArrayList<>();
-        for (Field declaredField : this.getClass().getDeclaredFields()) {
+        for (final Field declaredField : this.getClass().getDeclaredFields()) {
             final boolean isValidType = ReflectUtil.isAssignableFrom(declaredField, AbstractConfig.class, ConfigValue.class);
             final boolean isValidModifier = ModifiersUtil.isPublicOrStatic(declaredField, true, false);
 
@@ -158,7 +158,7 @@ public class AbstractConfig implements ConfigValue<AbstractConfig, MapValue<Stri
     }
 
     public final String getName() {
-        Name name = this.getClass().getAnnotation(Name.class);
+        final Name name = this.getClass().getAnnotation(Name.class);
         return name == null ? this.getClass().getSimpleName() : name.value();
     }
 

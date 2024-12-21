@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public final class BooleanValue extends DefaultConfigValue<Boolean> {
+public final class BooleanValue extends PrimitiveConfigValue<Boolean> {
     private BooleanValue(final Supplier<Boolean> defaultValue) {
         super(defaultValue);
     }

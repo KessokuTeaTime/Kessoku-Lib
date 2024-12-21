@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public final class DecimalValue extends DefaultConfigValue<Double> {
+public final class DecimalValue extends PrimitiveConfigValue<Double> {
     private DecimalValue(final Supplier<Double> defaultValue) {
         super(defaultValue);
     }

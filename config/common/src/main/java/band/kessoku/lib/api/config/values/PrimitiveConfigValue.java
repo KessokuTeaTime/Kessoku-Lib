@@ -19,47 +19,47 @@ import java.util.function.Supplier;
 
 import band.kessoku.lib.api.config.ConfigValue;
 
-sealed abstract class DefaultConfigValue<T> implements ConfigValue<T, T> permits BooleanValue, DecimalValue, ListValue, IntegerValue, MapValue, StringValue {
+sealed abstract class PrimitiveConfigValue<T> implements ConfigValue<T, T> permits BooleanValue, DecimalValue, IntegerValue, StringValue {
     public final Supplier<T> defaultValue;
     public T value;
 
-    protected DefaultConfigValue(Supplier<T> defaultValue) {
+    protected PrimitiveConfigValue(final Supplier<T> defaultValue) {
         this.defaultValue = defaultValue;
         this.reset();
     }
 
     @Override
-    public void setFrom(T value) {
+    public final void setFrom(final T value) {
         this.value = value;
     }
 
     @Override
-    public void setTo(T value) {
+    public final void setTo(final T value) {
         this.value = value;
     }
 
     @Override
-    public T getFrom() {
+    public final T getFrom() {
         return this.value;
     }
 
     @Override
-    public T getTo() {
+    public final T getTo() {
         return this.value;
     }
 
     @Override
-    public void reset() {
+    public final void reset() {
         this.value = this.defaultValue.get();
     }
 
     @Override
-    public T getDefaultFrom() {
+    public final T getDefaultFrom() {
         return this.defaultValue.get();
     }
 
     @Override
-    public T getDefaultTo() {
+    public final T getDefaultTo() {
         return this.defaultValue.get();
     }
 }
