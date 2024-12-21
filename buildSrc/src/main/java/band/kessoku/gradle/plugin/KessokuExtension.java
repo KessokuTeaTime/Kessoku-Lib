@@ -19,7 +19,7 @@ public abstract class KessokuExtension {
     protected static final List<String> MODULES = List.of(
             "base",
             "command",
-            "config",
+            //"config",
             "data",
             "entity-events",
             "entrypoint",
