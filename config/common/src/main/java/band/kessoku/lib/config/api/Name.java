@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * import band.kessoku.lib.config.api.config.Comment;
  * import band.kessoku.lib.config.values.config.StringValue;
  *
- * @Config("mymodid)
+ * @Config("mymodid")
  * public class MyConfig {
  *      @Comment({"First comment", "Second comment"})
  *      @Name("someoneField")
