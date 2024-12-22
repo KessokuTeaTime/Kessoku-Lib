@@ -34,8 +34,9 @@ public final class KessokuLib {
         String moduleName;
         try {
             Field field = moduleCommonClass.getField("NAME");
-            if (!Modifier.isStatic(field.getModifiers()))
+            if (!Modifier.isStatic(field.getModifiers())) {
                 throw new IllegalArgumentException("NAME in " + moduleCommonClass.getPackageName() + " is not static!");
+            }
             field.setAccessible(true);
             moduleName = (String) field.get(null);
         } catch (NoSuchFieldException e) {
