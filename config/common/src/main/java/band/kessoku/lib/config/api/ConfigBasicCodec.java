@@ -5,6 +5,7 @@ import club.someoneice.json.Pair;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;
 import club.someoneice.json.processor.JsonBuilder;
+import com.google.common.collect.Maps;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -17,7 +18,7 @@ import java.util.Objects;
  */
 public final class ConfigBasicCodec {
 
-    private static final Map<String, Codec<Map<String, ConfigData>>> CODECS = new LinkedHashMap<>();
+    private static final Map<String, Codec<Map<String, ConfigData>>> CODECS = Maps.newHashMap();
 
     private static final Codec<Map<String, ConfigData>> JSON_CODEC = new Codec<>() {
         @Override

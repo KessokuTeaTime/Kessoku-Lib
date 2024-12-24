@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * By default, the ConfigHandler takes the field name as the name of the config field, but you can use this annotation to commit a new name.
+ * By default, the {@code ConfigHandler} takes the field name as the name of the config field, but you can use this annotation to commit a new name.
  * <br>
  * {@snippet :
  * import band.kessoku.lib.config.api.config.Name;
