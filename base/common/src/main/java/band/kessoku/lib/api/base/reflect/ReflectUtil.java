@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.api.base.reflect;
 
-import band.kessoku.lib.api.KessokuLib;
-
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+
+import band.kessoku.lib.api.KessokuLib;
 
 public final class ReflectUtil {
     private ReflectUtil() {
