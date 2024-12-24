@@ -1,26 +1,26 @@
 [versions]
 mod = "0.1.0"
-minecraft = "1.21"
-yarn = "1.21+build.9"
+minecraft = "1.21.1"
+yarn = "1.21.1+build.3"
 yarn-patch-neoforge = "1.21+build.4"
 
 # Loaders
-neo = "21.0.167"
-fabric-loader = "0.16.7"
+neo = "21.1.89"
+fabric-loader = "0.16.9"
 
 # Mods
-fabric-api = "0.102.0+1.21"
+fabric-api = "0.110.0+1.21.1"
 
 # Plugin version
-loom = "1.7-SNAPSHOT"
-architectury = "3.4-SNAPSHOT"
-shadow = "8.3.2"
-spotless = "7.0.0.BETA2"
-idea-ext = "1.1.8"
+# loom = "1.7-SNAPSHOT" Change it in gradle.properties!
+architectury = "3.4.160"
+shadow = "8.3.5"
+spotless = "7.0.0.BETA4"
+idea-ext = "1.1.9"
 
 # Config libraries
 night-config = "3.8.1"
-aj4j = "1.7.2"
+aj4j = "1.7.3"
 
 [libraries]
 minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
@@ -40,11 +40,10 @@ night-config-toml = { group = "com.electronwill.night-config", name = "toml", ve
 night-config-yaml = { group = "com.electronwill.night-config", name = "yaml", version.ref = "night-config" }
 night-config-hocon = { group = "com.electronwill.night-config", name = "hocon", version.ref = "night-config" }
 
-# aj4j = { group = "club.someoneice.json", name = "amarok-json-for-java", version.ref = "aj4j" }
-aj4j = { group = "com.github.AmarokIce", name = "AmarokJsonForJava", version.ref = "aj4j" }
+aj4j = { group = "club.someoneice.json", name = "amarok-json-for-java", version.ref = "aj4j" }
 
 [plugins]
-loom = { id = "dev.architectury.loom", version.ref = "loom" }
+# loom = { id = "dev.architectury.loom", version.ref = "loom" }
 architectury = { id = "architectury-plugin", version.ref = "architectury" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

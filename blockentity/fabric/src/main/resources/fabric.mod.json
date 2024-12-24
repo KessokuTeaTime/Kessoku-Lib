@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku_registry",
+  "id": "kessoku_blockentity",
   "version": "${version}",
-  "name": "Kessoku Registry",
-  "description": "A Registry-related API.",
+  "name": "Kessoku Block Entity",
+  "description": "Common blockentity API.",
   "authors": [
     "Kessoku Tea Time"
   ],
@@ -16,14 +16,10 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "band.kessoku.lib.impl.registry.fabric.KessokuRegistryFabric"
+      "band.kessoku.lib.impl.blockentity.fabric.KessokuBlockEntityFabric"
     ]
   },
   "environment": "*",
-  "mixins": [
-    "kessoku_registry.fabric.mixins.json"
-  ],
-  "accessWidener": "kessoku_registry.accesswidener",
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "1.21",

@@ -1,5 +1,8 @@
-name: Build Kessoku Lib
-on: [pull_request, push, workflow_dispatch]
+name: Run spotless
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -20,12 +23,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
-      - name: build
-        run: ./gradlew build --warning-mode=all
-      - name: capture build artifacts
-        if: ${{ matrix.java == '21' }}
-        uses: actions/upload-artifact@v4
+      - name: apply spotless
+        run: ./gradlew spotlessApply
+      - name: commit changes and push
+        uses: EndBug/add-and-commit@v9
         with:
-          name: Artifacts
-          path: |
-            */*/build/libs
+          message: "chore: Apply Spotless"
+          default_author: github_actions

@@ -15,8 +15,10 @@
  */
 package band.kessoku.lib.api.base;
 
-import java.lang.reflect.Constructor;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,23 +26,13 @@ public final class KessokuUtils {
     private KessokuUtils() {
     }
 
-    public static <T> boolean isType(final List<?> list, final Class<T> type) {
-        for (final Object element : list) {
+    public static <T> boolean isType(final Collection<?> collection, final Class<T> type) {
+        for (final Object element : collection) {
             if (!(type.isInstance(element))) {
                 return false;
             }
         }
         return true;
-    }
-
-    public static <V> V constructUnsafely(final Class<V> cls) {
-        try {
-            final Constructor<V> constructor = cls.getDeclaredConstructor();
-            constructor.setAccessible(true);
-            return constructor.newInstance();
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static <K, V> @NotNull Set<K> getKeysByValue(final Map<K, V> map, final V value) {

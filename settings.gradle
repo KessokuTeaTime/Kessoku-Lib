@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
-        maven { url "https://maven.fabricmc.net/" }
-        maven { url "https://maven.architectury.dev/" }
-        maven { url "https://maven.neoforged.net/releases/" }
+        maven { url = "https://maven.fabricmc.net/" }
+        maven { url = "https://maven.architectury.dev/" }
+        maven { url = "https://maven.neoforged.net/releases/" }
         gradlePluginPortal()
     }
 }
@@ -20,9 +20,10 @@ includeModule("registry") // Registry
 includeModule("lifecycle-events") // Lifecycle Events
 includeModule("command") // Command API
 includeModule("keybinding") // Keybinding API
-includeModule("config") // Config API
+// includeModule("config") // Config API
 includeModule("entrypoint") // Entrypoint API
 includeModule("entity-events") // Entity Events
+includeModule("blockentity") // Block Entity
 
 void includeWrapper(String platform) {
     include("wrapper/$platform")

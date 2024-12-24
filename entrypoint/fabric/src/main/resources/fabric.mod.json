@@ -3,7 +3,7 @@
   "id": "kessoku_platform",
   "version": "${version}",
   "name": "Kessoku Platform",
-  "description": "Provide some basic API.",
+  "description": "Common entrypoint API.",
   "authors": [
     "Kessoku Tea Time"
   ],
