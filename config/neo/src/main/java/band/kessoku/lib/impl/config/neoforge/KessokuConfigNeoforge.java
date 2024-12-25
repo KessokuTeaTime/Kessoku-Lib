@@ -15,9 +15,9 @@
  */
 package band.kessoku.lib.impl.config.neoforge;
 
-import band.kessoku.lib.config.ConfigHandler;
-import band.kessoku.lib.config.KessokuConfig;
-import band.kessoku.lib.config.api.Config;
+import band.kessoku.lib.api.config.ConfigHandler;
+import band.kessoku.lib.api.config.KessokuConfig;
+import band.kessoku.lib.api.config.api.Config;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;

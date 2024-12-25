@@ -1,9 +1,24 @@
-package band.kessoku.lib.config;
+/*
+ * Copyright (c) 2024 KessokuTeaTime
+ *
+ * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.gnu.org/licenses/lgpl-3.0.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package band.kessoku.lib.api.config;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
-import band.kessoku.lib.config.api.*;
+import band.kessoku.lib.api.config.api.*;
 import club.someoneice.json.Pair;
 import com.google.common.collect.*;
 import com.google.common.io.Files;
@@ -15,12 +30,14 @@ import java.nio.file.Path;
 import java.util.*;
 
 /**
- * The config handler, also see {@link band.kessoku.lib.config.api.Config Config}. <br>
+ * The config handler, also see {@link Config Config}. <br>
  * The config format or file type determined by config codec.
  *
- * @see band.kessoku.lib.config.api.Config Config
+ * @see Config Config
  * @see Codec Codec
  * @see ConfigBasicCodec Basic Config Codec
+ *
+ * @author AmarokIce
  */
 public final class ConfigHandler {
     private static Path configDir;
@@ -120,7 +137,7 @@ public final class ConfigHandler {
     public static void scanFields(Class<?> clazz, ConfigHandler cfg) {
         ImmutableList.Builder<Field> builder = ImmutableList.builder();
         for (Field field : clazz.getDeclaredFields()) {
-            if (ModifiersUtil.isFinal(field) || !ModifiersUtil.isStatic(field)) {
+            if (!ModifiersUtil.isStatic(field)) {
                 continue;
             }
 

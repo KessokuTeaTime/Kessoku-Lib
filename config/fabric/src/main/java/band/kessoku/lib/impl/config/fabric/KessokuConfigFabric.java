@@ -16,8 +16,8 @@
 package band.kessoku.lib.impl.config.fabric;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.config.ConfigHandler;
-import band.kessoku.lib.config.api.Config;
+import band.kessoku.lib.api.config.ConfigHandler;
+import band.kessoku.lib.api.config.api.Config;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.commons.compress.utils.Lists;
