@@ -15,17 +15,18 @@
  */
 package band.kessoku.lib.impl.config.neoforge;
 
-import band.kessoku.lib.api.config.ConfigHandler;
-import band.kessoku.lib.api.config.KessokuConfig;
-import band.kessoku.lib.api.config.api.Config;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.loading.FMLLoader;
-import net.neoforged.fml.loading.FMLPaths;
-import org.apache.commons.compress.utils.Lists;
-
 import java.lang.annotation.ElementType;
 import java.util.List;
 import java.util.Objects;
+
+import band.kessoku.lib.api.config.ConfigHandler;
+import band.kessoku.lib.api.config.KessokuConfig;
+import band.kessoku.lib.api.config.api.Config;
+import org.apache.commons.compress.utils.Lists;
+
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLPaths;
 
 @Mod(KessokuConfig.MOD_ID)
 public final class KessokuConfigNeoforge {

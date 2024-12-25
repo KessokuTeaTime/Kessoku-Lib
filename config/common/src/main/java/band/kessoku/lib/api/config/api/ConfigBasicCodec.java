@@ -15,17 +15,17 @@
  */
 package band.kessoku.lib.api.config.api;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 import club.someoneice.json.JSON;
 import club.someoneice.json.Pair;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;
 import club.someoneice.json.processor.JsonBuilder;
 import com.google.common.collect.Maps;
-
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * @see Config @Config

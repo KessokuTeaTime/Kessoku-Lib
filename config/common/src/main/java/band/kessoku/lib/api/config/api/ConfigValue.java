@@ -15,17 +15,17 @@
  */
 package band.kessoku.lib.api.config.api;
 
+import java.util.Objects;
+
 import band.kessoku.lib.api.config.ConfigHandler;
 import band.kessoku.lib.api.config.values.*;
-
-import java.util.Objects;
 
 /**
  * ConfigValue is just a data container,
  * any data processing should use {@link Codec}.
  *
  * @see Codec
- * @see ConfigValue#ConfigValue(Codec, Object) 
+ * @see ConfigValue#ConfigValue(Codec, Object)
  * @param <T> The value should record.
  *
  * @author AmarokIce
