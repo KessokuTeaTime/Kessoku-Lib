@@ -25,6 +25,7 @@ import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
 import band.kessoku.lib.api.config.api.*;
+import band.kessoku.lib.api.config.exception.IllegalValueException;
 import club.someoneice.json.Pair;
 import com.google.common.collect.*;
 import com.google.common.io.Files;
@@ -83,7 +84,7 @@ public final class ConfigHandler {
             cfgFile.createNewFile();
         }
 
-        String data = Arrays.toString(Files.toByteArray(ConfigHandler.configDir.toFile()));
+        String data = Arrays.toString(Files.toByteArray(cfgFile));
         var localMap = codec.encode(data);
 
         Map<String, ConfigData> commands = Maps.newLinkedHashMap();
@@ -126,11 +127,18 @@ public final class ConfigHandler {
         for (Field field : cfg.fields) {
             String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
             var raw = ((ConfigValue<?>) field.get(null));
-            if (ReflectUtil.isAssignableFrom(field, Category.class)) {
-                saveToClass(field.getType(), cfg, cfg.formatCodec.encode(data.get(name).rawValue()));
-            } else {
-                raw.encode(data.get(name).rawValue());
+            if (!ReflectUtil.isAssignableFrom(field, Category.class)) {
+                try {
+                    raw.encode(data.get(name).rawValue());
+                } catch (IllegalValueException e) {
+                    KessokuLib.getLogger().error(e.getMessage(), e);
+                    data.remove(name);
+                }
+
+                continue;
             }
+
+            saveToClass(field.getType(), cfg, cfg.formatCodec.encode(data.get(name).rawValue()));
         }
     }
 

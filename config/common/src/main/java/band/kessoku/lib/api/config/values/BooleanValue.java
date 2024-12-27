@@ -17,6 +17,7 @@ package band.kessoku.lib.api.config.values;
 
 import band.kessoku.lib.api.config.api.Codec;
 import band.kessoku.lib.api.config.api.ConfigValue;
+import band.kessoku.lib.api.config.exception.IllegalValueException;
 
 /**
  * @author AmarokIce
@@ -24,7 +25,11 @@ import band.kessoku.lib.api.config.api.ConfigValue;
 public final class BooleanValue extends ConfigValue<Boolean> {
     public static final Codec<Boolean> CODEC = new Codec<>() {
         @Override
-        public Boolean encode(String valueStr) {
+        public Boolean encode(String valueStr) throws IllegalValueException {
+            if (!"true".equalsIgnoreCase(valueStr) && !"false".equalsIgnoreCase(valueStr)) {
+                throw new IllegalValueException("Value must be true or false!");
+            }
+
             return Boolean.parseBoolean(valueStr);
         }
 

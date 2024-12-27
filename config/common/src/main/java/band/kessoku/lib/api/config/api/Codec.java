@@ -15,6 +15,8 @@
  */
 package band.kessoku.lib.api.config.api;
 
+import band.kessoku.lib.api.config.exception.IllegalValueException;
+
 /**
  * {@code Codec} is the key part of data encoding. <br>
  * The something we should to going to do is keep the {@code ConfigValue} agnostic to the real data,
@@ -34,8 +36,9 @@ public interface Codec<T> {
      *
      * @param valueStr The raw data input.
      * @return The target type data.
+     * @throws IllegalValueException If config value cannot be encoded, throw IllegalValueException.
      */
-    T encode(String valueStr);
+    T encode(String valueStr) throws IllegalValueException;
 
     /**
      * Encode the raw data (string) to target type data. <br>
