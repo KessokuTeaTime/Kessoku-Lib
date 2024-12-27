@@ -15,6 +15,12 @@
  */
 package band.kessoku.lib.api.config;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.file.Path;
+import java.util.*;
+
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
@@ -22,12 +28,6 @@ import band.kessoku.lib.api.config.api.*;
 import club.someoneice.json.Pair;
 import com.google.common.collect.*;
 import com.google.common.io.Files;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Path;
-import java.util.*;
 
 /**
  * The config handler, also see {@link Config Config}. <br>
@@ -49,7 +49,7 @@ public final class ConfigHandler {
     /**
      * Record all config fields, next time to use needn't scan it again.
      *
-     * @see ConfigHandler#readByClass(Class, ConfigHandler) 
+     * @see ConfigHandler#readByClass(Class, ConfigHandler)
      * @see ConfigHandler#saveToClass(Class, ConfigHandler, Map)
      */
     private ImmutableList<Field> fields;

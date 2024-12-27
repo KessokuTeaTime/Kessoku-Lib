@@ -15,18 +15,19 @@
  */
 package band.kessoku.lib.impl.config.fabric;
 
-import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.config.ConfigHandler;
-import band.kessoku.lib.api.config.api.Config;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
-import org.apache.commons.compress.utils.Lists;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.List;
+
+import band.kessoku.lib.api.KessokuLib;
+import band.kessoku.lib.api.config.ConfigHandler;
+import band.kessoku.lib.api.config.api.Config;
+import org.apache.commons.compress.utils.Lists;
+
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 
 public final class KessokuConfigFabric implements ModInitializer {
     @Override
