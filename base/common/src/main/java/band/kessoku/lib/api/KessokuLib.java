@@ -16,9 +16,13 @@
 package band.kessoku.lib.api;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ServiceLoader;
 
+import org.apache.logging.log4j.core.util.ReflectionUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,22 +33,23 @@ public final class KessokuLib {
     private KessokuLib() {
     }
 
-    public static void loadModule(Class<?> moduleCommonClass) {
+    public static void loadModule(@NotNull final Class<?> moduleCommonClass) {
+        if (moduleCommonClass.isArray())
+            throw new UnsupportedOperationException("What the hell are you doing?? KessokuLib.loadModule receives an array class! " + moduleCommonClass.getName());
+        if (isModuleLoaded(moduleCommonClass)) {
+            throw new UnsupportedOperationException("Module `" + moduleCommonClass.getName() + "` has already been loaded!");
+        }
         // Try to get module name
-        String moduleName;
+        final String moduleName;
         try {
-            Field field = moduleCommonClass.getField("NAME");
-            if (!Modifier.isStatic(field.getModifiers())) {
-                throw new IllegalArgumentException("NAME in " + moduleCommonClass.getPackageName() + " is not static!");
-            }
-            field.setAccessible(true);
-            moduleName = (String) field.get(null);
+            final Field field = moduleCommonClass.getField("NAME");
+            moduleName = (String) ReflectionUtil.getStaticFieldValue(field);
         } catch (NoSuchFieldException e) {
-            getLogger().warn("no NAME found for {}! Using package name", moduleCommonClass.getPackageName());
-            moduleName = moduleCommonClass.getPackageName();
-        } catch (IllegalAccessException e) {
-            // Already set accessible, shouldn't be called
-            moduleName = moduleCommonClass.getPackageName();
+            getLogger().error("Invalid Kessoku module! Field `NAME` is not found in {}!", moduleCommonClass.getName());
+            return;
+        } catch (NullPointerException e) {
+            getLogger().error("Invalid Kessoku module! NAME in {} is not static!", moduleCommonClass.getName());
+            return;
         }
         initializedModules.add(moduleCommonClass);
         getLogger().info("{} loaded!", moduleName);
