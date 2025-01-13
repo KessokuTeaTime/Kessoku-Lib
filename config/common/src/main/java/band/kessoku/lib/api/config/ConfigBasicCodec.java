@@ -13,22 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.api;
+package band.kessoku.lib.api.config;
+
+import band.kessoku.lib.api.config.api.Codec;
+import band.kessoku.lib.api.config.api.ConfigData;
+import club.someoneice.json.JSON;
+import club.someoneice.json.Pair;
+import club.someoneice.json.node.JsonNode;
+import club.someoneice.json.node.MapNode;
+import club.someoneice.json.processor.JsonBuilder;
+import com.electronwill.nightconfig.core.CommentedConfig;
+import com.electronwill.nightconfig.core.Config;
+import com.electronwill.nightconfig.core.io.ConfigParser;
+import com.electronwill.nightconfig.toml.TomlFormat;
+import com.electronwill.nightconfig.toml.TomlParser;
+import com.google.common.collect.Maps;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import club.someoneice.json.JSON;
-import club.someoneice.json.Pair;
-import club.someoneice.json.node.JsonNode;
-import club.someoneice.json.node.MapNode;
-import club.someoneice.json.processor.JsonBuilder;
-import com.google.common.collect.Maps;
-
 /**
- * @see Config @Config
+ * @see band.kessoku.lib.api.config.api.Config @Config
  * @see ConfigBasicCodec#register(String, Codec)
  *
  * @author AmarokIce
@@ -54,7 +61,7 @@ public final class ConfigBasicCodec {
             builder.append("{").append("\n");
             for (ConfigData data : value.values()) {
                 builder.append("    ");
-                builder.append("\"").append(data.key()).append("\"")
+                builder.append("\"").append(data.key()).append("\"").append(":")
                         .append(data.rawValue())
                         .append(",").append("\n");
             }
@@ -84,12 +91,39 @@ public final class ConfigBasicCodec {
                 for (String comment : data.comments()) {
                     builder.append("// ").append(comment).append("\n");
                 }
-                builder.append(data.key()).append(data.rawValue())
+                builder.append(data.key()).append(":").append(data.rawValue())
                         .append(",").append("\n");
             }
             builder.deleteCharAt(builder.length() - 2);
             builder.append("}");
 
+            return builder.toString();
+        }
+    };
+    private static final Codec<Map<String, ConfigData>> TOML = new Codec<>() {
+        @Override
+        public Map<String, ConfigData> encode(String valueStr) {
+            LinkedHashMap<String, ConfigData> data = new LinkedHashMap<>();
+            Config config = new TomlParser().parse(valueStr);
+            config.entrySet().stream()
+                    .filter(entry -> Objects.nonNull(entry.getRawValue()))
+                    .forEach(it -> data.put(it.getKey(), new ConfigData(it.getKey(),
+                                    it.getRawValue().toString(), Collections.emptyList())));
+            return data;
+        }
+
+        @Override
+        public String decode(Map<String, ConfigData> value) {
+            StringBuilder builder = new StringBuilder();
+            for (ConfigData data : value.values()) {
+                for (String comment : data.comments()) {
+                    builder.append("# ").append(comment).append("\n");
+                }
+                builder.append(data.key())
+                        .append("=")
+                        .append(data.rawValue())
+                        .append("\n");
+            }
             return builder.toString();
         }
     };
