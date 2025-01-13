@@ -15,12 +15,12 @@
  */
 package band.kessoku.lib.api.config.api;
 
-import band.kessoku.lib.api.config.ConfigBasicCodec;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import band.kessoku.lib.api.config.ConfigBasicCodec;
 
 /**
  * All configs started here. To create a new config. <br>
