@@ -17,7 +17,6 @@ package band.kessoku.lib.service.registry;
 
 import band.kessoku.lib.api.KessokuLib;
 
-import com.google.common.base.Suppliers;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 

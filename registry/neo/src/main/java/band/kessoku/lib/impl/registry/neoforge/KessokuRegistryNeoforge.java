@@ -15,14 +15,10 @@
  */
 package band.kessoku.lib.impl.registry.neoforge;
 
-import java.util.Objects;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
 import band.kessoku.lib.api.registry.KessokuRegistry;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeType;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
