@@ -17,9 +17,6 @@ displayURL = "https://modrinth.com/mod/kessoku-lib"
 [[mixins]]
 config = "kessoku_key_binding.neoforge.mixins.json"
 
-[[mixins]]
-config = "kessoku_key_binding.mixins.json"
-
 [[dependencies.kessoku_key_binding]]
 modId = "neoforge"
 type = "required"

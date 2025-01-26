@@ -16,19 +16,21 @@
 package band.kessoku.lib.impl.keybinding.neoforge;
 
 import band.kessoku.lib.api.KessokuLib;
+import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
 import band.kessoku.lib.impl.keybinding.client.KessokuKeybinding;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 
 @Mod(value = KessokuKeybinding.MOD_ID, dist = Dist.CLIENT)
 public final class KessokuKeyBindingNeoforge {
     public KessokuKeyBindingNeoforge(IEventBus modEventBus) {
         if (FMLLoader.getDist().isClient()) {
             KessokuLib.loadModule(KessokuKeybinding.class);
-            KeyBindingRegisterImpl.registerEvent(modEventBus);
+            NeoEventUtils.registerEvent(modEventBus, RegisterKeyMappingsEvent.class, KeyBindingRegisterImpl::onRegisterKeyMappings);
         }
     }
 }
