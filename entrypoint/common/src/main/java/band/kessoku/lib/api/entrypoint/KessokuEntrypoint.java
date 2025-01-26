@@ -67,14 +67,14 @@ public final class KessokuEntrypoint {
             @SuppressWarnings("SwitchStatementWithTooFewBranches") final KessokuMetadata kessokuMetadata = switch (schemaVersion) {
                 case 1 -> KessokuMetadata.parse(json, modid);
                 default ->
-                        throw new UnsupportedOperationException("Unsupported schemaVersion " + schemaVersion + " found! Consider updating Kessoku Lib to a newer version.");
+                        throw new UnsupportedOperationException("Unsupported schemaVersion '%s' found! Consider updating Kessoku Lib to a newer version.".formatted(schemaVersion));
             };
             modInfoMap.put(modid, kessokuMetadata);
         }
         // Init the modInfoMap
         KessokuEntrypoint.modInfoMap = Collections.unmodifiableMap(modInfoMap);
         // Init the java adapter
-        adapters.put("java", JavaLanguageAdapter.INSTANCE);
+        adapters.put("java", LanguageAdapter.getDefault());
         // Init the entryMap
         // forEach mods
         modInfoMap.forEach((modid, kessokuMetadata) -> {
@@ -98,8 +98,10 @@ public final class KessokuEntrypoint {
     }
 
     public static <T extends LanguageAdapter> void registerLanguageAdapter(String language, T adapter) {
-        if (adapters.containsKey(language)) throw new IllegalStateException(language + " has already been registered!");
-        adapters.putIfAbsent(language, adapter);
+        if (adapters.containsKey(language)) {
+            throw new IllegalStateException("'%s' has already been registered!".formatted(language));
+        }
+        adapters.put(language, adapter);
     }
 
     public static LanguageAdapter getAdapter(String language) {
@@ -121,15 +123,12 @@ public final class KessokuEntrypoint {
             try {
                 invoker.accept(entry.get(type));
             } catch (Throwable t) {
-                exceptions.add(new RuntimeException(String.format(
-                        "Could not execute entrypoint stage '%s' due to errors, provided by '%s' at '%s'!",
-                        key, entry.metadata.getModId(), entry.definition
-                )));
+                exceptions.add(new RuntimeException("Could not execute entrypoint stage '%s' due to errors, provided by '%s' at '%s'!".formatted(key, entry.metadata.getModId(), entry.definition)));
             }
         }
 
         if (!exceptions.isEmpty()) {
-            RuntimeException exception = new RuntimeException("Failed to invoke '" + key + "' due to these errors: ");
+            final RuntimeException exception = new RuntimeException("Failed to invoke '%s' due to these errors: ".formatted(key));
             exception.setStackTrace(new StackTraceElement[0]);
             exceptions.forEach(exception::addSuppressed);
             throw exception;
@@ -137,8 +136,9 @@ public final class KessokuEntrypoint {
     }
 
     public static Collection<Entry> getEntries(String key) {
-        if (hasEntrypoints(key))
+        if (hasEntrypoints(key)) {
             return Collections.unmodifiableList(entryMap.get(key));
+        }
         return List.of();
     }
 
