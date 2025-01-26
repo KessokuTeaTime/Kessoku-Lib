@@ -19,7 +19,6 @@ import java.util.Objects;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.neoforge.NeoEventUtils;
-import band.kessoku.lib.api.registry.FuelRegistry;
 import band.kessoku.lib.api.registry.KessokuRegistry;
 
 import net.minecraft.item.ItemStack;
@@ -36,14 +35,6 @@ public final class KessokuRegistryNeoforge {
     public KessokuRegistryNeoforge(IEventBus modEventBus) {
         KessokuLib.loadModule(KessokuRegistry.class);
         NeoEventUtils.registerEvent(modEventBus, RegisterEvent.class, RegistryImpl::onRegister);
-        NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, FurnaceFuelBurnTimeEvent.class, event -> {
-            final ItemStack stack = event.getItemStack();
-            final RecipeType<?> recipeType = Objects.requireNonNullElse(event.getRecipeType(), RecipeType.SMELTING);
-
-            int burnTime;
-            if ((burnTime = FuelRegistry.of(recipeType).get(stack)) <= 0) {
-                event.setBurnTime(burnTime);
-            }
-        });
+        NeoEventUtils.registerEvent(NeoForge.EVENT_BUS, FurnaceFuelBurnTimeEvent.class, FuelRegistryImpl::onBurn);
     }
 }

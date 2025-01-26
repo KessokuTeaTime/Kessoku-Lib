@@ -28,17 +28,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class KessokuLib {
-    private static final List<Class<?>> initializedModules = new ArrayList<>();
-
     private KessokuLib() {
     }
 
     public static void loadModule(@NotNull final Class<?> moduleCommonClass) {
         if (moduleCommonClass.isArray())
-            throw new UnsupportedOperationException("What the hell are you doing?? KessokuLib.loadModule receives an array class! " + moduleCommonClass.getName());
-        if (isModuleLoaded(moduleCommonClass)) {
-            throw new UnsupportedOperationException("Module `" + moduleCommonClass.getName() + "` has already been loaded!");
-        }
+            throw new UnsupportedOperationException("Cannot load an Array! Received " + moduleCommonClass.getName());
         // Try to get module name
         final String moduleName;
         try {
@@ -51,17 +46,7 @@ public final class KessokuLib {
             getLogger().error("Invalid Kessoku module! NAME in {} is not static!", moduleCommonClass.getName());
             return;
         }
-        initializedModules.add(moduleCommonClass);
         getLogger().info("{} loaded!", moduleName);
-    }
-
-    public static boolean isModuleLoaded(Class<?> moduleCommonClass) {
-        return initializedModules.contains(moduleCommonClass);
-    }
-
-    @UnmodifiableView
-    public static List<Class<?>> getActiveModules() {
-        return Collections.unmodifiableList(initializedModules);
     }
 
     public static <T> T loadService(final Class<T> clazz) {
