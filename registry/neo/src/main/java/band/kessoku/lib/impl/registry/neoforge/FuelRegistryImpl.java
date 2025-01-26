@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 KessokuTeaTime
+ * Copyright (c) 2024, 2025 KessokuTeaTime
  *
  * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
  * you may not use this file except in compliance with the License.
