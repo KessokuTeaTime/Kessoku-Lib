@@ -15,10 +15,10 @@
  */
 package band.kessoku.lib.api.config.api;
 
+import java.util.Objects;
+
 import band.kessoku.lib.api.config.ConfigHandler;
 import band.kessoku.lib.api.config.values.*;
-
-import java.util.Objects;
 
 /**
  * ConfigValue is just a data container,

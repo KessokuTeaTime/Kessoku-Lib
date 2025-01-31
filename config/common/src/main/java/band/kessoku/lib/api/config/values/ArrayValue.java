@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.api.config.values;
 
+import java.util.Collection;
+
 import band.kessoku.lib.api.config.api.Codec;
 import band.kessoku.lib.api.config.api.ConfigValue;
 import com.google.common.collect.Lists;
-
-import java.util.Collection;
 
 /**
  * @author AmarokIce
