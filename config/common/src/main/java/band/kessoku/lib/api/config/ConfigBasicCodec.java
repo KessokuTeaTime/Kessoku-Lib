@@ -47,10 +47,11 @@ public final class ConfigBasicCodec {
     private static final Codec<Map<String, ConfigData>> JSON_CODEC = new Codec<>() {
         @Override
         public Map<String, ConfigData> encode(String valueStr) {
-            MapNode mapNode = JSON.json5.parse(valueStr).asMapNodeOrEmpty();
+            MapNode mapNode = JSON.json.parse(valueStr).asMapNodeOrEmpty();
             LinkedHashMap<String, ConfigData> data = new LinkedHashMap<>();
             for (Pair<String, JsonNode<?>> pair : mapNode) {
-                data.put(pair.getKey(), new ConfigData(pair.getKey(), JsonBuilder.asString(pair.getValue()), Collections.emptyList()));
+                data.put(pair.getKey(), new ConfigData(pair.getKey(), JsonBuilder.asString(pair.getValue()),
+                        Collections.emptyList()));
             }
             return data;
         }
@@ -59,12 +60,11 @@ public final class ConfigBasicCodec {
         public String decode(Map<String, ConfigData> value) {
             StringBuilder builder = new StringBuilder();
             builder.append("{").append("\n");
-            for (ConfigData data : value.values()) {
-                builder.append("    ");
-                builder.append("\"").append(data.key()).append("\"").append(":")
-                        .append(data.rawValue())
-                        .append(",").append("\n");
-            }
+            value.values().forEach(it -> builder
+                    .append("    ")
+                    .append(it.toString(ConfigData.JSON_FORMATTER))
+                    .append(",").append("\n"));
+
             builder.deleteCharAt(builder.length() - 2);
             builder.append("}");
 
@@ -77,7 +77,8 @@ public final class ConfigBasicCodec {
             MapNode mapNode = JSON.json5.parse(valueStr).asMapNodeOrEmpty();
             LinkedHashMap<String, ConfigData> data = new LinkedHashMap<>();
             for (Pair<String, JsonNode<?>> pair : mapNode) {
-                data.put(pair.getKey(), new ConfigData(pair.getKey(), JsonBuilder.asString(pair.getValue()), Collections.emptyList()));
+                data.put(pair.getKey(), new ConfigData(pair.getKey(), JsonBuilder.asString(pair.getValue()),
+                        Collections.emptyList()));
             }
             return data;
         }
@@ -86,14 +87,11 @@ public final class ConfigBasicCodec {
         public String decode(Map<String, ConfigData> value) {
             StringBuilder builder = new StringBuilder();
             builder.append("{").append("\n");
-            for (ConfigData data : value.values()) {
-                builder.append("    ");
-                for (String comment : data.comments()) {
-                    builder.append("// ").append(comment).append("\n");
-                }
-                builder.append(data.key()).append(":").append(data.rawValue())
-                        .append(",").append("\n");
-            }
+            value.values().forEach(it -> builder
+                    .append("    ")
+                    .append(it.toString(ConfigData.JSON5_FORMATTER))
+                    .append(",").append("\n"));
+
             builder.deleteCharAt(builder.length() - 2);
             builder.append("}");
 
@@ -107,23 +105,18 @@ public final class ConfigBasicCodec {
             Config config = new TomlParser().parse(valueStr);
             config.entrySet().stream()
                     .filter(entry -> Objects.nonNull(entry.getRawValue()))
-                    .forEach(it -> data.put(it.getKey(), new ConfigData(it.getKey(),
-                                    it.getRawValue().toString(), Collections.emptyList())));
+                    .forEach(it -> data.put(it.getKey(), new ConfigData(it.getKey(), it.getRawValue().toString(),
+                            Collections.emptyList())));
             return data;
         }
 
         @Override
         public String decode(Map<String, ConfigData> value) {
             StringBuilder builder = new StringBuilder();
-            for (ConfigData data : value.values()) {
-                for (String comment : data.comments()) {
-                    builder.append("# ").append(comment).append("\n");
-                }
-                builder.append(data.key())
-                        .append("=")
-                        .append(data.rawValue())
-                        .append("\n");
-            }
+
+            value.values().forEach(it ->
+                builder.append(it.toString(ConfigData.TOML_FORMATTER)).append("\n"));
+
             return builder.toString();
         }
     };
@@ -140,5 +133,6 @@ public final class ConfigBasicCodec {
     static {
         register("json", JSON_CODEC);
         register("json5", JSON5);
+        register("toml", TOML);
     }
 }

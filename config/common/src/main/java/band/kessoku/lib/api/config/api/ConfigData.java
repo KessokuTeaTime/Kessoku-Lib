@@ -16,6 +16,7 @@
 package band.kessoku.lib.api.config.api;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Record the config's raw data, by encode or decode from config. <br>
@@ -28,6 +29,32 @@ import java.util.List;
  * @author AmarokIce
  */
 public record ConfigData(String key, String rawValue, List<String> comments) {
+    public static final Function<ConfigData, String> JSON_FORMATTER = it ->
+            String.format("\"%s\"", it.key()) + ":" + it.rawValue();
+
+    public static final Function<ConfigData, String> JSON5_FORMATTER = it -> {
+        StringBuilder builder = new StringBuilder();
+        it.comments().forEach(comment -> builder.append("// ").append(comment).append("\n"));
+        builder.append(String.format("\"%s\"", it.key()))
+                .append(":")
+                .append(it.rawValue());
+        return builder.toString();
+    };
+
+    public static final Function<ConfigData, String> TOML_FORMATTER = it -> {
+        StringBuilder builder = new StringBuilder();
+        it.comments().forEach(commit -> builder
+                .append("# ")
+                .append(commit)
+                .append("\n"));
+
+        builder.append(it.key())
+                .append("=")
+                .append(it.rawValue());
+
+        return builder.toString();
+    };
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -36,9 +63,18 @@ public record ConfigData(String key, String rawValue, List<String> comments) {
             builder.append("//").append(comment).append("\n");
         }
 
-        builder.append(key).append("=").append(rawValue);
+        builder.append(key).append(": ").append(rawValue);
 
         return builder.toString();
+    }
+
+    /**
+     * To string with formatter.
+     * @param formatter the formatter. {@link Config.abcdefghijklmnopqrstuvwxyz({[}
+     * @return
+     */
+    public String toString(Function<ConfigData, String> formatter) {
+        return formatter.apply(this);
     }
 
     @Override

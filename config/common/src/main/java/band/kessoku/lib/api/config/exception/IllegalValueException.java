@@ -15,8 +15,16 @@
  */
 package band.kessoku.lib.api.config.exception;
 
+import band.kessoku.lib.api.config.ConfigHandler;
+
 import java.io.Serial;
 
+/**
+ * Illegal value is loading in? Throws IllegalValueException.
+ * @see ConfigHandler
+ *
+ * @author AmarokIce
+ */
 public class IllegalValueException extends IllegalArgumentException {
     public IllegalValueException() {
     }

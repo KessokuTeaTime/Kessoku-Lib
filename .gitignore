@@ -11,3 +11,9 @@ build
 run
 .DS_Store
 .architectury-transformer
+
+# Eclipse
+**/.metadata
+**/.settings
+**/.classpath
+**/.project
