@@ -15,9 +15,9 @@
  */
 package band.kessoku.lib.api.config.exception;
 
-import band.kessoku.lib.api.config.core.ConfigHandler;
-
 import java.io.Serial;
+
+import band.kessoku.lib.api.config.core.ConfigHandler;
 
 /**
  * Illegal value is loading in? Throws IllegalValueException.

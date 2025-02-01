@@ -22,8 +22,8 @@ import java.util.Enumeration;
 import java.util.List;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.config.core.ConfigHandler;
 import band.kessoku.lib.api.config.Config;
+import band.kessoku.lib.api.config.core.ConfigHandler;
 import org.apache.commons.compress.utils.Lists;
 
 import net.fabricmc.api.ModInitializer;
