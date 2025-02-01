@@ -9,14 +9,12 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
+          distribution: 'microsoft'
           java-version: 21
       - name: Cache
         uses: actions/cache@v4
@@ -26,11 +24,10 @@ jobs:
             ~/.gradle/wrapper
             .gradle
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts*', '**/*.gradle*', '**/gradle-wrapper.properties', 'build.gradle.kts', 'build.gradle') }}
-      - uses: gradle/wrapper-validation-action@v2
+      - uses: gradle/actions/wrapper-validation@v4
       - run: |
           chmod +x gradlew
-
-      - name: Publish package
+      - name: Publish packages
         run: ./gradlew publish
         env:
           CLOUDSMITH_MAVEN_TOKEN: ${{ secrets.CLOUDSMITH_MAVEN_TOKEN }}
