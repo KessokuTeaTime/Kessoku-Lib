@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.api;
+package band.kessoku.lib.api.config;
 
 import band.kessoku.lib.api.config.exception.IllegalValueException;
 

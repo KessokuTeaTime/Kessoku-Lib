@@ -17,11 +17,17 @@ package band.kessoku.lib.api.config.values;
 
 import java.util.Map;
 
-import band.kessoku.lib.api.config.api.Codec;
-import band.kessoku.lib.api.config.api.ConfigValue;
+import band.kessoku.lib.api.config.Codec;
+import band.kessoku.lib.api.config.ConfigValue;
 import com.google.common.collect.Maps;
 
 /**
+ * These data structures have different syntax depending on the config type, <br>
+ * so there is no default {@code codec}, and they usually need to be implemented manually through requirements <br>
+ * (or by introducing a parser in the target format, like nightconfig's toml codec).
+ *
+ * @see Codec
+ *
  * @author AmarokIce
  */
 public class MapValue extends ConfigValue<Map<String, ConfigValue<?>>> {
@@ -32,29 +38,4 @@ public class MapValue extends ConfigValue<Map<String, ConfigValue<?>>> {
     public MapValue(Codec<Map<String, ConfigValue<?>>> codec, Map<String, ConfigValue<?>> value) {
         super(codec, value);
     }
-
-    /*
-    public static final Codec<Map<String, ConfigValue<?>>> CODEC = new Codec<>() {
-        @Override
-        public Map<String, ConfigValue<?>> encode(String valueStr) {
-            return Map.of();
-        }
-
-        @Override
-        public String decode(Map<String, ConfigValue<?>> value) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("{");
-            for(Map.Entry<String, ConfigValue<?>> entry : value.entrySet()) {
-                builder.append(entry.getKey());
-                builder.append(":");
-                builder.append(entry.getValue().decode());
-                builder.append(",");
-                builder.append("\n");
-            }
-            builder.deleteCharAt(builder.length() - 2);
-            builder.append("}");
-            return builder.toString();
-        }
-    };
-    */
 }

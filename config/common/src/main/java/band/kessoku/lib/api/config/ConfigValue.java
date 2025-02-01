@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.api;
+package band.kessoku.lib.api.config;
 
 import java.util.Objects;
 
-import band.kessoku.lib.api.config.ConfigHandler;
+import band.kessoku.lib.api.config.core.ConfigHandler;
 import band.kessoku.lib.api.config.values.*;
+import band.kessoku.lib.api.config.values.minecraft.IdentifierValue;
 
 /**
  * ConfigValue is just a data container,

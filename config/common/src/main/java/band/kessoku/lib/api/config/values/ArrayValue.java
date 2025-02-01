@@ -17,11 +17,17 @@ package band.kessoku.lib.api.config.values;
 
 import java.util.Collection;
 
-import band.kessoku.lib.api.config.api.Codec;
-import band.kessoku.lib.api.config.api.ConfigValue;
+import band.kessoku.lib.api.config.Codec;
+import band.kessoku.lib.api.config.ConfigValue;
 import com.google.common.collect.Lists;
 
 /**
+ * These data structures have different syntax depending on the config type, <br>
+ * so there is no default {@code codec}, and they usually need to be implemented manually through requirements <br>
+ * (or by introducing a parser in the target format, like nightconfig's toml codec).
+ *
+ * @see Codec
+ *
  * @author AmarokIce
  */
 public class ArrayValue extends ConfigValue<Collection<ConfigValue<?>>> {

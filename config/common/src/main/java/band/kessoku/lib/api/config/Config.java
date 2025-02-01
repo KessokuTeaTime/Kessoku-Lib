@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.api;
+package band.kessoku.lib.api.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import band.kessoku.lib.api.config.ConfigBasicCodec;
 
 /**
  * All configs started here. To create a new config. <br>
@@ -48,5 +46,5 @@ import band.kessoku.lib.api.config.ConfigBasicCodec;
 public @interface Config {
     String value();
     String name() default "";
-    String codec() default "json5";
+    String codec() default "toml";
 }

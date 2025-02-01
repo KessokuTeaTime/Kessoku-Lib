@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.values;
+package band.kessoku.lib.api.config.values.minecraft;
 
-import band.kessoku.lib.api.config.api.Codec;
-import band.kessoku.lib.api.config.api.ConfigValue;
+import band.kessoku.lib.api.config.Codec;
+import band.kessoku.lib.api.config.ConfigValue;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

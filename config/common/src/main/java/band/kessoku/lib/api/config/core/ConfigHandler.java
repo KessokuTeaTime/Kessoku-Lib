@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config;
+package band.kessoku.lib.api.config.core;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.util.*;
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
-import band.kessoku.lib.api.config.api.*;
+import band.kessoku.lib.api.config.*;
 import band.kessoku.lib.api.config.exception.IllegalValueException;
 import club.someoneice.json.Pair;
 import com.google.common.collect.*;
@@ -68,7 +68,7 @@ public final class ConfigHandler {
         this.clazz = clazz;
     }
 
-    private static void registerConfig(Class<?> clazz) throws IllegalAccessException, IOException {
+    private static void registerConfig(Class<?> clazz) throws IllegalAccessException, IOException, ClassNotFoundException {
         Config configSetting = clazz.getAnnotation(Config.class);
         final String modid = configSetting.value();
         final String name = configSetting.name().isEmpty() ? configSetting.value() : configSetting.name();
@@ -107,13 +107,15 @@ public final class ConfigHandler {
 
         for (Field field : cfg.fields) {
             String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
-            List<String> comments = field.isAnnotationPresent(Comment.class) ? Lists.newArrayList(field.getAnnotation(Comment.class).value()) : Collections.emptyList();
+            List<Comment> comments = field.isAnnotationPresent(Comments.class) ? Lists.newArrayList(field.getAnnotation(Comments.class).value()) : Collections.emptyList();
+            List<String> commentText = Lists.newArrayList();
+            comments.forEach(it -> commentText.add(it.value()));
 
             String data = ReflectUtil.isAssignableFrom(field, Category.class)
                     ? cfg.formatCodec.decode(readByClass(field.getType(), cfg))
                     : ((ConfigValue<?>) field.get(null)).decode();
 
-            map.put(name, new ConfigData(name, data, comments));
+            map.put(name, new ConfigData(name, data, commentText));
         }
 
         return map;
@@ -171,6 +173,8 @@ public final class ConfigHandler {
         list.forEach(it -> {
            try {
                registerConfig(it);
+           } catch (ClassNotFoundException e) {
+               KessokuLib.getLogger().error("Can't using target config type!", e);
            } catch (Exception e) {
                KessokuLib.getLogger().error(e.getMessage(), e);
            }

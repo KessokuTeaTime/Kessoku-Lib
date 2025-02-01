@@ -19,9 +19,9 @@ import java.lang.annotation.ElementType;
 import java.util.List;
 import java.util.Objects;
 
-import band.kessoku.lib.api.config.ConfigHandler;
-import band.kessoku.lib.api.config.KessokuConfig;
-import band.kessoku.lib.api.config.api.Config;
+import band.kessoku.lib.api.config.core.ConfigHandler;
+import band.kessoku.lib.api.config.core.KessokuConfig;
+import band.kessoku.lib.api.config.Config;
 import org.apache.commons.compress.utils.Lists;
 
 import net.neoforged.fml.common.Mod;

@@ -13,7 +13,19 @@ run
 .architectury-transformer
 
 # Eclipse
-**/.metadata
-**/.settings
+.loadpath
+.metadata
+.settings
+
 **/.classpath
 **/.project
+
+# NetBeans
+nbbuild
+dist
+nbdist
+.nb-gradle
+
+**/nbproject/private
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash

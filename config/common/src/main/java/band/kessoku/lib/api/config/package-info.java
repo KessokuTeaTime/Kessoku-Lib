@@ -15,7 +15,27 @@
  */
 
 /**
- * You can use annotations to create a config and save it to any file format you like. <br>
+ * The API for config. You can use annotations to create a config and save it to any file format you like.<br>
+ * It all started in {@link band.kessoku.lib.api.config.api.Config @Config}.<br>
+ * {@snippet :
+ * import band.kessoku.lib.config.config.Name;
+ * import band.kessoku.lib.config.config.Comment;
+ * import band.kessoku.lib.config.values.config.StringValue;
+ *
+ * @Config("mymodid)
+ * public class MyConfig {
+ *      @Comment("First comment")
+ *      @Comment("Second comment")
+ *      @Name("someoneField")
+ *      public static final StringValue SOMEONE_FIELD = new StringValue("test");
+ * }
+ *}
+ * <br>
+ * and in config: <br>
+ * {@code // First comment} <br>
+ * {@code // Second comment} <br>
+ * {@code someoneField = test,}
+ *
  * @see band.kessoku.lib.api.config.api.Config Config
  * @see band.kessoku.lib.api.config.api.ConfigValue ConfigValue
  */

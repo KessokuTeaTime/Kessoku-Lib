@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.api;
+package band.kessoku.lib.api.config;
 
 import java.util.List;
 import java.util.function.Function;
@@ -29,32 +29,6 @@ import java.util.function.Function;
  * @author AmarokIce
  */
 public record ConfigData(String key, String rawValue, List<String> comments) {
-    public static final Function<ConfigData, String> JSON_FORMATTER = it ->
-            String.format("\"%s\"", it.key()) + ":" + it.rawValue();
-
-    public static final Function<ConfigData, String> JSON5_FORMATTER = it -> {
-        StringBuilder builder = new StringBuilder();
-        it.comments().forEach(comment -> builder.append("// ").append(comment).append("\n"));
-        builder.append(String.format("\"%s\"", it.key()))
-                .append(":")
-                .append(it.rawValue());
-        return builder.toString();
-    };
-
-    public static final Function<ConfigData, String> TOML_FORMATTER = it -> {
-        StringBuilder builder = new StringBuilder();
-        it.comments().forEach(commit -> builder
-                .append("# ")
-                .append(commit)
-                .append("\n"));
-
-        builder.append(it.key())
-                .append("=")
-                .append(it.rawValue());
-
-        return builder.toString();
-    };
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

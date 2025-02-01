@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.api.config.exception;
 
-import band.kessoku.lib.api.config.ConfigHandler;
+import band.kessoku.lib.api.config.core.ConfigHandler;
 
 import java.io.Serial;
 

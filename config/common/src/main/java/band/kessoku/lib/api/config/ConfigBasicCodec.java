@@ -19,9 +19,8 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
-import band.kessoku.lib.api.config.api.Codec;
-import band.kessoku.lib.api.config.api.ConfigData;
 import club.someoneice.json.JSON;
 import club.someoneice.json.Pair;
 import club.someoneice.json.node.JsonNode;
@@ -32,7 +31,7 @@ import com.electronwill.nightconfig.toml.TomlParser;
 import com.google.common.collect.Maps;
 
 /**
- * @see band.kessoku.lib.api.config.api.Config @Config
+ * @see band.kessoku.lib.api.config.Config @Config
  * @see ConfigBasicCodec#register(String, Codec)
  *
  * @author AmarokIce
@@ -40,6 +39,32 @@ import com.google.common.collect.Maps;
 public final class ConfigBasicCodec {
 
     private static final Map<String, Codec<Map<String, ConfigData>>> CODECS = Maps.newHashMap();
+
+    public static final Function<ConfigData, String> JSON_FORMATTER = it ->
+            String.format("\"%s\"", it.key()) + ":" + it.rawValue();
+
+    public static final Function<ConfigData, String> JSON5_FORMATTER = it -> {
+        StringBuilder builder = new StringBuilder();
+        it.comments().forEach(comment -> builder.append("// ").append(comment).append("\n"));
+        builder.append(String.format("\"%s\"", it.key()))
+                .append(":")
+                .append(it.rawValue());
+        return builder.toString();
+    };
+
+    public static final Function<ConfigData, String> TOML_FORMATTER = it -> {
+        StringBuilder builder = new StringBuilder();
+        it.comments().forEach(commit -> builder
+                .append("# ")
+                .append(commit)
+                .append("\n"));
+
+        builder.append(it.key())
+                .append("=")
+                .append(it.rawValue());
+
+        return builder.toString();
+    };
 
     private static final Codec<Map<String, ConfigData>> JSON_CODEC = new Codec<>() {
         @Override
@@ -59,7 +84,7 @@ public final class ConfigBasicCodec {
             builder.append("{").append("\n");
             value.values().forEach(it -> builder
                     .append("    ")
-                    .append(it.toString(ConfigData.JSON_FORMATTER))
+                    .append(it.toString(JSON_FORMATTER))
                     .append(",").append("\n"));
 
             builder.deleteCharAt(builder.length() - 2);
@@ -68,6 +93,7 @@ public final class ConfigBasicCodec {
             return builder.toString();
         }
     };
+
     private static final Codec<Map<String, ConfigData>> JSON5 = new Codec<>() {
         @Override
         public Map<String, ConfigData> encode(String valueStr) {
@@ -86,7 +112,7 @@ public final class ConfigBasicCodec {
             builder.append("{").append("\n");
             value.values().forEach(it -> builder
                     .append("    ")
-                    .append(it.toString(ConfigData.JSON5_FORMATTER))
+                    .append(it.toString(JSON5_FORMATTER))
                     .append(",").append("\n"));
 
             builder.deleteCharAt(builder.length() - 2);
@@ -95,6 +121,7 @@ public final class ConfigBasicCodec {
             return builder.toString();
         }
     };
+
     private static final Codec<Map<String, ConfigData>> TOML = new Codec<>() {
         @Override
         public Map<String, ConfigData> encode(String valueStr) {
@@ -112,15 +139,18 @@ public final class ConfigBasicCodec {
             StringBuilder builder = new StringBuilder();
 
             value.values().forEach(it ->
-                builder.append(it.toString(ConfigData.TOML_FORMATTER)).append("\n"));
+                builder.append(it.toString(TOML_FORMATTER)).append("\n"));
 
             return builder.toString();
         }
     };
 
-    public static Codec<Map<String, ConfigData>> getCodec(String name) {
+    public static Codec<Map<String, ConfigData>> getCodec(String name) throws ClassNotFoundException {
         var codec = CODECS.get(name);
-        return Objects.isNull(codec) ? JSON5 : codec;
+        if (Objects.isNull(codec)) {
+            throw new ClassNotFoundException("Can't find the type " + name + "!");
+        }
+        return codec;
     }
 
     public static void register(String configCodecName, Codec<Map<String, ConfigData>> codec) {

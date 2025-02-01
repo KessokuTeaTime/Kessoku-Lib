@@ -15,8 +15,8 @@
  */
 package band.kessoku.lib.api.config.values;
 
-import band.kessoku.lib.api.config.api.Codec;
-import band.kessoku.lib.api.config.api.ConfigValue;
+import band.kessoku.lib.api.config.Codec;
+import band.kessoku.lib.api.config.ConfigValue;
 import band.kessoku.lib.api.config.exception.IllegalValueException;
 
 /**
