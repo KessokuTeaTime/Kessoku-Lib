@@ -15,6 +15,12 @@
  */
 package band.kessoku.lib.api.config;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+
 import club.someoneice.json.JSON;
 import club.someoneice.json.Pair;
 import club.someoneice.json.node.JsonNode;
@@ -23,12 +29,6 @@ import club.someoneice.json.processor.JsonBuilder;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.toml.TomlParser;
 import com.google.common.collect.Maps;
-
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 
 /**
  * @see band.kessoku.lib.api.config.Config @Config

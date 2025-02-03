@@ -15,6 +15,9 @@
  */
 package band.kessoku.lib.api.config.values;
 
+import java.util.Collection;
+import java.util.List;
+
 import band.kessoku.lib.api.config.Codec;
 import band.kessoku.lib.api.config.ConfigValue;
 import band.kessoku.lib.api.config.exception.IllegalValueException;
@@ -23,9 +26,6 @@ import club.someoneice.json.node.ArrayNode;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.processor.JsonBuilder;
 import com.google.common.collect.Lists;
-
-import java.util.Collection;
-import java.util.List;
 
 /**
  * These data structures have different syntax depending on the config type, <br>
