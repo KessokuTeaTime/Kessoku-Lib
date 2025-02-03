@@ -6,7 +6,7 @@ issueTrackerURL = "https://github.com/KessokuTeaTime/KessokuLib/issues"
 [[mods]]
 modId = "kessoku_key_binding"
 version = "${version}"
-displayName = "Kessoku Keybind"
+displayName = "Kessoku Keybinding"
 description = '''
 Simple Keybinding register API.
 '''

@@ -19,6 +19,7 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 public final class KessokuKeybinding {
-    public static final String MOD_ID = "kessoku_keybind";
-    public static final Marker MARKER = MarkerFactory.getMarker("[KessokuKeybind]");
+    public static final String MOD_ID = "kessoku_key_binding";
+    public static final String NAME = "Kessoku Key Binding";
+    public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME + "]");
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "kessoku_keybind",
+  "id": "kessoku_key_binding",
   "version": "${version}",
-  "name": "Kessoku Keybind",
+  "name": "Kessoku Keybinding",
   "description": "Simple Keybinding register API.",
   "authors": [
     "Kessoku Tea Time"
