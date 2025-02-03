@@ -17,7 +17,6 @@ package band.kessoku.lib.api.config.values.minecraft;
 
 import band.kessoku.lib.api.config.Codec;
 import band.kessoku.lib.api.config.ConfigValue;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;

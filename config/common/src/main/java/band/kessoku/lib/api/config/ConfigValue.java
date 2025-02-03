@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.api.config;
 
-import java.util.Objects;
-
 import band.kessoku.lib.api.config.core.ConfigHandler;
 import band.kessoku.lib.api.config.values.*;
 import band.kessoku.lib.api.config.values.minecraft.IdentifierValue;
+
+import java.util.Objects;
 
 /**
  * ConfigValue is just a data container,

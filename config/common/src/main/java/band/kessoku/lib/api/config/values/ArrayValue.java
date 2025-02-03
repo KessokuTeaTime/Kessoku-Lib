@@ -15,11 +15,17 @@
  */
 package band.kessoku.lib.api.config.values;
 
-import java.util.Collection;
-
 import band.kessoku.lib.api.config.Codec;
 import band.kessoku.lib.api.config.ConfigValue;
+import band.kessoku.lib.api.config.exception.IllegalValueException;
+import club.someoneice.json.JSON;
+import club.someoneice.json.node.ArrayNode;
+import club.someoneice.json.node.JsonNode;
+import club.someoneice.json.processor.JsonBuilder;
 import com.google.common.collect.Lists;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * These data structures have different syntax depending on the config type, <br>
@@ -31,6 +37,28 @@ import com.google.common.collect.Lists;
  * @author AmarokIce
  */
 public class ArrayValue extends ConfigValue<Collection<ConfigValue<?>>> {
+    public static final Codec<Collection<ConfigValue<?>>> JSON_CODEC = new Codec<>() {
+        @Override
+        public List<ConfigValue<?>> encode(String valueStr) throws IllegalValueException {
+            List<ConfigValue<?>> list = Lists.newArrayList();
+            JSON.json5.parse(valueStr).asArrayNodeOrEmpty().stream()
+                    .map(it -> new StringValue(StringValue.CODEC, it.getObj().toString()))
+                    .forEach(list::add);
+            return list;
+        }
+
+        @Override
+        public String decode(Collection<ConfigValue<?>> value) {
+            ArrayNode node = new ArrayNode();
+            value.stream().map(ConfigValue::decode).map(JsonNode::new).forEach(node::add);
+            return JsonBuilder.prettyPrint(node);
+        }
+    };
+
+    public ArrayValue(Collection<ConfigValue<?>> object) {
+        super(JSON_CODEC, object);
+    }
+
     public ArrayValue(Codec<Collection<ConfigValue<?>>> codec) {
         super(codec, Lists.newArrayList());
     }

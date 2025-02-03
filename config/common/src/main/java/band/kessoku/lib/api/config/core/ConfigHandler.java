@@ -15,12 +15,6 @@
  */
 package band.kessoku.lib.api.config.core;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Path;
-import java.util.*;
-
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
@@ -29,6 +23,12 @@ import band.kessoku.lib.api.config.exception.IllegalValueException;
 import club.someoneice.json.Pair;
 import com.google.common.collect.*;
 import com.google.common.io.Files;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.file.Path;
+import java.util.*;
 
 /**
  * The config handler, also see {@link Config Config}. <br>
@@ -61,11 +61,9 @@ public final class ConfigHandler {
      * @see Category
      */
     private final Codec<Map<String, ConfigData>> formatCodec;
-    private final Class<?> clazz;
 
-    private ConfigHandler(Codec<Map<String, ConfigData>> codec, Class<?> clazz) {
+    private ConfigHandler(Codec<Map<String, ConfigData>> codec) {
         this.formatCodec = codec;
-        this.clazz = clazz;
     }
 
     private static void registerConfig(Class<?> clazz) throws IllegalAccessException, IOException, ClassNotFoundException {
@@ -74,7 +72,7 @@ public final class ConfigHandler {
         final String name = configSetting.name().isEmpty() ? configSetting.value() : configSetting.name();
         final var codec = ConfigBasicCodec.getCodec(configSetting.codec());
 
-        ConfigHandler configHandler = new ConfigHandler(codec, clazz);
+        ConfigHandler configHandler = new ConfigHandler(codec);
         MOD_CONFIG_DATA.put(modid, name, new Pair<>(clazz, configHandler));
 
         var defMap = readByClass(clazz, configHandler);

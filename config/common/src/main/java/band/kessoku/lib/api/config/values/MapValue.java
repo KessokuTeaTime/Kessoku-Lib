@@ -15,11 +15,17 @@
  */
 package band.kessoku.lib.api.config.values;
 
-import java.util.Map;
-
 import band.kessoku.lib.api.config.Codec;
 import band.kessoku.lib.api.config.ConfigValue;
+import band.kessoku.lib.api.config.exception.IllegalValueException;
+import club.someoneice.json.JSON;
+import club.someoneice.json.Pair;
+import club.someoneice.json.node.JsonNode;
+import club.someoneice.json.node.MapNode;
+import club.someoneice.json.processor.JsonBuilder;
 import com.google.common.collect.Maps;
+
+import java.util.Map;
 
 /**
  * These data structures have different syntax depending on the config type, <br>
@@ -31,6 +37,32 @@ import com.google.common.collect.Maps;
  * @author AmarokIce
  */
 public class MapValue extends ConfigValue<Map<String, ConfigValue<?>>> {
+    public static final Codec<Map<String, ConfigValue<?>>> JSON_CODEC = new Codec<>() {
+        @Override
+        public Map<String, ConfigValue<?>> encode(String valueStr) throws IllegalValueException {
+            Map<String, ConfigValue<?>> map = Maps.newHashMap();
+            JSON.json5.parse(valueStr).asMapNodeOrEmpty().stream()
+                    .map(it ->
+                            new Pair<>(it.getKey(), new StringValue(StringValue.CODEC, it.getValue().toString())))
+                    .forEach(it -> map.put(it.getKey(), it.getValue()));
+            return map;
+        }
+
+        @Override
+        public String decode(Map<String, ConfigValue<?>> value) {
+            MapNode node = new MapNode();
+            value.forEach((key, valueNode) -> {
+                Object v = valueNode.decode();
+                node.put(key, new JsonNode<>(v));
+            });
+            return JsonBuilder.prettyPrint(node);
+        }
+    };
+
+    public MapValue(Map<String, ConfigValue<?>> value) {
+        super(JSON_CODEC, value);
+    }
+
     public MapValue(Codec<Map<String, ConfigValue<?>>> codec) {
         super(codec, Maps.newHashMap());
     }
