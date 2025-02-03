@@ -7,7 +7,7 @@ loom {
 }
 
 kessoku {
-    module("base", "common")
+    modules(["base", "platform"], "common")
 }
 
 dependencies {

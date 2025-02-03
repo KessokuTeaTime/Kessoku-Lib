@@ -16,6 +16,7 @@
 package band.kessoku.lib.api.registry;
 
 import band.kessoku.lib.service.registry.RegistryService;
+import net.minecraft.registry.Registry;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
@@ -35,43 +36,43 @@ public final class KessokuRegistry {
     public static final String NAME = "Kessoku Registry API";
     public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME + "]");
 
-    public static <T> T register(net.minecraft.registry.Registry<? super T> registry, String id, T entry) {
+    public static <T> T register(Registry<? super T> registry, String id, T entry) {
         return register(registry, Identifier.of(id), entry);
     }
 
-    static <V, T extends V> T register(net.minecraft.registry.Registry<V> registry, Identifier id, T entry) {
+    public static <V, T extends V> T register(Registry<V> registry, Identifier id, T entry) {
         return RegistryService.INSTANCE.register(registry, id, entry);
     }
 
-    static Item registerItem(Identifier id, Item.Settings settings) {
+    public static Item registerItem(Identifier id, Item.Settings settings) {
         return register(Registries.ITEM, id, new Item(settings));
     }
 
-    static Item registerSimpleItem(Identifier id) {
+    public static Item registerSimpleItem(Identifier id) {
         return register(Registries.ITEM, id, new Item(new Item.Settings()));
     }
 
-    static Block registerBlock(Identifier id, AbstractBlock.Settings settings) {
+    public static Block registerBlock(Identifier id, AbstractBlock.Settings settings) {
         return register(Registries.BLOCK, id, new Block(settings));
     }
 
-    static Block registerSimpleBlock(Identifier id) {
+    public static Block registerSimpleBlock(Identifier id) {
         return registerBlock(id, AbstractBlock.Settings.create());
     }
 
-    static Item registerSimpleBlockItem(Identifier id, Block block) {
+    public static Item registerSimpleBlockItem(Identifier id, Block block) {
         return registerSimpleBlockItem(id, block, new Item.Settings());
     }
 
-    static Item registerSimpleBlockItem(Identifier id, Block block, Item.Settings settings) {
+    public static Item registerSimpleBlockItem(Identifier id, Block block, Item.Settings settings) {
         return register(Registries.ITEM, id, new BlockItem(block, settings));
     }
 
-    static Item registerSimpleBlockItem(RegistryEntry<Block> block, Item.Settings settings) {
+    public static Item registerSimpleBlockItem(RegistryEntry<Block> block, Item.Settings settings) {
         return registerSimpleBlockItem(block.getKey().orElseThrow().getValue(), block.value(), settings);
     }
 
-    static Item registerSimpleBlockItem(RegistryEntry<Block> block) {
+    public static Item registerSimpleBlockItem(RegistryEntry<Block> block) {
         return registerSimpleBlockItem(block.getKey().orElseThrow().getValue(), block.value(), new Item.Settings());
     }
 }

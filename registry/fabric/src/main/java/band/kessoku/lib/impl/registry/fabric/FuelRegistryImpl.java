@@ -32,7 +32,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 
 @AutoService(FuelRegistryService.class)
-public class FuelRegistryImpl implements FuelRegistryService {
+public final class FuelRegistryImpl implements FuelRegistryService {
     public static final List<KessokuFuelRegistry.FuelTimeModifier> modifiers = new ArrayList<>();
 
     @Override
