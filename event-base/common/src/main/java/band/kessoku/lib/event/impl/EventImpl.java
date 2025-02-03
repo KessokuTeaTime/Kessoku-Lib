@@ -31,7 +31,7 @@ public final class EventImpl<T> implements Event<T> {
     public EventImpl(Function<List<T>, T> invokerFunc) {
         this.invokerFunc = invokerFunc;
         for (EventPhase phase : EventPhase.values()) {
-            listeners.put(phase, List.of());
+            listeners.put(phase, new ArrayList<>());
         }
     }
 
