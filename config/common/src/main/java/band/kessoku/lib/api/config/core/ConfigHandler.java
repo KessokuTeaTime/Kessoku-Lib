@@ -15,18 +15,18 @@
  */
 package band.kessoku.lib.api.config.core;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Objects;
+
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.config.Config;
 import band.kessoku.lib.api.config.ConfigSerializer;
 import band.kessoku.lib.api.config.serializer.ConfigSerializers;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * The config handler, also see {@link Config @Config}. <br>

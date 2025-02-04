@@ -15,6 +15,9 @@
  */
 package band.kessoku.lib.api.config.serializer;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
 import band.kessoku.lib.api.config.*;
@@ -24,9 +27,6 @@ import com.electronwill.nightconfig.toml.TomlFormat;
 import com.electronwill.nightconfig.toml.TomlParser;
 import com.electronwill.nightconfig.toml.TomlWriter;
 import org.apache.commons.io.output.StringBuilderWriter;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 /**
  * @author AmarokIce

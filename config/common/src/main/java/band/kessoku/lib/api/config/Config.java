@@ -16,12 +16,12 @@
 package band.kessoku.lib.api.config;
 
 
-import band.kessoku.lib.api.config.serializer.ConfigSerializers;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import band.kessoku.lib.api.config.serializer.ConfigSerializers;
 
 /**
  * All configs started here to create a new config.

@@ -15,11 +15,11 @@
  */
 package band.kessoku.lib.api.config.serializer;
 
+import java.util.Map;
+
 import band.kessoku.lib.api.config.Config;
 import band.kessoku.lib.api.config.ConfigSerializer;
 import com.google.common.collect.Maps;
-
-import java.util.Map;
 
 /**
  * TODO - Mega to ConfigHandler.

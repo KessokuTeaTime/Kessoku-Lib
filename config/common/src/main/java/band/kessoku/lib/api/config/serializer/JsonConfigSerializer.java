@@ -15,6 +15,9 @@
  */
 package band.kessoku.lib.api.config.serializer;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import band.kessoku.lib.api.base.reflect.ModifiersUtil;
 import band.kessoku.lib.api.base.reflect.ReflectUtil;
 import band.kessoku.lib.api.config.Config;
@@ -25,9 +28,6 @@ import club.someoneice.json.JSON;
 import club.someoneice.json.node.JsonNode;
 import club.someoneice.json.node.MapNode;
 import club.someoneice.json.processor.JsonBuilder;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 /**
  * @author AmarokIce
