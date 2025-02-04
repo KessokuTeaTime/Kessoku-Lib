@@ -16,18 +16,15 @@
 
 /**
  * The API for config. You can use annotations to create a config and save it to any file format you like.<br>
- * It all started in {@link band.kessoku.lib.api.config.api.Config @Config}.<br>
- * {@snippet :
- * import band.kessoku.lib.config.config.Name;
- * import band.kessoku.lib.config.config.Comment;
- * import band.kessoku.lib.config.values.config.StringValue;
+ * It all started in {@link band.kessoku.lib.api.config.Config @Config}.<br>
  *
- * @Config("mymodid)
+ * {@snippet :
+ * @Config(modid="mymodid", serialize="json5")
  * public class MyConfig {
  *      @Comment("First comment")
  *      @Comment("Second comment")
  *      @Name("someoneField")
- *      public static final StringValue SOMEONE_FIELD = new StringValue("test");
+ *      public static String SOMEONE_FIELD = "test";
  * }
  *}
  * <br>
@@ -36,7 +33,7 @@
  * {@code // Second comment} <br>
  * {@code someoneField = test,}
  *
- * @see band.kessoku.lib.api.config.api.Config Config
- * @see band.kessoku.lib.api.config.api.ConfigValue ConfigValue
+ * @see band.kessoku.lib.api.config.Config Config
+ * @see band.kessoku.lib.api.config.ConfigSerializer ConfigValue
  */
 package band.kessoku.lib.api.config;

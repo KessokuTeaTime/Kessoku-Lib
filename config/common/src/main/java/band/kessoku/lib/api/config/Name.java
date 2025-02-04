@@ -21,28 +21,29 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * By default, the {@code ConfigHandler} takes the field name as the name of the config field, but you can use this annotation to commit a new name.
- * <br>
- * {@snippet :
- * import band.kessoku.lib.config.api.config.Name;
- * import band.kessoku.lib.config.api.config.Comments;
- * import band.kessoku.lib.config.values.config.StringValue;
+ * By default, the {@code ConfigHandler} takes the field name as the name of the config field,
+ * but you can use this annotation to commit a new name.
  *
- * @Config("mymodid")
+ * {@snippet :
+ * @Config(modid="mymodid", serialize="json5")
  * public class MyConfig {
  *      @Comment("First comment")
  *      @Comment("Second comment")
  *      @Name("someoneField")
- *      public static final StringValue SOMEONE_FIELD = new StringValue("test");
+ *      public static String SOMEONE_FIELD = "test";
  * }
  *}
- * <br>
- * and in config: <br>
- * {@code // First comment} <br>
- * {@code // Second comment} <br>
- * {@code someoneField = test,}
+ *
+ * <p>and in config:
+ *
+ * {@snippet :
+ * // First comment
+ * // Second comment
+ * someoneField = test
+ * }
  *
  * @see Config @Config
+ * @see Comment @Comment
  *
  * @author AmarokIce
  */

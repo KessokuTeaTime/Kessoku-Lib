@@ -18,6 +18,7 @@ package band.kessoku.lib.api.config.core;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+@SuppressWarnings("unused")
 public class KessokuConfig {
     public static final String MOD_ID = "kessoku_config";
     public static final String NAME = "Kessoku Config API";

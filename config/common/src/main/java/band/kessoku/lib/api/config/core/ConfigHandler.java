@@ -15,167 +15,77 @@
  */
 package band.kessoku.lib.api.config.core;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Path;
-import java.util.*;
-
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.base.reflect.ModifiersUtil;
-import band.kessoku.lib.api.base.reflect.ReflectUtil;
-import band.kessoku.lib.api.config.*;
-import band.kessoku.lib.api.config.exception.IllegalValueException;
-import club.someoneice.json.Pair;
-import com.google.common.collect.*;
-import com.google.common.io.Files;
+import band.kessoku.lib.api.config.Config;
+import band.kessoku.lib.api.config.ConfigSerializer;
+import band.kessoku.lib.api.config.serializer.ConfigSerializers;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * The config handler, also see {@link Config Config}. <br>
+ * The config handler, also see {@link Config @Config}. <br>
  * The config format or file type determined by config codec.
  *
- * @see Config Config
- * @see Codec Codec
- * @see ConfigBasicCodec Basic Config Codec
+ * @see Config @Config
+ * @see ConfigSerializer ConfigSerializer
+ * @see ConfigSerializers Basic ConfigSerializer
  *
  * @author AmarokIce
  */
 public final class ConfigHandler {
     private static Path configDir;
+
     /**
      * All mods config(s).
      */
-    private static final Table<String, String, Pair<Class<?>, ConfigHandler>> MOD_CONFIG_DATA = HashBasedTable.create();
+    private static final Table<String, String, ConfigHandler> MOD_CONFIG_DATA = HashBasedTable.create();
 
-    /**
-     * Record all config fields, next time to use needn't scan it again.
-     *
-     * @see ConfigHandler#readByClass(Class, ConfigHandler)
-     * @see ConfigHandler#saveToClass(Class, ConfigHandler, Map)
-     */
-    private ImmutableList<Field> fields;
 
-    /**
-     * Format codec for {@code Config} and {@code Category}. <br>
-     *
-     * @see Category
-     */
-    private final Codec<Map<String, ConfigData>> formatCodec;
+    private final String path;
+    private final Class<?> configClazz;
+    private final ConfigSerializer serializer;
 
-    private ConfigHandler(Codec<Map<String, ConfigData>> codec) {
-        this.formatCodec = codec;
+    private ConfigHandler(String path, Class<?> configClazz, ConfigSerializer configSerializer) {
+        this.path = path;
+        this.configClazz = configClazz;
+        this.serializer = configSerializer;
     }
 
-    private static void registerConfig(Class<?> clazz) throws IllegalAccessException, IOException, ClassNotFoundException {
-        Config configSetting = clazz.getAnnotation(Config.class);
-        final String modid = configSetting.value();
-        final String name = configSetting.name().isEmpty() ? configSetting.value() : configSetting.name();
-        final var codec = ConfigBasicCodec.getCodec(configSetting.codec());
 
-        ConfigHandler configHandler = new ConfigHandler(codec);
-        MOD_CONFIG_DATA.put(modid, name, new Pair<>(clazz, configHandler));
+    private static void registerConfig(final Class<?> config) {
+        final Config configAnno = config.getAnnotation(Config.class);
+        final String modid = configAnno.modid();
+        String configName = configAnno.name();
+        final ConfigSerializer configSerializer = ConfigSerializers.getSerializer(configAnno.serialize());
 
-        var defMap = readByClass(clazz, configHandler);
-
-        File cfgFile = ConfigHandler.configDir.resolve(name).toFile();
-        if (!cfgFile.exists()) {
-            cfgFile.createNewFile();
+        if (configName.isEmpty()) {
+            configName = modid;
         }
 
-        String data = Arrays.toString(Files.toByteArray(cfgFile));
-        var localMap = codec.encode(data);
-
-        Map<String, ConfigData> commands = Maps.newLinkedHashMap();
-        for (Map.Entry<String, ConfigData> entry : defMap.entrySet()) {
-            String key = entry.getKey();
-            commands.put(key, localMap.containsKey(key) ? localMap.get(key) : entry.getValue());
+        if (Objects.isNull(configSerializer)) {
+            throw new IllegalArgumentException("Config serializer not found.");
         }
 
-        saveToClass(clazz, configHandler, commands);
-        data = codec.decode(commands);
-        Files.write(data.getBytes(), cfgFile);
-    }
+        MOD_CONFIG_DATA.put(modid, configName, new ConfigHandler(modid, config, configSerializer));
 
-    public static Map<String, ConfigData> readByClass(Class<?> clazz, ConfigHandler cfg) throws IllegalAccessException {
-        Map<String, ConfigData> map = Maps.newLinkedHashMap();
-
-        if (Objects.isNull(cfg.fields)) {
-            scanFields(clazz, cfg);
-        }
-
-        for (Field field : cfg.fields) {
-            String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
-            List<Comment> comments = field.isAnnotationPresent(Comments.class) ? Lists.newArrayList(field.getAnnotation(Comments.class).value()) : Collections.emptyList();
-            List<String> commentText = Lists.newArrayList();
-            comments.forEach(it -> commentText.add(it.value()));
-
-            String data = ReflectUtil.isAssignableFrom(field, Category.class)
-                    ? cfg.formatCodec.decode(readByClass(field.getType(), cfg))
-                    : ((ConfigValue<?>) field.get(null)).decode();
-
-            map.put(name, new ConfigData(name, data, commentText));
-        }
-
-        return map;
-    }
-
-    public static void saveToClass(Class<?> clazz, ConfigHandler cfg, Map<String, ConfigData> data) throws IllegalAccessException {
-        if (Objects.isNull(cfg.fields)) {
-            scanFields(clazz, cfg);
-        }
-
-        for (Field field : cfg.fields) {
-            String name = field.isAnnotationPresent(Name.class) ? field.getAnnotation(Name.class).value() : field.getName();
-            var raw = ((ConfigValue<?>) field.get(null));
-            if (!ReflectUtil.isAssignableFrom(field, Category.class)) {
-                try {
-                    raw.encode(data.get(name).rawValue());
-                } catch (IllegalValueException e) {
-                    KessokuLib.getLogger().error(e.getMessage(), e);
-                    data.remove(name);
-                }
-
-                continue;
-            }
-
-            saveToClass(field.getType(), cfg, cfg.formatCodec.encode(data.get(name).rawValue()));
+        Path configPath = ConfigHandler.configDir.resolve(configName);
+        try {
+            configSerializer.serializer(Files.readString(configPath), config);
+            String data = configSerializer.deserializer(config);
+            Files.write(configPath, data.getBytes());
+        } catch (IOException e) {
+            KessokuLib.getLogger().error("Can't read config file: " + configName, e);
         }
     }
 
-    public static void scanFields(Class<?> clazz, ConfigHandler cfg) {
-        ImmutableList.Builder<Field> builder = ImmutableList.builder();
-        for (Field field : clazz.getDeclaredFields()) {
-            if (!ModifiersUtil.isStatic(field)) {
-                continue;
-            }
-
-            if (!ReflectUtil.isAssignableFrom(field, ConfigValue.class)) {
-                continue;
-            }
-
-            ReflectUtil.markAccessible(field);
-            builder.add(field);
-        }
-
-        cfg.fields = builder.build();
-    }
-
-    /**
-     * The magic method for auto scan all config class with {@link Config @Config}.
-     *
-     * @see Config @Config
-     * @param configDir The based config directory, get by loader.
-     */
     public static void handleConfigs(List<Class<?>> list, Path configDir) {
         ConfigHandler.configDir = configDir;
-        list.forEach(it -> {
-           try {
-               registerConfig(it);
-           } catch (ClassNotFoundException e) {
-               KessokuLib.getLogger().error("Can't using target config type!", e);
-           } catch (Exception e) {
-               KessokuLib.getLogger().error(e.getMessage(), e);
-           }
-        });
+        list.forEach(ConfigHandler::registerConfig);
     }
 }

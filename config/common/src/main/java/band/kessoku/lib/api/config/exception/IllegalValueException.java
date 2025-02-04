@@ -15,12 +15,12 @@
  */
 package band.kessoku.lib.api.config.exception;
 
-import java.io.Serial;
-
 import band.kessoku.lib.api.config.core.ConfigHandler;
 
+import java.io.Serial;
+
 /**
- * Illegal value is loading in? Throws IllegalValueException.
+ * Illegal name is loading in? Throws IllegalValueException.
  * @see ConfigHandler
  *
  * @author AmarokIce
