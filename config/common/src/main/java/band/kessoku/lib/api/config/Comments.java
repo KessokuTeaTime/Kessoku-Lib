@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.annotations;
+package band.kessoku.lib.api.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
+/**
+ * @see Comment
+ *
+ * @author AmarokIce
+ */
 @Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Comments {
     Comment[] value();
 }

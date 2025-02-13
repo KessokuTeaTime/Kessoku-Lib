@@ -13,27 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.serializers;
+package band.kessoku.lib.api.config.core;
 
-import java.util.Map;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
-import band.kessoku.lib.api.config.ConfigSerializer;
-import band.kessoku.lib.impl.config.AbstractConfig;
-
-// todo
-public class TomlSerializer implements ConfigSerializer {
-    @Override
-    public String serialize(Map<String, AbstractConfig.WrappedValue> value) {
-        return "";
-    }
-
-    @Override
-    public Map<String, Object> deserialize(String value) {
-        return Map.of();
-    }
-
-    @Override
-    public String getFileExtension() {
-        return "toml";
-    }
+@SuppressWarnings("unused")
+public class KessokuConfig {
+    public static final String MOD_ID = "kessoku_config";
+    public static final String NAME = "Kessoku Config API";
+    public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME + "]");
 }

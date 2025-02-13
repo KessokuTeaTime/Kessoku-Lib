@@ -15,14 +15,26 @@
  */
 package band.kessoku.lib.api.config;
 
-import java.util.Map;
+import band.kessoku.lib.api.config.exception.IllegalValueException;
+import band.kessoku.lib.api.config.serializer.Json5ConfigSerializer;
+import band.kessoku.lib.api.config.serializer.JsonConfigSerializer;
+import band.kessoku.lib.api.config.serializer.TomlConfigSerializer;
 
-import band.kessoku.lib.impl.config.AbstractConfig;
-
+/**
+ * @see JsonConfigSerializer
+ * @see Json5ConfigSerializer
+ * @see TomlConfigSerializer
+ *
+ * @author AmarokIce
+ */
 public interface ConfigSerializer {
-    String serialize(Map<String, AbstractConfig.WrappedValue> valueMap);
+    /**
+     * @throws IllegalValueException If config name cannot be encoded, throw IllegalValueException.
+     */
+    void serializer(String valueStr, Class<?> clazz) throws IllegalValueException;
 
-    Map<String, Object> deserialize(String value);
-
-    String getFileExtension();
+    /**
+     * @return raw data will fill in config.
+     */
+    String deserializer(Class<?> clazz);
 }

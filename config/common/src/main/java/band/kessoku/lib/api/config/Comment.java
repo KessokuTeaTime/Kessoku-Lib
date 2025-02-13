@@ -15,32 +15,26 @@
  */
 package band.kessoku.lib.api.config;
 
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import band.kessoku.lib.api.config.serializer.ConfigSerializers;
+import java.lang.annotation.*;
 
 /**
- * All configs started here to create a new config.
+ * Config certainly allows comment, and multi-line comment.
+ * It is usually used to explain the purpose of an entry or to fill in the format, etc.
  *
- * <p>The only necessary data is modid, if config name is empty, it will fill by modid.
- * The registration process is automatic, you need to put the secondary bet liberation
- * at the head of the config class.
- *
- * <p>We provide some default {@link ConfigSerializer} in {@link ConfigSerializers}.
- *
- * <p>And the new config {@code ConfigSerializer} should registry in {@link ConfigSerializers#register}.
+ * <p>This annotation should be placed on the config's field.
  *
  * {@snippet :
+ * import band.kessoku.lib.config.api.config.Config;
+ * import band.kessoku.lib.config.api.config.Name;
+ * import band.kessoku.lib.config.api.config.Comments;
+ * import band.kessoku.lib.config.values.config.StringValue;
+ *
  * @Config(modid="mymodid", serialize="json5")
  * public class MyConfig {
  *      @Comment("First comment")
  *      @Comment("Second comment")
  *      @Name("someoneField")
- *      public static String SOMEONE_FIELD = "test";
+ *      public static final StringValue SOMEONE_FIELD = new StringValue("test");
  * }
  *}
  *
@@ -52,16 +46,14 @@ import band.kessoku.lib.api.config.serializer.ConfigSerializers;
  * someoneField = test
  * }
  *
- * @see Comment
- * @see Name
- * @see ConfigSerializers
+ * @see Config @Config
+ * @see Name @Name
  *
  * @author AmarokIce
  */
-@Target(ElementType.TYPE)
+@Repeatable(Comments.class)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Config {
-    String modid();
-    String name() default "";
-    String serialize() default "toml";
+public @interface Comment {
+    String value();
 }

@@ -15,8 +15,11 @@
  */
 package band.kessoku.lib.api.base.reflect;
 
+import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+
+import band.kessoku.lib.api.KessokuLib;
 
 public final class ReflectUtil {
     private ReflectUtil() {
@@ -30,5 +33,15 @@ public final class ReflectUtil {
     public static boolean isAssignableFrom(Object o, Class<?>... classes) {
         var flag = Arrays.stream(classes).anyMatch(clazz -> !o.getClass().isAssignableFrom(clazz));
         return !flag;
+    }
+
+    public static boolean markAccessible(AccessibleObject obj) {
+        try {
+            obj.setAccessible(true);
+            return true;
+        } catch (Exception e) {
+            KessokuLib.getLogger().error(e.getMessage(), e);
+            return false;
+        }
     }
 }

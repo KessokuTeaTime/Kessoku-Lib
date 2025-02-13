@@ -13,17 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package band.kessoku.lib.api.config.annotations;
+package band.kessoku.lib.api.config;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)
+/**
+ * By default, the {@code ConfigHandler} takes the field name as the name of the config field,
+ * but you can use this annotation to commit a new name.
+ *
+ * {@snippet :
+ * @Config(modid="mymodid", serialize="json5")
+ * public class MyConfig {
+ *      @Comment("First comment")
+ *      @Comment("Second comment")
+ *      @Name("someoneField")
+ *      public static String SOMEONE_FIELD = "test";
+ * }
+ *}
+ *
+ * <p>and in config:
+ *
+ * {@snippet :
+ * // First comment
+ * // Second comment
+ * someoneField = test
+ * }
+ *
+ * @see Config @Config
+ * @see Comment @Comment
+ *
+ * @author AmarokIce
+ */
 @Target(ElementType.FIELD)
-@Repeatable(Comments.class)
-public @interface Comment {
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Name {
     String value();
 }

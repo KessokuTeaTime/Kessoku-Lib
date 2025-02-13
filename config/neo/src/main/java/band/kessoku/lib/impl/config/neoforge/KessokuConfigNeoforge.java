@@ -15,14 +15,39 @@
  */
 package band.kessoku.lib.impl.config.neoforge;
 
-import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.api.config.KessokuConfig;
+import java.lang.annotation.ElementType;
+import java.util.List;
+import java.util.Objects;
+
+import band.kessoku.lib.api.config.Config;
+import band.kessoku.lib.api.config.core.ConfigHandler;
+import band.kessoku.lib.api.config.core.KessokuConfig;
+import org.apache.commons.compress.utils.Lists;
 
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLPaths;
 
 @Mod(KessokuConfig.MOD_ID)
 public final class KessokuConfigNeoforge {
     public KessokuConfigNeoforge() {
-        KessokuLib.loadModule(KessokuConfig.class);
+        List<Class<?>> configClazz = Lists.newArrayList();
+        FMLLoader.getLoadingModList().getMods().forEach(modInfo -> {
+            modInfo.getOwningFile().getFile().compileContent().getAnnotatedBy(Config.class, ElementType.TYPE)
+                    .map(it -> it.clazz().getClassName())
+                    .map(KessokuConfigNeoforge::getClassByName)
+                    .filter(Objects::nonNull)
+                    .forEach(configClazz::add);
+        });
+
+        ConfigHandler.handleConfigs(configClazz, FMLPaths.CONFIGDIR.get());
+    }
+
+    private static Class<?> getClassByName(String name) {
+        try {
+            return Class.forName(name);
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
     }
 }

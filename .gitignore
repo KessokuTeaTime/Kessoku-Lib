@@ -11,3 +11,21 @@ build
 run
 .DS_Store
 .architectury-transformer
+
+# Eclipse
+.loadpath
+.metadata
+.settings
+
+**/.classpath
+**/.project
+
+# NetBeans
+nbbuild
+dist
+nbdist
+.nb-gradle
+
+**/nbproject/private
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
