@@ -1,0 +1,13 @@
+apply from: rootProject.file("gradle/scripts/klib-common.gradle")
+
+base.archivesName = rootProject.name + "-package"
+
+loom {
+    accessWidenerPath = file("src/main/resources/kessoku-networking.accesswidener")
+}
+
+kessoku {
+    modules(["base", "event-base"], "common")
+
+    testModule("event-base", "common")
+}

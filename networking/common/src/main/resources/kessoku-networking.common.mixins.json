@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.networking",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "accessor.server.ServerCommonNetworkHandlerAccessor",
+    "accessor.server.ServerLoginNetworkHandlerAccessor"
+  ],
+  "client": [
+    "accessor.client.ClientCommonNetworkHandlerAccessor",
+    "accessor.client.ClientConfigurationNetworkHandlerAccessor",
+    "accessor.client.ClientLoginNetworkHandlerAccessor",
+    "accessor.client.ConnectScreenAccessor",
+    "accessor.client.MinecraftClientAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
