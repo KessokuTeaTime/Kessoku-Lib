@@ -1,8 +1,0 @@
-{
-  "required": true,
-  "package": "band.kessoku.lib.mixin.data",
-  "compatibilityLevel": "JAVA_21",
-  "injectors": {
-    "defaultRequire": 1
-  }
-}

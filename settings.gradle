@@ -13,7 +13,6 @@ includeWrapper("fabric")
 includeWrapper("neo")
 
 includeModule("base") // Base
-includeModule("data") // Data
 includeModule("event-base") // Event Base
 includeModule("platform") // Platform
 includeModule("registry") // Registry
@@ -23,7 +22,6 @@ includeModule("keybinding") // Keybinding API
 includeModule("config") // Config API
 includeModule("entrypoint") // Entrypoint API
 includeModule("entity-events") // Entity Events
-includeModule("blockentity") // Block Entity
 
 void includeWrapper(String platform) {
     include("wrapper/$platform")
