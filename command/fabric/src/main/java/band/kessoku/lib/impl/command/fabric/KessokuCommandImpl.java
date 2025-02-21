@@ -27,14 +27,14 @@ public final class KessokuCommandImpl {
     @SuppressWarnings("unchecked")
     public static void registerClientEvents() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            ClientCommandRegistryEvent.EVENT.invoker().register((CommandDispatcher<ClientCommandSourceExtension>)
+            ClientCommandRegistryEvent.EVENT.getInvoker().register((CommandDispatcher<ClientCommandSourceExtension>)
                     (CommandDispatcher<?>) dispatcher, registryAccess);
         });
     }
 
     public static void registerCommonEvents() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            CommandRegistryEvent.EVENT.invoker().register(dispatcher, registryAccess, environment);
+            CommandRegistryEvent.EVENT.getInvoker().register(dispatcher, registryAccess, environment);
         });
     }
 }

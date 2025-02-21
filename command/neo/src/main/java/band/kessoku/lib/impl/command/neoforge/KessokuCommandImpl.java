@@ -29,14 +29,14 @@ public final class KessokuCommandImpl {
     @SuppressWarnings("unchecked")
     public static void registerClientEvents(IEventBus forgeEventBus) {
         NeoEventUtils.registerEvent(forgeEventBus, RegisterClientCommandsEvent.class, event -> {
-            ClientCommandRegistryEvent.EVENT.invoker().register((CommandDispatcher<ClientCommandSourceExtension>)
+            ClientCommandRegistryEvent.EVENT.getInvoker().register((CommandDispatcher<ClientCommandSourceExtension>)
                     (CommandDispatcher<?>) event.getDispatcher(), event.getBuildContext());
         });
     }
 
     public static void registerCommonEvents(IEventBus forgeEventBus) {
         NeoEventUtils.registerEvent(forgeEventBus, RegisterCommandsEvent.class, event -> {
-            CommandRegistryEvent.EVENT.invoker().register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
+            CommandRegistryEvent.EVENT.getInvoker().register(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection());
         });
     }
 }

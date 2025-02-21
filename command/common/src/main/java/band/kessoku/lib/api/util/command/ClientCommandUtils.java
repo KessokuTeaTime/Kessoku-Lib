@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.command.KessokuCommand;
+import band.kessoku.lib.api.command.KessokuCommand;
 import band.kessoku.lib.mixin.command.HelpCommandAccessor;
 import com.google.common.collect.Iterables;
 import com.mojang.brigadier.CommandDispatcher;

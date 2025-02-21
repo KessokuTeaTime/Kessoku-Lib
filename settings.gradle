@@ -13,15 +13,13 @@ includeWrapper("fabric")
 includeWrapper("neo")
 
 includeModule("base") // Base
-includeModule("event-base") // Event Base
 includeModule("platform") // Platform
 includeModule("registry") // Registry
-includeModule("lifecycle-events") // Lifecycle Events
+includeModule("event") // Events
 includeModule("command") // Command API
 includeModule("keybinding") // Keybinding API
 includeModule("config") // Config API
 includeModule("entrypoint") // Entrypoint API
-includeModule("entity-events") // Entity Events
 
 void includeWrapper(String platform) {
     include("wrapper/$platform")

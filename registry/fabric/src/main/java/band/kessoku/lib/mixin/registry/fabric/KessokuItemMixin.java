@@ -1,16 +1,33 @@
+/*
+ * Copyright (c) 2024, 2025 KessokuTeaTime
+ *
+ * Licensed under the GNU Lesser General Pubic License, Version 3 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.gnu.org/licenses/lgpl-3.0.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package band.kessoku.lib.mixin.registry.fabric;
 
 import band.kessoku.lib.api.registry.KessokuItem;
 import band.kessoku.lib.impl.registry.fabric.KessokuItemExtension;
-import net.fabricmc.fabric.api.item.v1.EnchantingContext;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+
+import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 
 @Mixin(KessokuItem.class)
 public abstract class KessokuItemMixin implements KessokuItemExtension {

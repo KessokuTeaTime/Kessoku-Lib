@@ -16,7 +16,7 @@
 package band.kessoku.lib.impl.command.neoforge;
 
 import band.kessoku.lib.api.KessokuLib;
-import band.kessoku.lib.command.KessokuCommand;
+import band.kessoku.lib.api.command.KessokuCommand;
 
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;

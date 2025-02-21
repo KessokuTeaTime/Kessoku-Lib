@@ -15,7 +15,7 @@
  */
 package band.kessoku.lib.api.event.command;
 
-import band.kessoku.lib.event.api.Event;
+import band.kessoku.lib.api.event.Event;
 import com.mojang.brigadier.CommandDispatcher;
 import org.jetbrains.annotations.ApiStatus;
 

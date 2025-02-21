@@ -5,7 +5,7 @@ yarn = "1.21.1+build.3"
 yarn-patch-neoforge = "1.21+build.4"
 
 # Loaders
-neo = "21.1.113"
+neo = "21.1.119"
 fabric-loader = "0.16.10"
 
 # Mods
@@ -13,8 +13,8 @@ fabric-api = "0.115.0+1.21.1"
 
 # Plugin version
 # loom = "1.7-SNAPSHOT" Change it in gradle.properties!
-architectury = "3.4.160"
-shadow = "8.3.5"
+architectury = "3.4.161"
+shadow = "8.3.6"
 spotless = "7.0.2"
 idea-ext = "1.1.9"
 

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "band.kessoku.lib.mixin.event.neoforge",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "server": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

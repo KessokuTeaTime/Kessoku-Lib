@@ -16,7 +16,6 @@
 package band.kessoku.lib.api.registry;
 
 import band.kessoku.lib.service.registry.RegistryService;
-import net.minecraft.registry.Registry;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
@@ -25,6 +24,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
