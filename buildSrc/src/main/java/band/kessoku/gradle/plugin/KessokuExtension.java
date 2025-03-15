@@ -20,7 +20,6 @@ public abstract class KessokuExtension {
             "base",
             "command",
             "config",
-            "data",
             "event",
             "entrypoint",
             "keybinding",
