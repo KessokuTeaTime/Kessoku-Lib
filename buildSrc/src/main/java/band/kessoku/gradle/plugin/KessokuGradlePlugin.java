@@ -46,16 +46,6 @@ public final class KessokuGradlePlugin implements Plugin<PluginAware> {
             repo.setName("NeoForge");
             repo.setUrl("https://maven.neoforged.net/releases/");
         });
-
-        repositories.maven(repo -> {
-            repo.setName("AmarokIce's Maven");
-            repo.setUrl("http://maven.snowlyicewolf.club/");
-            repo.setAllowInsecureProtocol(true);
-            repo.mavenContent(context -> {
-                context.includeGroupByRegex("club\\.someoneice\\..*");
-            });
-        });
-
         repositories.maven(repo -> {
             repo.setName("Jitpack Maven");
             repo.setUrl("https://jitpack.io");
