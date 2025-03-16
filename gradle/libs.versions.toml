@@ -20,7 +20,7 @@ idea-ext = "1.1.9"
 
 # Config libraries
 night-config = "3.8.1"
-aj4j = "1.7.5"
+aj4j = "1.7.6"
 
 [libraries]
 minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
