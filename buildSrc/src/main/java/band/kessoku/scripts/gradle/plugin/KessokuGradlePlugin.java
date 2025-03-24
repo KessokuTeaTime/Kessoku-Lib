@@ -1,4 +1,4 @@
-package band.kessoku.gradle.plugin;
+package band.kessoku.scripts.gradle.plugin;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;

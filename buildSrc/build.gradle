@@ -11,14 +11,15 @@ repositories {
 
 dependencies {
     gradleApi()
+
     implementation("dev.architectury:architectury-loom:${readLoomVersion()}")
 }
 
 gradlePlugin {
     plugins {
-        create("kessoku") {
+        create("kessoku-gradle-plugin") {
             id = "band.kessoku.scripts"
-            implementationClass = "band.kessoku.gradle.plugin.KessokuGradlePlugin"
+            implementationClass = "band.kessoku.scripts.gradle.plugin.KessokuGradlePlugin"
         }
     }
 }

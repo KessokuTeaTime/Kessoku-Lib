@@ -1,4 +1,4 @@
-package band.kessoku.gradle.plugin;
+package band.kessoku.scripts.gradle.plugin;
 
 import net.fabricmc.loom.util.ModPlatform;
 
@@ -6,7 +6,8 @@ import java.util.Locale;
 
 public enum PlatformIdentifier {
     FABRIC("Fabric", ModPlatform.FABRIC),
-    NEO("Neo", ModPlatform.NEOFORGE)
+    NEO("Neo", ModPlatform.NEOFORGE),
+    COMMON("Common", null)
     ;
 
     private final String displayName;

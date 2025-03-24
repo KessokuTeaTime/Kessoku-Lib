@@ -1,4 +1,4 @@
-package band.kessoku.gradle.plugin;
+package band.kessoku.scripts.gradle.plugin;
 
 import net.fabricmc.loom.api.LoomGradleExtensionAPI;
 import net.fabricmc.loom.util.ModPlatform;
@@ -31,7 +31,7 @@ public abstract class KessokuExtension {
         return MODULES;
     }
 
-    public void library(String lib) {
+    public void modRuntimeLibrary(Object lib) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 
@@ -42,55 +42,50 @@ public abstract class KessokuExtension {
         dependencies.add("implementation", dependency);
     }
 
-    public void testModules(List<String> names, String plat) {
-        names.forEach(name -> testModule(name, plat));
+    public void testModules(List<String> names, PlatformIdentifier platform) {
+        names.forEach(name -> {
+            Project project = this.getProject();
+            DependencyHandler dependencies = project.getDependencies();
+
+            Dependency dependency = dependencies.project(Map.of(
+                    "path", ":" + name + "-" + platform.id(),
+                    "configuration", "namedElements"
+            ));
+            dependencies.add("testImplementation", dependency);
+        });
     }
 
-    public void modules(List<String> names, String plat) {
-        names.forEach(name -> module(name, plat));
+    public void modules(List<String> names, PlatformIdentifier platform) {
+        names.forEach(name -> {
+            Project project = this.getProject();
+            DependencyHandler dependencies = project.getDependencies();
+
+            Dependency dependency = dependencies.project(Map.of(
+                    "path", ":" + name + "-" + platform.id(),
+                    "configuration", "namedElements"
+            ));
+            dependencies.add("api", dependency);
+            dependencies.add("implementation", dependency);
+
+            LoomGradleExtensionAPI loom = project.getExtensions().getByType(LoomGradleExtensionAPI.class);
+            loom.mods(mods -> mods.register("kessoku-" + name + "-" + platform.id(), settings -> {
+                Project depProject = project.project(":" + name + "-" + platform.id());
+                SourceSetContainer sourceSets = depProject.getExtensions().getByType(SourceSetContainer.class);
+                settings.sourceSet(sourceSets.getByName("main"), depProject);
+            }));
+        });
     }
 
-    public void moduleIncludes(List<String> names, String plat) {
-        names.forEach(name -> moduleInclude(name, plat));
-    }
+    public void moduleIncludes(List<String> names, PlatformIdentifier platform) {
+        names.forEach(name -> {
+            Project project = this.getProject();
+            DependencyHandler dependencies = project.getDependencies();
 
-    public void testModule(String name, String plat) {
-        Project project = this.getProject();
-        DependencyHandler dependencies = project.getDependencies();
-
-        Dependency dependency = dependencies.project(Map.of(
-                "path", ":" + name + "-" + plat,
-                "configuration", "namedElements"
-        ));
-        dependencies.add("testImplementation", dependency);
-    }
-
-    public void module(String name, String plat) {
-        Project project = this.getProject();
-        DependencyHandler dependencies = project.getDependencies();
-
-        Dependency dependency = dependencies.project(Map.of(
-                "path", ":" + name + "-" + plat,
-                "configuration", "namedElements"
-        ));
-        dependencies.add("api", dependency);
-
-        LoomGradleExtensionAPI loom = project.getExtensions().getByType(LoomGradleExtensionAPI.class);
-        loom.mods(mods -> mods.register("kessoku-" + name + "-" + plat, settings -> {
-            Project depProject = project.project(":" + name + "-" + plat);
-            SourceSetContainer sourceSets = depProject.getExtensions().getByType(SourceSetContainer.class);
-            settings.sourceSet(sourceSets.getByName("main"), depProject);
-        }));
-    }
-
-    public void moduleInclude(String name, String plat) {
-        Project project = this.getProject();
-        DependencyHandler dependencies = project.getDependencies();
-
-        Dependency dependency = dependencies.project(Map.of(
-                "path", ":" + name + "-" + plat
-        ));
-        dependencies.add("include", dependency);
+            Dependency dependency = dependencies.project(Map.of(
+                    "path", ":" + name + "-" + platform.id()
+            ));
+            dependencies.add("include", dependency);
+        });
     }
 
     public void common(String name, ModPlatform platform) {
