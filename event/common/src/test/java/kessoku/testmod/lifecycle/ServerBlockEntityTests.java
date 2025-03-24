@@ -29,13 +29,13 @@ public class ServerBlockEntityTests implements KessokuModInitializer {
 
     @Override
     public void onInitialize() {
-        ServerBlockEntityEvents.LOAD.register(((blockEntity, world) -> {
+        ServerBlockEntityEvents.LOADED.register(((blockEntity, world) -> {
             this.serverBlockEntities.add(blockEntity);
 
             KessokuTestLifecycle.LOGGER.info("[SERVER] LOADED {} - BlockEntities: {}", Registries.BLOCK_ENTITY_TYPE.getId(blockEntity.getType()).toString(), this.serverBlockEntities.size());
         }));
 
-        ServerBlockEntityEvents.UNLOAD.register(((blockEntity, world) -> {
+        ServerBlockEntityEvents.UNLOADED.register(((blockEntity, world) -> {
             this.serverBlockEntities.remove(blockEntity);
 
             KessokuTestLifecycle.LOGGER.info("[SERVER] UNLOADED {} - BlockEntities: {}", Registries.BLOCK_ENTITY_TYPE.getId(blockEntity.getType()).toString(), this.serverBlockEntities.size());

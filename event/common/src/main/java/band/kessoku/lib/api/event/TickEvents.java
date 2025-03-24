@@ -19,7 +19,7 @@ package band.kessoku.lib.api.event;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
+import net.minecraft.server.world.ServerWorld;
 
 public class TickEvents {
     /**
@@ -80,12 +80,12 @@ public class TickEvents {
 
     @FunctionalInterface
     public interface StartWorldTick {
-        void onStartTick(World world);
+        void onStartTick(ServerWorld world);
     }
 
     @FunctionalInterface
     public interface EndWorldTick {
-        void onEndTick(World world);
+        void onEndTick(ServerWorld world);
     }
 
     @FunctionalInterface

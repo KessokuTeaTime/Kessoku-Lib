@@ -29,9 +29,9 @@ public class ServerChunkEvents {
      *
      * <p>When this event is called, the chunk is already in the world.
      */
-    public static final Event<Load> LOAD = Event.of(callbacks -> (serverWorld, chunk) -> {
-        for (Load callback : callbacks) {
-            callback.onChunkLoad(serverWorld, chunk);
+    public static final Event<Loaded> LOADED = Event.of(callbacks -> (serverWorld, chunk) -> {
+        for (Loaded callback : callbacks) {
+            callback.onChunkLoaded(serverWorld, chunk);
         }
     });
 
@@ -51,15 +51,15 @@ public class ServerChunkEvents {
      *
      * <p>When this event is called, the chunk is still present in the world.
      */
-    public static final Event<Unload> UNLOAD = Event.of(callbacks -> (serverWorld, chunk) -> {
-        for (Unload callback : callbacks) {
-            callback.onChunkUnload(serverWorld, chunk);
+    public static final Event<Unloaded> UNLOADED = Event.of(callbacks -> (serverWorld, chunk) -> {
+        for (Unloaded callback : callbacks) {
+            callback.onChunkUnloaded(serverWorld, chunk);
         }
     });
 
     @FunctionalInterface
-    public interface Load {
-        void onChunkLoad(ServerWorld world, WorldChunk chunk);
+    public interface Loaded {
+        void onChunkLoaded(ServerWorld world, WorldChunk chunk);
     }
 
     @FunctionalInterface
@@ -68,7 +68,7 @@ public class ServerChunkEvents {
     }
 
     @FunctionalInterface
-    public interface Unload {
-        void onChunkUnload(ServerWorld world, WorldChunk chunk);
+    public interface Unloaded {
+        void onChunkUnloaded(ServerWorld world, WorldChunk chunk);
     }
 }

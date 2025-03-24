@@ -29,9 +29,9 @@ public class ServerBlockEntityEvents {
      * <p>When this is event is called, the block entity is already in the world.
      * However, its data might not be loaded yet, so don't rely on it.
      */
-    public static final Event<Load> LOAD = Event.of(callbacks -> (blockEntity, world) -> {
-        for (Load callback : callbacks) {
-            callback.onLoad(blockEntity, world);
+    public static final Event<Loaded> LOADED = Event.of(callbacks -> (blockEntity, world) -> {
+        for (Loaded callback : callbacks) {
+            callback.onLoaded(blockEntity, world);
         }
     });
 
@@ -40,19 +40,19 @@ public class ServerBlockEntityEvents {
      *
      * <p>When this event is called, the block entity is still present on the world.
      */
-    public static final Event<Unload> UNLOAD = Event.of(callbacks -> (blockEntity, world) -> {
-        for (Unload callback : callbacks) {
-            callback.onUnload(blockEntity, world);
+    public static final Event<Unloaded> UNLOADED = Event.of(callbacks -> (blockEntity, world) -> {
+        for (Unloaded callback : callbacks) {
+            callback.onUnloaded(blockEntity, world);
         }
     });
 
     @FunctionalInterface
-    public interface Load {
-        void onLoad(BlockEntity blockEntity, ServerWorld world);
+    public interface Loaded {
+        void onLoaded(BlockEntity blockEntity, ServerWorld world);
     }
 
     @FunctionalInterface
-    public interface Unload {
-        void onUnload(BlockEntity blockEntity, ServerWorld world);
+    public interface Unloaded {
+        void onUnloaded(BlockEntity blockEntity, ServerWorld world);
     }
 }

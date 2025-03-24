@@ -31,9 +31,9 @@ public class ServerEntityEvents {
      *
      * <p>When this event is called, the entity is already in the world.
      */
-    public static final Event<Load> LOAD = Event.of(callbacks -> (entity, world) -> {
-        for (Load callback : callbacks) {
-            callback.onLoad(entity, world);
+    public static final Event<Loaded> LOADED = Event.of(callbacks -> (entity, world) -> {
+        for (Loaded callback : callbacks) {
+            callback.onLoaded(entity, world);
         }
     });
 
@@ -42,9 +42,9 @@ public class ServerEntityEvents {
      *
      * <p>This event is called before the entity is removed from the world.
      */
-    public static final Event<Unload> UNLOAD = Event.of(callbacks -> (entity, world) -> {
-        for (Unload callback : callbacks) {
-            callback.onUnload(entity, world);
+    public static final Event<Unloaded> UNLOADED = Event.of(callbacks -> (entity, world) -> {
+        for (Unloaded callback : callbacks) {
+            callback.onUnloaded(entity, world);
         }
     });
 
@@ -54,24 +54,24 @@ public class ServerEntityEvents {
      * <p>This event is also called when the entity joins the world.
      * A change in equipment is determined by {@link ItemStack#areEqual(ItemStack, ItemStack)}.
      */
-    public static final Event<EquipmentChange> EQUIPMENT_CHANGE = Event.of(callbacks -> (livingEntity, equipmentSlot, previous, next) -> {
-        for (EquipmentChange callback : callbacks) {
-            callback.onChange(livingEntity, equipmentSlot, previous, next);
+    public static final Event<EquipmentChanged> EQUIPMENT_CHANGED = Event.of(callbacks -> (livingEntity, equipmentSlot, previous, next) -> {
+        for (EquipmentChanged callback : callbacks) {
+            callback.onChanged(livingEntity, equipmentSlot, previous, next);
         }
     });
 
     @FunctionalInterface
-    public interface Load {
-        void onLoad(Entity entity, ServerWorld world);
+    public interface Loaded {
+        void onLoaded(Entity entity, ServerWorld world);
     }
 
     @FunctionalInterface
-    public interface Unload {
-        void onUnload(Entity entity, ServerWorld world);
+    public interface Unloaded {
+        void onUnloaded(Entity entity, ServerWorld world);
     }
 
     @FunctionalInterface
-    public interface EquipmentChange {
-        void onChange(LivingEntity livingEntity, EquipmentSlot equipmentSlot, ItemStack previousStack, ItemStack currentStack);
+    public interface EquipmentChanged {
+        void onChanged(LivingEntity livingEntity, EquipmentSlot equipmentSlot, ItemStack previousStack, ItemStack currentStack);
     }
 }
