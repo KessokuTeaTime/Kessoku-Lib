@@ -31,17 +31,6 @@ public abstract class KessokuExtension {
         return MODULES;
     }
 
-    public void modRuntimeLibrary(Object lib) {
-        Project project = this.getProject();
-        DependencyHandler dependencies = project.getDependencies();
-
-        Dependency dependency = dependencies.project(Map.of(
-                "path", lib,
-                "configuration", "namedElements"
-        ));
-        dependencies.add("implementation", dependency);
-    }
-
     public void testModules(List<String> names, PlatformIdentifier platform) {
         names.forEach(name -> {
             Project project = this.getProject();
