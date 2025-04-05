@@ -1,12 +1,12 @@
-import net.fabricmc.loom.util.ModPlatform
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
 base.archivesName = rootProject.name + "-platform"
 
 kessoku {
-    module("base", "common")
+    modules(["base"], PlatformIdentifier.COMMON)
 
-    common("platform", ModPlatform.NEOFORGE)
-    shadowBundle("platform", ModPlatform.NEOFORGE)
+    common("platform", PlatformIdentifier.NEO)
+    shadowBundle("platform", PlatformIdentifier.NEO)
 }

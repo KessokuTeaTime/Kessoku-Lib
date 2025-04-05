@@ -1,3 +1,4 @@
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
 import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
@@ -9,8 +10,8 @@ loom {
 }
 
 kessoku {
-    module("base", "common")
+    modules(["base"], PlatformIdentifier.COMMON)
 
-    common("registry", ModPlatform.FABRIC)
-    shadowBundle("registry", ModPlatform.FABRIC)
+    common("registry", PlatformIdentifier.FABRIC)
+    shadowBundle("registry", PlatformIdentifier.FABRIC)
 }

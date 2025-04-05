@@ -1,14 +1,14 @@
-import net.fabricmc.loom.util.ModPlatform
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
 base.archivesName = rootProject.name + "-entrypoint"
 
 kessoku {
-    module("base", "common")
+    modules(["base"], PlatformIdentifier.COMMON)
 
-    common("entrypoint", ModPlatform.FABRIC)
-    shadowBundle("entrypoint", ModPlatform.FABRIC)
+    common("entrypoint", PlatformIdentifier.FABRIC)
+    shadowBundle("entrypoint", PlatformIdentifier.FABRIC)
 }
 
 dependencies {

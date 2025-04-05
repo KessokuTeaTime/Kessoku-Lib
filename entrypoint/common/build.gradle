@@ -1,10 +1,11 @@
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
+
 apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
 base.archivesName = rootProject.name + "-entrypoint"
 
 kessoku {
-    module("base", "common")
-    module("platform", "common")
+    modules(["base", "platform"], PlatformIdentifier.COMMON)
 }
 
 dependencies {

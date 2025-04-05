@@ -1,4 +1,4 @@
-import net.fabricmc.loom.util.ModPlatform
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
@@ -9,11 +9,11 @@ loom {
 }
 
 kessoku {
-    module("base", "common")
-    module("base", "neo")
+    modules(["base"], PlatformIdentifier.COMMON)
+    modules(["base"], PlatformIdentifier.NEO)
 
-    common("registry", ModPlatform.NEOFORGE)
-    shadowBundle("registry", ModPlatform.NEOFORGE)
+    common("registry", PlatformIdentifier.NEO)
+    shadowBundle("registry", PlatformIdentifier.NEO)
 }
 
 remapJar {

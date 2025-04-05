@@ -1,7 +1,9 @@
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
+
 apply from: rootProject.file("gradle/scripts/klib-common.gradle")
 
 base.archivesName = rootProject.name + "-event"
 
 kessoku {
-    module("base", "common")
+    modules(["base"], PlatformIdentifier.COMMON)
 }
