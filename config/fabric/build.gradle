@@ -1,5 +1,4 @@
 import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
-import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
@@ -8,8 +7,8 @@ base.archivesName = rootProject.name + "-config"
 kessoku {
     modules(["base", "platform"], PlatformIdentifier.COMMON)
 
-    common("config", ModPlatform.FABRIC)
-    shadowBundle("config", ModPlatform.FABRIC)
+    common("config", PlatformIdentifier.FABRIC)
+    shadowBundle("config", PlatformIdentifier.FABRIC)
 }
 
 dependencies {

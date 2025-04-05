@@ -1,5 +1,4 @@
 import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
-import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
@@ -8,6 +7,6 @@ base.archivesName = rootProject.name + "-event"
 kessoku {
     modules(["base"], PlatformIdentifier.COMMON)
 
-    common("event", ModPlatform.FABRIC)
-    shadowBundle("event", ModPlatform.FABRIC)
+    common("event", PlatformIdentifier.FABRIC)
+    shadowBundle("event", PlatformIdentifier.FABRIC)
 }

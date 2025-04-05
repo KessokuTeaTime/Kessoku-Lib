@@ -77,7 +77,7 @@ public abstract class KessokuExtension {
         });
     }
 
-    public void common(String name, ModPlatform platform) {
+    public void common(String name, PlatformIdentifier platform) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 
@@ -88,16 +88,16 @@ public abstract class KessokuExtension {
         dependency.setTransitive(false);
         dependencies.add("compileOnly", dependency);
         dependencies.add("runtimeOnly", dependency);
-        dependencies.add("development" + platform.displayName(), dependency);
+        dependencies.add("development" + platform.platform().displayName(), dependency);
     }
 
-    public void shadowBundle(String name, ModPlatform platform) {
+    public void shadowBundle(String name, PlatformIdentifier platform) {
         Project project = this.getProject();
         DependencyHandler dependencies = project.getDependencies();
 
         Dependency dependency = dependencies.project(Map.of(
                 "path", ":" + name + "-common",
-                "configuration", "transformProduction" + platform.displayName()
+                "configuration", "transformProduction" + platform.platform().displayName()
         ));
         dependencies.add("shade", dependency);
     }

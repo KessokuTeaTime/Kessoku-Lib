@@ -1,5 +1,4 @@
 import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
-import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
@@ -8,8 +7,8 @@ base.archivesName = rootProject.name + "-config"
 kessoku {
     modules(["base", "platform"], PlatformIdentifier.COMMON)
 
-    common("config", ModPlatform.NEOFORGE)
-    shadowBundle("config", ModPlatform.NEOFORGE)
+    common("config", PlatformIdentifier.NEO)
+    shadowBundle("config", PlatformIdentifier.NEO)
 }
 
 dependencies {

@@ -1,5 +1,4 @@
 import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
-import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
 
@@ -8,6 +7,6 @@ base.archivesName = rootProject.name + "-keybinding"
 kessoku {
     modules(["base"], PlatformIdentifier.COMMON)
 
-    common("keybinding", ModPlatform.FABRIC)
-    shadowBundle("keybinding", ModPlatform.FABRIC)
+    common("keybinding", PlatformIdentifier.FABRIC)
+    shadowBundle("keybinding", PlatformIdentifier.FABRIC)
 }

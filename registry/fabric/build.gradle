@@ -12,6 +12,6 @@ loom {
 kessoku {
     modules(["base"], PlatformIdentifier.COMMON)
 
-    common("registry", ModPlatform.FABRIC)
-    shadowBundle("registry", ModPlatform.FABRIC)
+    common("registry", PlatformIdentifier.FABRIC)
+    shadowBundle("registry", PlatformIdentifier.FABRIC)
 }

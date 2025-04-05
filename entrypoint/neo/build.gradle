@@ -1,5 +1,4 @@
 import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
-import net.fabricmc.loom.util.ModPlatform
 
 apply from: rootProject.file("gradle/scripts/klib-neo.gradle")
 
@@ -8,6 +7,6 @@ base.archivesName = rootProject.name + "-entrypoint"
 kessoku {
     modules(["base"], PlatformIdentifier.COMMON)
 
-    common("entrypoint", ModPlatform.NEOFORGE)
-    shadowBundle("entrypoint", ModPlatform.NEOFORGE)
+    common("entrypoint",PlatformIdentifier.NEO)
+    shadowBundle("entrypoint", PlatformIdentifier.NEO)
 }
