@@ -47,8 +47,8 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
             Objects.requireNonNull(nodeEntrypoint, "Can't found the meta: entrypoint");
             Objects.requireNonNull(nodeLanguageAdapters, "Can't found the meta: languageAdapters");
 
-            parseEntrypoint(entrypoints, nodeEntrypoint, modid);
-            parseLanguageAdapters(languageAdapters, nodeLanguageAdapters, modid);
+            parseEntrypoint(entrypoints, nodeEntrypoint);
+            parseLanguageAdapters(languageAdapters, nodeLanguageAdapters);
 
             return new KessokuMetadata(entrypoints, languageAdapters, modid);
         } catch (Exception e) {
@@ -57,8 +57,7 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
     }
 
     private static void parseEntrypoint(final Map<String, List<EntrypointMetadata>> entrypoints,
-                                        final JsonNode<?> node,
-                                        final String modid) {
+                                        final JsonNode<?> node) {
         // Check if it's an object
         final MapNode mapNode = (MapNode) node.asTypeNodeOrThrow(JsonNode.NodeType.Map,
                 "entrypoint should be an object!");
@@ -114,8 +113,7 @@ public record KessokuMetadata(Map<String, List<EntrypointMetadata>> entrypoints,
     }
 
     private static void parseLanguageAdapters(final Map<String, LanguageAdapter> languageAdapters,
-                                              final JsonNode<?> node,
-                                              final String modid) throws ReflectiveOperationException {
+                                              final JsonNode<?> node) throws ReflectiveOperationException {
         node.asTypeNodeOrThrow(JsonNode.NodeType.Map, "languageAdapters should be an object!");
         for (Pair<String, JsonNode<?>> pair : ((MapNode) node)) {
             String language = pair.getKey();
