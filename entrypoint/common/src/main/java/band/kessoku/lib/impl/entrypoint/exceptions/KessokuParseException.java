@@ -23,12 +23,12 @@ public final class KessokuParseException extends RuntimeException {
     public final String modid;
 
     public KessokuParseException(@NotNull String message, @Nullable String modid) {
-        super("Failed to parse kessoku.json for " + modid + " : " + message);
+        super("Failed to parse kessoku.json for %s: %s".formatted(modid, message));
         this.modid = modid;
     }
 
     public KessokuParseException(@NotNull String message, @Nullable String modid, @NotNull Throwable cause) {
-        super("Failed to parse kessoku.json for " + modid + " : " + message, cause);
+        super("Failed to parse kessoku.json for %s: %s".formatted(modid, message), cause);
         this.modid = modid;
     }
 
