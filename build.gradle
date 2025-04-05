@@ -1,3 +1,4 @@
+import net.fabricmc.loom.util.ModPlatform
 import org.jetbrains.gradle.ext.Gradle
 
 plugins {
@@ -51,6 +52,10 @@ subprojects {
         // Test mod
         testImplementation(project(":base-common"))
         testImplementation(project(":entrypoint-common"))
+
+        if (loom.platform.get() == ModPlatform.NEOFORGE) {
+            neoForge libs.neo
+        }
     }
 
     spotless {

@@ -14,10 +14,6 @@ configurations {
     }
 }
 
-dependencies {
-    neoForge libs.neo
-}
-
 processResources {
     inputs.property 'version', project.version
 
