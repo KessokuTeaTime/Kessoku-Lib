@@ -21,6 +21,7 @@ import java.util.Arrays;
 
 import band.kessoku.lib.api.KessokuLib;
 
+@SuppressWarnings("ALL")
 public final class ReflectUtil {
     private ReflectUtil() {
     }

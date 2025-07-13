@@ -13,6 +13,7 @@ includeWrapper("fabric")
 includeWrapper("neo")
 
 includeModule("base") // Base
+includeModule("blockentity") // Block Entity
 includeModule("platform") // Platform
 includeModule("registry") // Registry
 includeModule("event") // Events

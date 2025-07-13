@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.config.Config;
@@ -46,7 +47,7 @@ public final class KessokuConfigFabric implements ModInitializer {
             URL resource = resources.nextElement();
             File directory = new File(resource.getFile());
             File[] files = directory.listFiles();
-            for (File file : files) {
+            for (File file : Objects.requireNonNull(files)) {
                 if (!file.getName().endsWith(".class")) {
                     continue;
                 }

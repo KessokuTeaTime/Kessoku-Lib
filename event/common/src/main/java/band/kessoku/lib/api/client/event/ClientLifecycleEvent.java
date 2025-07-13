@@ -24,7 +24,7 @@ import net.minecraft.client.MinecraftClient;
 public interface ClientLifecycleEvent {
 
     /**
-     * Called when Minecraft has started and it's client about to tick for the first time.
+     * Called when Minecraft has started, and it's client about to tick for the first time.
      *
      * <p>This occurs while the splash screen is displayed.
      */

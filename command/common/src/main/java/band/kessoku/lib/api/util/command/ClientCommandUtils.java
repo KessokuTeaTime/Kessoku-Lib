@@ -15,14 +15,11 @@
  */
 package band.kessoku.lib.api.util.command;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import band.kessoku.lib.api.KessokuLib;
 import band.kessoku.lib.api.command.KessokuCommand;
 import band.kessoku.lib.mixin.command.HelpCommandAccessor;
 import com.google.common.collect.Iterables;
+import com.mojang.brigadier.AmbiguityConsumer;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -34,11 +31,14 @@ import com.mojang.brigadier.exceptions.BuiltInExceptionProvider;
 import com.mojang.brigadier.exceptions.CommandExceptionType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.CommandNode;
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.minecraft.text.Texts;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class ClientCommandUtils {
     private static @Nullable CommandDispatcher<ClientCommandSourceExtension> activeDispatcher;

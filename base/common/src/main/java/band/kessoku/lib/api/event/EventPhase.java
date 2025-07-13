@@ -16,5 +16,5 @@
 package band.kessoku.lib.api.event;
 
 public enum EventPhase {
-    HIGHEST, HIGH, DEFAULT, LOW, LOWEST;
+    HIGHEST, HIGH, DEFAULT, LOW, LOWEST
 }

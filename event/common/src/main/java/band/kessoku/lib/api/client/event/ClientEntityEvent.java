@@ -28,7 +28,7 @@ public interface ClientEntityEvent {
      *
      * <p>When this event is called, the chunk is already in the world.
      */
-    public static final Event<Loaded> LOADED = Event.of(loadeds -> (entity, world) -> {
+    Event<Loaded> LOADED = Event.of(loadeds -> (entity, world) -> {
         for (Loaded loaded : loadeds) {
             loaded.onLoaded(entity, world);
         }
@@ -39,19 +39,19 @@ public interface ClientEntityEvent {
      *
      * <p>This event is called before the entity is unloaded from the world.
      */
-    public static final Event<Unloaded> UNLOADED = Event.of(unloadeds -> (entity, world) -> {
+    Event<Unloaded> UNLOADED = Event.of(unloadeds -> (entity, world) -> {
         for (Unloaded unloaded : unloadeds) {
             unloaded.onUnloaded(entity, world);
         }
     });
 
     @FunctionalInterface
-    public interface Loaded {
+    interface Loaded {
         void onLoaded(Entity entity, ClientWorld world);
     }
 
     @FunctionalInterface
-    public interface Unloaded {
+    interface Unloaded {
         void onUnloaded(Entity entity, ClientWorld world);
     }
 }

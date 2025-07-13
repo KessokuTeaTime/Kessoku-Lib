@@ -32,7 +32,7 @@ public interface Metadata {
     String getVersion();
 
     /**
-     * Returns all of the mod's dependencies.
+     * Returns all the mod's dependencies.
      */
     Collection<? extends DependencyInfo> getDependencies();
 

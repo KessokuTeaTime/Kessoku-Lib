@@ -1,0 +1,10 @@
+import band.kessoku.scripts.gradle.plugin.PlatformIdentifier
+
+apply from: rootProject.file("gradle/scripts/klib-fabric.gradle")
+
+base.archivesName = rootProject.name + "-blockentity"
+
+kessoku {
+    common("blockentity", PlatformIdentifier.FABRIC)
+    shadowBundle("blockentity", PlatformIdentifier.FABRIC)
+}

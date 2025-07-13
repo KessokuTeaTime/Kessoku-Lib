@@ -24,6 +24,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 
+@SuppressWarnings("ALL")
 public interface ClientCommandSourceExtension extends CommandSource {
     /**
      * Sends a feedback message to the player.

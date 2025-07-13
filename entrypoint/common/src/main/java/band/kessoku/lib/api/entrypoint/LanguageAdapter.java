@@ -19,6 +19,7 @@ import band.kessoku.lib.api.platform.Metadata;
 import band.kessoku.lib.impl.entrypoint.JavaLanguageAdapter;
 import band.kessoku.lib.impl.entrypoint.exceptions.LanguageAdapterException;
 
+@SuppressWarnings("ALL")
 public interface LanguageAdapter {
     /**
      * Get an instance of the default language adapter.

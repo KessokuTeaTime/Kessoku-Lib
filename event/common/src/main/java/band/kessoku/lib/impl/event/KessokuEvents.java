@@ -24,8 +24,6 @@ public class KessokuEvents {
     public static final Marker MARKER = MarkerFactory.getMarker("[" + NAME + "]");
 
     public static void clientInit() {
-    }
 
-    static  {
     }
 }

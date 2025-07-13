@@ -36,6 +36,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
 
+@SuppressWarnings("ALL")
 public class KessokuItem extends Item {
     public KessokuItem(Settings settings) {
         super(settings);
@@ -98,7 +99,9 @@ public class KessokuItem extends Item {
      * @return the leftover item stack
      */
     public ItemStack getRecipeRemainder(ItemStack stack) {
-        return this.hasRecipeRemainder() ? this.getRecipeRemainder().getDefaultStack() : ItemStack.EMPTY;
+        if (this.hasRecipeRemainder())
+            return Objects.requireNonNull(this.getRecipeRemainder()).getDefaultStack();
+        return ItemStack.EMPTY;
     }
 
     /**

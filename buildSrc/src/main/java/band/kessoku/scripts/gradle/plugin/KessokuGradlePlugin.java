@@ -34,7 +34,6 @@ public final class KessokuGradlePlugin implements Plugin<PluginAware> {
                 additionalRepositories(project.getRepositories());
             }
             case Gradle gradle -> {
-                return;
             }
             default ->
                     throw new IllegalArgumentException("Expected target to be a Project or Settings, but was a " + target.getClass());
