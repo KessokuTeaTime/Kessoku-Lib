@@ -30,10 +30,14 @@ We have incorporated the benefits of each platform's API into this mod's API in 
 ## Why do you need a cross-platform API?
 This means that most of your code is generic and only some of it is individually specific to a platform, which is even more important for developing.
 
-One Code, Each Platform. -- By H2Sxxa
+_One Code, Each Platform. -- By H2Sxxa_
 
 ## What is the current stage of development of this library?
 Still in WIP.
 
 ## What about the language loader?
 Kessoku Languages is currently in EAP status, but all we can guarantee at the moment is that we can provide language loaders with Kotlin/Scala/Groovy.
+
+## Contributing
+Fancy joining us? We welcome pull requests and issues from the community!  
+Join [QQ Group](https://qm.qq.com/q/kiuPgID0Xe) to talk with us!
